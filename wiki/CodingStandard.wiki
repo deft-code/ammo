@@ -1,0 +1,11 @@
+#summary The coding standard we'll use
+
+= Introduction =
+
+MethodNames
+
+ClassNames
+
+_privateMembers
+
+_PublicMembers
