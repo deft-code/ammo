@@ -10,5 +10,6 @@ set( CMAKE_CXX_FLAGS "-Wall" )
 file( GLOB ammo_files src/ammo/*.cpp )
 file( GLOB ammo_files_subs src/ammo/*/*.cpp )
 
-add_executable( ammo ${ammo_files} ${ammo_files_subs} )
+add_executable( ammo src/ammo/main.cpp )
+
 target_link_libraries( ammo sfml-system sfml-audio sfml-graphics sfml-window )
