@@ -39,7 +39,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\src;..\..\extlibs\SFML\include;..\..\extlibs\Box2D\include;..\..\extlibs\RakNet\include"
+				AdditionalIncludeDirectories="..\..\src\;..\..\extlibs\Boost\include;..\..\extlibs\SFML\include;..\..\extlibs\Box2D\include;..\..\extlibs\RakNet\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -90,6 +90,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)"
 			/>
 		</Configuration>
 		<Configuration
@@ -115,7 +116,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\..\src;..\..\extlibs\SFML\include;..\..\extlibs\Box2D\include;..\..\extlibs\RakNet\include"
+				AdditionalIncludeDirectories="..\..\extlibs\Boost\include;..\..\src;..\..\extlibs\SFML\include;..\..\extlibs\Box2D\include;..\..\extlibs\RakNet\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -166,6 +167,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)"
 			/>
 		</Configuration>
 	</Configurations>

@@ -4,7 +4,7 @@
 #include <list>
 #include <string>
 #include <map>
-#include <boost/type_traits/is_base_of.hpp>
+//#include <boost/type_traits/is_base_of.hpp>
 #include <boost/static_assert.hpp>
 
 #include "ammo/graphics/graphic_def.fwd.hpp"
@@ -53,7 +53,7 @@ namespace ammo
    template< typename Def >
    void GraphicSys::addDef( const std::string& name, const Def& def )
    {
-      BOOST_STATIC_ASSERT(( boost::is_base_of<GraphicDef,Def>::value ));
+//      BOOST_STATIC_ASSERT(( boost::is_base_of<GraphicDef,Def>::value ));
       GraphicDef_ptr ptr (new Def(def) );
       addDef( name, ptr );
    }
