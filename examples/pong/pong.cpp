@@ -5,6 +5,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <cmath>
+#include "ammo/graphics.hpp"
+#include "ammo/audio.hpp"
 
 
 ////////////////////////////////////////////////////////////
@@ -15,19 +17,17 @@
 ////////////////////////////////////////////////////////////
 int main()
 {
+   ammo::GraphicSys graphics;
+   ammo::SoundSys audio;
+
+   audio.addDef("bounce", ammo::PlainDef("data/ball.wav") );
+   ammo::Sound bounce = audio.getSound("bounce");
+
 	// Defines PI
 	const float PI = 3.14159f;
 
     // Create the window of the application
     sf::RenderWindow App(sf::VideoMode(800, 600, 32), "SFML Pong");
-
-    // Load the sounds used in the game
-    sf::SoundBuffer BallSoundBuffer;
-    if (!BallSoundBuffer.LoadFromFile("data/ball.wav"))
-    {
-        return EXIT_FAILURE;
-    }
-    sf::Sound BallSound(BallSoundBuffer);
 
     // Load the images used in the game
     sf::Image BackgroundImage, LeftPaddleImage, RightPaddleImage, BallImage;
@@ -134,13 +134,15 @@ int main()
 			}
 			if (Ball.GetPosition().y < 0.f)
 			{
-				BallSound.Play();
+				//BallSound.Play();
+   			        audio.getSound("bounce").play(); 
 				BallAngle = -BallAngle;
 				Ball.SetY(0.1f);
 			}
 			if (Ball.GetPosition().y + Ball.GetSize().y > App.GetView().GetRect().GetHeight())
 			{
-				BallSound.Play();
+				//BallSound.Play();
+   			        audio.getSound("bounce").play(); 
 				BallAngle = -BallAngle;
 				Ball.SetY(App.GetView().GetRect().GetHeight() - Ball.GetSize().y - 0.1f);
 			}
@@ -152,7 +154,9 @@ int main()
 				Ball.GetPosition().y + Ball.GetSize().y >= LeftPaddle.GetPosition().y &&
 				Ball.GetPosition().y <= LeftPaddle.GetPosition().y + LeftPaddle.GetSize().y)
 			{
-				BallSound.Play();
+				//BallSound.Play();
+				//audio.getSound("bounce").play();
+				bounce.play();
 				BallAngle = PI - BallAngle;
 				Ball.SetX(LeftPaddle.GetPosition().x + LeftPaddle.GetSize().x + 0.1f);
 			}
@@ -163,11 +167,13 @@ int main()
 				Ball.GetPosition().y + Ball.GetSize().y >= RightPaddle.GetPosition().y &&
 				Ball.GetPosition().y <= RightPaddle.GetPosition().y + RightPaddle.GetSize().y)
 			{
-				BallSound.Play();
+				bounce.play();
 				BallAngle = PI - BallAngle;
 				Ball.SetX(RightPaddle.GetPosition().x - Ball.GetSize().x - 0.1f);
 			}
 		}
+
+	audio.update( App.GetFrameTime() );
 
         // Clear the window
         App.Clear();
