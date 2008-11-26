@@ -69,50 +69,48 @@
 			Filters="">
 		</Folder>
 	</CustomFolders>
-	<Files AutoFolders="DirectoryView">
-		<Folder Name="../../">
+	<Files AutoFolders="PackageView">
+		<Folder Name="../..">
 			<F N="../../CMakeLists.txt"/>
 		</Folder>
 		<Folder Name="../../src/ammo">
-			<Folder Name="audio">
-				<F N="../../src/ammo/audio/CMakeLists.txt"/>
-				<F N="../../src/ammo/audio/music_sys.cpp"/>
-				<F N="../../src/ammo/audio/music_sys.hpp"/>
-				<F N="../../src/ammo/audio/plain_sound.cpp"/>
-				<F N="../../src/ammo/audio/plain_sound.hpp"/>
-				<F N="../../src/ammo/audio/random_sound.cpp"/>
-				<F N="../../src/ammo/audio/random_sound.hpp"/>
-				<F N="../../src/ammo/audio/sound.cpp"/>
-				<F N="../../src/ammo/audio/sound.hpp"/>
-				<F N="../../src/ammo/audio/sound_def.fwd.hpp"/>
-				<F N="../../src/ammo/audio/sound_def.hpp"/>
-				<F N="../../src/ammo/audio/sound_impl.fwd.hpp"/>
-				<F N="../../src/ammo/audio/sound_impl.hpp"/>
-				<F N="../../src/ammo/audio/sound_sys.cpp"/>
-				<F N="../../src/ammo/audio/sound_sys.hpp"/>
-			</Folder>
-			<Folder Name="graphics">
-				<F N="../../src/ammo/graphics/CMakeLists.txt"/>
-				<F N="../../src/ammo/graphics/graphic.cpp"/>
-				<F N="../../src/ammo/graphics/graphic.hpp"/>
-				<F N="../../src/ammo/graphics/graphic_def.fwd.hpp"/>
-				<F N="../../src/ammo/graphics/graphic_def.hpp"/>
-				<F N="../../src/ammo/graphics/graphic_impl.fwd.hpp"/>
-				<F N="../../src/ammo/graphics/graphic_impl.hpp"/>
-				<F N="../../src/ammo/graphics/graphic_sys.cpp"/>
-				<F N="../../src/ammo/graphics/graphic_sys.hpp"/>
-				<F N="../../src/ammo/graphics/simple_animation.cpp"/>
-				<F N="../../src/ammo/graphics/simple_animation.hpp"/>
-				<F N="../../src/ammo/graphics/sprite.cpp"/>
-				<F N="../../src/ammo/graphics/sprite.hpp"/>
-				<F N="../../src/ammo/graphics/view.cpp"/>
-				<F N="../../src/ammo/graphics/view.hpp"/>
-			</Folder>
 			<F N="../../src/ammo/audio.hpp"/>
 			<F N="../../src/ammo/error.cpp"/>
 			<F N="../../src/ammo/error.hpp"/>
-			<F N="../../src/ammo/graphics.hpp"/>
 			<F N="../../src/ammo/main.cpp"/>
+			<F N="../../src/ammo/graphics.hpp"/>
+		</Folder>
+		<Folder Name="../../src/ammo/audio">
+			<F N="../../src/ammo/audio/music_sys.cpp"/>
+			<F N="../../src/ammo/audio/music_sys.hpp"/>
+			<F N="../../src/ammo/audio/plain_sound.cpp"/>
+			<F N="../../src/ammo/audio/plain_sound.hpp"/>
+			<F N="../../src/ammo/audio/random_sound.cpp"/>
+			<F N="../../src/ammo/audio/random_sound.hpp"/>
+			<F N="../../src/ammo/audio/sound.cpp"/>
+			<F N="../../src/ammo/audio/sound.hpp"/>
+			<F N="../../src/ammo/audio/sound_def.fwd.hpp"/>
+			<F N="../../src/ammo/audio/sound_def.hpp"/>
+			<F N="../../src/ammo/audio/sound_impl.fwd.hpp"/>
+			<F N="../../src/ammo/audio/sound_impl.hpp"/>
+			<F N="../../src/ammo/audio/sound_sys.cpp"/>
+			<F N="../../src/ammo/audio/sound_sys.hpp"/>
+		</Folder>
+		<Folder Name="../../src/ammo/graphics">
+			<F N="../../src/ammo/graphics/graphic.cpp"/>
+			<F N="../../src/ammo/graphics/graphic.hpp"/>
+			<F N="../../src/ammo/graphics/graphic_def.fwd.hpp"/>
+			<F N="../../src/ammo/graphics/graphic_def.hpp"/>
+			<F N="../../src/ammo/graphics/graphic_impl.fwd.hpp"/>
+			<F N="../../src/ammo/graphics/graphic_impl.hpp"/>
+			<F N="../../src/ammo/graphics/graphic_sys.cpp"/>
+			<F N="../../src/ammo/graphics/graphic_sys.hpp"/>
+			<F N="../../src/ammo/graphics/simple_animation.cpp"/>
+			<F N="../../src/ammo/graphics/simple_animation.hpp"/>
+			<F N="../../src/ammo/graphics/sprite.cpp"/>
+			<F N="../../src/ammo/graphics/sprite.hpp"/>
+			<F N="../../src/ammo/graphics/view.cpp"/>
+			<F N="../../src/ammo/graphics/view.hpp"/>
 		</Folder>
 	</Files>
 </Project>
