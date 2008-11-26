@@ -2,7 +2,7 @@
 
 #include "graphic_impl.hpp"
 
-namespace ento
+namespace ammo
 {
    Graphic::Graphic( void ) { }
    

@@ -1,7 +1,7 @@
 #include "music_sys.hpp"
 #include "../error.hpp"
 
-namespace ento
+namespace ammo
 {
    void MusicSys::addSong( const std::string& songname, const std::string& filename )
    {
@@ -13,15 +13,15 @@ namespace ento
       m_song.Stop();
       std::map<std::string,std::string>::iterator found = m_songlist.find(songname);
 
-      using namespace ento::Errors;
+      using namespace ammo::Errors;
       if( found == m_songlist.end() )
       {
-         throw ento::Error( e_Missing_Definition, songname );
+         throw ammo::Error( e_Missing_Definition, songname );
       }
 
       if( !m_song.OpenFromFile( found->second ) )
       {
-         throw ento::Error( e_File_Load_Error, found->second );
+         throw ammo::Error( e_File_Load_Error, found->second );
       }
 
       //m_song.SetLoop();

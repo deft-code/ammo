@@ -1,10 +1,10 @@
-#ifndef ENTO_GRAPHICS_GRAPHIC_DEF_HPP_INCLUDED
-#define ENTO_GRAPHICS_GRAPHIC_DEF_HPP_INCLUDED
+#ifndef AMMO_GRAPHICS_GRAPHIC_DEF_HPP_INCLUDED
+#define AMMO_GRAPHICS_GRAPHIC_DEF_HPP_INCLUDED
 
-#include "ento/graphics/graphic_def.fwd.hpp"
-#include "ento/graphics/graphic_impl.fwd.hpp"
+#include "ammo/graphics/graphic_def.fwd.hpp"
+#include "ammo/graphics/graphic_impl.fwd.hpp"
 
-namespace ento
+namespace ammo
 {
    class GraphicDef
    {
@@ -17,5 +17,5 @@ namespace ento
    };
 }
 
-#endif // ENTO_GRAPHICS_GRAPHIC_DEF_HPP_INCLUDED
+#endif // AMMO_GRAPHICS_GRAPHIC_DEF_HPP_INCLUDED
 

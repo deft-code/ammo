@@ -1,5 +1,5 @@
-#ifndef ENTO_GRAPHICS_GRAPHIC_IMPL_FWD_HPP_INCLUDED
-#define ENTO_GRAPHICS_GRAPHIC_IMPL_FWD_HPP_INCLUDED
+#ifndef AMMO_GRAPHICS_GRAPHIC_IMPL_FWD_HPP_INCLUDED
+#define AMMO_GRAPHICS_GRAPHIC_IMPL_FWD_HPP_INCLUDED
 
 #include <boost/shared_ptr.hpp>
 
@@ -9,7 +9,7 @@ namespace sf
    class RenderWindow;
 }
 
-namespace ento
+namespace ammo
 {
    class GraphicImpl;
    typedef boost::shared_ptr<GraphicImpl> GraphicPimpl;
@@ -17,4 +17,4 @@ namespace ento
    typedef boost::shared_ptr<sf::Image> Image_ptr;
 }
 
-#endif // ENTO_GRAPHICS_GRAPHIC_IMPL_FWD_HPP_INCLUDED
+#endif // AMMO_GRAPHICS_GRAPHIC_IMPL_FWD_HPP_INCLUDED

@@ -1,9 +1,9 @@
-#ifndef ENTO_AUDIO_SOUND_HPP_INCLUDED
-#define ENTO_AUDIO_SOUND_HPP_INCLUDED
+#ifndef AMMO_AUDIO_SOUND_HPP_INCLUDED
+#define AMMO_AUDIO_SOUND_HPP_INCLUDED
 
-#include "ento/audio/sound_impl.fwd.hpp"
+#include "ammo/audio/sound_impl.fwd.hpp"
 
-namespace ento
+namespace ammo
 {
    class Sound
    {
@@ -16,6 +16,6 @@ namespace ento
    private:
       SoundPimpl m_pimpl;
    };
-} // namespace ento
+} // namespace ammo
 
-#endif // ENTO_AUDIO_SOUND_HPP_INCLUDED
+#endif // AMMO_AUDIO_SOUND_HPP_INCLUDED

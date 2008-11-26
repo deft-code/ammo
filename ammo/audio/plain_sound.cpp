@@ -1,6 +1,6 @@
 #include "plain_sound.hpp"
 
-namespace ento
+namespace ammo
 {
 
    bool PlainImpl::done( void ) const

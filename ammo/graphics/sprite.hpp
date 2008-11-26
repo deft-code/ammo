@@ -1,14 +1,14 @@
-#ifndef ENTO_GRAPHICS_SPRITE_HPP_INCLUDED
-#define ENTO_GRAPHICS_SPRITE_HPP_INCLUDED
+#ifndef AMMO_GRAPHICS_SPRITE_HPP_INCLUDED
+#define AMMO_GRAPHICS_SPRITE_HPP_INCLUDED
 
-#include "ento/graphics/graphic_impl.hpp"
-#include "ento/graphics/graphic_def.hpp"
+#include "ammo/graphics/graphic_impl.hpp"
+#include "ammo/graphics/graphic_def.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 
 #include <string>
 
-namespace ento
+namespace ammo
 {
    class SpriteImpl : public GraphicImpl
    {
@@ -51,4 +51,4 @@ namespace ento
 
 }
 
-#endif // ENTO_GRAPHICS_SPRITE_HPP_INCLUDED
+#endif // AMMO_GRAPHICS_SPRITE_HPP_INCLUDED

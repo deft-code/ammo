@@ -1,6 +1,6 @@
 #include "error.hpp"
 
-namespace ento
+namespace ammo
 {
    using namespace Errors;
 

@@ -7,7 +7,7 @@
 #include <limits>
 #include <iostream>
 
-namespace ento
+namespace ammo
 {
    SpriteImpl::SpriteImpl( float lifetime )
     : GraphicImpl(),

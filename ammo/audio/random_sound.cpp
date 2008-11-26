@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cassert>
 
-namespace ento
+namespace ammo
 {
    RandomImpl::RandomImpl( std::size_t num_sounds )
     : SoundImpl(),

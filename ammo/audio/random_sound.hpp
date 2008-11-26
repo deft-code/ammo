@@ -1,14 +1,14 @@
-#ifndef ENTO_AUDIO_RANDOM_SOUND_HPP_INCLUDED
-#define ENTO_AUDIO_RANDOM_SOUND_HPP_INCLUDED
+#ifndef AMMO_AUDIO_RANDOM_SOUND_HPP_INCLUDED
+#define AMMO_AUDIO_RANDOM_SOUND_HPP_INCLUDED
 
-#include "ento/audio/sound_def.hpp"
-#include "ento/audio/sound_impl.hpp"
+#include "ammo/audio/sound_def.hpp"
+#include "ammo/audio/sound_impl.hpp"
 
 #include <SFML/Audio/Sound.hpp>
 #include <string>
 #include <vector>
 
-namespace ento
+namespace ammo
 {
 
    class RandomImpl : public SoundImpl
@@ -45,4 +45,4 @@ namespace ento
 
 }
 
-#endif // ENTO_AUDIO_RANDOM_SOUND_HPP_INCLUDED
+#endif // AMMO_AUDIO_RANDOM_SOUND_HPP_INCLUDED

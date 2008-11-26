@@ -1,10 +1,10 @@
-#ifndef VIEWING_HPP_INCLUDED
-#define VIEWING_HPP_INCLUDED
+#ifndef AMMO_GRAPHICS_VIEW_HPP_INCLUDED
+#define AMMO_GRAPHICS_VIEW_HPP_INCLUDED
 
 #include <SFML/Graphics.hpp>
 #include <Box2D.h>
 
-namespace ento
+namespace ammo
 {
    class View
    {
@@ -37,6 +37,6 @@ namespace ento
       bool m_is_hud;
       sf::View m_world_view;
    };
-}//namespace ento
+}//namespace ammo
 
-#endif // VIEWING_HPP_INCLUDED
+#endif // AMMO_GRAPHICS_VIEW_HPP_INCLUDED

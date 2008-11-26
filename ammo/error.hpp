@@ -1,10 +1,10 @@
-#ifndef ENTO_ERROR_HPP_INCLUDED
-#define ENTO_ERROR_HPP_INCLUDED
+#ifndef AMMO_ERROR_HPP_INCLUDED
+#define AMMO_ERROR_HPP_INCLUDED
 
 #include <stdexcept>
 #include <string>
 
-namespace ento
+namespace ammo
 {
    namespace Errors
    {
@@ -31,4 +31,4 @@ namespace ento
    };
 }
 
-#endif // ENTO_ERROR_HPP_INCLUDED
+#endif // AMMO_ERROR_HPP_INCLUDED
