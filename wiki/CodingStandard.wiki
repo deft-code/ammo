@@ -18,6 +18,11 @@ The directory structure will mirror SFML's.
       * VS2008
       * slickedit
       * others (codeblocks, xcode, whatever you use)
+
+cpp file (source.cpp) can include a header files two ways
+  * {{{#include "ammo/header.h"}}}
+  * {{{#include "header.h"}}} if source.cpp is in the same directory as header.h
+h files can only use the first method
   
 
 ==Example Class==
