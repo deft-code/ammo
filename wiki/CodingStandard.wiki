@@ -1,13 +1,53 @@
 #summary The coding standard we'll use
 
 = Introduction =
+This standard is by no means set in stone.  It will continue to morph as our coding styles blend of the next month.  After that we'll lock it down.
 
+==Directory Structure==
+The directory structure will mirror SFML's.
+  * trunk
+    * docs
+    * src
+      * ammo
+        * graphics
+        * network
+        * audio
+        * physics
+        * lua
+    * build
+      * VS2008
+      * slickedit
+      * others (codeblocks, xcode, whatever you use)
+  
+
+==Example Class==
+look at RakNet for a good example of how to do doxygen comments right.
 {{{
-MethodNames
 
-ClassNames
+/// doxygen comment for class
+class ClassName
+{
+public:
+   /// silly description, not really needed here
+   ClassName( void );
 
-_privateMembers
+   /// more silly stuff
+   ~ClassName( void );
 
-_PublicMembers
+   /// what does this do?
+   void MethodOne( void );
+   
+   /// what does this do?
+   /// @param foo what does this parameter do
+   /// @returns the results of MethodTwo
+   int MethodTwo( int foo );
+
+private:
+   /// what this member is for
+   int _privateMembers;
+
+   /// what this member is for
+   int _private_members_alt
+};
+
 }}}
