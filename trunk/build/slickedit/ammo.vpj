@@ -1,0 +1,115 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
+<Project
+	Version="10.0"
+	VendorName="SlickEdit"
+	WorkingDir="."
+	VCSProject="Subversion:">
+	<Config
+		Name="Release"
+		OutputFile=""
+		CompilerConfigName="Latest Version">
+		<Menu>
+			<Target
+				Name="Compile"
+				MenuCaption="&amp;Compile"
+				CaptureOutputWith="ProcessBuffer"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw">
+				<Exec/>
+			</Target>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				CaptureOutputWith="ProcessBuffer"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				CaptureOutputWith="ProcessBuffer"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec CmdLine='"ammo.exe"'/>
+			</Target>
+		</Menu>
+	</Config>
+	<CustomFolders>
+		<Folder
+			Name="Source Files"
+			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl">
+		</Folder>
+		<Folder
+			Name="Header Files"
+			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.inc;*.sh;*.cpy;*.if">
+		</Folder>
+		<Folder
+			Name="Resource Files"
+			Filters="*.ico;*.cur;*.dlg"/>
+		<Folder
+			Name="Bitmaps"
+			Filters="*.bmp"/>
+		<Folder
+			Name="Other Files"
+			Filters="">
+		</Folder>
+	</CustomFolders>
+	<Files AutoFolders="DirectoryView">
+		<Folder Name="../../ammo">
+			<Folder Name="audio">
+				<F N="../../ammo/audio/CMakeLists.txt"/>
+				<F N="../../ammo/audio/music_sys.cpp"/>
+				<F N="../../ammo/audio/music_sys.hpp"/>
+				<F N="../../ammo/audio/plain_sound.cpp"/>
+				<F N="../../ammo/audio/plain_sound.hpp"/>
+				<F N="../../ammo/audio/random_sound.cpp"/>
+				<F N="../../ammo/audio/random_sound.hpp"/>
+				<F N="../../ammo/audio/sound.cpp"/>
+				<F N="../../ammo/audio/sound.hpp"/>
+				<F N="../../ammo/audio/sound_def.fwd.hpp"/>
+				<F N="../../ammo/audio/sound_def.hpp"/>
+				<F N="../../ammo/audio/sound_impl.fwd.hpp"/>
+				<F N="../../ammo/audio/sound_impl.hpp"/>
+				<F N="../../ammo/audio/sound_sys.cpp"/>
+				<F N="../../ammo/audio/sound_sys.hpp"/>
+			</Folder>
+			<Folder Name="graphics">
+				<F N="../../ammo/graphics/CMakeLists.txt"/>
+				<F N="../../ammo/graphics/graphic.cpp"/>
+				<F N="../../ammo/graphics/graphic.hpp"/>
+				<F N="../../ammo/graphics/graphic_def.fwd.hpp"/>
+				<F N="../../ammo/graphics/graphic_def.hpp"/>
+				<F N="../../ammo/graphics/graphic_impl.fwd.hpp"/>
+				<F N="../../ammo/graphics/graphic_impl.hpp"/>
+				<F N="../../ammo/graphics/graphic_sys.cpp"/>
+				<F N="../../ammo/graphics/graphic_sys.hpp"/>
+				<F N="../../ammo/graphics/simple_animation.cpp"/>
+				<F N="../../ammo/graphics/simple_animation.hpp"/>
+				<F N="../../ammo/graphics/sprite.cpp"/>
+				<F N="../../ammo/graphics/sprite.hpp"/>
+				<F N="../../ammo/graphics/view.cpp"/>
+				<F N="../../ammo/graphics/view.hpp"/>
+			</Folder>
+			<F N="../../ammo/audio.hpp"/>
+			<F N="../../ammo/error.cpp"/>
+			<F N="../../ammo/error.hpp"/>
+			<F N="../../ammo/graphics.hpp"/>
+			<F N="../../ammo/main.cpp"/>
+		</Folder>
+	</Files>
+</Project>
