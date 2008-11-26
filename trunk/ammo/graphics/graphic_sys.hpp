@@ -1,5 +1,5 @@
-#ifndef ENTO_GRAPHICS_GRAPHICSYS_HPP_INCLUDED
-#define ENTO_GRAPHICS_GRAPHICSYS_HPP_INCLUDED
+#ifndef AMMO_GRAPHICS_GRAPHICSYS_HPP_INCLUDED
+#define AMMO_GRAPHICS_GRAPHICSYS_HPP_INCLUDED
 
 #include <list>
 #include <string>
@@ -7,10 +7,10 @@
 #include <boost/type_traits/is_base_of.hpp>
 #include <boost/static_assert.hpp>
 
-#include "ento/graphics/graphic_def.fwd.hpp"
-#include "ento/graphics/graphic_impl.fwd.hpp"
+#include "ammo/graphics/graphic_def.fwd.hpp"
+#include "ammo/graphics/graphic_impl.fwd.hpp"
 
-namespace ento
+namespace ammo
 {
    class Graphic;
 
@@ -59,4 +59,4 @@ namespace ento
    }
 }
 
-#endif // ENTO_GRAPHICS_GRAPHICSYS_HPP_INCLUDED
+#endif // AMMO_GRAPHICS_GRAPHICSYS_HPP_INCLUDED

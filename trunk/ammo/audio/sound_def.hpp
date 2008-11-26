@@ -1,10 +1,10 @@
-#ifndef ENTO_AUDIO_SOUND_DEF_HPP_INCLUDED
-#define ENTO_AUDIO_SOUND_DEF_HPP_INCLUDED
+#ifndef AMMO_AUDIO_SOUND_DEF_HPP_INCLUDED
+#define AMMO_AUDIO_SOUND_DEF_HPP_INCLUDED
 
-#include "ento/audio/sound_def.fwd.hpp"
-#include "ento/audio/sound_impl.fwd.hpp"
+#include "ammo/audio/sound_def.fwd.hpp"
+#include "ammo/audio/sound_impl.fwd.hpp"
 
-namespace ento
+namespace ammo
 {
    class SoundDef
    {
@@ -17,5 +17,5 @@ namespace ento
    };
 }
 
-#endif // ENTO_AUDIO_SOUND_DEF_HPP_INCLUDED
+#endif // AMMO_AUDIO_SOUND_DEF_HPP_INCLUDED
 

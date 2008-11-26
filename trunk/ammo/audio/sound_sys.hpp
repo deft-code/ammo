@@ -1,8 +1,8 @@
-#ifndef ENTO_AUDIO_SOUND_SYS_HPP_INCLUDED
-#define ENTO_AUDIO_SOUND_SYS_HPP_INCLUDED
+#ifndef AMMO_AUDIO_SOUND_SYS_HPP_INCLUDED
+#define AMMO_AUDIO_SOUND_SYS_HPP_INCLUDED
 
-#include "ento/audio/sound_def.fwd.hpp"
-#include "ento/audio/sound_impl.fwd.hpp"
+#include "ammo/audio/sound_def.fwd.hpp"
+#include "ammo/audio/sound_impl.fwd.hpp"
 
 #include <list>
 #include <map>
@@ -10,7 +10,7 @@
 #include <boost/type_traits/is_base_of.hpp>
 #include <boost/static_assert.hpp>
 
-namespace ento
+namespace ammo
 {
    class Sound;
 
@@ -62,4 +62,4 @@ namespace ento
    }
 }
 
-#endif // ENTO_AUDIO_SOUND_SYS_HPP_INCLUDED
+#endif // AMMO_AUDIO_SOUND_SYS_HPP_INCLUDED

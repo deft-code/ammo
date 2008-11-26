@@ -8,7 +8,7 @@
 #include <limits>
 #include <iostream>
 
-namespace ento
+namespace ammo
 {
    SimpleAnimationImpl::SimpleAnimationImpl( float lifetime, const std::vector<float>& times )
     : GraphicImpl(),

@@ -7,7 +7,7 @@
 
 #include <SFML/Audio/SoundBuffer.hpp>
 
-namespace ento
+namespace ammo
 {
 
 SoundSys::SoundSys( void )
@@ -177,4 +177,4 @@ SoundBuffer_ptr SoundSys::loadBuffer( const std::string& filename )
    return found->second;
 }
 
-} // namespace ento
+} // namespace ammo

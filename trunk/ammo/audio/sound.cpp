@@ -2,7 +2,7 @@
 
 #include "sound_impl.hpp"
 
-namespace ento
+namespace ammo
 {
    Sound::Sound( void ) { }
 

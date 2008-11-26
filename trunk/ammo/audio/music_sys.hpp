@@ -1,12 +1,12 @@
-#ifndef ENTO_AUDIO_MUSIC_SYS_HPP_INCLUDED
-#define ENTO_AUDIO_MUSIC_SYS_HPP_INCLUDED
+#ifndef AMMO_AUDIO_MUSIC_SYS_HPP_INCLUDED
+#define AMMO_AUDIO_MUSIC_SYS_HPP_INCLUDED
 
 #include <SFML/Audio/Music.hpp>
 
 #include <string>
 #include <map>
 
-namespace ento
+namespace ammo
 {
    class MusicSys
    {
@@ -22,4 +22,4 @@ namespace ento
    };
 }
 
-#endif // ENTO_AUDIO_MUSIC_SYS_HPP_INCLUDED
+#endif // AMMO_AUDIO_MUSIC_SYS_HPP_INCLUDED

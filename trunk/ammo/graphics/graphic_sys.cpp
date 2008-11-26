@@ -7,7 +7,7 @@
 
 #include <SFML/Graphics/Image.hpp>
 
-namespace ento
+namespace ammo
 {
 
 GraphicSys::GraphicSys( void ) { }
@@ -179,4 +179,4 @@ Image_ptr GraphicSys::loadImage( const std::string& filename )
    return found->second;
 }
 
-} // namespace ento
+} // namespace ammo

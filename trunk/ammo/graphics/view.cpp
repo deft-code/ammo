@@ -1,6 +1,6 @@
 #include "view.hpp"
 
-namespace ento
+namespace ammo
 {
 
 View::View( sf::RenderWindow& app )
@@ -118,5 +118,5 @@ HUD2world( const sf::Vector2f& vec ) const
 }
 
 
-} // namespace ento
+} // namespace ammo
 
