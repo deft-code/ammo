@@ -1,5 +1,7 @@
-#include "ammo/graphics.h"
-#include "ammo/audio.h"
+#include "ammo/graphics.hpp"
+#include "ammo/audio.hpp"
+
+#include <iostream>
 
 int main()
 {
