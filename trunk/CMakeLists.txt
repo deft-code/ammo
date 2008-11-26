@@ -15,6 +15,6 @@ file( GLOB ammo_files_subs src/ammo/*/*.cpp )
 add_executable( ammo ${ammo_files} ${ammo_files_subs} )
 target_link_libraries( ammo sfml-system sfml-audio sfml-graphics sfml-window )
 
-add_executable( pong examples/pong/pong.cpp )
+add_executable( pong examples/pong/pong.cpp src/ammo/error.cpp ${ammo_files_subs} )
 target_link_libraries( pong sfml-system sfml-audio sfml-graphics sfml-window )
 

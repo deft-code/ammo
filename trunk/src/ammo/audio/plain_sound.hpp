@@ -31,6 +31,10 @@ namespace ammo
    class PlainDef : public SoundDef
    {
    public:
+      PlainDef( void );
+
+      PlainDef( const std::string& filename );
+
       virtual ~PlainDef( void ) { }
 
       virtual std::size_t numFiles( void ) const;
