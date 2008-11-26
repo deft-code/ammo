@@ -5,6 +5,7 @@
 
 int main()
 {
-   st
-      d::cout << "hello world!\n";
+   std::cout << "hello world!\n";
+
+   system("PAUSE");
 }

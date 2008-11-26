@@ -3,6 +3,7 @@
 
 #include "ammo/audio/sound_def.fwd.hpp"
 #include "ammo/audio/sound_impl.fwd.hpp"
+#include <iostream>
 
 namespace ammo
 {

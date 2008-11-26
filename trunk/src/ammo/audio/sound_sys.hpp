@@ -7,7 +7,7 @@
 #include <list>
 #include <map>
 #include <string>
-#include <boost/type_traits/is_base_of.hpp>
+//#include <boost/type_traits/is_base_of.hpp>
 #include <boost/static_assert.hpp>
 
 namespace ammo
@@ -56,7 +56,7 @@ namespace ammo
    template< typename Def >
    void SoundSys::addDef( const std::string& name, const Def& def )
    {
-      BOOST_STATIC_ASSERT(( boost::is_base_of<SoundDef,Def>::value ));
+//      BOOST_STATIC_ASSERT(( boost::is_base_of<SoundDef,Def>::value ));
       SoundDef_ptr ptr(new Def(def) );
       addDef( name, ptr );
    }

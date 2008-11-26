@@ -3,6 +3,7 @@
 
 #include "ammo/graphics/graphic_def.fwd.hpp"
 #include "ammo/graphics/graphic_impl.fwd.hpp"
+#include <string>
 
 namespace ammo
 {
