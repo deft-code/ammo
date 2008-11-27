@@ -44,8 +44,10 @@
 				Name="Execute"
 				MenuCaption="E&amp;xecute"
 				SaveOption="SaveNone"
-				RunFromDir="%rw">
-				<Exec CmdLine='"ammo.exe"'/>
+				CaptureOutputWith="ProcessBuffer"
+				ClearProcessBuffer="1"
+				RunFromDir="../../examples">
+				<Exec CmdLine="../build/slickedit/pong"/>
 			</Target>
 		</Menu>
 	</Config>
