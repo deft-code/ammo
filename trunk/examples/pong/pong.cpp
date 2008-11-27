@@ -17,7 +17,6 @@
 ////////////////////////////////////////////////////////////
 int main()
 {
-   ammo::GraphicSys graphics;
    ammo::SoundSys audio;
 
    audio.addDef("bounce", ammo::PlainDef("data/ball.wav") );
@@ -28,6 +27,20 @@ int main()
 
     // Create the window of the application
     sf::RenderWindow App(sf::VideoMode(800, 600, 32), "SFML Pong");
+
+    ammo::GraphicSys graphics;
+
+    ammo::SimpleAnimationDef anim_def;
+    anim_def.addFrame( 0.3, "data/noise1.png" );
+    anim_def.addFrame( 0.3, "data/noise2.png" );
+    anim_def.addFrame( 0.3, "data/noise3.png" );
+    anim_def.addFrame( 0.3, "data/noise4.png" );
+
+    graphics.addDef("noise",anim_def);
+
+    ammo::Graphic noise = graphics.getGraphic("noise");
+    noise.show();
+
 
     // Load the images used in the game
     sf::Image BackgroundImage, LeftPaddleImage, RightPaddleImage, BallImage;
@@ -173,10 +186,12 @@ int main()
 			}
 		}
 
-	audio.update( App.GetFrameTime() );
+        audio.update( App.GetFrameTime() );
+        graphics.update( App.GetFrameTime() );
 
         // Clear the window
         App.Clear();
+
 
         // Draw the background, paddles and ball sprites
         App.Draw(Background);
@@ -187,6 +202,8 @@ int main()
         // If the game is over, display the end message
         if (!IsPlaying)
             App.Draw(End);
+
+        graphics.draw(App);
 
         // Display things on screen
         App.Display();
