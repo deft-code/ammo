@@ -60,12 +60,14 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="RakNetLibStatic.lib box2d_d.lib sfml-audio-s-d.lib sfml-graphics-s-d.lib sfml-window-s-d.lib sfml-system-s-d.lib"
+				AdditionalDependencies="RakNetDLLDebug.lib box2d_d.lib sfml-audio-s-d.lib sfml-graphics-s-d.lib sfml-window-s-d.lib sfml-system-s-d.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\extlibs\SFML\lib\vc2005;..\..\extlibs\RakNet\lib;..\..\extlibs\Box2D\lib"
+				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
+				CLRThreadAttribute="0"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -90,7 +92,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)"
+				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\RakNetDebug.dll $(OutDir)"
 			/>
 		</Configuration>
 		<Configuration
@@ -135,7 +137,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="RakNetLibStatic.lib box2d.lib sfml-audio-s.lib sfml-graphics-s.lib sfml-window-s.lib sfml-system-s.lib"
+				AdditionalDependencies="RakNetDLL.lib box2d.lib sfml-audio-s.lib sfml-graphics-s.lib sfml-window-s.lib sfml-system-s.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\extlibs\SFML\lib\vc2005;..\..\extlibs\RakNet\lib;..\..\extlibs\Box2D\lib"
 				GenerateDebugInformation="true"
@@ -167,7 +169,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)"
+				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\RakNet.dll $(OutDir)"
 			/>
 		</Configuration>
 	</Configurations>
@@ -271,6 +273,18 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="network"
+				>
+				<File
+					RelativePath="..\..\src\ammo\network\game.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\network\server.hpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Resource Files"
@@ -336,6 +350,14 @@
 				</File>
 				<File
 					RelativePath="..\..\src\ammo\graphics\view.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="network"
+				>
+				<File
+					RelativePath="..\..\src\ammo\network\server.cpp"
 					>
 				</File>
 			</Filter>
