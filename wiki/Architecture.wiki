@@ -1,0 +1,7 @@
+#summary The general architecture of AMMO
+
+= Introduction =
+
+nothing yet.
+
+http://code.google.com/p/ammo/source/browse/trunk/examples/data/noise1.png
