@@ -17,10 +17,10 @@
 ////////////////////////////////////////////////////////////
 int main()
 {
-   ammo::SoundSys audio;
+   //ammo::SoundSys audio;
 
-   audio.addDef("bounce", ammo::PlainDef("data/ball.wav") );
-   ammo::Sound bounce = audio.getSound("bounce");
+   //audio.addDef("bounce", ammo::PlainDef("data/ball.wav") );
+   ammo::Sound bounce;// = audio.getSound("bounce");
 
 	// Defines PI
 	const float PI = 3.14159f;
@@ -37,9 +37,20 @@ int main()
     anim_def.addFrame( 0.3, "data/noise4.png" );
 
     graphics.addDef("noise",anim_def);
+    graphics.addDef("ball",ammo::SpriteDef("data/ball.png") );
+    graphics.addDef("background",ammo::SpriteDef("data/background.jpg"));
 
     ammo::Graphic noise = graphics.getGraphic("noise");
     noise.show();
+    noise.SetPosition( b2Vec2(400,50) );
+    //noise.Move( b2Vec2(0,-100) );
+
+    ammo::Graphic ball = graphics.getGraphic("ball");
+    ball.show();
+
+    ammo::Graphic background;// = graphics.getGraphic("background");
+    background.show();
+    background.SetPosition( b2Vec2(400,-300) );
 
 
     // Load the images used in the game
@@ -147,15 +158,13 @@ int main()
 			}
 			if (Ball.GetPosition().y < 0.f)
 			{
-				//BallSound.Play();
-   			        audio.getSound("bounce").play(); 
+   			    //audio.getSound("bounce").play(); 
 				BallAngle = -BallAngle;
 				Ball.SetY(0.1f);
 			}
 			if (Ball.GetPosition().y + Ball.GetSize().y > App.GetView().GetRect().GetHeight())
 			{
-				//BallSound.Play();
-   			        audio.getSound("bounce").play(); 
+   			    //audio.getSound("bounce").play(); 
 				BallAngle = -BallAngle;
 				Ball.SetY(App.GetView().GetRect().GetHeight() - Ball.GetSize().y - 0.1f);
 			}
@@ -186,15 +195,18 @@ int main()
 			}
 		}
 
-        audio.update( App.GetFrameTime() );
+        //audio.update( App.GetFrameTime() );
         graphics.update( App.GetFrameTime() );
+
+        ball.SetPosition( b2Vec2( Ball.GetPosition().x, -Ball.GetPosition().y ) );
 
         // Clear the window
         App.Clear();
 
+        graphics.draw(App);
 
         // Draw the background, paddles and ball sprites
-        App.Draw(Background);
+        //App.Draw(Background);
         App.Draw(LeftPaddle);
         App.Draw(RightPaddle);
         App.Draw(Ball);
@@ -202,8 +214,6 @@ int main()
         // If the game is over, display the end message
         if (!IsPlaying)
             App.Draw(End);
-
-        graphics.draw(App);
 
         // Display things on screen
         App.Display();

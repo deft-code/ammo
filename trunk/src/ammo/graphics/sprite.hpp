@@ -25,6 +25,12 @@ namespace ammo
       virtual void hide(void);
       virtual void show(void);
 
+      virtual b2Vec2 GetPosition( void ) const;
+
+      virtual void SetPosition( const b2Vec2& pos );
+
+      virtual b2Vec2 GetSize( void ) const;
+
    private:
       sf::Sprite m_sprite;
       Image_ptr m_image;
@@ -38,6 +44,7 @@ namespace ammo
    {
    public:
       SpriteDef( void );
+      SpriteDef( const std::string& filename );
       virtual ~SpriteDef( void ) { }
 
       virtual const std::string& filename(std::size_t index) const;

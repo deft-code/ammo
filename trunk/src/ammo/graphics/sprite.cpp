@@ -58,8 +58,35 @@ namespace ammo
       m_show = false;
    }
 
+   b2Vec2 SpriteImpl::GetPosition( void ) const
+   {
+      return b2Vec2(m_sprite.GetPosition().x, -m_sprite.GetPosition().y );
+   }
+
+   void SpriteImpl::SetPosition( const b2Vec2& pos )
+   {
+      m_sprite.SetX(pos.x);
+      m_sprite.SetY(-pos.y);
+   }
+
+   b2Vec2 SpriteImpl::GetSize( void ) const
+   {
+      sf::Vector2f dim = m_sprite.GetSize();
+      return b2Vec2( dim.x, dim.y);
+   }
+
+   //
+   // --- SpriteDef ---
+   //
+
    SpriteDef::SpriteDef( void )
     : GraphicDef(),
+      m_lifetime( std::numeric_limits<float>::infinity() )
+   { }
+
+   SpriteDef::SpriteDef( const std::string& filename )
+    : GraphicDef(),
+      m_filename(filename),
       m_lifetime( std::numeric_limits<float>::infinity() )
    { }
 

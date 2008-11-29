@@ -43,8 +43,8 @@
 				Name="Execute"
 				MenuCaption="E&amp;xecute"
 				SaveOption="SaveNone"
-				RunFromDir="%rw">
-				<Exec CmdLine='"pong.exe"'/>
+				RunFromDir="../../examples">
+				<Exec CmdLine="../build/slickedit/pong"/>
 			</Target>
 		</Menu>
 	</Config>
