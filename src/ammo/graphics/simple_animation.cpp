@@ -44,7 +44,7 @@ namespace ammo
 
    bool SimpleAnimationImpl::done(void) const
    {
-      return m_life > m_lifetime ||  !b2IsValid(m_lifetime);
+      return m_life > m_lifetime || !b2IsValid(m_lifetime);
    }
 
    void SimpleAnimationImpl::draw( sf::RenderWindow& render)
@@ -79,6 +79,27 @@ namespace ammo
    {
       m_show = false;
    }
+
+   b2Vec2 SimpleAnimationImpl::GetPosition( void ) const
+   {
+      return b2Vec2(m_sprite.GetPosition().x, -m_sprite.GetPosition().y );
+   }
+
+   void SimpleAnimationImpl::SetPosition( const b2Vec2& pos )
+   {
+      m_sprite.SetX(pos.x);
+      m_sprite.SetY(-pos.y);
+   }
+
+   b2Vec2 SimpleAnimationImpl::GetSize( void ) const
+   {
+      sf::Vector2f dim = m_sprite.GetSize();
+      return b2Vec2( dim.x, dim.y);
+   }
+
+   //
+   // --- SimpleAnimationDef ---
+   //
 
    SimpleAnimationDef::SimpleAnimationDef( void )
     : GraphicDef(),

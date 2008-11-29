@@ -26,6 +26,12 @@ namespace ammo
       virtual void hide(void);
       virtual void show(void);
 
+      virtual b2Vec2 GetPosition( void ) const;
+
+      virtual void SetPosition( const b2Vec2& pos );
+
+      virtual b2Vec2 GetSize( void ) const;
+
    private:
       sf::Sprite m_sprite;
       std::vector<float> m_times;

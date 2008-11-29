@@ -2,6 +2,7 @@
 #define  AMMO_GRAPHICS_SOUND_IMPL_HPP_INCLUDED
 
 #include "ammo/graphics/graphic_impl.fwd.hpp"
+#include <Box2D.h>
 
 namespace ammo
 {
@@ -21,6 +22,12 @@ namespace ammo
       virtual void show( void ) =0;
 
       virtual void hide( void ) =0;
+
+      virtual b2Vec2 GetPosition( void ) const =0;
+
+      virtual void SetPosition( const b2Vec2& pos ) =0;
+
+      virtual b2Vec2 GetSize( void ) const =0;
    };
 }
 
