@@ -12,6 +12,7 @@
 #include "BitStream.h"
 #include "ReplicaManager2.h"
 #include "RakNetTypes.h"
+#include "PacketFileLogger.h"
 
 using RakNet::ReplicaManager2;
 namespace ammo
@@ -38,7 +39,13 @@ namespace ammo
     // Gets the replica manager. Objects intending to use
     // the replica system need to call SetReplicaManager
     // and pass in this pointer.
-    RakNet::ReplicaManager2* GetRepMngr() {return _repMngr;};
+    RakNet::ReplicaManager2* GetRepMngr() {return _repMngr;}
+    // Connects this peer to a server. If this peer is a server,
+    // this method is ignored.
+    // returns true if the attempt to connect is successful, not if the
+    // actual connection occurs.
+    bool Connect(const char* host,unsigned short remotePort, const char* passwordData,int pwdDataLength);
+
   private:
     // Our RakNet peer (the object that actually manages the connection)
     RakPeerInterface* _peer;
@@ -52,6 +59,8 @@ namespace ammo
     Game* _parent;
     // Whether this peer is acting as a client or a server
     bool _isServer;
+    // Our Packet Logger
+    PacketFileLogger* _log;
   };
 }
 #endif // NET_PEER_H_INCLUDED
