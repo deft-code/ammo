@@ -92,7 +92,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\RakNetDebug.dll $(OutDir)"
+				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\RakNetDebug.dll $(OutDir)&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -169,7 +169,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\RakNet.dll $(OutDir)"
+				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\RakNet.dll $(OutDir)&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -190,7 +190,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\ammo\gameincludes.hpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\ammo\graphics.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\ammo\network.hpp"
 				>
 			</File>
 			<Filter
@@ -277,11 +285,35 @@
 				Name="network"
 				>
 				<File
-					RelativePath="..\..\src\ammo\network\game.hpp"
+					RelativePath="..\..\src\ammo\network\connectionfactory.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\ammo\network\server.hpp"
+					RelativePath="..\..\src\ammo\network\netpeer.hpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="game"
+				>
+				<File
+					RelativePath="..\..\src\ammo\game\game.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\game\gameobject.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\game\gamestate.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\game\gamestateauth.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\game\server.hpp"
 					>
 				</File>
 			</Filter>
@@ -357,7 +389,23 @@
 				Name="network"
 				>
 				<File
-					RelativePath="..\..\src\ammo\network\server.cpp"
+					RelativePath="..\..\src\ammo\network\connectionfactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\network\netpeer.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="game"
+				>
+				<File
+					RelativePath="..\..\src\ammo\game\gamestate.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\game\server.cpp"
 					>
 				</File>
 			</Filter>
