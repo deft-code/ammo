@@ -3,6 +3,7 @@
 #include "ammo/gameincludes.hpp"
 
 #include <iostream>
+#include "SFML/System.hpp"
 
 int main()
 {
@@ -21,15 +22,20 @@ int main()
 
 
    _client->Connect("127.0.0.1", 31337,"",0);
+   sf::Clock clock;
+   float dt = 0;
    while (_client->GetIsDestroyed() == false)
-   {     
-     _client->Draw(0);
-     _client->Update(0);
-     _server->Update(0);
+   {    
+     dt = clock.GetElapsedTime();
+     clock.Reset();
+     _client->Draw(dt);
+     _client->Update(dt);
+     _server->Update(dt);
    }
 
    delete _client;
-   _server->Update(0);
+   dt = clock.GetElapsedTime();
+   _server->Update(dt);
    system("PAUSE");
 
    delete _server;
