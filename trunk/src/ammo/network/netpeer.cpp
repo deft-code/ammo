@@ -15,13 +15,33 @@ namespace ammo
     _repMngr = new RakNet::ReplicaManager2();
     _netIDMngr = new NetworkIDManager();
 
+#if _DEBUG
+    _log = new PacketFileLogger();
+#endif
+
     // Set up our peer
     _peer = RakNetworkFactory::GetRakPeerInterface();
     _peer->SetNetworkIDManager(_netIDMngr);
 
     _netIDMngr->SetIsNetworkIDAuthority(isServer);
     
+    // attach our plugins
     _peer->AttachPlugin(_repMngr);
+
+#if _DEBUG
+    _peer->AttachPlugin(_log);
+
+    // Start our log
+    _log->SetPrintAcks(false);    
+    if (_isServer)
+    {
+    _log->StartLog("serverLog");
+    }
+    else
+    {
+      _log->StartLog("clientLog");
+    }
+#endif
 
     _repMngr->SetConnectionFactory(_connFactory);
     // Hardcoded client/server setup for now
@@ -48,6 +68,7 @@ namespace ammo
     #endif
   }
 
+
   NetPeer::~NetPeer()
   {
     #if _DEBUG
@@ -60,7 +81,7 @@ namespace ammo
       std::cout << "NetPeer (client) shutting down." << std::endl;
     }
     #endif
-
+    
     _peer->Shutdown(100);
     RakNetworkFactory::DestroyRakPeerInterface(_peer);
   }
@@ -73,5 +94,15 @@ namespace ammo
   Packet* NetPeer::Receive()
   {
     return _peer->Receive();
+  }
+
+  // Connects this peer to another peer. Ignored if this peer is a server.
+  bool NetPeer::Connect(const char* host,unsigned short remotePort, const char* passwordData,int pwdDataLength)
+  {
+    if (!_isServer)
+    {
+      return _peer->Connect(host, remotePort,passwordData, pwdDataLength);
+    }
+    return false;
   }
 }
