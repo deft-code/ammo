@@ -17,6 +17,7 @@ namespace // anonymous
       virtual b2Vec2 GetPosition( void ) const { return b2Vec2_zero; }
       virtual void SetPosition( const b2Vec2& pos ) { }
       virtual b2Vec2 GetSize( void ) const { return b2Vec2_zero; }
+		virtual void SetSize( const b2Vec2& size ) {	}
    };
 
    void do_nothing( ammo::GraphicImpl* unused ) { }
@@ -55,8 +56,28 @@ namespace ammo
       m_pimpl->SetPosition( pos );
    }
 
+   void Graphic::SetX( float x )
+   {
+      m_pimpl->SetPosition( b2Vec2(x, m_pimpl->GetPosition().y));
+   }
+
+   void Graphic::SetY( float y )
+   {
+      m_pimpl->SetPosition( b2Vec2(m_pimpl->GetPosition().x, y));
+   }
+
    void Graphic::Move( const b2Vec2& delta )
    {
       m_pimpl->SetPosition( m_pimpl->GetPosition() + delta );
    }
+
+   b2Vec2 Graphic::GetSize( void ) const
+   {
+      return m_pimpl->GetSize();
+   }
+
+	void Graphic::SetSize( const b2Vec2& size )
+	{
+      m_pimpl->SetSize(size);
+	}
 }

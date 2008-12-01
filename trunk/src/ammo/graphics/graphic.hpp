@@ -19,7 +19,15 @@ namespace ammo
 
       void SetPosition( const b2Vec2& pos );
 
+      void SetX( float x );
+
+      void SetY( float y );
+
       void Move( const b2Vec2& delta );
+
+      b2Vec2 GetSize( void ) const;
+
+		void SetSize( const b2Vec2& size );
 
    private:
       GraphicPimpl m_pimpl;

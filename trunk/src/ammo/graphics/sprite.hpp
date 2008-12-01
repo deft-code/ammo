@@ -31,6 +31,8 @@ namespace ammo
 
       virtual b2Vec2 GetSize( void ) const;
 
+		virtual void SetSize( const b2Vec2& size );
+
    private:
       sf::Sprite m_sprite;
       Image_ptr m_image;
