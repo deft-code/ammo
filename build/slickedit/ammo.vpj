@@ -79,8 +79,10 @@
 			<F N="../../src/ammo/audio.hpp"/>
 			<F N="../../src/ammo/error.cpp"/>
 			<F N="../../src/ammo/error.hpp"/>
-			<F N="../../src/ammo/main.cpp"/>
+			<F N="../../src/ammo/gameincludes.hpp"/>
 			<F N="../../src/ammo/graphics.hpp"/>
+			<F N="../../src/ammo/main.cpp"/>
+			<F N="../../src/ammo/network.hpp"/>
 		</Folder>
 		<Folder Name="../../src/ammo/audio">
 			<F N="../../src/ammo/audio/music_sys.cpp"/>
@@ -98,6 +100,17 @@
 			<F N="../../src/ammo/audio/sound_sys.cpp"/>
 			<F N="../../src/ammo/audio/sound_sys.hpp"/>
 		</Folder>
+		<Folder Name="../../src/ammo/game">
+			<F N="../../src/ammo/game/client.cpp"/>
+			<F N="../../src/ammo/game/client.hpp"/>
+			<F N="../../src/ammo/game/game.hpp"/>
+			<F N="../../src/ammo/game/gameobject.hpp"/>
+			<F N="../../src/ammo/game/gamestate.cpp"/>
+			<F N="../../src/ammo/game/gamestate.hpp"/>
+			<F N="../../src/ammo/game/gamestateauth.hpp"/>
+			<F N="../../src/ammo/game/server.cpp"/>
+			<F N="../../src/ammo/game/server.hpp"/>
+		</Folder>
 		<Folder Name="../../src/ammo/graphics">
 			<F N="../../src/ammo/graphics/graphic.cpp"/>
 			<F N="../../src/ammo/graphics/graphic.hpp"/>
@@ -113,6 +126,12 @@
 			<F N="../../src/ammo/graphics/sprite.hpp"/>
 			<F N="../../src/ammo/graphics/view.cpp"/>
 			<F N="../../src/ammo/graphics/view.hpp"/>
+		</Folder>
+		<Folder Name="../../src/ammo/network">
+			<F N="../../src/ammo/network/connectionfactory.cpp"/>
+			<F N="../../src/ammo/network/connectionfactory.hpp"/>
+			<F N="../../src/ammo/network/netpeer.cpp"/>
+			<F N="../../src/ammo/network/netpeer.hpp"/>
 		</Folder>
 	</Files>
 </Project>

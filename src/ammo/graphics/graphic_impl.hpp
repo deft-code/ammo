@@ -28,6 +28,8 @@ namespace ammo
       virtual void SetPosition( const b2Vec2& pos ) =0;
 
       virtual b2Vec2 GetSize( void ) const =0;
+
+		virtual void SetSize( const b2Vec2& size ) =0;
    };
 }
 

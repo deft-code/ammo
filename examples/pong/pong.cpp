@@ -17,207 +17,209 @@
 ////////////////////////////////////////////////////////////
 int main()
 {
-   //ammo::SoundSys audio;
-
-   //audio.addDef("bounce", ammo::PlainDef("data/ball.wav") );
-   ammo::Sound bounce;// = audio.getSound("bounce");
-
 	// Defines PI
 	const float PI = 3.14159f;
 
-    // Create the window of the application
-    sf::RenderWindow App(sf::VideoMode(800, 600, 32), "SFML Pong");
+	b2Vec2 world_half( 16.f, 12.f );
+	b2Vec2 paddle_half( 1.f, 4.f );
+	b2Vec2 right_pos( 9.f, 0.f );
+	b2Vec2 left_pos( -9.f, 0.f );
+	b2Vec2 ball_half( 1.f, 1.f );
+	b2Vec2 ball_pos = b2Vec2_zero;
 
-    ammo::GraphicSys graphics;
+	float speed = 16.f;
+	float ai_speed = 0.f;
+	float angle;
+	do
+	{
+		// Make sure the ball initial angle is not too much vertical
+		angle = sf::Randomizer::Random(0.f, 2 * PI);
+	} while( std::abs(std::cos(angle)) < 0.7f );
 
-    ammo::SimpleAnimationDef anim_def;
-    anim_def.addFrame( 0.3, "data/noise1.png" );
-    anim_def.addFrame( 0.3, "data/noise2.png" );
-    anim_def.addFrame( 0.3, "data/noise3.png" );
-    anim_def.addFrame( 0.3, "data/noise4.png" );
+	b2Vec2 ball_vel( speed*std::cos(angle), speed*std::sin(angle) );
 
-    graphics.addDef("noise",anim_def);
-    graphics.addDef("ball",ammo::SpriteDef("data/ball.png") );
-    graphics.addDef("background",ammo::SpriteDef("data/background.jpg"));
+	//ammo::SoundSys audio;
 
-    ammo::Graphic noise = graphics.getGraphic("noise");
-    noise.show();
-    noise.SetPosition( b2Vec2(400,50) );
-    //noise.Move( b2Vec2(0,-100) );
-
-    ammo::Graphic ball = graphics.getGraphic("ball");
-    ball.show();
-
-    ammo::Graphic background;// = graphics.getGraphic("background");
-    background.show();
-    background.SetPosition( b2Vec2(400,-300) );
+	//audio.addDef("bounce", ammo::PlainDef("data/ball.wav") );
+	ammo::Sound bounce;// = audio.getSound("bounce");
 
 
-    // Load the images used in the game
-    sf::Image BackgroundImage, LeftPaddleImage, RightPaddleImage, BallImage;
-    if (!BackgroundImage.LoadFromFile("data/background.jpg")    ||
-        !LeftPaddleImage.LoadFromFile("data/paddle_left.png")   ||
-        !RightPaddleImage.LoadFromFile("data/paddle_right.png") ||
-        !BallImage.LoadFromFile("data/ball.png"))
-    {
-        return EXIT_FAILURE;
-    }
+	// Create the window of the application
+	sf::RenderWindow App(sf::VideoMode(800, 600, 32), "SFML Pong");
 
-    // Load the text font
-    sf::Font Cheeseburger;
-    if (!Cheeseburger.LoadFromFile("data/cheeseburger.ttf"))
-        return EXIT_FAILURE;
+	ammo::View v(App);
+	v.lookAt( b2Vec2_zero );
+	v.setWidth( 2*world_half.x );
+
+	ammo::GraphicSys graphics;
+
+	ammo::SimpleAnimationDef anim_def;
+	anim_def.addFrame( 0.3, "data/noise1.png" );
+	anim_def.addFrame( 0.3, "data/noise2.png" );
+	anim_def.addFrame( 0.3, "data/noise3.png" );
+	anim_def.addFrame( 0.3, "data/noise4.png" );
+
+	graphics.addDef("noise",anim_def);
+	graphics.addDef("ball",ammo::SpriteDef("data/ball.png") );
+	graphics.addDef("background",ammo::SpriteDef("data/background.jpg"));
+	graphics.addDef("left_paddle",ammo::SpriteDef("data/blue_paddle.png"));
+	graphics.addDef("right_paddle",ammo::SpriteDef("data/red_paddle.png"));
+
+	ammo::Graphic background = graphics.getGraphic("background");
+	background.show();
+	background.SetPosition( b2Vec2_zero );
+	background.SetSize( 2*world_half );
+
+	ammo::Graphic ball = graphics.getGraphic("ball");
+	ball.show();
+	ball.SetSize( 2*ball_half );
+
+	ammo::Graphic left = graphics.getGraphic("left_paddle");
+	left.show();
+	left.SetSize( 2*paddle_half );
+
+	ammo::Graphic right = graphics.getGraphic("right_paddle");
+	right.show();
+	right.SetSize( 2*paddle_half );
+
+	
+	ammo::Graphic noise = graphics.getGraphic("noise");
+	noise.show();
+	noise.SetPosition( b2Vec2(0, world_half.y) );
+	noise.SetSize( 0.5f * world_half );
+
+	// Load the text font
+	sf::Font Cheeseburger;
+	if ( !Cheeseburger.LoadFromFile("data/cheeseburger.ttf") )
+		return EXIT_FAILURE;
 
 	// Initialize the end text
 	sf::String End;
-    End.SetFont(Cheeseburger);
+	End.SetFont(Cheeseburger);
 	End.SetSize(60.f);
-    End.Move(150.f, 200.f);
-    End.SetColor(sf::Color(50, 50, 250));
+	End.Move( v.world2draw( b2Vec2_zero ) );
+	End.SetColor(sf::Color(50, 50, 250));
 
-    // Create the sprites of the background, the paddles and the ball
-    sf::Sprite Background(BackgroundImage);
-    sf::Sprite LeftPaddle(LeftPaddleImage);
-    sf::Sprite RightPaddle(RightPaddleImage);
-    sf::Sprite Ball(BallImage);
-
-    LeftPaddle.Move(10, (App.GetView().GetRect().GetHeight() - LeftPaddle.GetSize().y) / 2);
-    RightPaddle.Move(App.GetView().GetRect().GetWidth() - RightPaddle.GetSize().x - 10, (App.GetView().GetRect().GetHeight() - RightPaddle.GetSize().y) / 2);
-    Ball.Move((App.GetView().GetRect().GetWidth() - Ball.GetSize().x) / 2, (App.GetView().GetRect().GetHeight() - Ball.GetSize().y) / 2);
-
-    // Define the paddles properties
-    sf::Clock AITimer;
+	sf::Clock AITimer;
 	const float AITime     = 0.1f;
-    float LeftPaddleSpeed  = 400.f;
-    float RightPaddleSpeed = 400.f;
-
-    // Define the ball properties
-    float BallSpeed = 400.f;
-    float BallAngle;
-    do
-    {
-        // Make sure the ball initial angle is not too much vertical
-        BallAngle = sf::Randomizer::Random(0.f, 2 * PI);
-    } while (std::abs(std::cos(BallAngle)) < 0.7f);
 
 	bool IsPlaying = true;
-    while (App.IsOpened())
-    {
-        // Handle events
-        sf::Event Event;
-        while (App.GetEvent(Event))
-        {
-            // Window closed or escape key pressed : exit
-            if ((Event.Type == sf::Event::Closed) || 
-               ((Event.Type == sf::Event::KeyPressed) && (Event.Key.Code == sf::Key::Escape)))
-            {
-                App.Close();
-                break;
-            }
-        }
-
-        if (IsPlaying)
+	while ( App.IsOpened() )
+	{
+		// Handle events
+		sf::Event Event;
+		while ( App.GetEvent(Event) )
 		{
-			// Move the player's paddle
-            if (App.GetInput().IsKeyDown(sf::Key::Up) && (LeftPaddle.GetPosition().y > 5.f))
-				LeftPaddle.Move(0.f, -LeftPaddleSpeed * App.GetFrameTime());
-            if (App.GetInput().IsKeyDown(sf::Key::Down) && (LeftPaddle.GetPosition().y < App.GetView().GetRect().GetHeight() - LeftPaddle.GetSize().y - 5.f))
-				LeftPaddle.Move(0.f, LeftPaddleSpeed * App.GetFrameTime());
+			// Window closed or escape key pressed : exit
+			if ( (Event.Type == sf::Event::Closed) || 
+				  ((Event.Type == sf::Event::KeyPressed) && (Event.Key.Code == sf::Key::Escape)) )
+			{
+				App.Close();
+				break;
+			}
+		}
 
-			// Move the computer's paddle
-            if (((RightPaddleSpeed < 0.f) && (RightPaddle.GetPosition().y > 5.f)) ||
-                ((RightPaddleSpeed > 0.f) && (RightPaddle.GetPosition().y < App.GetView().GetRect().GetHeight() - RightPaddle.GetSize().y - 5.f)))
-            {
-                RightPaddle.Move(0.f, RightPaddleSpeed * App.GetFrameTime());
-            }
+		if ( IsPlaying )
+		{
+			// Player logic
+			if ( App.GetInput().IsKeyDown(sf::Key::Up)   && (left_pos.y < world_half.y) )
+			{	
+				left_pos += b2Vec2(0.f, speed * App.GetFrameTime());
+			}
 
-            // Update the computer's paddle direction according to the ball position
-            if (AITimer.GetElapsedTime() > AITime)
-            {
-                AITimer.Reset();
-                if ((RightPaddleSpeed < 0) && (Ball.GetPosition().y + Ball.GetSize().y > RightPaddle.GetPosition().y + RightPaddle.GetSize().y))
-                    RightPaddleSpeed = -RightPaddleSpeed;
-                if ((RightPaddleSpeed > 0) && (Ball.GetPosition().y < RightPaddle.GetPosition().y))
-                    RightPaddleSpeed = -RightPaddleSpeed;
-            }
+			if ( App.GetInput().IsKeyDown(sf::Key::Down) && (right_pos.y > -world_half.y) )
+			{	
+				left_pos += b2Vec2(0.f, -speed * App.GetFrameTime());
+			}
+
+			// AI logic
+			right_pos += b2Vec2( 0.f, ai_speed * App.GetFrameTime() );
+
+			// Update the computer's paddle direction according to the ball position
+			if ( AITimer.GetElapsedTime() > AITime )
+			{
+				AITimer.Reset();
+				// paddle moving down and bottom of ball above top of paddle
+				if ( (ai_speed < 0) && ((ball_pos.y - ball_half.y) > (right_pos.y + paddle_half.y)) )
+					ai_speed = speed;
+
+				// paddle moving up and top of ball below bottom of paddle
+				if ( (ai_speed > 0) && ((ball_pos.y + ball_half.y) < (right_pos.y - paddle_half.y)) )
+					ai_speed = speed;
+			}
 
 			// Move the ball
-			float Factor = BallSpeed * App.GetFrameTime();
-            Ball.Move(std::cos(BallAngle) * Factor, std::sin(BallAngle) * Factor);
+			ball_pos += App.GetFrameTime() * ball_vel;
 
-			// Check collisions between the ball and the screen
-			if (Ball.GetPosition().x < 0.f)
+			// Check collisions between the ball and the sides of the screen
+			if ( ball_pos.x - ball_half.x < -world_half.x )
 			{
 				IsPlaying = false;
 				End.SetText("You lost !\n(press escape to exit)");
 			}
-			if (Ball.GetPosition().x + Ball.GetSize().x > App.GetView().GetRect().GetWidth())
+			if ( ball_pos.x + ball_half.x > world_half.x )
 			{
 				IsPlaying = false;
 				End.SetText("You won !\n(press escape to exit)");
 			}
-			if (Ball.GetPosition().y < 0.f)
+
+			// Check collisions between the ball and the top and bottom of the screen
+			if ( ball_pos.y + ball_half.y > world_half.y )
 			{
-   			    //audio.getSound("bounce").play(); 
-				BallAngle = -BallAngle;
-				Ball.SetY(0.1f);
+				bounce.play();
+				ball_vel.y = -ball_vel.y;
+				ball_pos.y = world_half.y - ball_half.y;
 			}
-			if (Ball.GetPosition().y + Ball.GetSize().y > App.GetView().GetRect().GetHeight())
+			if ( ball_pos.y - ball_half.y < -world_half.y )
 			{
-   			    //audio.getSound("bounce").play(); 
-				BallAngle = -BallAngle;
-				Ball.SetY(App.GetView().GetRect().GetHeight() - Ball.GetSize().y - 0.1f);
+				bounce.play();
+				ball_vel.y = -ball_vel.y;
+				ball_pos.y = -world_half.y + ball_half.y;
 			}
 
 			// Check the collisions between the ball and the paddles
 			// Left Paddle
-			if (Ball.GetPosition().x < LeftPaddle.GetPosition().x + LeftPaddle.GetSize().x && 
-				Ball.GetPosition().x > LeftPaddle.GetPosition().x + (LeftPaddle.GetSize().x / 2.0f) &&
-				Ball.GetPosition().y + Ball.GetSize().y >= LeftPaddle.GetPosition().y &&
-				Ball.GetPosition().y <= LeftPaddle.GetPosition().y + LeftPaddle.GetSize().y)
+			if ( ball_pos.x + ball_half.x < left_pos.x - paddle_half.x && 
+				  ball_pos.x - ball_half.x > left_pos.x + paddle_half.x &&
+				  ball_pos.y + ball_half.y < left_pos.x - paddle_half.y &&
+				  ball_pos.y - ball_half.y > left_pos.x + paddle_half.y )
 			{
-				//BallSound.Play();
-				//audio.getSound("bounce").play();
 				bounce.play();
-				BallAngle = PI - BallAngle;
-				Ball.SetX(LeftPaddle.GetPosition().x + LeftPaddle.GetSize().x + 0.1f);
+				ball_vel.x = -ball_vel.x;
+				ball_pos.x = left_pos.x + paddle_half.x + ball_half.x;
 			}
 
 			// Right Paddle
-			if (Ball.GetPosition().x + Ball.GetSize().x > RightPaddle.GetPosition().x &&
-				Ball.GetPosition().x + Ball.GetSize().x < RightPaddle.GetPosition().x + (RightPaddle.GetSize().x / 2.0f) &&
-				Ball.GetPosition().y + Ball.GetSize().y >= RightPaddle.GetPosition().y &&
-				Ball.GetPosition().y <= RightPaddle.GetPosition().y + RightPaddle.GetSize().y)
+			if ( ball_pos.x + ball_half.x < right_pos.x - paddle_half.x && 
+				  ball_pos.x - ball_half.x > right_pos.x + paddle_half.x &&
+				  ball_pos.y + ball_half.y < right_pos.x - paddle_half.y &&
+				  ball_pos.y - ball_half.y > right_pos.x + paddle_half.y )
 			{
 				bounce.play();
-				BallAngle = PI - BallAngle;
-				Ball.SetX(RightPaddle.GetPosition().x - Ball.GetSize().x - 0.1f);
+				ball_vel.x = -ball_vel.x;
+				ball_pos.x = right_pos.x - paddle_half.x - ball_half.x;
 			}
+			
+			left.SetPosition( left_pos );
+			right.SetPosition( right_pos );
+			ball.SetPosition( ball_pos );
 		}
 
-        //audio.update( App.GetFrameTime() );
-        graphics.update( App.GetFrameTime() );
+		//audio.update( App.GetFrameTime() );
+		graphics.update( App.GetFrameTime() );
 
-        ball.SetPosition( b2Vec2( Ball.GetPosition().x, -Ball.GetPosition().y ) );
+		// Clear the window
+		App.Clear();
 
-        // Clear the window
-        App.Clear();
+		graphics.draw(App);
 
-        graphics.draw(App);
+		// If the game is over, display the end message
+		if ( !IsPlaying )
+			App.Draw(End);
 
-        // Draw the background, paddles and ball sprites
-        //App.Draw(Background);
-        App.Draw(LeftPaddle);
-        App.Draw(RightPaddle);
-        App.Draw(Ball);
+		// Display things on screen
+		App.Display();
+	}
 
-        // If the game is over, display the end message
-        if (!IsPlaying)
-            App.Draw(End);
-
-        // Display things on screen
-        App.Display();
-    }
-
-    return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 }

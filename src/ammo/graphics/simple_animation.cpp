@@ -96,6 +96,17 @@ namespace ammo
       sf::Vector2f dim = m_sprite.GetSize();
       return b2Vec2( dim.x, dim.y);
    }
+   
+   void SimpleAnimationImpl::SetSize( const b2Vec2& size )
+   {
+      const sf::IntRect& sub_rect = m_sprite.GetSubRect();
+
+      float scale_x = size.x / sub_rect.GetWidth();
+      m_sprite.SetScaleX( scale_x );
+
+      float scale_y = size.y / sub_rect.GetHeight();
+      m_sprite.SetScaleY( scale_y );
+   }
 
    //
    // --- SimpleAnimationDef ---
