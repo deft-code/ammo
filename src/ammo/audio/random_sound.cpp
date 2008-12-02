@@ -23,6 +23,11 @@ namespace ammo
       m_sound.Play();
    }
 
+   void RandomImpl::stop( void )
+   {
+      m_sound.Stop();
+   }
+
    void RandomImpl::storeBuffer( std::size_t index, SoundBuffer_ptr buffer )
    {
       assert( index < m_buffers.size() );

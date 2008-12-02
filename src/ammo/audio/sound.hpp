@@ -12,6 +12,7 @@ namespace ammo
       Sound( SoundPimpl pimpl );
    
       void play( void );
+		void stop( void );
    
    private:
       SoundPimpl m_pimpl;

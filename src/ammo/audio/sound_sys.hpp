@@ -18,6 +18,7 @@ namespace ammo
    {
    public:
       SoundSys( void );
+		~SoundSys( void );
 
       template< typename Def >
       void addDef( const std::string& name, const Def& def );

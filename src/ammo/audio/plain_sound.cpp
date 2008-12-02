@@ -13,6 +13,11 @@ namespace ammo
       m_sound.Play();
    }
 
+   void PlainImpl::stop( void )
+   {
+      m_sound.Stop();
+   }
+
    void PlainImpl::storeBuffer( std::size_t index, SoundBuffer_ptr buffer )
    {
       m_buffer = buffer;
