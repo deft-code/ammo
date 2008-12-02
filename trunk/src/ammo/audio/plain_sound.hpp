@@ -21,6 +21,8 @@ namespace ammo
 
       virtual void play(void);
 
+		virtual void stop( void );
+
       virtual void storeBuffer( std::size_t index, SoundBuffer_ptr buffer );
 
    private:

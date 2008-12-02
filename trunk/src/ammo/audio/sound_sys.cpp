@@ -17,6 +17,24 @@ SoundSys::SoundSys( void )
    m_buffers_threshold( 1000000.f )
 { }
 
+namespace // anonymous
+{
+   struct Stop
+   {
+      void operator()( SoundPimpl& pimpl )
+      { pimpl->stop(); }
+   };
+}
+
+/// this clean up is'nt strictly neccessary.  However, it is does guarantee
+/// the order.
+SoundSys::~SoundSys( void )
+{
+   std::for_each( m_sounds.begin(), m_sounds.end(), Stop() );
+   m_sounds.clear();
+   m_buffers.clear();
+}
+
 void SoundSys::aliasDef( const std::string& name, const std::string& alias)
 {
    SoundDef_ptr def = getDef(name);

@@ -11,6 +11,7 @@ namespace // anonymous
       virtual void update( float dt ) { }
       virtual bool done( void ) const { return true; }
       virtual void play( void ) { }
+		virtual void stop( void ) { }
       virtual void storeBuffer( std::size_t index, ammo::SoundBuffer_ptr buffer ) { }
    };
 
@@ -35,4 +36,10 @@ namespace ammo
    {
       m_pimpl->play();
    }
+
+	void Sound::stop( void )
+	{
+		m_pimpl->stop();
+	}
 }
+
