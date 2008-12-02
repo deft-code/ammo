@@ -61,4 +61,9 @@ private:
    int _private_members_alt;
 };
 
+ClassName::ClassName( void )
+ : _privateMembers(10),
+   _private_members_alt(42)
+{ }
+
 }}}
