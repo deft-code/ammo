@@ -186,6 +186,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\ammo\network\connectionfactory.hpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\ammo\error.hpp"
 				>
 			</File>
@@ -285,10 +289,6 @@
 				Name="network"
 				>
 				<File
-					RelativePath="..\..\src\ammo\network\connectionfactory.hpp"
-					>
-				</File>
-				<File
 					RelativePath="..\..\src\ammo\network\netpeer.hpp"
 					>
 				</File>
@@ -317,9 +317,21 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\ammo\game\gamestateproxy.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ammo\game\server.hpp"
 					>
 				</File>
+				<Filter
+					Name="gameobjects"
+					>
+					<File
+						RelativePath="..\..\src\ammo\game\gameobjects\sampleobject.hpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
@@ -413,9 +425,25 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\ammo\game\gamestateauth.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\game\gamestateproxy.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ammo\game\server.cpp"
 					>
 				</File>
+				<Filter
+					Name="gameobjects"
+					>
+					<File
+						RelativePath="..\..\src\ammo\game\gameobjects\sampleobject.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 	</Files>

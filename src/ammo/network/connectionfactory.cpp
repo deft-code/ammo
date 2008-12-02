@@ -1,4 +1,7 @@
 #include "ammo/network/connectionfactory.hpp"
+#include "ammo/game/gameobjects/sampleobject.hpp"
+
+#include <iostream>
 
 namespace ammo
 {
@@ -13,7 +16,14 @@ namespace ammo
   {
     GameObject* construct = NULL;
     // Determine which object we need to construct, based on the bitstream
+    int objType;
+    replicaData->Read(objType);
 
+    if (objType == 1)
+    {
+      std::cout << "Connection Factory creating new Sample Object" << std::endl;
+      construct = new SampleObject();
+    }
     // Create an instance of that object
 
     // After we construct the object, we need to register that object 

@@ -1,4 +1,5 @@
 #include "ammo/game/client.hpp"
+#include "ammo/game/gamestateproxy.hpp"
 
 #include "RakNetTypes.h"
 
@@ -10,7 +11,7 @@ namespace ammo
   Client::Client()
   {
     _app = new sf::RenderWindow(sf::VideoMode(800, 600), "CLIENT TEST");
-    _gameState = NULL;
+    _gameState = new ProxyGameState(this);
     _graphics = NULL;
     _sound = NULL;
     _peer = new NetPeer(this, false);
@@ -24,7 +25,7 @@ namespace ammo
 
   void Client::Draw(float deltaTime)
   {
-    _app->Clear();
+    
 
     if (_graphics)
     {
