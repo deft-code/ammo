@@ -1,4 +1,6 @@
 #include "ammo/game/server.hpp"
+#include "ammo/game/gameobjects/sampleobject.hpp"
+#include "ammo/game/gamestateauth.hpp"
 
 #include "RakNetTypes.h"
 #include "MessageIdentifiers.h"
@@ -10,7 +12,7 @@ namespace ammo
   Server::Server()
   {
     _peer = new NetPeer(this, true);
-    _gameState = NULL;
+    _gameState = new AuthGameState(this);
     _graphics = NULL;
     _sound = NULL;
   }
@@ -35,6 +37,9 @@ namespace ammo
   {
     // Our main update loop for the server
     Packet* packet;
+    // TEMPORARY
+    SampleObject* testObj = NULL;
+
     // Grab all packets, handing them to the gamestate
     for (packet = _peer->Receive(); packet != NULL; _peer->DeallocatePacket(packet), packet = _peer->Receive())
     {      
@@ -51,7 +56,11 @@ namespace ammo
         printf("ID_CONNECTION_REQUEST_ACCEPTED\n");				
         break;
       case ID_NEW_INCOMING_CONNECTION:				
-        printf("ID_NEW_INCOMING_CONNECTION from %s\n", packet->systemAddress.ToString());    					
+        printf("ID_NEW_INCOMING_CONNECTION from %s\n", packet->systemAddress.ToString());   
+        // TEMPORARY
+        testObj = new SampleObject();
+        testObj->AddAutoSerializeTimer(1000);        
+        _gameState->RegisterGameObject(testObj);
         break;
       case ID_DISCONNECTION_NOTIFICATION:
         printf("ID_DISCONNECTION_NOTIFICATION\n");				
