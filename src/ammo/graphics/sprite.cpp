@@ -11,6 +11,7 @@ namespace ammo
 {
    SpriteImpl::SpriteImpl( float lifetime )
     : GraphicImpl(),
+		m_z_order(0.f),
       m_show(false),
       m_life(0.f),
       m_lifetime(lifetime)
@@ -21,9 +22,8 @@ namespace ammo
       m_life += dt;
       if( m_life > m_lifetime)
       {
-	 m_show = false;
+			m_show = false;
       }
-
    }
 
    bool SpriteImpl::done(void) const
@@ -35,7 +35,7 @@ namespace ammo
    {
       if( m_show )
       {
-	 render.Draw( m_sprite );
+			render.Draw( m_sprite );
       }
    }
 
@@ -85,6 +85,16 @@ namespace ammo
       float scale_y = size.y / sub_rect.GetHeight();
       m_sprite.SetScaleY( scale_y );
    }
+
+	float SpriteImpl::GetZOrder( void ) const
+	{
+		return m_z_order;
+	}
+
+	void SpriteImpl::SetZOrder( float z ) 
+	{
+		m_z_order = z;
+	}
 
    //
    // --- SpriteDef ---

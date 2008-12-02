@@ -38,6 +38,8 @@ namespace ammo
       void collectGraphics( void );
       void collectImages( void );
 
+		bool m_needs_resort;
+
       Image_ptr loadImage( const std::string& filename );
 
       typedef std::list<GraphicPimpl> GraphicPimpls;

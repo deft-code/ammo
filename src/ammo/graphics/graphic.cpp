@@ -18,6 +18,8 @@ namespace // anonymous
       virtual void SetPosition( const b2Vec2& pos ) { }
       virtual b2Vec2 GetSize( void ) const { return b2Vec2_zero; }
 		virtual void SetSize( const b2Vec2& size ) {	}
+		virtual float GetZOrder( void ) const { return 0.f; }
+		virtual void SetZOrder( float z ) {	}
    };
 
    void do_nothing( ammo::GraphicImpl* unused ) { }
@@ -79,5 +81,15 @@ namespace ammo
 	void Graphic::SetSize( const b2Vec2& size )
 	{
       m_pimpl->SetSize(size);
+	}
+
+	float Graphic::GetZOrder( void ) const
+	{
+		return m_pimpl->GetZOrder();
+	}
+
+	void Graphic::SetZOrder( float z )
+	{
+		m_pimpl->SetZOrder(z);
 	}
 }

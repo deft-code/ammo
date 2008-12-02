@@ -27,18 +27,20 @@ namespace ammo
       virtual void show(void);
 
       virtual b2Vec2 GetPosition( void ) const;
-
       virtual void SetPosition( const b2Vec2& pos );
 
       virtual b2Vec2 GetSize( void ) const;
-
 		virtual void SetSize( const b2Vec2& size );
+
+		virtual float GetZOrder( void ) const;
+		virtual void SetZOrder( float z );
 
    private:
       sf::Sprite m_sprite;
       std::vector<float> m_times;
       std::vector<Image_ptr> m_images;
 
+		float m_z_order;
       bool m_show;
       float m_time;
       std::size_t m_current;
