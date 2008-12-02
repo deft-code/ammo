@@ -47,13 +47,15 @@ namespace ammo
     // Hardcoded client/server setup for now
     if(isServer)
     { // Set up the server
-      _peer->Startup(32, 30, &SocketDescriptor(31337, 0), 1);
+		 SocketDescriptor s(31337, 0);
+      _peer->Startup(32, 30, &s, 1);
       _peer->SetMaximumIncomingConnections(32);
       _repMngr->SetAutoAddNewConnections(true);
     }
     else
     { // Set up the client
-      _peer->Startup(1, 30, &SocketDescriptor(), 1);
+		 SocketDescriptor s;
+      _peer->Startup(1, 30, &s, 1);
     }
 
     #if _DEBUG

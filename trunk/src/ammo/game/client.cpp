@@ -45,7 +45,7 @@ namespace ammo
     // Pump our application messages
     while (_app->GetEvent(myEvent))
     {
-      if (myEvent.Type == sf::Event::EventType::Closed)
+      if (myEvent.Type == sf::Event::Closed)
       {
         // We'll eventually want to close our whole application
         _app->Close();
