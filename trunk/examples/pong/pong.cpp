@@ -29,9 +29,16 @@ int main()
 
 	ammo::SoundSys audio;
 
-	//audio.addDef("bounce", ammo::PlainDef("data/ball.wav") );
-	audio.addDef("bounce", ammo::PlainDef("data/Metalhit2.ogg") );
+	ammo::RandomDef random_def;
+	random_def.m_filenames.push_back("data/Metalhit1.ogg");
+	random_def.m_filenames.push_back("data/Metalhit2.ogg");
+	random_def.m_filenames.push_back("data/Metalhit3.ogg");
+	audio.addDef("bounce", random_def );
+
+	audio.addDef("score", ammo::PlainDef("data/ball.wav") );
+
 	ammo::Sound bounce = audio.getSound("bounce");
+	ammo::Sound score = audio.getSound("score");
 
 	// Create the window of the application
 	sf::RenderWindow App(sf::VideoMode(800, 600, 32), "SFML Pong");
@@ -147,11 +154,13 @@ int main()
 			{
 				IsPlaying = false;
 				End.SetText("You lost !\n(press escape to exit)");
+				score.play();
 			}
 			if ( ball_pos.x + ball_half.x > world_half.x )
 			{
 				IsPlaying = false;
 				End.SetText("You won !\n(press escape to exit)");
+				score.play();
 			}
 
 			// Check collisions between the ball and the top and bottom of the screen
