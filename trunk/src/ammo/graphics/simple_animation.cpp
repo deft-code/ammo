@@ -14,6 +14,7 @@ namespace ammo
     : GraphicImpl(),
       m_times(times),
       m_images( m_times.size() ),
+      m_z_order(0.f),
       m_show(false),
       m_time(0.f),
       m_current(0),
@@ -107,6 +108,16 @@ namespace ammo
       float scale_y = size.y / sub_rect.GetHeight();
       m_sprite.SetScaleY( scale_y );
    }
+
+	float SimpleAnimationImpl::GetZOrder( void ) const
+	{
+		return m_z_order;
+	}
+
+	void SimpleAnimationImpl::SetZOrder( float z ) 
+	{
+		m_z_order = z;
+	}
 
    //
    // --- SimpleAnimationDef ---

@@ -26,17 +26,19 @@ namespace ammo
       virtual void show(void);
 
       virtual b2Vec2 GetPosition( void ) const;
-
       virtual void SetPosition( const b2Vec2& pos );
 
       virtual b2Vec2 GetSize( void ) const;
-
 		virtual void SetSize( const b2Vec2& size );
+
+		virtual float GetZOrder( void ) const;
+		virtual void SetZOrder( float z );
 
    private:
       sf::Sprite m_sprite;
       Image_ptr m_image;
 
+		float m_z_order;
       bool m_show;
       float m_life;
       float m_lifetime;

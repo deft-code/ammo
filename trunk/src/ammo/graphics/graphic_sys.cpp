@@ -6,11 +6,14 @@
 #include "graphic_impl.hpp"
 
 #include <SFML/Graphics/Image.hpp>
+#include <limits>
 
 namespace ammo
 {
 
-GraphicSys::GraphicSys( void ) { }
+GraphicSys::GraphicSys( void )
+ : m_needs_resort(false)
+{ }
 
 void GraphicSys::aliasDef( const std::string& name, const std::string& alias)
 {
@@ -87,21 +90,33 @@ namespace // anonymous
 {
    struct CallUpdate
    {
-      CallUpdate( float dt ) : m_dt(dt) { }
+      CallUpdate( float dt, bool& needs_resort )
+       : m_dt(dt),
+         m_last_z( -std::numeric_limits<float>::infinity() ),
+         m_needs_resort(needs_resort)
+       { }
    
       void operator()( GraphicPimpl& pimpl )
       {
          pimpl->update(m_dt);
+         if( !m_needs_resort )
+         {
+            const float z = pimpl->GetZOrder();
+            m_needs_resort = z < m_last_z;
+            m_last_z = z;
+         }
       }
    
    private:
       const float m_dt;
+      float m_last_z;
+      bool& m_needs_resort;
    };
 } // anonymous namespace
 
 void GraphicSys::updateGraphics( float dt )
 {
-   std::for_each( m_graphics.begin(), m_graphics.end(), CallUpdate(dt) );
+   std::for_each( m_graphics.begin(), m_graphics.end(), CallUpdate(dt, m_needs_resort) );
 }
 
 namespace // anonymous
@@ -118,10 +133,22 @@ namespace // anonymous
    private:
       sf::RenderWindow& m_render;
    };
+
+   struct ZSort
+   {
+      bool operator()( const GraphicPimpl& lhs, const GraphicPimpl& rhs ) const
+      {
+         return lhs->GetZOrder() < rhs->GetZOrder();
+      }
+   };
 } // anonymous namespace
 
 void GraphicSys::draw( sf::RenderWindow& app )
 {
+   if( m_needs_resort )
+   {
+      m_graphics.sort( ZSort() );
+   }
    std::for_each( m_graphics.begin(), m_graphics.end(), CallDraw(app) );
 }
 

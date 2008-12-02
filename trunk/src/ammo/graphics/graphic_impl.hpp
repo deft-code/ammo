@@ -24,12 +24,15 @@ namespace ammo
       virtual void hide( void ) =0;
 
       virtual b2Vec2 GetPosition( void ) const =0;
-
       virtual void SetPosition( const b2Vec2& pos ) =0;
 
       virtual b2Vec2 GetSize( void ) const =0;
-
 		virtual void SetSize( const b2Vec2& size ) =0;
+
+		virtual float GetZOrder( void ) const =0;
+		virtual void SetZOrder( float z ) =0;
+		
+
    };
 }
 

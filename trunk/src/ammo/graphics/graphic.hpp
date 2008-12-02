@@ -26,8 +26,10 @@ namespace ammo
       void Move( const b2Vec2& delta );
 
       b2Vec2 GetSize( void ) const;
-
 		void SetSize( const b2Vec2& size );
+
+		float GetZOrder( void ) const;
+		void SetZOrder( float z );
 
    private:
       GraphicPimpl m_pimpl;
