@@ -35,6 +35,10 @@ h files can only use the first method
 look at RakNet for a good example of how to do doxygen comments right.
 {{{
 
+int g_a_global;
+
+static s_a_static;
+
 /// doxygen comment for class
 class ClassName
 {
