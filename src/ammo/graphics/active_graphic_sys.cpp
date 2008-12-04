@@ -11,7 +11,7 @@
 namespace ammo
 {
 
-GraphicSys::GraphicSys( void )
+ActiveGraphicSys::ActiveGraphicSys( void )
  : m_needs_resort(false)
 { }
 
@@ -21,69 +21,42 @@ void GraphicSys::aliasDef( const std::string& name, const std::string& alias)
    addDef(alias,def);
 }
 
-void GraphicSys::RemoveBluePrint( const std::string& name )
+void ActiveGraphicSys::removeDef( const std::string& name )
 {
    m_definitions.erase(name);
 }
 
-bool GraphicSys::isGraphic( std::string const& name ) const
+bool ActiveGraphicSys::isGraphic( std::string const& name ) const
 {
    GraphicDefs::const_iterator found = m_definitions.find(name);
 
    return found != m_definitions.end();
 }
 
-Graphic GraphicSys::getGraphic( std::string const& name )
+Graphic ActiveGraphicSys::getGraphic( std::string const& name )
 {
    GraphicDef_ptr def = getDef( name );
 
    std::size_t num_images = def->numFiles();
-   GraphicPimpl graphic = def->load();
+   GraphicPimpl sound = def->load();
 
    for( std::size_t i=0; i<num_images; ++i )
    {
       const std::string& filename = def->filename(i);
       Image_ptr buffer = loadImage(filename);
-      graphic->storeImage(i,buffer);
+      sound->storeImage(i,buffer);
    }
 
-   m_graphics.push_back( graphic );
+   m_graphics.push_back( sound );
 
-   return Graphic( graphic );
+   return Graphic( sound );
 }
 
 
-void GraphicSys::collect( void )
+void ActiveGraphicSys::collect( void )
 {
    collectGraphics();
    collectImages();
-}
-
-void GraphicSys::update( float dt )
-{
-   updateGraphics( dt );
-}
-
-void GraphicSys::addDef( const std::string& name, GraphicDef_ptr def )
-{
-   bool success = m_definitions.insert( std::make_pair(name,def) ).second;
-
-   if( ! success )
-   {
-      throw Error( Errors::e_Overwrite_Definition );
-   }
-}
-
-GraphicDef_ptr GraphicSys::getDef( const std::string& name ) const
-{
-   GraphicDefs::const_iterator found = m_definitions.find(name);
-
-   if( found == m_definitions.end() )
-   {
-      throw Error( Errors::e_Missing_Definition, name );
-   }
-
-   return found->second;
 }
 
 namespace // anonymous
@@ -114,9 +87,31 @@ namespace // anonymous
    };
 } // anonymous namespace
 
-void GraphicSys::updateGraphics( float dt )
+void ActiveGraphicSys::update( float dt )
 {
    std::for_each( m_graphics.begin(), m_graphics.end(), CallUpdate(dt, m_needs_resort) );
+}
+
+void ActiveGraphicSys::addDef( const std::string& name, GraphicDef_ptr def )
+{
+   bool success = m_definitions.insert( std::make_pair(name,def) ).second;
+
+   if( ! success )
+   {
+      throw Error( Errors::e_Overwrite_Definition );
+   }
+}
+
+GraphicDef_ptr ActiveGraphicSys::getDef( const std::string& name ) const
+{
+   GraphicDefs::const_iterator found = m_definitions.find(name);
+
+   if( found == m_definitions.end() )
+   {
+      throw Error( Errors::e_Missing_Definition, name );
+   }
+
+   return found->second;
 }
 
 namespace // anonymous
@@ -143,7 +138,7 @@ namespace // anonymous
    };
 } // anonymous namespace
 
-void GraphicSys::draw( sf::RenderWindow& app )
+void ActiveGraphicSys::draw( sf::RenderWindow& app )
 {
    if( m_needs_resort )
    {
@@ -152,7 +147,7 @@ void GraphicSys::draw( sf::RenderWindow& app )
    std::for_each( m_graphics.begin(), m_graphics.end(), CallDraw(app) );
 }
 
-void GraphicSys::collectGraphics( void )
+void ActiveGraphicSys::collectGraphics( void )
 {
    GraphicPimpls::iterator iter = m_graphics.begin();
    GraphicPimpls::iterator end = m_graphics.end();
@@ -170,7 +165,7 @@ void GraphicSys::collectGraphics( void )
    }
 }
 
-void GraphicSys::collectImages( void )
+void ActiveGraphicSys::collectVideoMem( void )
 {
    Images::iterator iter = m_images.begin();
    Images::iterator end = m_images.end();
@@ -188,7 +183,7 @@ void GraphicSys::collectImages( void )
    }
 }
 
-Image_ptr GraphicSys::loadImage( const std::string& filename )
+Image_ptr ActiveGraphicSys::loadImage( const std::string& filename )
 {
    Images::iterator found = m_images.find(filename);
    if( found == m_images.end() )
