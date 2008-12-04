@@ -47,7 +47,7 @@ int main()
 	v.lookAt( b2Vec2_zero );
 	v.setWidth( 2*world_half.x );
 
-	ammo::GraphicSys graphics;
+	ammo::ActiveGraphicSys graphics;
 
 	ammo::SimpleAnimationDef anim_def;
 	anim_def.addFrame( 0.1, "data/noise1.png" );
@@ -55,11 +55,11 @@ int main()
 	anim_def.addFrame( 0.1, "data/noise3.png" );
 	anim_def.addFrame( 0.1, "data/noise4.png" );
 
-	graphics.addDef("noise",anim_def);
-	graphics.addDef("ball",ammo::SpriteDef("data/ball.png") );
-	graphics.addDef("background",ammo::SpriteDef("data/background.jpg"));
-	graphics.addDef("left_paddle",ammo::SpriteDef("data/blue_paddle.png"));
-	graphics.addDef("right_paddle",ammo::SpriteDef("data/red_paddle.png"));
+	graphics.AddBluePrint("noise",anim_def);
+	graphics.AddBluePrint("ball",ammo::SpriteDef("data/ball.png") );
+	graphics.AddBluePrint("background",ammo::SpriteDef("data/background.jpg"));
+	graphics.AddBluePrint("left_pakdle",ammo::SpriteDef("data/blue_paddle.png"));
+	graphics.AddBluePrint("right_paddle",ammo::SpriteDef("data/red_paddle.png"));
 
 	ammo::Graphic background = graphics.getGraphic("background");
 	background.show();
@@ -206,7 +206,7 @@ int main()
 
 			// this is pretty distubing but it shows how easy ammo::View makes it to 
 			// have the screen track a given point.
-			//v.lookAt(ball_pos);
+			v.lookAt(ball_pos);
 		}
 
 		audio.update( App.GetFrameTime() );
