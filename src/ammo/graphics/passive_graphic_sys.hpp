@@ -20,7 +20,7 @@ namespace ammo
       virtual Graphic getGraphic( const std::string& name );
 
       virtual void collectGraphics( void );
-      virtual void collectVMemory( void );
+      virtual void collectVideoMem( void );
 
       virtual void update( float dt );
       virtual void draw( sf::RenderWindow& app );

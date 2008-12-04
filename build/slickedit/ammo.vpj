@@ -107,9 +107,16 @@
 			<F N="../../src/ammo/game/gameobject.hpp"/>
 			<F N="../../src/ammo/game/gamestate.cpp"/>
 			<F N="../../src/ammo/game/gamestate.hpp"/>
+			<F N="../../src/ammo/game/gamestateauth.cpp"/>
 			<F N="../../src/ammo/game/gamestateauth.hpp"/>
+			<F N="../../src/ammo/game/gamestateproxy.cpp"/>
+			<F N="../../src/ammo/game/gamestateproxy.hpp"/>
 			<F N="../../src/ammo/game/server.cpp"/>
 			<F N="../../src/ammo/game/server.hpp"/>
+		</Folder>
+		<Folder Name="../../src/ammo/game/gameobjects">
+			<F N="../../src/ammo/game/gameobjects/sampleobject.cpp"/>
+			<F N="../../src/ammo/game/gameobjects/sampleobject.hpp"/>
 		</Folder>
 		<Folder Name="../../src/ammo/graphics">
 			<F N="../../src/ammo/graphics/active_graphic_sys.cpp"/>
@@ -120,7 +127,6 @@
 			<F N="../../src/ammo/graphics/graphic_def.hpp"/>
 			<F N="../../src/ammo/graphics/graphic_impl.fwd.hpp"/>
 			<F N="../../src/ammo/graphics/graphic_impl.hpp"/>
-			<F N="../../src/ammo/graphics/graphic_sys.cpp"/>
 			<F N="../../src/ammo/graphics/graphic_sys.hpp"/>
 			<F N="../../src/ammo/graphics/passive_graphic_sys.cpp"/>
 			<F N="../../src/ammo/graphics/passive_graphic_sys.hpp"/>
