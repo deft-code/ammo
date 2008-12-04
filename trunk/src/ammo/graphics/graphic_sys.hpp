@@ -5,6 +5,11 @@
 
 #include "ammo/graphics/graphic_def.fwd.hpp"
 
+namespace sf
+{
+	class RenderWindow;
+}
+
 namespace ammo
 {
    class Graphic;

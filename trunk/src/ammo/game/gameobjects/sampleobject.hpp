@@ -11,10 +11,14 @@ namespace ammo
   class SampleObject : public GameObject
   {
   public:
-    SampleObject() { _myVal = 0; _timer = 2;}
+    SampleObject()
+	  : _myVal(0),
+		 _timer(2)
+	 {	}
+
     void Update(float deltaTime);    
     bool Serialize(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext);
-    bool SampleObject::SerializeConstruction(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext);
+    bool SerializeConstruction(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext);
     void Deserialize(RakNet::BitStream* bitStream, RakNet::SerializationType serializationType, SystemAddress sender, RakNetTime timestamp);
   private:
     int _myVal;

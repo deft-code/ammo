@@ -1,4 +1,4 @@
-#include "graphic_sys.hpp"
+#include "passive_graphic_sys.hpp"
 
 #include "../error.hpp"
 #include "graphic_def.hpp"

@@ -50,19 +50,19 @@ int main()
 	ammo::ActiveGraphicSys graphics;
 
 	ammo::SimpleAnimationDef anim_def;
-	anim_def.addFrame( 0.1, "data/noise1.png" );
-	anim_def.addFrame( 0.1, "data/noise2.png" );
-	anim_def.addFrame( 0.1, "data/noise3.png" );
-	anim_def.addFrame( 0.1, "data/noise4.png" );
+	anim_def.addFrame( 2, "data/noise1.png" );
+	anim_def.addFrame( 2, "data/noise2.png" );
+	anim_def.addFrame( 2, "data/noise3.png" );
+	anim_def.addFrame( 2, "data/noise4.png" );
 
 	graphics.AddBluePrint("noise",anim_def);
 	graphics.AddBluePrint("ball",ammo::SpriteDef("data/ball.png") );
 	graphics.AddBluePrint("background",ammo::SpriteDef("data/background.jpg"));
-	graphics.AddBluePrint("left_pakdle",ammo::SpriteDef("data/blue_paddle.png"));
+	graphics.AddBluePrint("left_paddle",ammo::SpriteDef("data/blue_paddle.png"));
 	graphics.AddBluePrint("right_paddle",ammo::SpriteDef("data/red_paddle.png"));
 
 	ammo::Graphic background = graphics.getGraphic("background");
-	background.show();
+	//background.show();
 	background.SetPosition( b2Vec2_zero );
 	background.SetSize( 2*world_half );
 
@@ -80,9 +80,9 @@ int main()
 
 	
 	ammo::Graphic noise = graphics.getGraphic("noise");
-	//noise.show();
+	noise.show();
 	noise.SetPosition( b2Vec2_zero );//b2Vec2(0, world_half.y) );
-	noise.SetSize( 2 * world_half );
+	noise.SetSize( 0.5 * world_half );
 
 	// Load the text font
 	sf::Font Cheeseburger;
