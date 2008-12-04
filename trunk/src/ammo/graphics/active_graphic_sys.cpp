@@ -1,4 +1,4 @@
-#include "graphic_sys.hpp"
+#include "active_graphic_sys.hpp"
 
 #include "../error.hpp"
 #include "graphic_def.hpp"
@@ -15,13 +15,7 @@ ActiveGraphicSys::ActiveGraphicSys( void )
  : m_needs_resort(false)
 { }
 
-void GraphicSys::aliasDef( const std::string& name, const std::string& alias)
-{
-   GraphicDef_ptr def = getDef(name);
-   addDef(alias,def);
-}
-
-void ActiveGraphicSys::removeDef( const std::string& name )
+void ActiveGraphicSys::RemoveBluePrint( const std::string& name )
 {
    m_definitions.erase(name);
 }
@@ -50,13 +44,6 @@ Graphic ActiveGraphicSys::getGraphic( std::string const& name )
    m_graphics.push_back( sound );
 
    return Graphic( sound );
-}
-
-
-void ActiveGraphicSys::collect( void )
-{
-   collectGraphics();
-   collectImages();
 }
 
 namespace // anonymous
