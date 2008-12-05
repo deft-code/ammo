@@ -1,6 +1,7 @@
 #include "ammo/game/server.hpp"
 #include "ammo/game/gameobjects/sampleobject.hpp"
 #include "ammo/game/gamestateauth.hpp"
+#include "ammo/graphics.hpp"
 
 #include "RakNetTypes.h"
 #include "MessageIdentifiers.h"
@@ -13,7 +14,7 @@ namespace ammo
   {
     _peer = new NetPeer(this, true);
     _gameState = new AuthGameState(this);
-    _graphics = NULL;
+    _graphics = new PassiveGraphicSys();
     _sound = NULL;
   }
 

@@ -1,5 +1,6 @@
 #include "ammo/game/client.hpp"
 #include "ammo/game/gamestateproxy.hpp"
+#include "ammo/graphics.hpp"
 
 #include "RakNetTypes.h"
 
@@ -10,9 +11,22 @@ namespace ammo
 
   Client::Client()
   {
+    // Set up our renderwindow
+    // TODO: Don't hardcode values here.
     _app = new sf::RenderWindow(sf::VideoMode(800, 600), "CLIENT TEST");
+    // Set up our viewport
+    // TODO: Don't Hardcode these!
+    _view = new ammo::View(*_app);
+    _view->setWidth(800);
+    _view->setHeight(600);
+    _view->lookAt(b2Vec2(300, 300));
+
     _gameState = new ProxyGameState(this);
-    _graphics = NULL;
+    _graphics = new ActiveGraphicSys();
+    // Register our graphics with the client:
+    _graphics->AddBluePrint("player", SpriteDef("data/red_paddle.png"));
+
+
     _sound = NULL;
     _peer = new NetPeer(this, false);
     _isDestroyed = false;
@@ -20,12 +34,14 @@ namespace ammo
 
   Client::~Client()
   {
+    delete _graphics;
+    delete _gameState;
     delete _peer;
   }
 
   void Client::Draw(float deltaTime)
-  {
-    
+  {   
+    _app->Clear();
 
     if (_graphics)
     {

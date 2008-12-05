@@ -7,18 +7,13 @@ namespace ammo
     void SampleObject::Update(float deltaTime)
     {
       _timer -= deltaTime;
-      if (_timer <= 0)
+      if(_parent->GetGameState()->GetIsAuthority())
       {
-        _timer += 2;
-        _myVal++;
-        if (this->_parentState->GetIsAuthority())
+        if (_timer <= 0)
         {
-          std::cout << "Server Incremented _myVal" << std::endl;
-        }
-        else
-        {
-          std::cout << "Client Incremented _myVal" << std::endl;
-        }
+          _timer += 2;
+          _myVal++;
+        }        
       }
     }
 
@@ -42,4 +37,10 @@ namespace ammo
       std::cout << "Client Deserialized value: " << _myVal << std::endl;
     }
 
+    void SampleObject::OnRegisterComplete()
+    {
+      _sprite = _parent->GetGraphicSys()->getGraphic("player");
+      _sprite.SetPosition(b2Vec2(300, 300));
+      _sprite.show();
+    }
 }

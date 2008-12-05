@@ -23,11 +23,13 @@ namespace ammo
         // enough to get our object serializing properly.
         object->SetReplicaManager(_parent->GetNetPeer()->GetRepMngr());
       }
-      object->SetParentGameState(this);
+      object->SetParentGame(_parent);
       if (this->_parent->GetGameState()->GetIsAuthority())
       {
         object->BroadcastConstruction();
       }
+
+      object->OnRegisterComplete();
     }
   }
 }
