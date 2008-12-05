@@ -3,6 +3,7 @@
 
 #include "ammo/game/game.hpp"
 #include "SFML/Graphics.hpp"
+#include "ammo/graphics.hpp"
 
 namespace ammo
 {
@@ -25,6 +26,7 @@ namespace ammo
     sf::RenderWindow* _app;
     sf::Event myEvent;    
     bool _isDestroyed;
+    ammo::View* _view;
   };
 }
 

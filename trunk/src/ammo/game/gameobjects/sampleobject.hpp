@@ -2,6 +2,8 @@
 #define SAMPLE_OBJECT_H
 
 #include "ammo/game/gameobject.hpp"
+#include "ammo/graphics.hpp"
+
 #include "RakNetTypes.h"
 
 namespace ammo
@@ -20,9 +22,11 @@ namespace ammo
     bool Serialize(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext);
     bool SerializeConstruction(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext);
     void Deserialize(RakNet::BitStream* bitStream, RakNet::SerializationType serializationType, SystemAddress sender, RakNetTime timestamp);
+    void OnRegisterComplete();
   private:
     int _myVal;
     float _timer;
+    ammo::Graphic _sprite;
   };
 }
 #endif // SAMPLE_OBJECT_H

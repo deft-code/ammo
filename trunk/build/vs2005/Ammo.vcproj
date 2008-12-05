@@ -92,7 +92,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\RakNetDebug.dll $(OutDir)&#x0D;&#x0A;"
+				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\RakNetDebug.dll $(OutDir)&#x0D;&#x0A;MKDIR $(OutDir)\data\&#x0D;&#x0A;Copy ..\..\data\ $(OutDir)\data\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -169,7 +169,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\RakNet.dll $(OutDir)&#x0D;&#x0A;"
+				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\RakNetDebug.dll $(OutDir)&#x0D;&#x0A;MKDIR $(OutDir)\data\&#x0D;&#x0A;Copy ..\..\data\ $(OutDir)\data\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -209,6 +209,10 @@
 				Name="graphics"
 				>
 				<File
+					RelativePath="..\..\src\ammo\graphics\active_graphic_sys.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ammo\graphics\graphic.hpp"
 					>
 				</File>
@@ -230,6 +234,10 @@
 				</File>
 				<File
 					RelativePath="..\..\src\ammo\graphics\graphic_sys.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\graphics\passive_graphic_sys.hpp"
 					>
 				</File>
 				<File
@@ -381,11 +389,15 @@
 				Name="graphics"
 				>
 				<File
+					RelativePath="..\..\src\ammo\graphics\active_graphic_sys.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ammo\graphics\graphic.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\ammo\graphics\graphic_sys.cpp"
+					RelativePath="..\..\src\ammo\graphics\passive_graphic_sys.cpp"
 					>
 				</File>
 				<File
