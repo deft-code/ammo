@@ -3,6 +3,7 @@
 
 #include "ammo/game/gameobject.hpp"
 #include "ammo/graphics.hpp"
+#include "ammo/audio.hpp"
 
 #include "RakNetTypes.h"
 
@@ -27,6 +28,7 @@ namespace ammo
     int _myVal;
     float _timer;
     ammo::Graphic _sprite;
+    ammo::Sound _sound;
   };
 }
 #endif // SAMPLE_OBJECT_H

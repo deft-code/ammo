@@ -1,6 +1,7 @@
 #include "ammo/game/client.hpp"
 #include "ammo/game/gamestateproxy.hpp"
 #include "ammo/graphics.hpp"
+#include "ammo/audio.hpp"
 
 #include "RakNetTypes.h"
 
@@ -27,7 +28,12 @@ namespace ammo
     _graphics->AddBluePrint("player", SpriteDef("data/red_paddle.png"));
 
 
-    _sound = NULL;
+    _sound = new SoundSys();
+    // Add some test sounds
+    // TODO: Don't hardcode these
+    _sound->addDef("player", PlainDef("data/ball.wav"));
+    
+
     _peer = new NetPeer(this, false);
     _isDestroyed = false;
   }

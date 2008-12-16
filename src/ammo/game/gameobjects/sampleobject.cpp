@@ -15,6 +15,13 @@ namespace ammo
           _myVal++;
         }        
       }
+      else
+      {
+        if  (_myVal % 5 == 0)
+        {
+          _sound.play();
+        }
+      }
     }
 
     bool SampleObject::Serialize(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext)
@@ -42,5 +49,12 @@ namespace ammo
       _sprite = _parent->GetGraphicSys()->getGraphic("player");
       _sprite.SetPosition(b2Vec2(300, 300));
       _sprite.show();
+
+      // If we are the client, load up the sound
+      if (!_parent->GetGameState()->GetIsAuthority())
+      {
+        _sound = _parent->GetSoundSys()->getSound("player");
+        
+      }
     }
 }
