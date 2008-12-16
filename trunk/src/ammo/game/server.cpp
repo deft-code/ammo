@@ -2,6 +2,7 @@
 #include "ammo/game/gameobjects/sampleobject.hpp"
 #include "ammo/game/gamestateauth.hpp"
 #include "ammo/graphics.hpp"
+#include "ammo/audio.hpp"
 
 #include "RakNetTypes.h"
 #include "MessageIdentifiers.h"
