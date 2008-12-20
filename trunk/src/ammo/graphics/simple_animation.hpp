@@ -36,6 +36,8 @@ namespace ammo
 		virtual void SetZOrder( float z );
 
    private:
+		void setFrame( std::size_t frame );
+
       sf::Sprite m_sprite;
       std::vector<float> m_times;
       std::vector<Image_ptr> m_images;

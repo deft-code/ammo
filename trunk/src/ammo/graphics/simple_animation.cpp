@@ -38,9 +38,20 @@ namespace ammo
          {
             m_current = 0;
          }
-         m_sprite.SetImage( *m_images[m_current] );
-         m_sprite.SetCenter( m_sprite.GetSize() * 0.5f );
+         setFrame( m_current );
+         //m_sprite.SetImage( *m_images[m_current] );
+         //m_sprite.SetCenter( m_sprite.GetSize() * 0.5f );
       }
+   }
+
+   void SimpleAnimationImpl::setFrame( std::size_t frame )
+   {
+      sf::Sprite s( *m_images[frame] );
+      m_current = frame;
+      b2Vec2 old_size = GetSize();
+      m_sprite = s;
+      m_sprite.SetCenter( m_sprite.GetSize() * 0.5f );
+      SetSize( old_size );
    }
 
    bool SimpleAnimationImpl::done(void) const
@@ -62,9 +73,13 @@ namespace ammo
       m_images[index] = image;
       if( index == 0 )
       {
-         m_current = 0;
-         m_sprite.SetImage( *image );
-         m_sprite.SetCenter( m_sprite.GetSize() * 0.5f );
+         setFrame(0);
+         //sf::Sprite s( *image );
+         //m_current = 0;
+         //b2Vec2 old_size = GetSize();
+         //m_sprite = s;
+         //m_sprite.SetCenter( m_sprite.GetSize() * 0.5f );
+         //SetSize( old_size );
       }
    }
 
