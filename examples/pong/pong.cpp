@@ -50,10 +50,10 @@ int main()
 	ammo::ActiveGraphicSys graphics;
 
 	ammo::SimpleAnimationDef anim_def;
-	anim_def.addFrame( 2, "data/noise1.png" );
-	anim_def.addFrame( 2, "data/noise2.png" );
-	anim_def.addFrame( 2, "data/noise3.png" );
-	anim_def.addFrame( 2, "data/noise4.png" );
+	anim_def.addFrame( 0.1f, "data/noise1.png" );
+	anim_def.addFrame( 0.1f, "data/noise2.png" );
+	anim_def.addFrame( 0.1f, "data/noise3.png" );
+	anim_def.addFrame( 0.1f, "data/noise4.png" );
 
 	graphics.AddBluePrint("noise",anim_def);
 	graphics.AddBluePrint("ball",ammo::SpriteDef("data/ball.png") );
@@ -62,13 +62,20 @@ int main()
 	graphics.AddBluePrint("right_paddle",ammo::SpriteDef("data/red_paddle.png"));
 
 	ammo::Graphic background = graphics.getGraphic("background");
-	//background.show();
+	background.show();
 	background.SetPosition( b2Vec2_zero );
 	background.SetSize( 2*world_half );
+	background.SetZOrder( -20.f );
 
 	ammo::Graphic ball = graphics.getGraphic("ball");
 	ball.show();
 	ball.SetSize( 2*ball_half );
+	ball.SetZOrder(10.f);
+
+	ammo::Graphic ball2 = graphics.getGraphic("left_paddle");
+	ball2.show();
+	ball2.SetSize( 2*ball_half );
+	ball2.SetZOrder(-10.f);
 
 	ammo::Graphic left = graphics.getGraphic("left_paddle");
 	left.show();
@@ -78,10 +85,9 @@ int main()
 	right.show();
 	right.SetSize( 2*paddle_half );
 
-	
 	ammo::Graphic noise = graphics.getGraphic("noise");
 	noise.show();
-	noise.SetPosition( b2Vec2_zero );//b2Vec2(0, world_half.y) );
+	noise.SetPosition( b2Vec2_zero );
 	noise.SetSize( 0.5 * world_half );
 
 	// Load the text font
@@ -203,10 +209,11 @@ int main()
 			left.SetPosition( left_pos );
 			right.SetPosition( right_pos );
 			ball.SetPosition( ball_pos );
+			ball2.SetPosition( ball_pos + ball_half );
 
-			// this is pretty distubing but it shows how easy ammo::View makes it to 
+			// this looks pretty distubing but it shows how easy ammo::View makes it to 
 			// have the screen track a given point.
-			v.lookAt(ball_pos);
+			//v.lookAt(ball_pos);
 		}
 
 		audio.update( App.GetFrameTime() );
