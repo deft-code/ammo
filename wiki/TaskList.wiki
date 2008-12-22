@@ -1,0 +1,17 @@
+#summary One-sentence summary of this page.
+
+= Project Task list =
+
+|| #*_NOT DONE_* || Create a list of task to start out with ||
+|| #*_NOT DONE_* || ||
+|| #*_NOT DONE_* || ||
+|| #*_NOT DONE_* || ||
+|| #*_NOT DONE_* || ||
+|| #*_NOT DONE_* || ||
+|| #*_NOT DONE_* || ||
+|| #*_NOT DONE_* || ||
+
+
+= What this is for =
+
+I hope this page could be used for making a list of tasks that need to be attended to that way when someone has time to work on something they know what needs attention and can see what is already taken care of.
