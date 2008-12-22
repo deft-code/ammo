@@ -2,14 +2,14 @@
 
 = Project Task list =
 
-||   # *_NOT DONE_* || Create a list of task to start out with ||
-||   # *_NOT DONE_* || ||
-||   # *_NOT DONE_* || ||
-||   # *_NOT DONE_* || ||
-||   # *_NOT DONE_* || ||
-||   # *_NOT DONE_* || ||
-||   # *_NOT DONE_* || ||
-||   # *_NOT DONE_* || ||
+|| 1 *_NOT DONE_* || Create a list of task to start out with ||
+|| 2 *_NOT DONE_* || ||
+|| 3 *_NOT DONE_* || ||
+|| 4 *_NOT DONE_* || ||
+|| 5 *_NOT DONE_* || ||
+|| 6 *_NOT DONE_* || ||
+|| 7 *_NOT DONE_* || ||
+|| 8 *_NOT DONE_* || ||
 
 = What this is for =
 
