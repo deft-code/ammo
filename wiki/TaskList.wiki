@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#This will be used for making a list of tasks that need to be attended, to that way when someone has time to work on something they know what needs attention and can see what is already taken care of.
 
 = Project Task list =
 || Status || Task ||
@@ -10,7 +10,3 @@
 || 6 *_NOT DONE_* || ||
 || 7 *_NOT DONE_* || ||
 || 8 *_NOT DONE_* || ||
-
-= What this is for =
-
-I hope this page could be used for making a list of tasks that need to be attended to that way when someone has time to work on something they know what needs attention and can see what is already taken care of.
