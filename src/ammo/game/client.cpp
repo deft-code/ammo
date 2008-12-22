@@ -93,7 +93,6 @@ namespace ammo
       }
     }
 
-
     // Update all our child objects
     if (_gameState)
     {

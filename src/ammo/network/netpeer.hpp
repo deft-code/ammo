@@ -18,27 +18,30 @@ using RakNet::ReplicaManager2;
 namespace ammo
 {
 
+  // Forward Declarations
   class Game;
   class ReplicaObjectConstructorFactory;
 
   // Net Peer is the class responsbile for handling all the network transactions between 
-  // a client and a server. It can be a member of a client or a server
+  // a client and a server. It can be a member of a client or a server, and can act
+  // as either.
   class NetPeer
   {
   public:
+  
     NetPeer(Game* parent, bool isServer, unsigned short portNum = 31337, unsigned int maxConns = 32);
     ~NetPeer();
     // Receive a waiting packet from the net peer
     // Make sure to call DeallocatePacket on the 
     // packet you receive, or the packet will not
-    // leave the queue
+    // leave the queue of received packets.
     Packet* Receive();
     // Removes the packet from the queue once you 
     // have received it.
     void DeallocatePacket(Packet* packet);
     // Gets the replica manager. Objects intending to use
     // the replica system need to call SetReplicaManager
-    // and pass in this pointer.
+    // and pass in this pointer. 
     RakNet::ReplicaManager2* GetRepMngr() {return _repMngr;}
     // Connects this peer to a server. If this peer is a server,
     // this method is ignored.
