@@ -1,7 +1,7 @@
 #summary One-sentence summary of this page.
 
 = Project Task list =
-
+|| Status || Task ||
 || 1 *_NOT DONE_* || Create a list of task to start out with ||
 || 2 *_NOT DONE_* || ||
 || 3 *_NOT DONE_* || ||
