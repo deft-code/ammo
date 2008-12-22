@@ -186,10 +186,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\ammo\network\connectionfactory.hpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\ammo\error.hpp"
 				>
 			</File>
@@ -296,6 +292,10 @@
 			<Filter
 				Name="network"
 				>
+				<File
+					RelativePath="..\..\src\ammo\network\connectionfactory.hpp"
+					>
+				</File>
 				<File
 					RelativePath="..\..\src\ammo\network\netpeer.hpp"
 					>

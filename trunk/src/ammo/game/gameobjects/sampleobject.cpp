@@ -6,9 +6,11 @@ namespace ammo
 {
     void SampleObject::Update(float deltaTime)
     {
+      
       _timer -= deltaTime;
       if(_parent->GetGameState()->GetIsAuthority())
       {
+        // On the server, 
         if (_timer <= 0)
         {
           _timer += 2;
