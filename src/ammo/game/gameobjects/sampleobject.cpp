@@ -17,6 +17,7 @@ namespace ammo
       }
       else
       {
+        _sprite.SetX(0 + _myVal);
         if  (_myVal % 5 == 0)
         {
           _sound.play();

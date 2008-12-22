@@ -5,7 +5,7 @@
 namespace ammo
 {
 
-  NetPeer::NetPeer(Game* parent, bool isServer)
+  NetPeer::NetPeer(Game* parent, bool isServer, unsigned short portNum, unsigned int maxConns)
   {
     _parent = parent;
     _isServer = isServer;
@@ -47,9 +47,9 @@ namespace ammo
     // Hardcoded client/server setup for now
     if(isServer)
     { // Set up the server
-		 SocketDescriptor s(31337, 0);
-      _peer->Startup(32, 30, &s, 1);
-      _peer->SetMaximumIncomingConnections(32);
+		 SocketDescriptor s(portNum, 0);
+      _peer->Startup(maxConns, 30, &s, 1);
+      _peer->SetMaximumIncomingConnections(maxConns);
       _repMngr->SetAutoAddNewConnections(true);
     }
     else

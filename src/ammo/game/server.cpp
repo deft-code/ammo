@@ -11,9 +11,9 @@
 namespace ammo 
 {
 
-  Server::Server()
+  Server::Server(unsigned short portNum, unsigned int maxConns)
   {
-    _peer = new NetPeer(this, true);
+    _peer = new NetPeer(this, true, portNum, maxConns );
     _gameState = new AuthGameState(this);
     _graphics = new PassiveGraphicSys();
     _sound = NULL;
@@ -40,7 +40,8 @@ namespace ammo
     // Our main update loop for the server
     Packet* packet;
     // TEMPORARY
-    SampleObject* testObj = NULL;
+
+    GameObject* testObj = NULL;
 
     // Grab all packets, handing them to the gamestate
     for (packet = _peer->Receive(); packet != NULL; _peer->DeallocatePacket(packet), packet = _peer->Receive())
