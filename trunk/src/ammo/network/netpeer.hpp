@@ -26,7 +26,7 @@ namespace ammo
   class NetPeer
   {
   public:
-    NetPeer(Game* parent, bool isServer);
+    NetPeer(Game* parent, bool isServer, unsigned short portNum = 31337, unsigned int maxConns = 32);
     ~NetPeer();
     // Receive a waiting packet from the net peer
     // Make sure to call DeallocatePacket on the 

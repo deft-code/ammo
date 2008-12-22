@@ -4,7 +4,7 @@
 #include "ammo/audio.hpp"
 
 #include "RakNetTypes.h"
-
+#include "messageidentifiers.h"
 #include <iostream>
 
 namespace ammo 
@@ -82,6 +82,15 @@ namespace ammo
     for (packet = _peer->Receive(); packet != NULL; _peer->DeallocatePacket(packet), packet = _peer->Receive())
     {      
       std::cout << "CLIENT: Packet Received from: "<< packet->systemAddress.ToString() << std::endl;
+      switch (packet->data[0])
+      {
+      case ID_CONNECTION_ATTEMPT_FAILED:
+      case ID_CONNECTION_BANNED:
+        std::cout << "Connection to remote host failed." << std::endl;
+        break;
+      default:
+        break;
+      }
     }
 
 

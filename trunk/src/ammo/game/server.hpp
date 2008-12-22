@@ -8,14 +8,12 @@ namespace ammo
   class Server : public Game
   {
   public:
-    Server();
+    Server(unsigned short portNum, unsigned int maxConns);
     ~Server();
     
     void Draw(float deltaTime);
     void Update(float deltaTime);
-
   private:
-    
   };
 }
 
