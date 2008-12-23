@@ -85,8 +85,12 @@
 			<F N="../../src/ammo/network.hpp"/>
 		</Folder>
 		<Folder Name="../../src/ammo/audio">
+			<F N="../../src/ammo/audio/active_sound_sys.cpp"/>
+			<F N="../../src/ammo/audio/active_sound_sys.hpp"/>
 			<F N="../../src/ammo/audio/music_sys.cpp"/>
 			<F N="../../src/ammo/audio/music_sys.hpp"/>
+			<F N="../../src/ammo/audio/passive_sound_sys.cpp"/>
+			<F N="../../src/ammo/audio/passive_sound_sys.hpp"/>
 			<F N="../../src/ammo/audio/plain_sound.cpp"/>
 			<F N="../../src/ammo/audio/plain_sound.hpp"/>
 			<F N="../../src/ammo/audio/random_sound.cpp"/>
@@ -97,7 +101,6 @@
 			<F N="../../src/ammo/audio/sound_def.hpp"/>
 			<F N="../../src/ammo/audio/sound_impl.fwd.hpp"/>
 			<F N="../../src/ammo/audio/sound_impl.hpp"/>
-			<F N="../../src/ammo/audio/sound_sys.cpp"/>
 			<F N="../../src/ammo/audio/sound_sys.hpp"/>
 		</Folder>
 		<Folder Name="../../src/ammo/game">

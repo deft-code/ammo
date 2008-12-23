@@ -27,15 +27,16 @@ int main()
 
 	b2Vec2 ball_vel( speed*std::cos(angle), speed*std::sin(angle) );
 
-	ammo::SoundSys audio;
+	ammo::ActiveSoundSys audio;
+	ammo::PassiveSoundSys unused_audio;
 
 	ammo::RandomDef random_def;
 	random_def.m_filenames.push_back("data/Metalhit1.ogg");
 	random_def.m_filenames.push_back("data/Metalhit2.ogg");
 	random_def.m_filenames.push_back("data/Metalhit3.ogg");
-	audio.addDef("bounce", random_def );
+	audio.AddBluePrint("bounce", random_def );
 
-	audio.addDef("score", ammo::PlainDef("data/ball.wav") );
+	audio.AddBluePrint("score", ammo::PlainDef("data/ball.wav") );
 
 	ammo::Sound bounce = audio.getSound("bounce");
 	ammo::Sound score = audio.getSound("score");
@@ -48,6 +49,7 @@ int main()
 	v.setWidth( 2*world_half.x );
 
 	ammo::ActiveGraphicSys graphics;
+	ammo::PassiveGraphicSys unused_graphics;
 
 	ammo::SimpleAnimationDef anim_def;
 	anim_def.addFrame( 0.1f, "data/noise1.png" );
