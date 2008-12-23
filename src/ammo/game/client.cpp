@@ -25,6 +25,7 @@ namespace ammo
     _gameState = new ProxyGameState(this);
     _graphics = new ActiveGraphicSys();
     // Register our graphics with the client:
+    // TODO: Don't hardcode these!
     _graphics->AddBluePrint("player", SpriteDef("data/red_paddle.png"));
 
 

@@ -74,6 +74,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
+				EmbedManifest="true"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -253,7 +254,15 @@
 				Name="audio"
 				>
 				<File
+					RelativePath="..\..\src\ammo\audio\active_sound_sys.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ammo\audio\music_sys.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\audio\passive_sound_sys.hpp"
 					>
 				</File>
 				<File
@@ -365,7 +374,15 @@
 				Name="audio"
 				>
 				<File
+					RelativePath="..\..\src\ammo\audio\active_sound_sys.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ammo\audio\music_sys.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\audio\passive_sound_sys.cpp"
 					>
 				</File>
 				<File
@@ -378,10 +395,6 @@
 				</File>
 				<File
 					RelativePath="..\..\src\ammo\audio\sound.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\ammo\audio\sound_sys.cpp"
 					>
 				</File>
 			</Filter>
