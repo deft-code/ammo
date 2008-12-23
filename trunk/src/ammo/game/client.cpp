@@ -4,7 +4,7 @@
 #include "ammo/audio.hpp"
 
 #include "RakNetTypes.h"
-#include "messageidentifiers.h"
+#include "MessageIdentifiers.h"
 #include <iostream>
 
 namespace ammo 
@@ -28,10 +28,10 @@ namespace ammo
     _graphics->AddBluePrint("player", SpriteDef("data/red_paddle.png"));
 
 
-    _sound = new SoundSys();
+    _sound = new ActiveSoundSys();
     // Add some test sounds
     // TODO: Don't hardcode these
-    _sound->addDef("player", PlainDef("data/ball.wav"));
+    _sound->AddBluePrint("player", PlainDef("data/ball.wav"));
     
 
     _peer = new NetPeer(this, false);

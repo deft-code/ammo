@@ -1,4 +1,4 @@
-#include "sound_sys.hpp"
+#include "active_sound_sys.hpp"
 
 #include "../error.hpp"
 #include "sound_def.hpp"
@@ -10,7 +10,7 @@
 namespace ammo
 {
 
-SoundSys::SoundSys( void )
+ActiveSoundSys::ActiveSoundSys( void )
  : m_sounds_time(0.f),
    m_sounds_threshold( 3.f ),
    m_buffers_time(0.f),
@@ -26,34 +26,28 @@ namespace // anonymous
    };
 }
 
-/// this clean up is'nt strictly neccessary.  However, it is does guarantee
+/// this clean up isn't strictly neccessary.  However, it is does guarantee
 /// the order.
-SoundSys::~SoundSys( void )
+ActiveSoundSys::~ActiveSoundSys( void )
 {
    std::for_each( m_sounds.begin(), m_sounds.end(), Stop() );
    m_sounds.clear();
    m_buffers.clear();
 }
 
-void SoundSys::aliasDef( const std::string& name, const std::string& alias)
-{
-   SoundDef_ptr def = getDef(name);
-   addDef(alias,def);
-}
-
-void SoundSys::removeDef( const std::string& name )
+void ActiveSoundSys::removeDef( const std::string& name )
 {
    m_definitions.erase(name);
 }
 
-bool SoundSys::isSound( std::string const& name ) const
+bool ActiveSoundSys::isSound( std::string const& name ) const
 {
    SoundDefs::const_iterator found = m_definitions.find(name);
 
    return found != m_definitions.end();
 }
 
-Sound SoundSys::getSound( std::string const& name )
+Sound ActiveSoundSys::getSound( std::string const& name )
 {
    SoundDef_ptr def = getDef( name );
 
@@ -72,52 +66,40 @@ Sound SoundSys::getSound( std::string const& name )
    return Sound( sound );
 }
 
-
-void SoundSys::collect( void )
+void ActiveSoundSys::collectSounds( void )
 {
-   collectSounds();
-   collectBuffers();
-}
+   SoundPimpls::iterator iter = m_sounds.begin();
+   SoundPimpls::iterator end = m_sounds.end();
 
-void SoundSys::update( float dt )
-{
-   updateSounds( dt );
-
-   m_sounds_time += dt;
-   if( m_sounds_time > m_sounds_threshold )
-   {
-      collectSounds();
-      m_sounds_time -= m_sounds_threshold;
-   }
-
-   m_buffers_time += dt;
-   if( m_buffers_time > m_buffers_threshold )
-   {
-      collectBuffers();
-      m_buffers_time -= m_buffers_threshold;
+   while( iter != end )
+   {   
+      if( iter->unique() && (*iter)->done() )
+      {
+         iter = m_sounds.erase(iter);
+      }
+      else
+      {
+         ++iter;
+      }
    }
 }
 
-void SoundSys::addDef( const std::string& name, SoundDef_ptr def )
+void ActiveSoundSys::collectBuffers( void )
 {
-   bool success = m_definitions.insert( std::make_pair(name,def) ).second;
+   Buffers::iterator iter = m_buffers.begin();
+   Buffers::iterator end = m_buffers.end();
 
-   if( ! success )
+   while( iter != end )
    {
-      throw Error( Errors::e_Overwrite_Definition );
+      if( iter->second.unique() )
+      {
+         m_buffers.erase(iter++);
+      }
+      else
+      {
+         ++iter;
+      }
    }
-}
-
-SoundDef_ptr SoundSys::getDef( const std::string& name ) const
-{
-   SoundDefs::const_iterator found = m_definitions.find(name);
-
-   if( found == m_definitions.end() )
-   {
-      throw Error( Errors::e_Missing_Definition, name );
-   }
-
-   return found->second;
 }
 
 namespace // anonymous
@@ -136,48 +118,34 @@ namespace // anonymous
    };
 } // anonymous namespace
 
-void SoundSys::updateSounds( float dt )
+void ActiveSoundSys::update( float dt )
 {
    std::for_each( m_sounds.begin(), m_sounds.end(), CallUpdate(dt) );
 }
 
-void SoundSys::collectSounds( void )
+void ActiveSoundSys::addDef( const std::string& name, SoundDef_ptr def )
 {
-   SoundPimpls::iterator iter = m_sounds.begin();
-   SoundPimpls::iterator end = m_sounds.end();
+   bool success = m_definitions.insert( std::make_pair(name,def) ).second;
 
-   while( iter != end )
-   {   
-      if( iter->unique() && (*iter)->done() )
-      {
-         iter = m_sounds.erase(iter);
-      }
-      else
-      {
-         ++iter;
-      }
-   }
-}
-
-void SoundSys::collectBuffers( void )
-{
-   Buffers::iterator iter = m_buffers.begin();
-   Buffers::iterator end = m_buffers.end();
-
-   while( iter != end )
+   if( ! success )
    {
-      if( iter->second.unique() )
-      {
-         m_buffers.erase(iter++);
-      }
-      else
-      {
-         ++iter;
-      }
+      throw Error( Errors::e_Overwrite_Definition );
    }
 }
 
-SoundBuffer_ptr SoundSys::loadBuffer( const std::string& filename )
+SoundDef_ptr ActiveSoundSys::getDef( const std::string& name ) const
+{
+   SoundDefs::const_iterator found = m_definitions.find(name);
+
+   if( found == m_definitions.end() )
+   {
+      throw Error( Errors::e_Missing_Definition, name );
+   }
+
+   return found->second;
+}
+
+SoundBuffer_ptr ActiveSoundSys::loadBuffer( const std::string& filename )
 {
    Buffers::iterator found = m_buffers.find(filename);
    if( found == m_buffers.end() )
