@@ -16,7 +16,7 @@ namespace ammo
     _peer = new NetPeer(this, true, portNum, maxConns );
     _gameState = new AuthGameState(this);
     _graphics = new PassiveGraphicSys();
-    _sound = NULL;
+    _sound = new PassiveSoundSys();
   }
 
   Server::~Server()
@@ -40,7 +40,7 @@ namespace ammo
     // Our main update loop for the server
     Packet* packet;
     // TEMPORARY
-
+    // TODO
     GameObject* testObj = NULL;
 
     // Grab all packets, handing them to the gamestate
@@ -61,6 +61,7 @@ namespace ammo
       case ID_NEW_INCOMING_CONNECTION:				
         printf("ID_NEW_INCOMING_CONNECTION from %s\n", packet->systemAddress.ToString());   
         // TEMPORARY
+        // TODO
         testObj = new SampleObject();
         testObj->AddAutoSerializeTimer(1000);        
         _gameState->RegisterGameObject(testObj);
@@ -76,7 +77,6 @@ namespace ammo
         break;
       }
     }
-
 
     // Update all our child objects
     if (_gameState)
