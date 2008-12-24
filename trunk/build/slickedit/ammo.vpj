@@ -146,5 +146,18 @@
 			<F N="../../src/ammo/network/netpeer.cpp"/>
 			<F N="../../src/ammo/network/netpeer.hpp"/>
 		</Folder>
+		<Folder Name="../../src/ammo/physics">
+			<F N="../../src/ammo/physics/active_physic_sys.cpp"/>
+			<F N="../../src/ammo/physics/active_physic_sys.hpp"/>
+			<F N="../../src/ammo/physics/passive_physic_sys.cpp"/>
+			<F N="../../src/ammo/physics/passive_physic_sys.hpp"/>
+			<F N="../../src/ammo/physics/physic.cpp"/>
+			<F N="../../src/ammo/physics/physic.hpp"/>
+			<F N="../../src/ammo/physics/physic_blue_print.fwd.hpp"/>
+			<F N="../../src/ammo/physics/physic_blue_print.hpp"/>
+			<F N="../../src/ammo/physics/physic_impl.fwd.hpp"/>
+			<F N="../../src/ammo/physics/physic_impl.hpp"/>
+			<F N="../../src/ammo/physics/physic_sys.hpp"/>
+		</Folder>
 	</Files>
 </Project>
