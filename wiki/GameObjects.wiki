@@ -3,7 +3,7 @@
 = Game Objects =
 
 == Tokens ==
-  # [http://code.google.com/p/ammo/wiki/TaskList Graphics ]
+  # [http://code.google.com/p/ammo/wiki/GraphicsToken Graphics ]
   # [http://domain/page Sound ]
   # [http://domain/page Physics ]
   # [http://domain/page Input ]
