@@ -1,4 +1,4 @@
-#summary Describes Game Objects.
+#summary Description of Game Objects.
 
 = Game Objects =
 
