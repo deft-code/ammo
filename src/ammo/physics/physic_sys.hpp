@@ -1,6 +1,7 @@
 #ifndef AMMO_PHYSICS_PHYSIC_SYS_HPP_INCLUDED
 #define AMMO_PHYSICS_PHYSIC_SYS_HPP_INCLUDED
 
+#include <string>
 #include "ammo/physics/physic.hpp"
 #include "ammo/physics/physic_blue_print.fwd.hpp"
 
