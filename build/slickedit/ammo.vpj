@@ -83,6 +83,7 @@
 			<F N="../../src/ammo/graphics.hpp"/>
 			<F N="../../src/ammo/main.cpp"/>
 			<F N="../../src/ammo/network.hpp"/>
+			<F N="../../src/ammo/physics.hpp"/>
 		</Folder>
 		<Folder Name="../../src/ammo/audio">
 			<F N="../../src/ammo/audio/active_sound_sys.cpp"/>
@@ -149,6 +150,8 @@
 		<Folder Name="../../src/ammo/physics">
 			<F N="../../src/ammo/physics/active_physic_sys.cpp"/>
 			<F N="../../src/ammo/physics/active_physic_sys.hpp"/>
+			<F N="../../src/ammo/physics/circle.cpp"/>
+			<F N="../../src/ammo/physics/circle.hpp"/>
 			<F N="../../src/ammo/physics/passive_physic_sys.cpp"/>
 			<F N="../../src/ammo/physics/passive_physic_sys.hpp"/>
 			<F N="../../src/ammo/physics/physic.cpp"/>
@@ -158,6 +161,10 @@
 			<F N="../../src/ammo/physics/physic_impl.fwd.hpp"/>
 			<F N="../../src/ammo/physics/physic_impl.hpp"/>
 			<F N="../../src/ammo/physics/physic_sys.hpp"/>
+			<F N="../../src/ammo/physics/polygon.cpp"/>
+			<F N="../../src/ammo/physics/polygon.hpp"/>
+			<F N="../../src/ammo/physics/single_body_impl.cpp"/>
+			<F N="../../src/ammo/physics/single_body_impl.hpp"/>
 		</Folder>
 	</Files>
 </Project>

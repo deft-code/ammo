@@ -3,6 +3,8 @@
 
 #include "ammo/physics/physic_impl.fwd.hpp"
 
+#include "Box2D.h"
+
 namespace ammo
 {
 	class Physic
@@ -15,13 +17,13 @@ namespace ammo
       void SetPosition( const b2Vec2& pos );
 
       b2Vec2 GetVelocity( void ) const;
-      void SetVelocity( const b2Vec2& pos );
+      void SetVelocity( const b2Vec2& vel );
 
 		float GetTheta( void ) const;
 		void SetTheta( float theta );
 
 		float GetOmega( void ) const;
-		void SetOmega( float theta );
+		void SetOmega( float omega );
 
 	private:
 		PhysicPimpl m_pimpl;

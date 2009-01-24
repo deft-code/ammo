@@ -3,29 +3,37 @@
 #include <cmath>
 #include "ammo/graphics.hpp"
 #include "ammo/audio.hpp"
+#include "ammo/physics.hpp"
 
 int main()
 {
+	ammo::PassivePhysicSys sim;
 	// Defines PI
-	const float PI = 3.14159f;
+	const float PI = std::atan(1.0) * 4.0;
+
+	ammo::Physic left_shape = sim.GetPhysic("asdf");
+	ammo::Physic right_shape = sim.GetPhysic("asdf");
+	ammo::Physic ball_shape = sim.GetPhysic("asdf");
 
 	b2Vec2 world_half( 40.f, 30.f );
+
 	b2Vec2 paddle_half( 1.f, 4.f );
 	b2Vec2 right_pos( world_half.x - 3*paddle_half.x, 0.f );
+	right_shape.SetPosition( b2Vec2( world_half.x - 3*paddle_half.x, 0.f ) );
 	b2Vec2 left_pos( -world_half.x + 3*paddle_half.x, 0.f );
+	left_shape.SetPosition( b2Vec2( -world_half.x + 3*paddle_half.x, 0.f ) );
+
 	b2Vec2 ball_half( 1.f, 1.f );
 	b2Vec2 ball_pos = b2Vec2_zero;
 
 	float speed = 30.f;
 	float ai_speed = speed;
-	float angle;
-	do
-	{
-		// Make sure the ball initial angle is not too much vertical
-		angle = sf::Randomizer::Random(0.f, 2 * PI);
-	} while( std::abs(std::cos(angle)) < 0.7f );
+	float angle	= sf::Randomizer::Random( -PI * 0.25f, PI * 0.75f);
+	if( angle > PI * 0.25 )
+	{ angle += PI * 0.5;	}
 
 	b2Vec2 ball_vel( speed*std::cos(angle), speed*std::sin(angle) );
+	ball_shape.SetVelocity(ball_vel);
 
 	ammo::ActiveSoundSys audio;
 	ammo::PassiveSoundSys unused_audio;
@@ -130,26 +138,26 @@ int main()
 			{	
 				left_pos += b2Vec2(0.f, speed * App.GetFrameTime());
 			}
-
+	
 			if ( App.GetInput().IsKeyDown(sf::Key::Down) && (left_pos.y - paddle_half.y > -world_half.y) )
 			{	
 				left_pos += b2Vec2(0.f, -speed * App.GetFrameTime());
 			}
-
+	
 			// AI logic
 			right_pos += b2Vec2( 0.f, ai_speed * App.GetFrameTime() );
 
 			// Update the computer's paddle direction according to the ball position
-			if ( AITimer.GetElapsedTime() > AITime )
+			if( AITimer.GetElapsedTime() > AITime )
 			{
 				AITimer.Reset();
 				// paddle moving down and bottom of ball above top of paddle
-				if ( (ai_speed < 0) && ((ball_pos.y - ball_half.y) > (right_pos.y + paddle_half.y)) )
-					ai_speed = speed * 0.5f;
+				if( (ai_speed < 0) && ((ball_pos.y - ball_half.y) > (right_pos.y + paddle_half.y)) )
+					{ ai_speed = speed * 0.5f; }
 
 				// paddle moving up and top of ball below bottom of paddle
-				if ( (ai_speed > 0) && ((ball_pos.y + ball_half.y) < (right_pos.y - paddle_half.y)) )
-					ai_speed = -speed * 0.5f;
+				if( (ai_speed > 0) && ((ball_pos.y + ball_half.y) < (right_pos.y - paddle_half.y)) )
+					{ ai_speed = -speed * 0.5f; }
 			}
 
 			right_pos += b2Vec2( 0, ai_speed * App.GetFrameTime() );
@@ -158,13 +166,13 @@ int main()
 			ball_pos += App.GetFrameTime() * ball_vel;
 
 			// Check collisions between the ball and the sides of the screen
-			if ( ball_pos.x - ball_half.x < -world_half.x )
+			if( ball_pos.x - ball_half.x < -world_half.x )
 			{
 				IsPlaying = false;
 				End.SetText("You lost !\n(press escape to exit)");
 				score.play();
 			}
-			if ( ball_pos.x + ball_half.x > world_half.x )
+			if( ball_pos.x + ball_half.x > world_half.x )
 			{
 				IsPlaying = false;
 				End.SetText("You won !\n(press escape to exit)");
@@ -228,7 +236,7 @@ int main()
 
 		// If the game is over, display the end message
 		if ( !IsPlaying )
-			App.Draw(End);
+			{ App.Draw(End); }
 
 		// Display things on screen
 		App.Display();

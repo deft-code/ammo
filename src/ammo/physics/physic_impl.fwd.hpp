@@ -6,7 +6,7 @@
 namespace ammo
 {
 	class PhysicImpl;
-	boost::shared_ptr<PhysicImpl> PhysicPimpl;
+	typedef boost::shared_ptr<PhysicImpl> PhysicPimpl;
 }
 
 #endif // AMMO_PHYSICS_PHYSICS_IMPL_FWD_HPP_INCLUDED

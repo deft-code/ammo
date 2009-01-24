@@ -23,10 +23,10 @@ namespace ammo
 	};
 
 	template< typename BP >
-	void AddBluePrint( const std::string& name, const BP& bp )
+	void PhysicSys::AddBluePrint( const std::string& name, const BP& bp )
 	{
 		PhysicBluePrint_ptr new_bp = new BP(bp);
-		add_bp_ptr( new_bp );
+		add_bp_ptr( name, new_bp );
 	}
 }
 #endif //  AMMO_PHYSICS_PHYSIC_SYS_HPP_INCLUDED
