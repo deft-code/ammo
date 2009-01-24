@@ -1,5 +1,7 @@
 #include "physic.hpp"
 
+#include "physic_impl.hpp"
+
 namespace ammo
 {
 
@@ -48,8 +50,8 @@ void Physic::SetPosition( const b2Vec2& pos )
 b2Vec2 Physic::GetVelocity( void ) const
 { return m_pimpl->GetVelocity();	}
 
-void Physic::SetVelocity( const b2Vec2& pos )
-{ m_pimpl->SetVelocity(pos); }
+void Physic::SetVelocity( const b2Vec2& vel )
+{ m_pimpl->SetVelocity(vel); }
 
 float Physic::GetTheta( void ) const
 { return m_pimpl->GetTheta();	}
@@ -60,7 +62,7 @@ void Physic::SetTheta( float theta )
 float Physic::GetOmega( void ) const
 { return m_pimpl->GetOmega();	}
 
-void Physic::SetOmega( float theta )
-{ m_pimpl->SetOmega(); }
+void Physic::SetOmega( float omega )
+{ m_pimpl->SetOmega(omega); }
 
 } // ammo

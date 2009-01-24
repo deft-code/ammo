@@ -70,6 +70,9 @@
 		<Folder Name="../../examples/pong">
 			<F N="../../examples/pong/pong.cpp"/>
 		</Folder>
+		<Folder Name="../../src/ammo">
+			<F N="../../src/ammo/physics.hpp"/>
+		</Folder>
 		<Folder Name="../../src/ammo/graphics">
 			<F N="../../src/ammo/graphics/active_graphic_sys.cpp"/>
 			<F N="../../src/ammo/graphics/active_graphic_sys.hpp"/>
@@ -89,6 +92,13 @@
 			<F N="../../src/ammo/graphics/sprite.hpp"/>
 			<F N="../../src/ammo/graphics/view.cpp"/>
 			<F N="../../src/ammo/graphics/view.hpp"/>
+		</Folder>
+		<Folder Name="../../src/ammo/physics">
+			<F N="../../src/ammo/physics/circle.cpp"/>
+			<F N="../../src/ammo/physics/circle.hpp"/>
+			<F N="../../src/ammo/physics/passive_physic.hpp"/>
+			<F N="../../src/ammo/physics/single_body_impl.cpp"/>
+			<F N="../../src/ammo/physics/single_body_impl.hpp"/>
 		</Folder>
 	</Files>
 </Project>
