@@ -4,9 +4,9 @@
 
 == Tokens ==
   # [http://code.google.com/p/ammo/wiki/GraphicsToken Graphics ]
-  # [http://domain/page Sound ]
-  # [http://domain/page Physics ]
-  # [http://domain/page Input ]
+  # [http://code.google.com/p/ammo/wiki/SoundToken Sound ]
+  # [http://code.google.com/p/ammo/wiki/PhysicsToken Physics ]
+  # [http://code.google.com/p/ammo/wiki/InputToken Input ]
 
 == Brief Descriptions ==
 
