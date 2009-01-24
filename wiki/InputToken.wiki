@@ -1,4 +1,4 @@
-#summary Description Of Input Tokens.
+#summary Description of Input Tokens.
 
 = Introduction =
 
