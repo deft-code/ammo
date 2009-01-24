@@ -1,0 +1,22 @@
+#summary Manager list.
+
+= Managers =
+
+  # [http://domain/page Graphics]
+  # [http://domain/page Sound ]
+  # [http://domain/page Physics ]
+  # [http://domain/page Input ]
+
+== Brief Descriptions ==
+
+
+  === 1. Graphics ===
+
+
+  === 2. Sound ===
+
+
+  === 3. Physics ===
+
+
+  === 4. Input ===
