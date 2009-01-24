@@ -2,10 +2,10 @@
 
 = Managers =
 
-  # [http://domain/page Graphics]
-  # [http://domain/page Sound ]
-  # [http://domain/page Physics ]
-  # [http://domain/page Input ]
+  # [http://code.google.com/p/ammo/wiki/GraphicsManager Graphics]
+  # [http://code.google.com/p/ammo/wiki/SoundManager Sound ]
+  # [http://code.google.com/p/ammo/wiki/PhysicsManager Physics ]
+  # [http://code.google.com/p/ammo/wiki/InputManager Input ]
 
 == Brief Descriptions ==
 
