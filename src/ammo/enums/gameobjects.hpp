@@ -1,7 +1,13 @@
 // This is currently the way we store our game objects, so we can easily
 // serialize their type. 
-enum enumGameObject
+namespace ammo
 {
-  PLAYER_OBJECT,
-  SAMPLE_OBJECT
-};
+  namespace enums
+  {
+    enum enumGameObject
+    {
+      PLAYER_OBJECT,
+      SAMPLE_OBJECT
+    };
+  }
+}

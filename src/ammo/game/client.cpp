@@ -2,6 +2,7 @@
 #include "ammo/game/gamestateproxy.hpp"
 #include "ammo/graphics.hpp"
 #include "ammo/audio.hpp"
+#include "ammo/physics.hpp"
 
 #include "RakNetTypes.h"
 #include "MessageIdentifiers.h"
@@ -35,6 +36,9 @@ namespace ammo
     _sound->AddBluePrint("player", PlainDef("data/ball.wav"));
     
 
+    // Create the Physics System
+    _physic = new PassivePhysicSys();
+    
     _peer = new NetPeer(this, false);
     _isDestroyed = false;
   }

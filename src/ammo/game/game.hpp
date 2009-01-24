@@ -7,6 +7,7 @@
 #include "ammo/network/netpeer.hpp"
 #include "ammo/audio/sound_sys.hpp"
 #include "ammo/game/gamestate.hpp"
+#include "ammo/physics/physic_sys.hpp"
 
 namespace ammo
 {
@@ -24,12 +25,13 @@ namespace ammo
     NetPeer* GetNetPeer(){return _peer;}
     SoundSys* GetSoundSys() {return _sound;}
     GameState* GetGameState() { return _gameState;}
-
+    PhysicSys* GetPhysicsSys() { return _physic;}
   protected:
     GraphicSys* _graphics;
     NetPeer* _peer;
     SoundSys* _sound;
     GameState* _gameState;
+    PhysicSys* _physic;
   };
 }
 

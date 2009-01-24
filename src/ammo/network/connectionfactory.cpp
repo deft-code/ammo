@@ -1,5 +1,11 @@
 #include "ammo/network/connectionfactory.hpp"
+// TODO
+// Pull out the object headers to  ammo/game/gameobjects/gameobjects.hpp
+// or something
 #include "ammo/game/gameobjects/sampleobject.hpp"
+#include "ammo/game/gameobjects/playerobject.hpp"
+
+#include "ammo/enums/gameobjects.hpp"
 
 #include <iostream>
 
@@ -27,14 +33,17 @@ namespace ammo
     // TODO: We need to establish a standard for enumerating these
     switch (objType)
     { 
-      case 1:
+    case enums::PLAYER_OBJECT:
+      std::cout << "Connection Factory creating new Player Object from " << sender.ToString() << "." << std::endl;
+      construct = new PlayerObject();
+      break;
+    case enums::SAMPLE_OBJECT:
         std::cout << "Connection Factory creating new Sample Object" << std::endl;
         construct = new SampleObject();
         break;
       default:
         break;
     }
-
 
     // After we construct the object, we need to register that object 
     // with the gamestate. 
