@@ -29,6 +29,7 @@ namespace ammo
 
     bool SampleObject::Serialize(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext)
     {
+      
       std::cout << "Server Serialized _myVal. Value: " << _myVal << std::endl;
       (*bitStream) << _myVal;
       return true;
