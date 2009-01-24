@@ -1,3 +1,5 @@
+#summary Describes Game Objects.
+
 = Game Objects =
 
 == Tokens ==
