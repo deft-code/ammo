@@ -10,7 +10,7 @@
 namespace ammo
 {
   // The sample object is an example of how to implement
-  // a Game Object. This object 
+  // a Game Object. This object has no 
   class SampleObject : public GameObject
   {
   public:

@@ -202,6 +202,10 @@
 				RelativePath="..\..\src\ammo\network.hpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\src\ammo\physics.hpp"
+				>
+			</File>
 			<Filter
 				Name="graphics"
 				>
@@ -345,10 +349,62 @@
 					Name="gameobjects"
 					>
 					<File
+						RelativePath="..\..\src\ammo\game\gameobjects\playerobject.hpp"
+						>
+					</File>
+					<File
 						RelativePath="..\..\src\ammo\game\gameobjects\sampleobject.hpp"
 						>
 					</File>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="enums"
+				>
+				<File
+					RelativePath="..\..\src\ammo\enums\gameobjects.hpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="physics"
+				>
+				<File
+					RelativePath="..\..\src\ammo\physics\active_physic_sys.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\passive_physic_sys.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\physic.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\physic_blue_print.fwd.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\physic_blue_print.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\physic_impl.fwd.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\physic_impl.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\physic_sys.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\single_body_impl.hpp"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -465,10 +521,34 @@
 					Name="gameobjects"
 					>
 					<File
+						RelativePath="..\..\src\ammo\game\gameobjects\playerobject.cpp"
+						>
+					</File>
+					<File
 						RelativePath="..\..\src\ammo\game\gameobjects\sampleobject.cpp"
 						>
 					</File>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="physics"
+				>
+				<File
+					RelativePath="..\..\src\ammo\physics\active_physic_sys.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\passive_physic_sys.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\physic.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\single_body_impl.cpp"
+					>
+				</File>
 			</Filter>
 		</Filter>
 	</Files>
