@@ -1,4 +1,4 @@
-#summary Description of the Graphic Token.
+#summary Description of Graphic Tokens.
 
 = Introduction =
 
