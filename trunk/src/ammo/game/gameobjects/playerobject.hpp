@@ -4,6 +4,7 @@
 #include "ammo/game/gameobject.hpp"
 #include "ammo/graphics.hpp"
 #include "ammo/audio.hpp"
+#include "ammo/physics.hpp"
 
 #include "RakNetTypes.h"
 
@@ -38,10 +39,15 @@ namespace ammo
     bool DeserializeClientSide(RakNet::BitStream* bitStream, RakNet::SerializationType serializationType, SystemAddress sender, RakNetTime timestamp);
     // Handles deserializing all of our information on the server side, from the data received sent via SerializeClientSide
     bool DeserializeServerSide(RakNet::BitStream* bitStream, RakNet::SerializationType serializationType, SystemAddress sender, RakNetTime timestamp);
+    
+    // Our tokens
+
     // Our player sprite, currently only one per player
     ammo::Graphic _sprite;
     // Our player sound token
     ammo::Sound _sound;
+    // Our physics token
+    ammo::Physic _physic;
   };
 }
 

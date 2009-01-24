@@ -3,6 +3,7 @@
 #include "ammo/game/gamestateauth.hpp"
 #include "ammo/graphics.hpp"
 #include "ammo/audio.hpp"
+#include "ammo/physics.hpp"
 
 #include "RakNetTypes.h"
 #include "MessageIdentifiers.h"
@@ -17,6 +18,7 @@ namespace ammo
     _gameState = new AuthGameState(this);
     _graphics = new PassiveGraphicSys();
     _sound = new PassiveSoundSys();
+    _physic = new ActivePhysicSys();
   }
 
   Server::~Server()

@@ -1,4 +1,5 @@
 #include "ammo/game/gameobjects/sampleobject.hpp"
+#include "ammo/enums/gameobjects.hpp"
 
 #include <iostream>
 
@@ -21,7 +22,7 @@ namespace ammo
       {
         _sprite.SetX(0 + _myVal);
         if  (_myVal % 5 == 0)
-        {
+        {          
           _sound.play();
         }
       }

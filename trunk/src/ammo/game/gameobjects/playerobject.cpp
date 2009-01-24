@@ -1,6 +1,10 @@
 #include "ammo/game/gameobjects/playerobject.hpp"
 
+#include "ammo/enums/gameobjects.hpp"
 #include <iostream>
+
+using std::cout;
+using std::endl;
 
 namespace ammo
 {
@@ -14,25 +18,51 @@ namespace ammo
   // if the player is on the server, it serializes the the players state.
   bool PlayerObject::Serialize(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext)
   {
-    return true;
+    if (_parent->GetGameState()->GetIsAuthority())
+    {
+      // We are the server! Squigglydurn!
+      return SerializeServerSide(bitStream, serializationContext);
+    }
+    else
+    {
+      // We are the client! Clunkerypiggle!
+      return SerializeClientSide(bitStream, serializationContext);
+    }    
   }
 
   // Serializes the construction of the player. This is deserialized by the ReplicaObjectConstructor.Construct 
   // method(see: connectionFactory.h). Currently serializes only the object type.
   bool PlayerObject::SerializeConstruction(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext)
   {
+    // Write our type to the bit stream
+    bitStream->Write((int)ammo::enums::PLAYER_OBJECT);        
     return true;
   }
+
   // Deserializes the data sent via the Serialize Method
   void PlayerObject::Deserialize(RakNet::BitStream* bitStream, RakNet::SerializationType serializationType, SystemAddress sender, RakNetTime timestamp)
   {
-
+    if (_parent->GetGameState()->GetIsAuthority())
+    {
+      // We are the server! Squigglydurn!
+      DeserializeServerSide(bitStream, serializationType, sender, timestamp);
+    }
+    else
+    {
+      // We are the client! Clunkerypiggle!
+      DeserializeClientSide(bitStream, serializationType, sender, timestamp);
+    }  
   }
   // After the object is completely registered on client/server, this method is called to load up any graphics, or do any post constructor
   // initialization.
   void PlayerObject::OnRegisterComplete()
   {
-
+    // Get our sprite
+    _sprite = _parent->GetGraphicSys()->getGraphic("player");
+    // Get our sound
+    _sound = _parent->GetSoundSys()->getSound("player");
+    // Get our physics
+    
   }
 
   // Handles serializing all of our information on the client side
