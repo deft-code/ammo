@@ -2,11 +2,12 @@
 #define AMMO_GRAPHICS_GRAPHIC_HPP_INCLUDED
 
 #include "ammo/graphics/graphic_impl.fwd.hpp"
+#include "ammo/graphics/icameratarget.hpp"
 #include <Box2D.h>
 
 namespace ammo
 {
-   class Graphic
+  class Graphic : public ICameraTarget
    {
    public:
       Graphic( void );

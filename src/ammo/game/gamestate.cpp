@@ -14,7 +14,7 @@ namespace ammo
     {
       // Register this object internally
       _objList.push_back(object);
-      
+
       // Register this object for the net
       // if it hasn't been registered there already
       if (!object->GetReplicaManager())
@@ -36,5 +36,11 @@ namespace ammo
       // Finish up any post serialization initialization
       object->OnRegisterComplete();
     }
+  }
+
+
+  void GameState::SetTarget(ICameraTarget* target)
+  { 
+    _parent->SetCameraTarget(target); 
   }
 }
