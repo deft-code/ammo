@@ -3,11 +3,15 @@
 #include "ammo/gameincludes.hpp"
 
 #include <iostream>
+#include <stdlib.h>
+
 #include "SFML/System.hpp"
 
 using std::cout;
 using std::endl;
 using std::string;
+using std::cin;
+
 
 int main()
 {
@@ -19,12 +23,17 @@ int main()
   // But it's a quick and dirty way until we establish a graphical
   // or ini based or whatevah
   bool canProceed = false;
-  string setupOption = "n";
+  string setupOption = "b";
+  char buffer[32];
 
   while (!canProceed)
   {
-    cout << "Would you like to open a (c)lient, (s)erver, or (b)oth? ";
-    std::cin >>setupOption;
+    cout << "Would you like to open a (c)lient, (s)erver, or (b)oth? [b]: ";
+    cin.getline(buffer, 32, '\n');
+    if (buffer[0] == '\0')
+      setupOption = "b";
+    else
+      setupOption = buffer;
 
     if (setupOption == "c" || setupOption == "s" || setupOption == "b")
     {
@@ -44,19 +53,30 @@ int main()
   if (setupOption == "s" || setupOption == "b")
   {
     unsigned short port = 0;
+    
     unsigned short maxConns = 0;
     cout << "Creating Server." << endl;
     // Get the server port
     while (port < 1024 || port > 65535)
     {
-      cout << "Input Port (1025-65535): ";
-      std::cin >> port;
+      
+      cout << "Input Port (1025-65535) [31337]: ";      
+      cin.getline(buffer, 32, '\n');
+      if (buffer[0] == '\0' )
+        port = 31337;
+      else
+        port = atoi(buffer);
     }
+    
     // Get the server max connections
     while (maxConns < 1 || maxConns > 64)
     {
-      cout << "Maximum incoming connections (1-64): ";
-      std::cin >> maxConns;
+      cout << "Maximum incoming connections (1-64) [32]: ";
+      cin.getline(buffer, 32, '\n');
+      if (buffer[0] == '\0' )
+        maxConns = 32;
+      else
+        maxConns = atoi(buffer);
     }
 
     // Wait for the server to get up and ready
@@ -80,14 +100,22 @@ int main()
     // Not going to do much typechecking here
     while (clientHost.length() < 7 || clientHost.length() > 15)
     {
-      cout << "Input server IP: ";
-      std::cin >> clientHost;
+      cout << "Input server IP [localhost]: ";
+      cin.getline(buffer, 32, '\n');
+      if (buffer[0] == '\0' )
+        clientHost = "localhost";
+      else
+        clientHost = buffer;
     }
 
     while (clientPort < 1025 || clientPort > 65535 )
     {
-      cout << "Input target port (1025-65535): ";
-      std::cin >> clientPort;
+      cout << "Input target port (1025-65535) [31337]: ";
+      cin.getline(buffer, 32, '\n');
+      if (buffer[0] == '\0' )
+        clientPort = 31337;
+      else
+        clientPort = atoi(buffer);
     }
 
     _client = new ammo::Client();
