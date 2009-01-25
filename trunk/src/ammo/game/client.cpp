@@ -39,6 +39,7 @@ namespace ammo
     // Create the Physics System
     _physic = new PassivePhysicSys();
     
+
     _peer = new NetPeer(this, false);
     _isDestroyed = false;
   }
@@ -51,9 +52,8 @@ namespace ammo
   }
 
   void Client::Draw(float deltaTime)
-  {   
+  {    
     _app->Clear();
-
     if (_graphics)
     {
       _graphics->draw(*_app);
@@ -110,7 +110,13 @@ namespace ammo
     if (_sound)
     {
       _sound->update(deltaTime);
-    }
+    }   
+
+    // Update our camera
+    if (_camTarget)
+    {
+      _view->lookAt(_camTarget->GetPosition());
+    }    
   }
 
   bool Client::Connect(const char* host,unsigned short remotePort, const char* passwordData,int pwdDataLength)

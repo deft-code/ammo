@@ -2,12 +2,13 @@
 #define AMMO_PHYSICS_PHYSIC_HPP_INCLUDED
 
 #include "ammo/physics/physic_impl.fwd.hpp"
+#include "ammo/graphics/icameratarget.hpp"
 
 #include "Box2D.h"
 
 namespace ammo
 {
-	class Physic
+  class Physic : public ICameraTarget
 	{
 	public:
 		Physic( void );

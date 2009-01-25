@@ -238,6 +238,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\ammo\graphics\icameratarget.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ammo\graphics\passive_graphic_sys.hpp"
 					>
 				</File>

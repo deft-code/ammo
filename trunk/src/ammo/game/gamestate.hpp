@@ -5,7 +5,10 @@
 #include "ammo/game/gameobject.hpp"
 #include "ammo/game/game.hpp"
 
+#include "ammo/graphics/icameratarget.hpp"
+
 #include <list>
+
 namespace ammo
 {
   // Usings and forward declarations
@@ -34,10 +37,16 @@ namespace ammo
     // Returns a boolean indicating whether this game stat is a client or
     // a server (true)
     bool  GetIsAuthority(){ return _isAuthority; }
+
+    // Sets the target of the Gamestate
+    void SetTarget(ICameraTarget* target);
+
   protected:
     // Whether this gamestate is an authority or not.
     bool _isAuthority;
+    // The list of objects this gamestate is maintaining
     std::list<GameObject*> _objList;
+    // A pointer to the game (client or server) that owns this object
     Game* _parent;
   };
 }

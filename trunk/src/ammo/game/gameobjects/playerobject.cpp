@@ -12,7 +12,9 @@ namespace ammo
   // Update contains all the logic for the object. 
   void PlayerObject::Update(float deltaTime)
   {
-
+    // Update our sprite's information 
+    _sprite.SetPosition(_physic.GetPosition());
+    
   }
   // Serializes the player. If the player is on the client, it serializes only the input information,
   // if the player is on the server, it serializes the the players state.
@@ -59,10 +61,17 @@ namespace ammo
   {
     // Get our sprite
     _sprite = _parent->GetGraphicSys()->getGraphic("player");
+    _sprite.show();
+
     // Get our sound
     _sound = _parent->GetSoundSys()->getSound("player");
-    // Get our physics
     
+    // Point our local gamestate's camera at us
+    if (!_parent->GetGameState()->GetIsAuthority())
+    {
+      // But only if this is a client. 
+      _parent->SetCameraTarget((ICameraTarget*)(&_sprite));
+    }
   }
 
   // Handles serializing all of our information on the client side
