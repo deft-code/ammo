@@ -18,6 +18,7 @@ namespace ammo
   class Game
   {
   public:
+    Game() : _camTarget(NULL) {}
     virtual void Update(float deltaTime) = 0;
     virtual void Draw(float deltaTime) = 0;    
 

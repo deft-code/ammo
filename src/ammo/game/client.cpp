@@ -27,7 +27,7 @@ namespace ammo
     _graphics = new ActiveGraphicSys();
     // Register our graphics with the client:
     // TODO: Don't hardcode these!
-    _graphics->AddBluePrint("player", SpriteDef("data/red_paddle.png"));
+    _graphics->AddBluePrint("player", SpriteDef("data/ship256.png"));
 
 
     _sound = new ActiveSoundSys();
