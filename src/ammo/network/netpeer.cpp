@@ -140,4 +140,9 @@ namespace ammo
     }
     return false;
   }
+
+  SystemAddress NetPeer::GetLocalAddress()
+  {
+    return _peer->GetExternalID(UNASSIGNED_SYSTEM_ADDRESS);
+  }
 }

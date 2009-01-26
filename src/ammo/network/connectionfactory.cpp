@@ -34,8 +34,11 @@ namespace ammo
     switch (objType)
     { 
     case enums::PLAYER_OBJECT:
-      std::cout << "Connection Factory creating new Player Object from " << sender.ToString() << "." << std::endl;
-      construct = new PlayerObject();
+      SystemAddress myOwner;
+      replicaData->Read(myOwner);
+      std::cout << "Connection Factory creating new Player Object from " << sender.ToString() << ". Owner is " << myOwner.ToString() << std::endl;
+      construct = new PlayerObject(myOwner);
+      construct->AddAutoSerializeTimer(0);
       break;
     case enums::SAMPLE_OBJECT:
         std::cout << "Connection Factory creating new Sample Object" << std::endl;

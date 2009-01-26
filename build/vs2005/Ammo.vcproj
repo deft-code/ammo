@@ -353,6 +353,10 @@
 					Name="gameobjects"
 					>
 					<File
+						RelativePath="..\..\src\ammo\game\gameobjects\gameobjectlist.hpp"
+						>
+					</File>
+					<File
 						RelativePath="..\..\src\ammo\game\gameobjects\playerobject.hpp"
 						>
 					</File>
