@@ -8,28 +8,36 @@ using std::endl;
 
 namespace ammo
 {
-
   // Update contains all the logic for the object. 
   void PlayerObject::Update(float deltaTime)
   {
     // Update our sprite's information 
-    _sprite.SetPosition(_physic.GetPosition());
+    //_sprite.SetPosition(_physic.GetPosition());
+    if (_parent->GetGameState()->GetIsAuthority())
+    {
+      //cout << testNum << endl;
+    }
     
   }
   // Serializes the player. If the player is on the client, it serializes only the input information,
   // if the player is on the server, it serializes the the players state.
   bool PlayerObject::Serialize(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext)
   {
-    if (_parent->GetGameState()->GetIsAuthority())
+    if(_parent)
     {
-      // We are the server! Squigglydurn!
-      return SerializeServerSide(bitStream, serializationContext);
+      if (_parent->GetGameState()->GetIsAuthority())
+      {
+        // We are the server! Squigglydurn!
+        return SerializeServerSide(bitStream, serializationContext);
+      }
+      else
+      {
+        // We are the client! Clunkerypiggle!
+        return SerializeClientSide(bitStream, serializationContext);
+      } 
     }
-    else
-    {
-      // We are the client! Clunkerypiggle!
-      return SerializeClientSide(bitStream, serializationContext);
-    }    
+
+    return true;
   }
 
   // Serializes the construction of the player. This is deserialized by the ReplicaObjectConstructor.Construct 
@@ -37,7 +45,8 @@ namespace ammo
   bool PlayerObject::SerializeConstruction(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext)
   {
     // Write our type to the bit stream
-    bitStream->Write((int)ammo::enums::PLAYER_OBJECT);        
+    bitStream->Write((int)ammo::enums::PLAYER_OBJECT);  
+    bitStream->Write(_owner);
     return true;
   }
 
@@ -67,21 +76,22 @@ namespace ammo
     _sound = _parent->GetSoundSys()->getSound("player");
     
     // Point our local gamestate's camera at us
-    if (!_parent->GetGameState()->GetIsAuthority())
+    if (!_parent->GetGameState()->GetIsAuthority() && _parent->GetNetPeer()->GetLocalAddress() == _owner)
     {
-      // But only if this is a client. 
+      // But only if this is a client, and this is our player
       _parent->SetCameraTarget((ICameraTarget*)(&_sprite));
     }
   }
 
   // Handles serializing all of our information on the client side
   bool PlayerObject::SerializeClientSide(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext)
-  {
+  {      
+
     return true;
   }
   // Handles serializing all of our information on the server side
   bool PlayerObject::SerializeServerSide(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext)
-  {
+  {    
     return true;
   }
 
@@ -94,6 +104,20 @@ namespace ammo
   // Handles deserializing all of our information on the server side, from the data received sent via SerializeClientSide
   bool PlayerObject::DeserializeServerSide(RakNet::BitStream* bitStream, RakNet::SerializationType serializationType, SystemAddress sender, RakNetTime timestamp)
   {
+
     return true;
+  }
+
+  bool PlayerObject::QueryIsSerializationAuthority() const
+  {   
+    // If we are the server, or we are the owner of this object, allow us to serialize it
+    if(_parent->GetNetPeer()->GetLocalAddress() == _owner || _parent->GetGameState()->GetIsAuthority())
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
 }

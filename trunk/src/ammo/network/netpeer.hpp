@@ -49,6 +49,8 @@ namespace ammo
     // actual connection occurs.
     bool Connect(const char* host,unsigned short remotePort, const char* passwordData,int pwdDataLength);
 
+    // Returns the address of the local connection
+    SystemAddress GetLocalAddress();
   private:
     // Our RakNet peer (the object that actually manages the connection)
     RakPeerInterface* _peer;

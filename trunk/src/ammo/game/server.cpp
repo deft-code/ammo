@@ -1,5 +1,5 @@
 #include "ammo/game/server.hpp"
-#include "ammo/game/gameobjects/sampleobject.hpp"
+#include "ammo/game/gameobjects/gameobjectlist.hpp"
 #include "ammo/game/gamestateauth.hpp"
 #include "ammo/graphics.hpp"
 #include "ammo/audio.hpp"
@@ -43,7 +43,7 @@ namespace ammo
     Packet* packet;
     // TEMPORARY
     // TODO
-    GameObject* testObj = NULL;
+    GameObject* newPlayer = NULL;
 
     // Grab all packets, handing them to the gamestate
     for (packet = _peer->Receive(); packet != NULL; _peer->DeallocatePacket(packet), packet = _peer->Receive())
@@ -62,11 +62,17 @@ namespace ammo
         break;
       case ID_NEW_INCOMING_CONNECTION:				
         printf("ID_NEW_INCOMING_CONNECTION from %s\n", packet->systemAddress.ToString());   
+        // When a new player connects, we need to add that player object to the game
+        newPlayer = new PlayerObject(packet->systemAddress);
+        newPlayer->AddAutoSerializeTimer(0);
+        
+        _gameState->RegisterGameObject(newPlayer);
+
         // TEMPORARY
         // TODO
-        testObj = new SampleObject();
-        testObj->AddAutoSerializeTimer(1000);        
-        _gameState->RegisterGameObject(testObj);
+        newPlayer = new SampleObject();
+        newPlayer->AddAutoSerializeTimer(1000);        
+        _gameState->RegisterGameObject(newPlayer);
         break;
       case ID_DISCONNECTION_NOTIFICATION:
         printf("ID_DISCONNECTION_NOTIFICATION\n");				

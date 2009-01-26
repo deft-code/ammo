@@ -14,7 +14,10 @@ namespace ammo
   {
   public:
     // Constructor
-    PlayerObject() { };
+    PlayerObject(SystemAddress myOwner):  
+    {
+        _owner = myOwner;
+    }
 
     // Update contains all the logic for the object. 
     void Update(float deltaTime);    
@@ -27,8 +30,13 @@ namespace ammo
     // Deserializes the data sent via the Serialize Method
     void Deserialize(RakNet::BitStream* bitStream, RakNet::SerializationType serializationType, SystemAddress sender, RakNetTime timestamp);
     // After the object is completely registered on client/server, this method is called to load up any graphics, or do any post constructor
-    // initialization.
+    // initialization.    
     void OnRegisterComplete();
+    // Normally, we'd only want the server to be allowed to serialize. However, we ALWAYS want to be able to serialize 
+    // as a client or a server with this class, assuming the client is the owener. So we return true when _owner matches
+    // the local address. Thus, we can serialize only if we are the client who owns this object.
+    bool QueryIsSerializationAuthority() const;
+    
   private:
     // Handles serializing all of our information on the client side
     bool SerializeClientSide(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext);
@@ -48,6 +56,9 @@ namespace ammo
     ammo::Sound _sound;
     // Our physics token
     ammo::Physic _physic;
+
+    // The System address of the owner of this object
+    SystemAddress _owner;    
   };
 }
 
