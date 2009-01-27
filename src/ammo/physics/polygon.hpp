@@ -1,7 +1,9 @@
 #ifndef AMMO_PHYSICS_POLYGON_HPP_INCLUDED
 #define AMMO_PHYSICS_POLYGON_HPP_INCLUDED
 
-class b2World;
+
+#include <Box2D.h>
+#include "ammo/physics/physic_blue_print.hpp"
 
 namespace ammo
 {
