@@ -62,7 +62,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="RakNetDLLDebug.lib box2d_d.lib sfml-audio-s-d.lib sfml-graphics-s-d.lib sfml-window-s-d.lib sfml-system-s-d.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\extlibs\SFML\lib\vc2005;..\..\extlibs\RakNet\lib;..\..\extlibs\Box2D\lib"
+				AdditionalLibraryDirectories="..\..\extlibs\SFML\lib\vc2005;..\..\extlibs\RakNet\lib\vs2005;..\..\extlibs\Box2D\lib\vs2005"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -93,7 +93,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\RakNetDebug.dll $(OutDir)&#x0D;&#x0A;MKDIR $(OutDir)\data\&#x0D;&#x0A;Copy ..\..\data\ $(OutDir)\data\&#x0D;&#x0A;"
+				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\vs2005\RakNetDebug.dll $(OutDir)&#x0D;&#x0A;MKDIR $(OutDir)\data\&#x0D;&#x0A;Copy ..\..\data\ $(OutDir)\data\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -140,7 +140,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="RakNetDLL.lib box2d.lib sfml-audio-s.lib sfml-graphics-s.lib sfml-window-s.lib sfml-system-s.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\extlibs\SFML\lib\vc2005;..\..\extlibs\RakNet\lib;..\..\extlibs\Box2D\lib"
+				AdditionalLibraryDirectories="..\..\extlibs\SFML\lib\vc2005;..\..\extlibs\RakNet\lib\vs2005;..\..\extlibs\Box2D\lib\vs2005"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
@@ -170,7 +170,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\RakNetDebug.dll $(OutDir)&#x0D;&#x0A;MKDIR $(OutDir)\data\&#x0D;&#x0A;Copy ..\..\data\ $(OutDir)\data\&#x0D;&#x0A;"
+				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\vs2005\RakNetDebug.dll $(OutDir)&#x0D;&#x0A;MKDIR $(OutDir)\data\&#x0D;&#x0A;Copy ..\..\data\ $(OutDir)\data\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
