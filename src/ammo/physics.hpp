@@ -5,5 +5,6 @@
 #include "ammo/physics/active_physic_sys.hpp"
 #include "ammo/physics/physic.hpp"
 #include "ammo/physics/polygon.hpp"
+#include "ammo/physics/circle.hpp"
 
 #endif // AMMO_PHYSICS_HPP_INCLUDED

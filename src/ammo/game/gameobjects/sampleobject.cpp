@@ -52,14 +52,15 @@ namespace ammo
     void SampleObject::OnRegisterComplete()
     {
       _sprite = _parent->GetGraphicSys()->getGraphic("player");
-      _sprite.SetPosition(b2Vec2(300, 300));
+      _sprite.SetPosition(b2Vec2(0, 0));
+      _sprite.SetSize(b2Vec2(9.8f, 25.6f));
+      _sprite.SetZOrder(1000.0f);
       _sprite.show();
-
+      
       // If we are the client, load up the sound
       if (!_parent->GetGameState()->GetIsAuthority())
       {
-        _sound = _parent->GetSoundSys()->getSound("player");
-        
+        _sound = _parent->GetSoundSys()->getSound("player"); 
       }
     }
 }
