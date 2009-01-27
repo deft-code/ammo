@@ -38,7 +38,10 @@ namespace ammo
 
     // Create the Physics System
     _physic = new PassivePhysicSys();
-    
+    // Create our physics blueprints
+    // TODO: Create these from a file
+
+    //_physic->AddBluePrint("Player", ammo::Polygon());
 
     _peer = new NetPeer(this, false);
     _isDestroyed = false;
@@ -111,7 +114,10 @@ namespace ammo
     {
       _sound->update(deltaTime);
     }   
-
+    if (_physic)
+    {
+      _physic->Update(deltaTime);    
+    }
     // Update our camera
     if (_camTarget)
     {

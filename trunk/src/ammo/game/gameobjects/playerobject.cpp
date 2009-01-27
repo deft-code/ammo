@@ -15,7 +15,7 @@ namespace ammo
     //_sprite.SetPosition(_physic.GetPosition());
     if (_parent->GetGameState()->GetIsAuthority())
     {
-      //cout << testNum << endl;
+     
     }
     
   }
@@ -75,6 +75,8 @@ namespace ammo
     // Get our sound
     _sound = _parent->GetSoundSys()->getSound("player");
     
+    // Get our 'physic'
+    //_physic = _parent->GetPhysicsSys()->GetPhysic("player");
     // Point our local gamestate's camera at us
     if (!_parent->GetGameState()->GetIsAuthority() && _parent->GetNetPeer()->GetLocalAddress() == _owner)
     {
