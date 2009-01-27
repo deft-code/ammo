@@ -373,6 +373,10 @@
 					RelativePath="..\..\src\ammo\enums\gameobjects.hpp"
 					>
 				</File>
+				<File
+					RelativePath="..\..\src\ammo\enums\playeractions.hpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="physics"
