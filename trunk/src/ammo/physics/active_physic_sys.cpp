@@ -10,7 +10,7 @@ namespace ammo
 	 : m_world( s_world_aabb, b2Vec2_zero, true ),
 		m_total_time(0.f),
 		m_max_time(1.f),
-		m_step_time(0.5f), // 20 frames per second
+		m_step_time(0.05f), // 20 frames per second
 		m_pos_iterations(10),
 		m_vel_iterations(10)
 	{ }

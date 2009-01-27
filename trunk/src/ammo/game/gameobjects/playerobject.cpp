@@ -12,12 +12,7 @@ namespace ammo
   void PlayerObject::Update(float deltaTime)
   {
     // Update our sprite's information 
-    //_sprite.SetPosition(_physic.GetPosition());
-    if (_parent->GetGameState()->GetIsAuthority())
-    {
-     
-    }
-    
+    _sprite.SetPosition(_physic.GetPosition());    
   }
   // Serializes the player. If the player is on the client, it serializes only the input information,
   // if the player is on the server, it serializes the the players state.
@@ -70,18 +65,22 @@ namespace ammo
   {
     // Get our sprite
     _sprite = _parent->GetGraphicSys()->getGraphic("player");
+    _sprite.SetSize(b2Vec2(9.8,25.6));
     _sprite.show();
 
     // Get our sound
     _sound = _parent->GetSoundSys()->getSound("player");
     
     // Get our 'physic'
-    //_physic = _parent->GetPhysicsSys()->GetPhysic("player");
+    _physic = _parent->GetPhysicsSys()->GetPhysic("player");
+    _physic.SetPosition(b2Vec2(0, 0));
+    // Give the player some initial velocity
+    _physic.SetVelocity(b2Vec2(0, 10));
     // Point our local gamestate's camera at us
     if (!_parent->GetGameState()->GetIsAuthority() && _parent->GetNetPeer()->GetLocalAddress() == _owner)
     {
       // But only if this is a client, and this is our player
-      _parent->SetCameraTarget((ICameraTarget*)(&_sprite));
+      _parent->SetCameraTarget((ICameraTarget*)(&_physic));
     }
   }
 
@@ -94,12 +93,16 @@ namespace ammo
   // Handles serializing all of our information on the server side
   bool PlayerObject::SerializeServerSide(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext)
   {    
+    bitStream->Write(_physic.GetPosition());
     return true;
   }
 
   // Handles deserializing all of our information on the client side, from the data received sent via SerializeServerSide
   bool PlayerObject::DeserializeClientSide(RakNet::BitStream* bitStream, RakNet::SerializationType serializationType, SystemAddress sender, RakNetTime timestamp)
   {
+    b2Vec2 temp;
+    bitStream->Read(temp);
+    _physic.SetPosition(temp);
     return true;
   }
 

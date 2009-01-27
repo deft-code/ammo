@@ -19,9 +19,8 @@ namespace ammo
     // Set up our viewport
     // TODO: Don't Hardcode these!
     _view = new ammo::View(*_app);
-    _view->setWidth(800);
-    _view->setHeight(600);
-    _view->lookAt(b2Vec2(300, 300));
+    _view->setWidth(80);
+    _view->lookAt(b2Vec2(0, 0));
 
     _gameState = new ProxyGameState(this);
     _graphics = new ActiveGraphicSys();
@@ -40,8 +39,11 @@ namespace ammo
     _physic = new PassivePhysicSys();
     // Create our physics blueprints
     // TODO: Create these from a file
-
-    //_physic->AddBluePrint("Player", ammo::Polygon());
+    Polygon myPoly;
+    myPoly.polygon_blueprint.density = 1;
+    myPoly.polygon_blueprint.SetAsBox(9.6f, 25.6f, b2Vec2(4.8, 12.8), 0);
+    _physic->AddBluePrint("player", myPoly);
+    
 
     _peer = new NetPeer(this, false);
     _isDestroyed = false;
