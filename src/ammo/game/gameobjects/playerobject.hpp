@@ -14,7 +14,7 @@ namespace ammo
   {
   public:
     // Constructor
-    PlayerObject(SystemAddress myOwner):  
+    PlayerObject(SystemAddress myOwner)
     {
         _owner = myOwner;
     }
