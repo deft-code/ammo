@@ -19,6 +19,8 @@ namespace ammo
     _graphics = new PassiveGraphicSys();
     _sound = new PassiveSoundSys();
     _physic = new ActivePhysicSys();
+    // Add our Physics Blueprints
+    // TODO: Read these from some sort of file
   }
 
   Server::~Server()
@@ -98,6 +100,10 @@ namespace ammo
     if (_sound)
     {
       _sound->update(deltaTime);
+    }
+    if (_physic)
+    {
+      _physic->Update(deltaTime);
     }
   }
 }
