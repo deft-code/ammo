@@ -4,6 +4,7 @@
 #include "ammo/game/gameobject.hpp"
 #include "ammo/graphics.hpp"
 #include "ammo/audio.hpp"
+#include "ammo/enums/gameobjects.hpp"
 
 #include "RakNetTypes.h"
 
@@ -32,6 +33,9 @@ namespace ammo
     // After the object is completely registered on client/server, this method is called to load up any graphics, or do any post constructor
     // initialization.
     void OnRegisterComplete();
+
+    int type() const { return enums::SAMPLE_OBJECT; }
+
   private:
     // Logic variables
     int _myVal;

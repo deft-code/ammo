@@ -16,13 +16,18 @@ namespace ammo
   class GameObject : public Replica2
   {
   public:   
-    GameObject() { _parent = NULL; }
+    GameObject()
+     : _parent(NULL)
+    { }
+
     void SetParentGame(Game* parent) { _parent= parent;}
     // This method is called when the object has been registered with the system, and has all
     // it's pointers set up. This is where you should get your graphics tokens from the 
     // graphic system.
     virtual void OnRegisterComplete() = 0;
     virtual void Update(float deltaTime) =0;
+
+	 virtual int type() const =0;
   protected:
     Game* _parent;
   };
