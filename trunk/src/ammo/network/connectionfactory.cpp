@@ -33,18 +33,20 @@ namespace ammo
     // TODO: We need to establish a standard for enumerating these
     switch (objType)
     { 
-    case enums::PLAYER_OBJECT:
-      SystemAddress myOwner;
-      replicaData->Read(myOwner);
-      std::cout << "Connection Factory creating new Player Object from " << sender.ToString() << ". Owner is " << myOwner.ToString() << std::endl;
-      construct = new PlayerObject(myOwner);
-      construct->AddAutoSerializeTimer(0);
-      break;
+	 case enums::PLAYER_OBJECT:
+      {
+        SystemAddress myOwner;
+        replicaData->Read(myOwner);
+        std::cout << "Connection Factory creating new Player Object from " << sender.ToString() << ". Owner is " << myOwner.ToString() << std::endl;
+        construct = new PlayerObject(myOwner);
+        construct->AddAutoSerializeTimer(0);
+        break;
+      }
     case enums::SAMPLE_OBJECT:
         std::cout << "Connection Factory creating new Sample Object" << std::endl;
         construct = new SampleObject();
         break;
-      default:
+    default:
         break;
     }
 

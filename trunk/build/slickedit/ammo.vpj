@@ -104,6 +104,10 @@
 			<F N="../../src/ammo/audio/sound_impl.hpp"/>
 			<F N="../../src/ammo/audio/sound_sys.hpp"/>
 		</Folder>
+		<Folder Name="../../src/ammo/enums">
+			<F N="../../src/ammo/enums/gameobjects.hpp"/>
+			<F N="../../src/ammo/enums/playeractions.hpp"/>
+		</Folder>
 		<Folder Name="../../src/ammo/game">
 			<F N="../../src/ammo/game/client.cpp"/>
 			<F N="../../src/ammo/game/client.hpp"/>
@@ -119,6 +123,9 @@
 			<F N="../../src/ammo/game/server.hpp"/>
 		</Folder>
 		<Folder Name="../../src/ammo/game/gameobjects">
+			<F N="../../src/ammo/game/gameobjects/gameobjectlist.hpp"/>
+			<F N="../../src/ammo/game/gameobjects/playerobject.cpp"/>
+			<F N="../../src/ammo/game/gameobjects/playerobject.hpp"/>
 			<F N="../../src/ammo/game/gameobjects/sampleobject.cpp"/>
 			<F N="../../src/ammo/game/gameobjects/sampleobject.hpp"/>
 		</Folder>
@@ -140,6 +147,7 @@
 			<F N="../../src/ammo/graphics/sprite.hpp"/>
 			<F N="../../src/ammo/graphics/view.cpp"/>
 			<F N="../../src/ammo/graphics/view.hpp"/>
+			<F N="../../src/ammo/graphics/icameratarget.hpp"/>
 		</Folder>
 		<Folder Name="../../src/ammo/network">
 			<F N="../../src/ammo/network/connectionfactory.cpp"/>

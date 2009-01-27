@@ -1,6 +1,6 @@
 #include "polygon.hpp"
 
-#include "physic_impl.hpp"
+#include "single_body_impl.hpp"
 #include <Box2D.h>
 
 namespace ammo
