@@ -5,6 +5,7 @@
 #include "ammo/graphics.hpp"
 #include "ammo/audio.hpp"
 #include "ammo/physics.hpp"
+#include "ammo/enums/gameobjects.hpp"
 
 #include "RakNetTypes.h"
 
@@ -36,6 +37,8 @@ namespace ammo
     // as a client or a server with this class, assuming the client is the owener. So we return true when _owner matches
     // the local address. Thus, we can serialize only if we are the client who owns this object.
     bool QueryIsSerializationAuthority() const;
+
+    int type() const { return enums::PLAYER_OBJECT; }
     
   private:
     // Handles serializing all of our information on the client side
