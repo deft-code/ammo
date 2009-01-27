@@ -386,6 +386,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\ammo\physics\circle.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ammo\physics\passive_physic_sys.hpp"
 					>
 				</File>
@@ -411,6 +415,10 @@
 				</File>
 				<File
 					RelativePath="..\..\src\ammo\physics\physic_sys.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\polygon.hpp"
 					>
 				</File>
 				<File
@@ -550,11 +558,19 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\ammo\physics\circle.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ammo\physics\passive_physic_sys.cpp"
 					>
 				</File>
 				<File
 					RelativePath="..\..\src\ammo\physics\physic.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\polygon.cpp"
 					>
 				</File>
 				<File

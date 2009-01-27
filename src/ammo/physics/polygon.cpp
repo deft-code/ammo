@@ -10,7 +10,7 @@ namespace ammo
 		b2Body* body = world.CreateBody( &body_blueprint );
 		PhysicPimpl ptr( new SingleBodyImpl(body) );
 
-		body->CreateShape( &polygon_blueprint );
+		body->CreateShape( const_cast<b2PolygonDef*>(&polygon_blueprint) );
 		body->SetMassFromShapes();
 
 		return ptr;

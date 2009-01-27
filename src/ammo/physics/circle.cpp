@@ -9,7 +9,7 @@ namespace ammo
 		b2Body* body = world.CreateBody( &body_blueprint );
 		PhysicPimpl ptr( new SingleBodyImpl( body ) );
 
-		body->CreateShape( &circle_blueprint );
+		body->CreateShape( const_cast<b2CircleDef*>(&circle_blueprint) );
 		body->SetMassFromShapes();
 
 		return ptr;
