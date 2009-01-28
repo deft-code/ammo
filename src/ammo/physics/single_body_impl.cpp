@@ -6,7 +6,9 @@ namespace ammo
 {
 	SingleBodyImpl::SingleBodyImpl( b2Body* body )
 	 : m_body(body)
-	{ }
+	{
+		m_body->SetUserData(static_cast<PhysicImpl*>(this));
+	}
 
 	SingleBodyImpl::~SingleBodyImpl( void )
 	{
