@@ -110,9 +110,7 @@ namespace ammo
       m_sprite.SetScaleX( scale_x );
 
       float scale_y = size.y / sub_rect.GetHeight();
-      m_sprite.SetScaleY( scale_y );
-
-      m_sprite.SetCenter( m_sprite.GetSize() * .5f);
+      m_sprite.SetScaleY( scale_y );      
    }
 
 	float SpriteImpl::GetZOrder( void ) const
