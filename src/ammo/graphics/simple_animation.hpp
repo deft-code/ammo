@@ -30,6 +30,9 @@ namespace ammo
       virtual void SetRotationDegrees(const float rot);
       virtual void SetRotationRadians(const float rot);
 
+      virtual sf::Blend::Mode GetRenderMode( void ) const;
+      virtual void SetRenderMode(const sf::Blend::Mode mode );
+
       virtual b2Vec2 GetPosition( void ) const;
       virtual void SetPosition( const b2Vec2& pos );
 

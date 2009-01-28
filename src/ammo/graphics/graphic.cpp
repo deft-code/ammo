@@ -17,6 +17,8 @@ namespace // anonymous
       virtual float GetRotationDegrees(void) const {return 0;}
       virtual void  SetRotationDegrees(const float rot) { }
       virtual void SetRotationRadians(const float rot) { }
+      virtual sf::Blend::Mode GetRenderMode( void ) const {return (sf::Blend::Mode)0;}
+      virtual void SetRenderMode( const sf::Blend::Mode mode ) { };
       virtual b2Vec2 GetPosition( void ) const { return b2Vec2_zero; }
       virtual void SetPosition( const b2Vec2& pos ) { }
       virtual b2Vec2 GetSize( void ) const { return b2Vec2_zero; }
@@ -74,6 +76,16 @@ namespace ammo
    void Graphic::SetPosition( const b2Vec2& pos )
    {
       m_pimpl->SetPosition( pos );
+   }
+   
+   sf::Blend::Mode Graphic::GetRenderMode( void ) const
+   {
+     return m_pimpl->GetRenderMode();
+   }
+
+   void Graphic::SetRenderMode( const sf::Blend::Mode mode )
+   {
+     m_pimpl->SetRenderMode(mode);
    }
 
    void Graphic::SetX( float x )

@@ -111,6 +111,16 @@ namespace ammo
       SetRotationDegrees(RAD_TO_DEG_MULTIPLE * rot);
    }
 
+   sf::Blend::Mode SimpleAnimationImpl::GetRenderMode( void ) const
+   {
+     return m_sprite.GetBlendMode();
+   }
+
+   void SimpleAnimationImpl::SetRenderMode(const sf::Blend::Mode mode )
+   {
+     m_sprite.SetBlendMode(mode);
+   }
+
    b2Vec2 SimpleAnimationImpl::GetPosition( void ) const
    {
       return b2Vec2(m_sprite.GetPosition().x, -m_sprite.GetPosition().y );
