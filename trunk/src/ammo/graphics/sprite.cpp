@@ -84,6 +84,16 @@ namespace ammo
       m_sprite.SetY(-pos.y);
    }
 
+   sf::Blend::Mode SpriteImpl::GetRenderMode( void ) const
+   {
+     return m_sprite.GetBlendMode();
+   }
+
+   void SpriteImpl::SetRenderMode( const sf::Blend::Mode mode )
+   {
+     m_sprite.SetBlendMode(mode);
+   }
+
    b2Vec2 SpriteImpl::GetSize( void ) const
    {
       sf::Vector2f dim = m_sprite.GetSize();
@@ -99,6 +109,7 @@ namespace ammo
 
       float scale_y = size.y / sub_rect.GetHeight();
       m_sprite.SetScaleY( scale_y );
+      
    }
 
 	float SpriteImpl::GetZOrder( void ) const

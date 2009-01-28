@@ -20,6 +20,9 @@ namespace ammo
       void SetRotationDegrees( const float rot);
       void SetRotationRadians( const float rot);
 
+      sf::Blend::Mode GetRenderMode( void ) const;
+      void SetRenderMode( const sf::Blend::Mode mode );
+
       b2Vec2 GetPosition( void ) const;
   
       void SetPosition( const b2Vec2& pos );
