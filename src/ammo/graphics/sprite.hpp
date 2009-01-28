@@ -25,6 +25,9 @@ namespace ammo
       virtual void hide(void);
       virtual void show(void);
 
+      virtual float GetRotationDegrees (void ) const;
+      virtual void SetRotationDegrees(const float rot);
+      virtual void SetRotationRadians(const float rot);
       virtual b2Vec2 GetPosition( void ) const;
       virtual void SetPosition( const b2Vec2& pos );
 

@@ -96,6 +96,21 @@ namespace ammo
       m_show = false;
    }
 
+   float SimpleAnimationImpl::GetRotationDegrees( void ) const
+   {
+     return m_sprite.GetRotation();
+   }
+
+   void SimpleAnimationImpl::SetRotationDegrees(const float rot)
+   {
+     m_sprite.SetRotation(rot);
+   }
+
+   void SimpleAnimationImpl::SetRotationRadians(const float rot)
+   {
+      SetRotationDegrees(RAD_TO_DEG_MULTIPLE * rot);
+   }
+
    b2Vec2 SimpleAnimationImpl::GetPosition( void ) const
    {
       return b2Vec2(m_sprite.GetPosition().x, -m_sprite.GetPosition().y );

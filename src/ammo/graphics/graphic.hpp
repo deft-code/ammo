@@ -15,9 +15,13 @@ namespace ammo
 
       void show( void );
       void hide( void );
+      
+      float GetRotationDegrees( void ) const;
+      void SetRotationDegrees( const float rot);
+      void SetRotationRadians( const float rot);
 
       b2Vec2 GetPosition( void ) const;
-
+  
       void SetPosition( const b2Vec2& pos );
 
       void SetX( float x );
