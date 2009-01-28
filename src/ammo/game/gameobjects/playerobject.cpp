@@ -12,8 +12,9 @@ namespace ammo
   void PlayerObject::Update(float deltaTime)
   {
     // Update our sprite's information 
-    _sprite.SetPosition(_physic.GetPosition()); 
+    _sprite.SetPosition(_physic.GetPosition());     
     _sprite.SetRotationRadians(_physic.GetTheta());
+    
   }
   // Serializes the player. If the player is on the client, it serializes only the input information,
   // if the player is on the server, it serializes the the players state.
@@ -66,7 +67,7 @@ namespace ammo
   {
     // Get our sprite
     _sprite = _parent->GetGraphicSys()->getGraphic("player");
-    _sprite.SetSize(b2Vec2(9.8f,25.6f));
+    _sprite.SetSize(b2Vec2(9.8f,25.6f));        
     
     _sprite.show();
 
@@ -75,11 +76,11 @@ namespace ammo
     
     // Get our 'physic'
     _physic = _parent->GetPhysicsSys()->GetPhysic("player");
-    _physic.SetPosition(b2Vec2(0.0f, 0.0f));
+    //_physic.SetPosition(b2Vec2(0.0f, 0.0f));
     // Give the player some initial velocity
-    _physic.SetVelocity(b2Vec2(0.0f, .5f));
+    _physic.SetVelocity(b2Vec2(0.0f, 1.0f));
     // And some initial rotation, for fun
-    _physic.SetOmega(.5f);
+    _physic.SetOmega(0.5f);
 
     // Point our local gamestate's camera at us
     if (!_parent->GetGameState()->GetIsAuthority() && _parent->GetNetPeer()->GetLocalAddress() == _owner)

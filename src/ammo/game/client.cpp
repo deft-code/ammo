@@ -39,9 +39,9 @@ namespace ammo
     _physic = new PassivePhysicSys();
     // Create our physics blueprints
     // TODO: Create these from a file
-    Polygon myPoly;
+    Polygon myPoly;   
     myPoly.polygon_blueprint.density = 1;
-    myPoly.polygon_blueprint.SetAsBox(9.6f, 25.6f, b2Vec2(4.8f, 12.8f), 0.0f);
+    myPoly.polygon_blueprint.SetAsBox(4.8f, 12.8f);             
     _physic->AddBluePrint("player", myPoly);
     
 
