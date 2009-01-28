@@ -23,7 +23,7 @@ namespace ammo
     // TODO: Read these from some sort of file
     Polygon myPoly;
     myPoly.polygon_blueprint.density = 1;
-    myPoly.polygon_blueprint.SetAsBox(9.6f, 25.6f, b2Vec2(4.8, 12.8), 0);
+    myPoly.polygon_blueprint.SetAsBox(9.6f, 25.6f, b2Vec2(4.8f, 12.8f), 0.0f);
     _physic->AddBluePrint("player", myPoly);
   }
 

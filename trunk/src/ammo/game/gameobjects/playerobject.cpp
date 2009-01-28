@@ -12,7 +12,8 @@ namespace ammo
   void PlayerObject::Update(float deltaTime)
   {
     // Update our sprite's information 
-    _sprite.SetPosition(_physic.GetPosition());    
+    _sprite.SetPosition(_physic.GetPosition()); 
+    _sprite.SetRotationRadians(_physic.GetTheta());
   }
   // Serializes the player. If the player is on the client, it serializes only the input information,
   // if the player is on the server, it serializes the the players state.
@@ -65,7 +66,8 @@ namespace ammo
   {
     // Get our sprite
     _sprite = _parent->GetGraphicSys()->getGraphic("player");
-    _sprite.SetSize(b2Vec2(9.8,25.6));
+    _sprite.SetSize(b2Vec2(9.8f,25.6f));
+    
     _sprite.show();
 
     // Get our sound
@@ -73,9 +75,12 @@ namespace ammo
     
     // Get our 'physic'
     _physic = _parent->GetPhysicsSys()->GetPhysic("player");
-    _physic.SetPosition(b2Vec2(0, 0));
+    _physic.SetPosition(b2Vec2(0.0f, 0.0f));
     // Give the player some initial velocity
-    _physic.SetVelocity(b2Vec2(0, 10));
+    _physic.SetVelocity(b2Vec2(0.0f, .5f));
+    // And some initial rotation, for fun
+    _physic.SetOmega(.5f);
+
     // Point our local gamestate's camera at us
     if (!_parent->GetGameState()->GetIsAuthority() && _parent->GetNetPeer()->GetLocalAddress() == _owner)
     {
@@ -94,6 +99,8 @@ namespace ammo
   bool PlayerObject::SerializeServerSide(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext)
   {    
     bitStream->Write(_physic.GetPosition());
+    bitStream->Write(_physic.GetTheta());
+    bitStream->Write(_physic.GetOmega());
     return true;
   }
 
@@ -101,8 +108,14 @@ namespace ammo
   bool PlayerObject::DeserializeClientSide(RakNet::BitStream* bitStream, RakNet::SerializationType serializationType, SystemAddress sender, RakNetTime timestamp)
   {
     b2Vec2 temp;
+    float ftemp;
     bitStream->Read(temp);
+    bitStream->Read(ftemp);
     _physic.SetPosition(temp);
+    _physic.SetTheta(ftemp);
+    (*bitStream) >> ftemp;
+    _physic.SetOmega(ftemp);
+
     return true;
   }
 
