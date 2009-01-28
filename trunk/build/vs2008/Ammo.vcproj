@@ -93,7 +93,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\RakNetDebug.dll $(OutDir)&#x0D;&#x0A;MKDIR $(OutDir)\data\&#x0D;&#x0A;Copy ..\..\data\ $(OutDir)\data\&#x0D;&#x0A;"
+				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\vs2008\RakNetDebug.dll $(OutDir)&#x0D;&#x0A;MKDIR $(OutDir)\data\&#x0D;&#x0A;Copy ..\..\data\ $(OutDir)\data\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -372,12 +372,20 @@
 					RelativePath="..\..\src\ammo\enums\gameobjects.hpp"
 					>
 				</File>
+				<File
+					RelativePath="..\..\src\ammo\enums\playeractions.hpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="physics"
 				>
 				<File
 					RelativePath="..\..\src\ammo\physics\active_physic_sys.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\circle.hpp"
 					>
 				</File>
 				<File
@@ -409,7 +417,19 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\ammo\physics\polygon.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ammo\physics\single_body_impl.hpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="input"
+				>
+				<File
+					RelativePath=".\input.h"
 					>
 				</File>
 			</Filter>
@@ -545,6 +565,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\ammo\physics\circle.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ammo\physics\passive_physic_sys.cpp"
 					>
 				</File>
@@ -553,9 +577,17 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\ammo\physics\polygon.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ammo\physics\single_body_impl.cpp"
 					>
 				</File>
+			</Filter>
+			<Filter
+				Name="input"
+				>
 			</Filter>
 		</Filter>
 	</Files>
