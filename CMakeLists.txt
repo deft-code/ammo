@@ -9,13 +9,13 @@ include_directories( src/
 	../cegui/include
 	../cegui/RendererModules/OpenGLGUIRenderer
 	../raknet/install/include/raknet
-	../sfml/include )
+	extlibs/SFML/include )
 
 link_directories(
 	/home/nick/projects/box2d/Source/Gen/float
 	/home/nick/projects/cegui/install/lib
 	/home/nick/projects/raknet/install/lib
-	/home/nick/projects/sfml/lib )
+	/home/nick/projects/ammo/extlibs/SFML/lib/linux )
 
 set( CMAKE_CXX_FLAGS "-Wall" )
 
