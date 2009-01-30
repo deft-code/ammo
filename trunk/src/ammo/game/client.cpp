@@ -21,7 +21,7 @@ namespace ammo
     // Set up our viewport
     // TODO: Don't Hardcode these!
     _view = new ammo::View(*_app);
-    _view->setWidth(80);
+    _view->setWidth(200);
     _view->lookAt(b2Vec2(0, 0));
 
     _gameState = new ProxyGameState(this);
