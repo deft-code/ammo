@@ -13,7 +13,7 @@ namespace ammo
         _actions = actions;
     }
 
-    void InputImpl::Update(sf::Input& input)
+    void InputImpl::Update(const sf::Input& input)
     {
         for (std::vector<InputAction*>::iterator it = _actions.begin(); it != _actions.end(); ++it)
         {
