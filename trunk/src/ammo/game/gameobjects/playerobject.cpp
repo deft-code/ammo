@@ -12,14 +12,17 @@ namespace ammo
   // Update contains all the logic for the object. 
   void PlayerObject::Update(float deltaTime)
   {
-    
+    if (_parent->GetGameState()->GetIsAuthority())
+    {
     // Handle our input
     if (_input.GetValue(ammo::enums::LEFT) > 0.0f)
     {
+      _physic.SetOmega(0.f);
       _physic.SetTheta(_physic.GetTheta() + TURN_RATE);
     }
     if (_input.GetValue(ammo::enums::RIGHT) > 0.0f)
     {
+      _physic.SetOmega(0.f);
       _physic.SetTheta(_physic.GetTheta() - TURN_RATE);
     }
     if (_input.GetValue(ammo::enums::THRUST) > 0.0f )
@@ -31,17 +34,14 @@ namespace ammo
       {
         thrust *= BURN_MULTIPLIER;
       }
-      //cout << _physic.GetVelocity().x << " " << thrust << " "<< (float)cos(theta) << " " << (float)sin(theta) << endl;      
-      _physic.SetVelocity(_physic.GetVelocity() + thrust * b2Vec2((float)cos(theta), (float)sin(theta)));
-      //_physic.SetVelocity(b2Vec2(1.f, 1.f));
+
+      _physic.SetVelocity(_physic.GetVelocity() + thrust * b2Vec2((float)cos(theta), (float)sin(theta)));      
     }    
     if (_input.GetValue(ammo::enums::REVERSE) > 0.0f )
     {
       float theta = _physic.GetTheta();
       _physic.SetVelocity(_physic.GetVelocity() - THRUST_RATE * (b2Vec2((float)cos(theta), (float)sin(theta))));
     }
-
-
 
       // Cap our velocity
       if (_physic.GetVelocity().LengthSquared() > MAX_SPEED_SQUARED)
@@ -52,25 +52,20 @@ namespace ammo
         
         float len = sqrt((x*x)+(y*y));
         b2Vec2 norm(x/len, y/len);
-        
-
+      
         norm *= MAX_SPEED;
         
         _physic.SetVelocity(norm);
-        //float test = _physic.GetVelocity().Normalize();
-        
-        //_physic.SetVelocity(MAX_SPEED * _physic.GetVelocity());
       }
-    
-    //cout << "Server: " << _physic.GetVelocity().x << " " << _physic.GetVelocity().y << " " << _physic.GetPosition().x << " " << _physic.GetPosition().y << endl;
-    
-      //cout << "Client: " << _physic.GetVelocity().x << " " << _physic.GetVelocity().y << " " << _physic.GetPosition().x << " " << _physic.GetPosition().y << endl;
+    }
+    else
+    {
     // Update our sprite's information 
     _sprite.SetPosition(_physic.GetPosition());     
     _sprite.SetRotationRadians(_physic.GetTheta());
-    
-    
+    }    
   }
+
   // Serializes the player. If the player is on the client, it serializes only the input information,
   // if the player is on the server, it serializes the the players state.
   bool PlayerObject::Serialize(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext)
@@ -131,9 +126,7 @@ namespace ammo
     
     // Get our 'physic'
     _physic = _parent->GetPhysicsSys()->GetPhysic("player", *this);
-    _physic.SetPosition(b2Vec2(1.0f, 1.0f));
-    // Give the player some initial velocity
-    _physic.SetVelocity(b2Vec2(.125f, 0.0f));    
+    _physic.SetPosition(b2Vec2(1.0f, 1.0f));  
     // And some initial rotation, for fun
     _physic.SetOmega(0.0f);
 
