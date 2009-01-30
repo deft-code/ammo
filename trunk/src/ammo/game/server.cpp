@@ -20,13 +20,13 @@ namespace ammo
     _sound = new PassiveSoundSys();
     _physic = new ActivePhysicSys();
     _input = new InputSys();
-    std::vector<ammo::InputAction*> actions;
-    _input->AddInputMap("player", actions);
+    
     // Add our Physics Blueprints
     // TODO: Read these from some sort of file
     Polygon myPoly;
-    myPoly.polygon_blueprint.density = 1;
-    myPoly.polygon_blueprint.SetAsBox(4.8f, 12.8f);//, b2Vec2(4.8f, 12.8f), 0.0f);
+    myPoly.polygon_blueprint.density = .1f;
+    myPoly.polygon_blueprint.friction = 0.f;
+    myPoly.polygon_blueprint.SetAsBox(.48f, 1.28f);//, b2Vec2(4.8f, 12.8f), 0.0f);
     _physic->AddBluePrint("player", myPoly);
   }
 
@@ -77,6 +77,9 @@ namespace ammo
       case ID_NEW_INCOMING_CONNECTION:				
         printf("ID_NEW_INCOMING_CONNECTION from %s\n", packet->systemAddress.ToString());   
         // When a new player connects, we need to add that player object to the game
+        
+        _input->AddInputMap(packet->systemAddress, std::vector<ammo::InputAction*>());
+
         newPlayer = new PlayerObject(packet->systemAddress);
         newPlayer->AddAutoSerializeTimer(0);        
         _gameState->RegisterGameObject(newPlayer);

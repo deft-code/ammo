@@ -21,7 +21,7 @@ namespace ammo
     // Set up our viewport
     // TODO: Don't Hardcode these!
     _view = new ammo::View(*_app);
-    _view->setWidth(200);
+    _view->setWidth(40);
     _view->lookAt(b2Vec2(0, 0));
 
     _gameState = new ProxyGameState(this);
@@ -42,23 +42,17 @@ namespace ammo
     // Create our physics blueprints
     // TODO: Create these from a file
     Polygon myPoly;   
-    myPoly.polygon_blueprint.density = 1;
-    myPoly.polygon_blueprint.SetAsBox(4.8f, 12.8f);             
+    myPoly.polygon_blueprint.density = .1;
+    myPoly.polygon_blueprint.friction = 0;
+    myPoly.polygon_blueprint.SetAsBox(.48f, 1.28f);             
     _physic->AddBluePrint("player", myPoly);
+    _peer = new NetPeer(this, false);
     
-
     // Create our input system
     _input = new InputSys();
-    std::vector<ammo::InputAction*> actions;
-    actions.push_back(new SingleKeyBoolean(sf::Key::W, enums::THRUST));
-    actions.push_back(new SingleKeyBoolean(sf::Key::A, enums::LEFT));
-    actions.push_back(new SingleKeyBoolean(sf::Key::D, enums::RIGHT));
-    actions.push_back(new SingleKeyBoolean(sf::Key::S, enums::REVERSE));
-    actions.push_back(new SingleKeyBoolean(sf::Key::LControl, enums::AFTERBURN));
-    //actions.push_back(// Some input action
-    _input->AddInputMap("player", actions);
+    
 
-    _peer = new NetPeer(this, false);
+    
     _isDestroyed = false;
   }
 
@@ -150,6 +144,26 @@ namespace ammo
 
   bool Client::Connect(const char* host,unsigned short remotePort, const char* passwordData,int pwdDataLength)
   {
-    return _peer->Connect(host, remotePort, passwordData, pwdDataLength);
+    
+    bool result = _peer->Connect(host, remotePort, passwordData, pwdDataLength);
+
+    if (result)
+    {
+    #ifdef WIN32
+        Sleep(500);
+    #else
+        usleep(500*1000);
+    #endif
+    std::vector<ammo::InputAction*> actions;
+    actions.push_back(new SingleKeyBoolean(sf::Key::W, enums::THRUST));
+    actions.push_back(new SingleKeyBoolean(sf::Key::A, enums::LEFT));
+    actions.push_back(new SingleKeyBoolean(sf::Key::D, enums::RIGHT));
+    actions.push_back(new SingleKeyBoolean(sf::Key::S, enums::REVERSE));
+    actions.push_back(new SingleKeyBoolean(sf::Key::LControl, enums::AFTERBURN));
+    //actions.push_back(// Some input action
+    _input->AddInputMap(_peer->GetLocalAddress(), actions);
+    }
+
+    return result;
   }
 }

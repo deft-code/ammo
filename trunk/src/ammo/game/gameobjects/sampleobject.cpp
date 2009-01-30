@@ -20,7 +20,7 @@ namespace ammo
       }
       else
       {
-        _sprite.SetX(0.f + _myVal);
+        _sprite.SetX(0.f + .25f * _myVal);
         if  (_myVal % 5 == 0)
         {          
           _sound.play();
@@ -50,7 +50,7 @@ namespace ammo
     {
       _sprite = _parent->GetGraphicSys()->getGraphic("player");
       _sprite.SetPosition(b2Vec2(0, 0));
-      _sprite.SetSize(b2Vec2(9.8f, 25.6f));
+      _sprite.SetSize(b2Vec2(2.56f, .98f));
       _sprite.SetZOrder(1000.0f);
       _sprite.show();
       
