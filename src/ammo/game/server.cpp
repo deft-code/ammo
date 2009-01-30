@@ -81,6 +81,10 @@ namespace ammo
         newPlayer->AddAutoSerializeTimer(0);        
         _gameState->RegisterGameObject(newPlayer);
 
+        newPlayer = new SampleObject();
+        newPlayer->AddAutoSerializeTimer(20);
+        _gameState->RegisterGameObject(newPlayer);
+
         break;
       case ID_DISCONNECTION_NOTIFICATION:
         printf("ID_DISCONNECTION_NOTIFICATION\n");				
