@@ -4,7 +4,7 @@
 
 namespace ammo
 {
-    InputAction::InputAction(InputImpl* impl)
+    void InputAction::RegisterImpl(InputImpl* impl)
     {
         _impl = impl;
     }

@@ -11,7 +11,7 @@ namespace ammo
     class InputAction
     {
     public:
-        InputAction(InputImpl* impl);
+        void RegisterImpl(InputImpl* impl);
         virtual void Update(const sf::Input& input, float dt) = 0;
 
     protected:
