@@ -426,6 +426,26 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="input"
+				>
+				<File
+					RelativePath="..\..\src\ammo\input\input.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\input\input_action.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\input\input_impl.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\input\input_sys.hpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Resource Files"
@@ -575,6 +595,26 @@
 				</File>
 				<File
 					RelativePath="..\..\src\ammo\physics\single_body_impl.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="input"
+				>
+				<File
+					RelativePath="..\..\src\ammo\input\input.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\input\input_action.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\input\input_impl.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\input\input_sys.cpp"
 					>
 				</File>
 			</Filter>

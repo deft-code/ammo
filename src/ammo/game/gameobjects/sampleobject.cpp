@@ -20,7 +20,7 @@ namespace ammo
       }
       else
       {
-        _sprite.SetX(0 + _myVal);
+        _sprite.SetX(0.f + _myVal);
         if  (_myVal % 5 == 0)
         {          
           _sound.play();
@@ -29,9 +29,7 @@ namespace ammo
     }
 
     bool SampleObject::Serialize(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext)
-    {
-      
-      std::cout << "Server Serialized _myVal. Value: " << _myVal << std::endl;
+    {            
       (*bitStream) << _myVal;
       return true;
     }
@@ -45,8 +43,7 @@ namespace ammo
 
     void SampleObject::Deserialize(RakNet::BitStream* bitStream, RakNet::SerializationType serializationType, SystemAddress sender, RakNetTime timestamp)
     {
-      (*bitStream) >> _myVal;
-      std::cout << "Client Deserialized value: " << _myVal << std::endl;
+      (*bitStream) >> _myVal;      
     }
 
     void SampleObject::OnRegisterComplete()

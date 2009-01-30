@@ -6,8 +6,15 @@
 #include "ammo/audio.hpp"
 #include "ammo/physics.hpp"
 #include "ammo/enums/gameobjects.hpp"
+#include "ammo/input/input.hpp"
 
 #include "RakNetTypes.h"
+
+#define TURN_RATE (.05f)
+#define MAX_SPEED (10.f)
+#define MAX_SPEED_SQUARED (100.f)
+#define THRUST_RATE (.2f)
+#define BURN_MULTIPLIER (2.0f)
 
 namespace ammo
 {
@@ -59,6 +66,8 @@ namespace ammo
     ammo::Sound _sound;
     // Our physics token
     ammo::Physic _physic;
+    // Our input token
+    ammo::Input _input; 
 
     // The System address of the owner of this object
     SystemAddress _owner;    

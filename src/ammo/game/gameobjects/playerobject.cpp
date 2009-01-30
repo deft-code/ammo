@@ -2,6 +2,7 @@
 
 #include "ammo/enums/gameobjects.hpp"
 #include <iostream>
+#include <cmath>
 
 using std::cout;
 using std::endl;
@@ -11,6 +12,39 @@ namespace ammo
   // Update contains all the logic for the object. 
   void PlayerObject::Update(float deltaTime)
   {
+    
+    // Handle our input
+    if (_input.GetValue(ammo::enums::LEFT) > 0.0f)
+    {
+      _physic.SetTheta(_physic.GetTheta() + TURN_RATE);
+    }
+    if (_input.GetValue(ammo::enums::RIGHT) > 0.0f)
+    {
+      _physic.SetTheta(_physic.GetTheta() - TURN_RATE);
+    }
+    if (_input.GetValue(ammo::enums::THRUST) > 0.0f )
+    {
+      float theta = _physic.GetTheta();
+      float thrust = THRUST_RATE;
+      if (_input.GetValue(ammo::enums::AFTERBURN) > 0.0f)
+      {
+        thrust *= BURN_MULTIPLIER;
+      }
+      _physic.SetVelocity(_physic.GetVelocity() + thrust * (b2Vec2((float)cos(theta), (float)sin(theta))));
+    }    
+    if (_input.GetValue(ammo::enums::REVERSE) > 0.0f )
+    {
+      float theta = _physic.GetTheta();
+      _physic.SetVelocity(_physic.GetVelocity() - THRUST_RATE * (b2Vec2((float)cos(theta), (float)sin(theta))));
+    }
+
+    // Cap our velocity
+    if (_physic.GetVelocity().LengthSquared() > MAX_SPEED_SQUARED)
+    {
+      _physic.GetVelocity().Normalize();
+      _physic.SetVelocity(MAX_SPEED * _physic.GetVelocity());
+    }
+
     // Update our sprite's information 
     _sprite.SetPosition(_physic.GetPosition());     
     _sprite.SetRotationRadians(_physic.GetTheta());
@@ -78,10 +112,11 @@ namespace ammo
     _physic = _parent->GetPhysicsSys()->GetPhysic("player");
     //_physic.SetPosition(b2Vec2(0.0f, 0.0f));
     // Give the player some initial velocity
-    _physic.SetVelocity(b2Vec2(0.0f, 1.0f));
+    _physic.SetVelocity(b2Vec2(0.0f, 0.0f));
     // And some initial rotation, for fun
     _physic.SetOmega(0.5f);
 
+    _input = _parent->GetInputSys()->GetInput("player");
     // Point our local gamestate's camera at us
     if (!_parent->GetGameState()->GetIsAuthority() && _parent->GetNetPeer()->GetLocalAddress() == _owner)
     {
@@ -93,7 +128,11 @@ namespace ammo
   // Handles serializing all of our information on the client side
   bool PlayerObject::SerializeClientSide(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext)
   {      
-
+    // Where the input is serialized, but we don't that at all because someone is a terrible human being.
+    for (int i = 0; i < PLAYER_ACTIONS_COUNT; i++)
+    {
+      bitStream->Write(_input.GetValue((ammo::enums::enumPlayerAction)i));
+    }
     return true;
   }
   // Handles serializing all of our information on the server side
@@ -123,6 +162,12 @@ namespace ammo
   // Handles deserializing all of our information on the server side, from the data received sent via SerializeClientSide
   bool PlayerObject::DeserializeServerSide(RakNet::BitStream* bitStream, RakNet::SerializationType serializationType, SystemAddress sender, RakNetTime timestamp)
   {
+    float buffer; 
+    for (int i = 0; i < PLAYER_ACTIONS_COUNT; i++)
+    {
+      (*bitStream) >> buffer;
+      _input.SetValue((ammo::enums::enumPlayerAction)i, buffer);
+    }
 
     return true;
   }

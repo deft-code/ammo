@@ -19,6 +19,9 @@ namespace ammo
     _graphics = new PassiveGraphicSys();
     _sound = new PassiveSoundSys();
     _physic = new ActivePhysicSys();
+    _input = new InputSys();
+    std::vector<ammo::InputAction*> actions;
+    _input->AddInputMap("player", actions);
     // Add our Physics Blueprints
     // TODO: Read these from some sort of file
     Polygon myPoly;
@@ -30,6 +33,11 @@ namespace ammo
   Server::~Server()
   {
     delete _peer;
+    delete _gameState;
+    delete _graphics;
+    delete _sound;
+    delete _physic;
+    delete _input;
   }
 
   void Server::Draw(float deltaTime)
@@ -70,15 +78,9 @@ namespace ammo
         printf("ID_NEW_INCOMING_CONNECTION from %s\n", packet->systemAddress.ToString());   
         // When a new player connects, we need to add that player object to the game
         newPlayer = new PlayerObject(packet->systemAddress);
-        newPlayer->AddAutoSerializeTimer(0);
-        
+        newPlayer->AddAutoSerializeTimer(0);        
         _gameState->RegisterGameObject(newPlayer);
 
-        // TEMPORARY
-        // TODO
-        newPlayer = new SampleObject();
-        newPlayer->AddAutoSerializeTimer(1000);        
-        _gameState->RegisterGameObject(newPlayer);
         break;
       case ID_DISCONNECTION_NOTIFICATION:
         printf("ID_DISCONNECTION_NOTIFICATION\n");				

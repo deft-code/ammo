@@ -9,6 +9,7 @@
 #include "ammo/game/gamestate.hpp"
 #include "ammo/physics/physic_sys.hpp"
 #include "ammo/graphics/icameratarget.hpp"
+#include "ammo/input/input_sys.hpp"
 
 namespace ammo
 {
@@ -28,7 +29,7 @@ namespace ammo
     SoundSys* GetSoundSys() {return _sound;}
     GameState* GetGameState() { return _gameState;}
     PhysicSys* GetPhysicsSys() { return _physic;}
-
+    InputSys* GetInputSys() { return _input; }
     void SetCameraTarget(ICameraTarget* target) { _camTarget = target;}
   protected:
     GraphicSys* _graphics;
@@ -36,7 +37,9 @@ namespace ammo
     SoundSys* _sound;
     GameState* _gameState;
     PhysicSys* _physic;
+    InputSys* _input;
     ICameraTarget* _camTarget;
+
   };
 }
 
