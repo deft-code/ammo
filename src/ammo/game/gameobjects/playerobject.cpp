@@ -114,7 +114,7 @@ namespace ammo
     // Give the player some initial velocity
     _physic.SetVelocity(b2Vec2(0.0f, 0.0f));
     // And some initial rotation, for fun
-    _physic.SetOmega(0.5f);
+    _physic.SetOmega(0.0f);
 
     _input = _parent->GetInputSys()->GetInput("player");
     // Point our local gamestate's camera at us
