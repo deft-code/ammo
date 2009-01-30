@@ -12,6 +12,11 @@ namespace ammo
     {
         _state.resize(PLAYER_ACTIONS_COUNT);
         _actions = actions;
+        for (std::vector<InputAction*>::iterator it = _actions.begin(); it != _actions.end(); ++it)
+        {
+            if (*it != NULL)
+                (*it)->RegisterImpl(this);
+        }
     }
 
     void InputImpl::Update(const sf::Input& input, float dt)

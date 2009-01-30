@@ -444,6 +444,10 @@
 					RelativePath="..\..\src\ammo\input\input_sys.hpp"
 					>
 				</File>
+				<File
+					RelativePath="..\..\src\ammo\input\single_key_boolean.hpp"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -614,6 +618,10 @@
 				</File>
 				<File
 					RelativePath="..\..\src\ammo\input\input_sys.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\input\single_key_boolean.cpp"
 					>
 				</File>
 			</Filter>
