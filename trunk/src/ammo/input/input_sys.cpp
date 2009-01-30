@@ -18,7 +18,7 @@ namespace ammo
         return input;
     }
 
-    void InputSys::Update(sf::Input& input)
+    void InputSys::Update(const sf::Input& input)
     {
         for (std::map<std::string, InputImpl>::iterator it = _impls.begin(); it != _impls.end(); ++it)
         {

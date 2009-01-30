@@ -21,7 +21,7 @@ namespace ammo
     public:
         void AddInputMap(std::string name, std::vector<InputAction*> inputs);
         Input GetInput(std::string name);
-        void Update(sf::Input& input);
+        void Update(const sf::Input& input);
 
     protected:
         std::map<std::string, InputImpl> _impls;

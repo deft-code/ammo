@@ -12,7 +12,7 @@ namespace ammo
     {
     public:
         InputAction(InputImpl* impl);
-        virtual void Update(sf::Input& input) = 0;
+        virtual void Update(const sf::Input& input) = 0;
 
     protected:
         InputImpl* _impl;

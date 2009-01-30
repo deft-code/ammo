@@ -17,7 +17,7 @@ namespace ammo
     public:
         InputImpl();
         InputImpl(std::vector<InputAction*> actions);
-        void Update(sf::Input& input);
+        void Update(const sf::Input& input);
         float GetValue(ammo::enums::enumPlayerAction action) const;
         void SetValue(enums::enumPlayerAction action, float val);
 
