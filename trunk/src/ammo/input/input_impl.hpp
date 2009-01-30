@@ -11,22 +11,20 @@
 namespace ammo
 {
     class InputAction;
-    typedef boost::shared_ptr<InputAction> InputAction_ptr;
 
     class InputImpl
     {
     public:
         InputImpl();
-        InputImpl(std::vector<InputAction_ptr> actions);
+        InputImpl(std::vector<InputAction*> actions);
         void Update(sf::Input& input);
         float GetValue(ammo::enums::enumPlayerAction action) const;
         void SetValue(enums::enumPlayerAction action, float val);
 
     protected:
         std::vector<float> _state;
-        std::vector<InputAction_ptr> _actions;
+        std::vector<InputAction*> _actions;
     };
-    typedef boost::shared_ptr<InputImpl> InputImpl_ptr;
 }
 
 #endif // AMMO_INPUT_INPUT_IMPL_HPP

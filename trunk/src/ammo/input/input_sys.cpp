@@ -6,11 +6,23 @@
 
 namespace ammo
 {
-    Input_ptr InputSys::AddInputMap(std::vector<InputAction_ptr> inputMap)
+    void InputSys::AddInputMap(std::string name, std::vector<InputAction*> inputMap)
     {
-        InputImpl_ptr impl(new InputImpl(inputMap));
-        _inputs.push_back(impl);
-        Input_ptr input(new Input(impl));
+        InputImpl impl(inputMap);
+        _impls.insert(std::make_pair(name, impl));
+    }
+
+    Input InputSys::GetInput(std::string name)
+    {
+        Input input(&(_impls.find(name)->second));
         return input;
+    }
+
+    void InputSys::Update(sf::Input& input)
+    {
+        for (std::map<std::string, InputImpl>::iterator it = _impls.begin(); it != _impls.end(); ++it)
+        {
+            it->second.Update(input);
+        }
     }
 }

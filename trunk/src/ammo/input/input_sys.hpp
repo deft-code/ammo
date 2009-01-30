@@ -1,9 +1,12 @@
 #ifndef AMMO_INPUT_INPUT_SYS_HPP
 #define AMMO_INPUT_INPUT_SYS_HPP
 
+#include <map>
+#include <string>
 #include <vector>
 
 #include <boost/shared_ptr.hpp>
+#include "SFML/Window/Input.hpp"
 
 #include "ammo/enums/playeractions.hpp"
 
@@ -12,17 +15,16 @@ namespace ammo
     class InputAction;
     class InputImpl;
     class Input;
-    typedef boost::shared_ptr<InputAction> InputAction_ptr;
-    typedef boost::shared_ptr<InputImpl> InputImpl_ptr;
-    typedef boost::shared_ptr<Input> Input_ptr;
 
     class InputSys
     {
     public:
-        Input_ptr AddInputMap(std::vector<InputAction_ptr> inputs);
+        void AddInputMap(std::string name, std::vector<InputAction*> inputs);
+        Input GetInput(std::string name);
+        void Update(sf::Input& input);
 
     protected:
-        std::vector<InputImpl_ptr> _inputs;
+        std::map<std::string, InputImpl> _impls;
     };
 }
 
