@@ -24,8 +24,9 @@ namespace ammo
     // Add our Physics Blueprints
     // TODO: Read these from some sort of file
     Polygon myPoly;
+    myPoly.body_blueprint.allowSleep = false;
     myPoly.polygon_blueprint.density = .1f;
-    myPoly.polygon_blueprint.friction = 0.f;
+    myPoly.polygon_blueprint.friction = 0.f;    
     myPoly.polygon_blueprint.SetAsBox(.48f, 1.28f);//, b2Vec2(4.8f, 12.8f), 0.0f);
     _physic->AddBluePrint("player", myPoly);
   }

@@ -42,6 +42,7 @@ namespace ammo
     // Create our physics blueprints
     // TODO: Create these from a file
     Polygon myPoly;   
+    myPoly.body_blueprint.allowSleep = false;
     myPoly.polygon_blueprint.density = .1;
     myPoly.polygon_blueprint.friction = 0;
     myPoly.polygon_blueprint.SetAsBox(.48f, 1.28f);             
