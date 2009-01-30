@@ -8,11 +8,12 @@ namespace ammo
 		class PassivePhysicImpl : public PhysicImpl
 		{
 		public:
-			PassivePhysicImpl(void)
+			PassivePhysicImpl( GameObject& parent )
 			 : m_pos(b2Vec2_zero),
 				m_vel(b2Vec2_zero),
 				m_theta(0.f),
-				m_omega(0.f)
+				m_omega(0.f),
+				_parent(parent)
 			{ }
 
 			virtual b2Vec2 GetPosition( void ) const
@@ -39,20 +40,24 @@ namespace ammo
 			virtual void SetOmega( float omega )
 			{ m_omega = omega; }
 
+			virtual GameObject& GetParent( void ) const
+			{ return _parent;	}
+
 		private:
 			b2Vec2 m_pos;
 			b2Vec2 m_vel;
 			float m_theta;
 			float m_omega;
+			GameObject& _parent;
 		};
 	} // anonymous namespace
 	
 	bool PassivePhysicSys::IsPhysic(const std::string& name) const
 	{ return true;	}
 	
-	Physic PassivePhysicSys::GetPhysic(const std::string& name)
+	Physic PassivePhysicSys::GetPhysic(const std::string& name, GameObject& parent)
 	{
-		PhysicPimpl ptr( new PassivePhysicImpl );
+		PhysicPimpl ptr( new PassivePhysicImpl(parent) );
 		return Physic(ptr);
 	}
 	

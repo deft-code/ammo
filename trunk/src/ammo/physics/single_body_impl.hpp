@@ -7,10 +7,12 @@ class b2Body;
 
 namespace ammo
 {
+	class GameObject;
+
 	class SingleBodyImpl : public PhysicImpl
 	{
 	public:
-		SingleBodyImpl( b2Body* body );
+		SingleBodyImpl( b2Body& body, GameObject& parent );
 
 		virtual ~SingleBodyImpl( void );
 
@@ -29,8 +31,11 @@ namespace ammo
 		virtual float GetOmega( void ) const;
 
 		virtual void SetOmega( float omega );
+
+		virtual GameObject& GetParent( void ) const;
 	private:
-		b2Body* m_body;
+		b2Body& _body;
+		GameObject& _parent;
 	};
 }
 

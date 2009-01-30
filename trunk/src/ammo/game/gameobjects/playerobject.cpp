@@ -109,7 +109,7 @@ namespace ammo
     _sound = _parent->GetSoundSys()->getSound("player");
     
     // Get our 'physic'
-    _physic = _parent->GetPhysicsSys()->GetPhysic("player");
+    _physic = _parent->GetPhysicsSys()->GetPhysic("player", *this);
     //_physic.SetPosition(b2Vec2(0.0f, 0.0f));
     // Give the player some initial velocity
     _physic.SetVelocity(b2Vec2(0.0f, 0.0f));

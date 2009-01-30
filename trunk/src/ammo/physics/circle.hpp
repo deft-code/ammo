@@ -12,7 +12,7 @@ namespace ammo
 		b2BodyDef body_blueprint;
 		b2CircleDef circle_blueprint;
 
-		virtual PhysicPimpl Instantiate(b2World& world) const;
+		virtual PhysicPimpl Instantiate(b2World& world, GameObject& parent) const;
 	};
 }
 #endif // AMMO_PHYSICS_CIRCLE_HPP_INCLUDED

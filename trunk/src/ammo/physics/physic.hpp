@@ -8,7 +8,9 @@
 
 namespace ammo
 {
-  class Physic : public ICameraTarget
+	class GameObject;
+
+	class Physic : public ICameraTarget
 	{
 	public:
 		Physic( void );
@@ -25,6 +27,8 @@ namespace ammo
 
 		float GetOmega( void ) const;
 		void SetOmega( float omega );
+
+		GameObject& GetParent( void ) const;
 
 	private:
 		PhysicPimpl m_pimpl;

@@ -7,10 +7,12 @@ class b2World;
 
 namespace ammo
 {
+	class GameObject;
+
 	class PhysicBluePrint
 	{
 	public:
-		virtual PhysicPimpl Instantiate( b2World& world ) const =0;
+		virtual PhysicPimpl Instantiate( b2World& world, GameObject& parent ) const =0;
 	};
 }
 

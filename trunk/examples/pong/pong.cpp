@@ -4,6 +4,9 @@
 #include "ammo/graphics.hpp"
 #include "ammo/audio.hpp"
 #include "ammo/physics.hpp"
+#include "ammo/game/gameobjects/sampleobject.hpp"
+
+ammo::SampleObject dummy;
 
 int main()
 {
@@ -11,9 +14,9 @@ int main()
 	// Defines PI
 	const float PI = std::atan(1.0) * 4.0;
 
-	ammo::Physic left_shape = sim.GetPhysic("asdf");
-	ammo::Physic right_shape = sim.GetPhysic("asdf");
-	ammo::Physic ball_shape = sim.GetPhysic("asdf");
+	ammo::Physic left_shape = sim.GetPhysic("asdf",dummy);
+	ammo::Physic right_shape = sim.GetPhysic("asdf",dummy);
+	ammo::Physic ball_shape = sim.GetPhysic("asdf",dummy);
 
 	b2Vec2 world_half( 40.f, 30.f );
 

@@ -2,10 +2,12 @@
 #define AMMO_PHYSICS_PHYSIC_IMPL_HPP_INCLUDED
 
 #include <cstdlib>
-class b2Vec2;
+struct b2Vec2;
 
 namespace ammo
 {
+	class GameObject;
+
 	class PhysicImpl
 	{
 	public:
@@ -23,6 +25,8 @@ namespace ammo
 
 		virtual float GetOmega( void ) const =0;
 		virtual void SetOmega( float omega ) =0;
+
+		virtual GameObject& GetParent( void ) const =0;
 
 		void inc_ref( void )
 		{ ++m_ref_count; }
