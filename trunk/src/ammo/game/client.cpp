@@ -45,6 +45,12 @@ namespace ammo
     _physic->AddBluePrint("player", myPoly);
     
 
+    // Create our input system
+    _input = new InputSys();
+    std::vector<ammo::InputAction*> actions;
+    //actions.push_back(// Some input action
+    _input->AddInputMap("player", actions);
+
     _peer = new NetPeer(this, false);
     _isDestroyed = false;
   }
@@ -54,6 +60,9 @@ namespace ammo
     delete _graphics;
     delete _gameState;
     delete _peer;
+    delete _sound;
+    delete _physic;
+    delete _input;
   }
 
   void Client::Draw(float deltaTime)
@@ -71,6 +80,7 @@ namespace ammo
   {
     return _isDestroyed;
   }
+
   // deltaTime - the change in time (in seconds) since the last
   // frame.
   void Client::Update(float deltaTime)
@@ -119,6 +129,10 @@ namespace ammo
     if (_physic)
     {
       _physic->Update(deltaTime);    
+    }
+    if (_input)
+    {
+      _input->Update(_app->GetInput(), deltaTime);
     }
     // Update our camera
     if (_camTarget)
