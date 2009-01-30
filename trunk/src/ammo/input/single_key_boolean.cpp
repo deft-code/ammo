@@ -10,7 +10,7 @@ namespace ammo
     {
     }
 
-    void SingleKeyBoolean::Update(const sf::Input input, float dt)
+    void SingleKeyBoolean::Update(const sf::Input& input, float dt)
     {
         if (input.IsKeyDown(_key))
         {

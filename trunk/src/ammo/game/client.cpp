@@ -4,6 +4,8 @@
 #include "ammo/audio.hpp"
 #include "ammo/physics.hpp"
 
+#include "ammo/input/single_key_boolean.hpp"
+
 #include "RakNetTypes.h"
 #include "MessageIdentifiers.h"
 #include <iostream>
@@ -48,6 +50,11 @@ namespace ammo
     // Create our input system
     _input = new InputSys();
     std::vector<ammo::InputAction*> actions;
+    actions.push_back(new SingleKeyBoolean(sf::Key::Code::W, enums::THRUST));
+    actions.push_back(new SingleKeyBoolean(sf::Key::Code::A, enums::LEFT));
+    actions.push_back(new SingleKeyBoolean(sf::Key::Code::D, enums::RIGHT));
+    actions.push_back(new SingleKeyBoolean(sf::Key::Code::S, enums::REVERSE));
+    actions.push_back(new SingleKeyBoolean(sf::Key::Code::LControl, enums::AFTERBURN));
     //actions.push_back(// Some input action
     _input->AddInputMap("player", actions);
 
