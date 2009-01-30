@@ -1,6 +1,7 @@
 #include "physic.hpp"
 
 #include "physic_impl.hpp"
+#include "ammo/game/gameobject.hpp"
 
 namespace ammo
 {
@@ -29,6 +30,9 @@ namespace //anonymous
 		{ return 0.f; }
 
 		virtual void SetOmega(float theta) { }
+
+		virtual GameObject& GetParent( void ) const
+		{ return *reinterpret_cast<GameObject*>(NULL); }
 	};
 
 } // anonymous namespace
@@ -64,5 +68,8 @@ float Physic::GetOmega( void ) const
 
 void Physic::SetOmega( float omega )
 { m_pimpl->SetOmega(omega); }
+
+GameObject& Physic::GetParent( void ) const
+{ return m_pimpl->GetParent();	}
 
 } // ammo

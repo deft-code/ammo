@@ -1,6 +1,7 @@
 #include "active_physic_sys.hpp"
 #include "physic_impl.hpp"
 #include "../error.hpp"
+#include "ammo/game/gameobject.hpp"
 
 namespace ammo
 {
@@ -20,7 +21,7 @@ namespace ammo
 		return m_blueprints.find(name) != m_blueprints.end();
 	}
 
-	Physic ActivePhysicSys::GetPhysic(const std::string& name)
+	Physic ActivePhysicSys::GetPhysic(const std::string& name, GameObject& parent )
 	{
 		std::map<std::string,PhysicBluePrint_ptr>::iterator found =
 			m_blueprints.find(name);
@@ -30,7 +31,7 @@ namespace ammo
 			throw Error(Errors::e_Missing_Definition, name );
 		}
 
-		PhysicPimpl ptr( found->second->Instantiate(m_world) );
+		PhysicPimpl ptr( found->second->Instantiate( m_world, parent) );
 
 		return Physic(ptr);
 	}

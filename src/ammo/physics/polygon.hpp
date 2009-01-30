@@ -7,13 +7,15 @@
 
 namespace ammo
 {
+	class GameObject;
+
 	class Polygon : public PhysicBluePrint
 	{
 	public:
 		b2BodyDef body_blueprint;
 		b2PolygonDef polygon_blueprint;
 
-		virtual PhysicPimpl Instantiate(b2World& world) const;
+		virtual PhysicPimpl Instantiate(b2World& world, GameObject& parent) const;
 	};
 }
 

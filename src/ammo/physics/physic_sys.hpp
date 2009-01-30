@@ -7,6 +7,8 @@
 
 namespace ammo
 {
+	class GameObject;
+
 	class PhysicSys
 	{
 	public:
@@ -15,7 +17,7 @@ namespace ammo
 
 		virtual bool IsPhysic( const std::string& name ) const =0;
 
-		virtual Physic GetPhysic( const std::string& name ) =0;
+		virtual Physic GetPhysic( const std::string& name, GameObject& parent ) =0;
 
 		virtual void Update( float dt ) =0;
 
