@@ -24,13 +24,16 @@ namespace ammo
     }
     if (_input.GetValue(ammo::enums::THRUST) > 0.0f )
     {
+      
       float theta = _physic.GetTheta();
       float thrust = THRUST_RATE;
       if (_input.GetValue(ammo::enums::AFTERBURN) > 0.0f)
       {
         thrust *= BURN_MULTIPLIER;
       }
-      _physic.SetVelocity(_physic.GetVelocity() + thrust * (b2Vec2((float)cos(theta), (float)sin(theta))));
+      //cout << _physic.GetVelocity().x << " " << thrust << " "<< (float)cos(theta) << " " << (float)sin(theta) << endl;      
+      _physic.SetVelocity(_physic.GetVelocity() + thrust * b2Vec2((float)cos(theta), (float)sin(theta)));
+      //_physic.SetVelocity(b2Vec2(1.f, 1.f));
     }    
     if (_input.GetValue(ammo::enums::REVERSE) > 0.0f )
     {
@@ -38,16 +41,34 @@ namespace ammo
       _physic.SetVelocity(_physic.GetVelocity() - THRUST_RATE * (b2Vec2((float)cos(theta), (float)sin(theta))));
     }
 
-    // Cap our velocity
-    if (_physic.GetVelocity().LengthSquared() > MAX_SPEED_SQUARED)
-    {
-      _physic.GetVelocity().Normalize();
-      _physic.SetVelocity(MAX_SPEED * _physic.GetVelocity());
-    }
 
+
+      // Cap our velocity
+      if (_physic.GetVelocity().LengthSquared() > MAX_SPEED_SQUARED)
+      {      
+        
+        float x = _physic.GetVelocity().x;
+        float y = _physic.GetVelocity().y;
+        
+        float len = sqrt((x*x)+(y*y));
+        b2Vec2 norm(x/len, y/len);
+        
+
+        norm *= MAX_SPEED;
+        
+        _physic.SetVelocity(norm);
+        //float test = _physic.GetVelocity().Normalize();
+        
+        //_physic.SetVelocity(MAX_SPEED * _physic.GetVelocity());
+      }
+    
+    //cout << "Server: " << _physic.GetVelocity().x << " " << _physic.GetVelocity().y << " " << _physic.GetPosition().x << " " << _physic.GetPosition().y << endl;
+    
+      //cout << "Client: " << _physic.GetVelocity().x << " " << _physic.GetVelocity().y << " " << _physic.GetPosition().x << " " << _physic.GetPosition().y << endl;
     // Update our sprite's information 
     _sprite.SetPosition(_physic.GetPosition());     
     _sprite.SetRotationRadians(_physic.GetTheta());
+    
     
   }
   // Serializes the player. If the player is on the client, it serializes only the input information,
@@ -101,7 +122,7 @@ namespace ammo
   {
     // Get our sprite
     _sprite = _parent->GetGraphicSys()->getGraphic("player");
-    _sprite.SetSize(b2Vec2(9.8f,25.6f));        
+    _sprite.SetSize(b2Vec2(2.56f,.98f));        
     
     _sprite.show();
 
@@ -110,18 +131,19 @@ namespace ammo
     
     // Get our 'physic'
     _physic = _parent->GetPhysicsSys()->GetPhysic("player", *this);
-    //_physic.SetPosition(b2Vec2(0.0f, 0.0f));
+    _physic.SetPosition(b2Vec2(1.0f, 1.0f));
     // Give the player some initial velocity
-    _physic.SetVelocity(b2Vec2(0.0f, 0.0f));
+    _physic.SetVelocity(b2Vec2(.125f, 0.0f));    
     // And some initial rotation, for fun
     _physic.SetOmega(0.0f);
 
-    _input = _parent->GetInputSys()->GetInput("player");
+    
     // Point our local gamestate's camera at us
     if (!_parent->GetGameState()->GetIsAuthority() && _parent->GetNetPeer()->GetLocalAddress() == _owner)
     {
       // But only if this is a client, and this is our player
       _parent->SetCameraTarget((ICameraTarget*)(&_physic));
+      _input = _parent->GetInputSys()->GetInput(_owner);
     }
   }
 
@@ -139,6 +161,7 @@ namespace ammo
   bool PlayerObject::SerializeServerSide(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext)
   {    
     bitStream->Write(_physic.GetPosition());
+    bitStream->Write(_physic.GetVelocity());
     bitStream->Write(_physic.GetTheta());
     bitStream->Write(_physic.GetOmega());
     return true;
@@ -149,11 +172,17 @@ namespace ammo
   {
     b2Vec2 temp;
     float ftemp;
+    bitStream->Read(temp);    
+    _physic.SetPosition(temp);    
+
     bitStream->Read(temp);
+    _physic.SetVelocity(temp);
+    
+
     bitStream->Read(ftemp);
-    _physic.SetPosition(temp);
     _physic.SetTheta(ftemp);
-    (*bitStream) >> ftemp;
+  
+    bitStream->Read(ftemp);
     _physic.SetOmega(ftemp);
 
     return true;

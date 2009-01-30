@@ -6,15 +6,15 @@
 
 namespace ammo
 {
-    void InputSys::AddInputMap(std::string name, std::vector<InputAction*> inputMap)
+    void InputSys::AddInputMap(SystemAddress owner, std::vector<InputAction*> inputMap)
     {
         InputImpl impl(inputMap);
-        _impls.insert(std::make_pair(name, impl));
+        _impls.insert(std::make_pair(owner, impl));
     }
 
-    Input InputSys::GetInput(std::string name)
+    Input InputSys::GetInput(SystemAddress owner)
     {
-        InputImpl* impl = &(_impls.find(name)->second);
+        InputImpl* impl = &(_impls.find(owner)->second);
         impl->Activate();
         Input input(impl);
         return input;
@@ -22,7 +22,7 @@ namespace ammo
 
     void InputSys::Update(const sf::Input& input, float dt)
     {
-        for (std::map<std::string, InputImpl>::iterator it = _impls.begin(); it != _impls.end(); ++it)
+        for (std::map<SystemAddress, InputImpl>::iterator it = _impls.begin(); it != _impls.end(); ++it)
         {
             if (it->second.IsActive())
                 it->second.Update(input, dt);

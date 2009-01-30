@@ -11,20 +11,23 @@
 #include "ammo/enums/playeractions.hpp"
 #include "ammo/input/input_impl.hpp"
 
+#include "RakNetTypes.h"
+
 namespace ammo
 {
     class InputAction;
     class Input;
+    
 
     class InputSys
     {
     public:
-        void AddInputMap(std::string name, std::vector<InputAction*> inputs);
-        Input GetInput(std::string name);
+        void AddInputMap(SystemAddress owner, std::vector<InputAction*> inputs);
+        Input GetInput(SystemAddress owner);
         void Update(const sf::Input& input, float dt);
 
     protected:
-        std::map<std::string, InputImpl> _impls;
+        std::map<SystemAddress, InputImpl> _impls;
     };
 }
 
