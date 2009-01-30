@@ -12,7 +12,7 @@ namespace ammo
     {
     public:
         SingleKeyBoolean(sf::Key::Code key, enums::enumPlayerAction action);
-        void Update(const sf::Input input, float dt);
+        virtual void Update(const sf::Input& input, float dt);
     protected:
         sf::Key::Code _key;
         enums::enumPlayerAction _action;

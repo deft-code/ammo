@@ -14,7 +14,9 @@ namespace ammo
 
     Input InputSys::GetInput(std::string name)
     {
-        Input input(&(_impls.find(name)->second));
+        InputImpl* impl = &(_impls.find(name)->second);
+        impl->Activate();
+        Input input(impl);
         return input;
     }
 
@@ -22,7 +24,8 @@ namespace ammo
     {
         for (std::map<std::string, InputImpl>::iterator it = _impls.begin(); it != _impls.end(); ++it)
         {
-            it->second.Update(input, dt);
+            if (it->second.IsActive())
+                it->second.Update(input, dt);
         }
     }
 }

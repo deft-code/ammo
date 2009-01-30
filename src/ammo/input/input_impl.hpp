@@ -20,10 +20,13 @@ namespace ammo
         void Update(const sf::Input& input, float dt);
         float GetValue(ammo::enums::enumPlayerAction action) const;
         void SetValue(enums::enumPlayerAction action, float val);
-
+        
+        void Activate();
+        bool IsActive();
     protected:
         mutable std::vector<float> _state;
         std::vector<InputAction*> _actions;
+        bool _active;
     };
 }
 
