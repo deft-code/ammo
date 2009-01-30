@@ -4,6 +4,7 @@ namespace ammo
 {
   namespace enums
   {
+#define PLAYER_ACTIONS_COUNT (6)
     enum enumPlayerAction
     {
       THRUST,
