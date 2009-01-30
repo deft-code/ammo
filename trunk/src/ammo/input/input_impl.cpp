@@ -10,6 +10,7 @@ namespace ammo
 
     InputImpl::InputImpl(std::vector<InputAction*> actions)
     {
+        _state.resize(PLAYER_ACTIONS_COUNT);
         _actions = actions;
     }
 
@@ -23,11 +24,19 @@ namespace ammo
 
     float InputImpl::GetValue(ammo::enums::enumPlayerAction action) const
     {
+        if (_state.size() < action)
+        {
+            _state.resize(action+1, 0.f);
+        }
         return _state[action];
     }
 
     void InputImpl::SetValue(enums::enumPlayerAction action, float val)
     {
+        if (_state.size() < action)
+        {
+            _state.resize(action+1, 0.f);
+        }
         _state[action] = val;
     }
 }

@@ -22,7 +22,7 @@ namespace ammo
         void SetValue(enums::enumPlayerAction action, float val);
 
     protected:
-        std::vector<float> _state;
+        mutable std::vector<float> _state;
         std::vector<InputAction*> _actions;
     };
 }
