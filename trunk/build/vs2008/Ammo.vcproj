@@ -429,7 +429,19 @@
 				Name="input"
 				>
 				<File
-					RelativePath=".\input.h"
+					RelativePath="..\..\src\ammo\input\input.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\input\input_action.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\input\input_impl.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\input\input_sys.hpp"
 					>
 				</File>
 			</Filter>
@@ -588,6 +600,22 @@
 			<Filter
 				Name="input"
 				>
+				<File
+					RelativePath="..\..\src\ammo\input\input.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\input\input_action.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\input\input_impl.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\input\input_sys.cpp"
+					>
+				</File>
 			</Filter>
 		</Filter>
 	</Files>
