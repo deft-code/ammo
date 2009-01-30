@@ -18,11 +18,11 @@ namespace ammo
         return input;
     }
 
-    void InputSys::Update(const sf::Input& input)
+    void InputSys::Update(const sf::Input& input, float dt)
     {
         for (std::map<std::string, InputImpl>::iterator it = _impls.begin(); it != _impls.end(); ++it)
         {
-            it->second.Update(input);
+            it->second.Update(input, dt);
         }
     }
 }

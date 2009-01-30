@@ -9,11 +9,11 @@
 #include "SFML/Window/Input.hpp"
 
 #include "ammo/enums/playeractions.hpp"
+#include "ammo/input/input_impl.hpp"
 
 namespace ammo
 {
     class InputAction;
-    class InputImpl;
     class Input;
 
     class InputSys
@@ -21,7 +21,7 @@ namespace ammo
     public:
         void AddInputMap(std::string name, std::vector<InputAction*> inputs);
         Input GetInput(std::string name);
-        void Update(const sf::Input& input);
+        void Update(const sf::Input& input, float dt);
 
     protected:
         std::map<std::string, InputImpl> _impls;

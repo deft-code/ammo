@@ -2,11 +2,21 @@
 
 #include "ammo/input/input_impl.hpp"
 
+namespace
+{
+    ammo::InputImpl null_input;
+}
+
 namespace ammo
 {
-    Input::Input(InputImpl* impl)
+    Input::Input():
+        _impl(&null_input)
     {
-        _impl = impl;
+    }
+
+    Input::Input(InputImpl* impl):
+        _impl(impl)
+    {
     }
 
     float Input::GetValue(ammo::enums::enumPlayerAction action) const

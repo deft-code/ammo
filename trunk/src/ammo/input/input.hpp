@@ -11,6 +11,7 @@ namespace ammo
     class Input
     {
     public:
+        Input();
         Input(InputImpl* impl);
         float GetValue(enums::enumPlayerAction action) const;
         bool GetBoolValue(enums::enumPlayerAction action) const;
