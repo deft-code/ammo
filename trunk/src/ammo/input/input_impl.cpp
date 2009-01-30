@@ -18,7 +18,8 @@ namespace ammo
     {
         for (std::vector<InputAction*>::iterator it = _actions.begin(); it != _actions.end(); ++it)
         {
-            (*it)->Update(input, dt);
+            if (*it != NULL)
+                (*it)->Update(input, dt);
         }
     }
 
