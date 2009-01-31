@@ -10,10 +10,10 @@
 
 #include "RakNetTypes.h"
 
-#define TURN_RATE (.01f)
+#define TURN_RATE (2.f)
 #define MAX_SPEED (20.f)
 #define MAX_SPEED_SQUARED (400.f)
-#define THRUST_RATE (.02f)
+#define THRUST_RATE (2.f)
 #define BURN_MULTIPLIER (4.0f)
 
 namespace ammo

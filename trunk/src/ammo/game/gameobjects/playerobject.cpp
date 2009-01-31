@@ -18,18 +18,18 @@ namespace ammo
     if (_input.GetValue(ammo::enums::LEFT) > 0.0f)
     {
       _physic.SetOmega(0.f);
-      _physic.SetTheta(_physic.GetTheta() + TURN_RATE);
+      _physic.SetTheta(_physic.GetTheta() + TURN_RATE * deltaTime);
     }
     if (_input.GetValue(ammo::enums::RIGHT) > 0.0f)
     {
       _physic.SetOmega(0.f);
-      _physic.SetTheta(_physic.GetTheta() - TURN_RATE);
+      _physic.SetTheta(_physic.GetTheta() - TURN_RATE* deltaTime);
     }
     if (_input.GetValue(ammo::enums::THRUST) > 0.0f )
     {
       
       float theta = _physic.GetTheta();
-      float thrust = THRUST_RATE;
+      float thrust = THRUST_RATE * deltaTime;
       if (_input.GetValue(ammo::enums::AFTERBURN) > 0.0f)
       {
         thrust *= BURN_MULTIPLIER;
@@ -40,7 +40,7 @@ namespace ammo
     if (_input.GetValue(ammo::enums::REVERSE) > 0.0f )
     {
       float theta = _physic.GetTheta();
-      _physic.SetVelocity(_physic.GetVelocity() - THRUST_RATE * (b2Vec2((float)cos(theta), (float)sin(theta))));
+      _physic.SetVelocity(_physic.GetVelocity() - THRUST_RATE * deltaTime * (b2Vec2((float)cos(theta), (float)sin(theta))));
     }
 
       // Cap our velocity
