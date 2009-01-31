@@ -4,6 +4,39 @@
 #include "ReplicaManager2.h"
 #include "ammo/game/game.hpp"
 
+/* 
+
+HOW TO MAKE A GAME OBJECT IN THREE EASY STEPS
+
+1.) Create a new object, and inherit from GameObject
+
+2.) Implement:
+Update() -- What your object does
+Serialize() -- How your object packs itself for the net
+Deserialize() -- How your object unpacks itself from a packet
+SerializeConstruction() -- How this object indicates to the factory on the client
+   that it needs to be constructed. (You can use a simple string for this.) As well
+   as any necessary construction parameters.
+
+3.) Add code to actually construct an instance of the object in 
+   ReplicaObjectConstructor::Construct()
+
+   Making sure to fill in only:
+   // Determine which object we need to construct, based on the bitstream
+
+   // Create an instance of that object
+
+The factory will register the constructed object everywhere it needs to be registered
+by calling _gameState->RegisterGameObject, and everything else is handled for you.
+
+You can optionally call AddAutoSerializeTimer() to change the default
+serialization time.
+
+There are a number of callbacks you can also implement that are optional for limiting
+when the object is serialized, how it is serialized, etc. See: 
+http://www.jenkinssoftware.com/raknet/manual/Doxygen/html/classRakNet_1_1Replica2.html
+*/
+
 namespace ammo
 {
   class Game;
