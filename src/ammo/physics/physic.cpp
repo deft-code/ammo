@@ -11,6 +11,8 @@ namespace //anonymous
 	class NullPhysicImpl : public PhysicImpl
 	{
 	public:
+		NullPhysicImpl( void ) { inc_ref();	}
+
 		virtual b2Vec2 GetPosition(void) const
 		{ return b2Vec2_zero; }
 
@@ -33,12 +35,26 @@ namespace //anonymous
 
 		virtual GameObject& GetParent( void ) const
 		{ return *reinterpret_cast<GameObject*>(NULL); }
+
+		virtual void AddContact( const b2ContactResult& point, b2Shape* me ) { }
+
+		virtual std::size_t GetNumContacts( void ) const
+		{ return 0;	}
+
+		virtual const b2ContactResult& GetContact( std::size_t index ) const
+		{ return *reinterpret_cast<b2ContactResult*>(NULL);	}
+
+		virtual PhysicPimpl GetContactPhysic( std::size_t index ) const
+		{ return PhysicPimpl();	}
+		
 	};
+
+	NullPhysicImpl null_impl; //< null object
 
 } // anonymous namespace
 
 Physic::Physic( void )
- : m_pimpl( new NullPhysicImpl )
+ : m_pimpl( &null_impl )
 { }
 
 Physic::Physic( const PhysicPimpl& pimpl )

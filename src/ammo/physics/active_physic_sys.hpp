@@ -30,6 +30,14 @@ namespace ammo
 
 		std::map<std::string,PhysicBluePrint_ptr> m_blueprints;
 
+		class ContactListener : public b2ContactListener
+		{
+		public:
+			virtual void Result(const b2ContactResult* point);
+		};
+
+		ContactListener m_contact_listener;
+
 		b2World m_world;
 
 		float m_total_time;

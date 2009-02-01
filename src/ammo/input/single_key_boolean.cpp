@@ -5,10 +5,9 @@
 namespace ammo
 {
     SingleKeyBoolean::SingleKeyBoolean(sf::Key::Code key, enums::enumPlayerAction action):
-        _action(action),
-        _key(key)
-    {
-    }
+        _key(key),
+        _action(action)
+    { }
 
     void SingleKeyBoolean::Update(const sf::Input& input, float dt)
     {

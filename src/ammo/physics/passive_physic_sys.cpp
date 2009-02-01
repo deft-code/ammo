@@ -43,6 +43,17 @@ namespace ammo
 			virtual GameObject& GetParent( void ) const
 			{ return _parent;	}
 
+			virtual void AddContact( const b2ContactResult& point, b2Shape* me ) { }
+
+			virtual std::size_t GetNumContacts( void ) const
+			{ return 0;	}
+
+			virtual const b2ContactResult& GetContact( std::size_t index ) const
+			{ return *reinterpret_cast<b2ContactResult*>(NULL); }
+
+			virtual PhysicPimpl GetContactPhysic( std::size_t index ) const
+			{ return PhysicPimpl();	}
+
 		private:
 			b2Vec2 m_pos;
 			b2Vec2 m_vel;

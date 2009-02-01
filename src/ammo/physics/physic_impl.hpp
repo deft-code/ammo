@@ -1,8 +1,11 @@
 #ifndef AMMO_PHYSICS_PHYSIC_IMPL_HPP_INCLUDED
 #define AMMO_PHYSICS_PHYSIC_IMPL_HPP_INCLUDED
 
+#include "physic_impl.fwd.hpp"
 #include <cstdlib>
 struct b2Vec2;
+class b2ContactResult;
+class b2Shape;
 
 namespace ammo
 {
@@ -27,6 +30,11 @@ namespace ammo
 		virtual void SetOmega( float omega ) =0;
 
 		virtual GameObject& GetParent( void ) const =0;
+
+		virtual void AddContact( const b2ContactResult& point, b2Shape* me ) =0;
+		virtual std::size_t GetNumContacts( void ) const =0;
+		virtual PhysicPimpl GetContactPhysic( std::size_t index ) const =0;
+		virtual const b2ContactResult& GetContact( std::size_t index ) const =0;
 
 		void inc_ref( void )
 		{ ++m_ref_count; }
