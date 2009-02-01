@@ -56,4 +56,17 @@ namespace ammo
 			throw Error( Errors::e_Overwrite_Definition );
 		}
 	}
+
+	void ActivePhysicSys::ContactListener::Result( const b2ContactResult* point )
+	{
+		PhysicImpl* physic;
+
+		physic = reinterpret_cast<PhysicImpl*>(
+				point->shape1->GetBody()->GetUserData() );
+		physic->AddContact( *point, point->shape1 );
+
+		physic = reinterpret_cast<PhysicImpl*>(
+				point->shape2->GetBody()->GetUserData() );
+		physic->AddContact( *point, point->shape2 );
+	}
 }

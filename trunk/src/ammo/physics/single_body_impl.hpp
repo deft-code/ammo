@@ -3,7 +3,8 @@
 
 #include "ammo/physics/physic_impl.hpp"
 
-class b2Body;
+#include <Box2D.h>
+#include <vector>
 
 namespace ammo
 {
@@ -33,9 +34,18 @@ namespace ammo
 		virtual void SetOmega( float omega );
 
 		virtual GameObject& GetParent( void ) const;
+
+		virtual void AddContact( const b2ContactResult& point, b2Shape* me );
+		virtual std::size_t GetNumContacts( void ) const;
+		virtual PhysicPimpl GetContactPhysic( std::size_t index ) const;
+		virtual const b2ContactResult& GetContact( std::size_t index ) const;
+
 	private:
 		b2Body& _body;
 		GameObject& _parent;
+
+		std::vector<b2ContactResult> m_contacts;
+		std::vector<PhysicPimpl> m_contact_physics;
 	};
 }
 

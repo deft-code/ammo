@@ -146,6 +146,16 @@ int main()
 			{	
 				left_pos += b2Vec2(0.f, -speed * App.GetFrameTime());
 			}
+
+			if( App.GetInput().IsKeyDown(sf::Key::Left) )
+			{
+				left.SetRotationDegrees( 1+left.GetRotationDegrees() );
+			}
+	
+			if( App.GetInput().IsKeyDown(sf::Key::Right) )
+			{
+				left.SetRotationDegrees( left.GetRotationDegrees()-1 );
+			}
 	
 			// AI logic
 			right_pos += b2Vec2( 0.f, ai_speed * App.GetFrameTime() );
