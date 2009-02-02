@@ -23,7 +23,7 @@ namespace ammo
         _sprite.SetX(0.f + .25f * _myVal);
         if  (_myVal % 5 == 0)
         {          
-          _sound.play();
+         // _sound.play();
         }
       }
     }

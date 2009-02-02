@@ -9,6 +9,11 @@ using std::endl;
 
 namespace ammo
 {
+  PlayerObject::~PlayerObject()
+  {
+    _sprite.hide();
+    
+  }
   // Update contains all the logic for the object. 
   void PlayerObject::Update(float deltaTime)
   {
@@ -127,10 +132,7 @@ namespace ammo
     // Get our 'physic'
     _physic = _parent->GetPhysicsSys()->GetPhysic("player", *this);
     _physic.SetPosition(b2Vec2(1.0f, 1.0f));  
-    // And some initial rotation, for fun
-    _physic.SetOmega(0.0f);
 
-    
     // Point our local gamestate's camera at us
     if (!_parent->GetGameState()->GetIsAuthority() && _parent->GetNetPeer()->GetLocalAddress() == _owner)
     {
@@ -138,12 +140,18 @@ namespace ammo
       _parent->SetCameraTarget((ICameraTarget*)(&_physic));
       _input = _parent->GetInputSys()->GetInput(_owner);
     }
+
+    if (_parent->GetGameState()->GetIsAuthority())
+    {
+      _input = _parent->GetInputSys()->GetInput(_owner);
+    }
+
+    
   }
 
   // Handles serializing all of our information on the client side
   bool PlayerObject::SerializeClientSide(RakNet::BitStream* bitStream, RakNet::SerializationContext* serializationContext)
-  {      
-    // Where the input is serialized, but we don't that at all because someone is a terrible human being.
+  {          
     for (int i = 0; i < PLAYER_ACTIONS_COUNT; i++)
     {
       bitStream->Write(_input.GetValue((ammo::enums::enumPlayerAction)i));

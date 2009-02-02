@@ -39,7 +39,7 @@ namespace ammo
         replicaData->Read(myOwner);
         std::cout << "Connection Factory creating new Player Object from " << sender.ToString() << ". Owner is " << myOwner.ToString() << std::endl;
         construct = new PlayerObject(myOwner);
-        construct->AddAutoSerializeTimer(0);
+        construct->AddAutoSerializeTimer(15);
         break;
       }
     case enums::SAMPLE_OBJECT:
