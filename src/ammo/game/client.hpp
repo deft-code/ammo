@@ -4,6 +4,7 @@
 #include "ammo/game/game.hpp"
 #include "SFML/Graphics.hpp"
 #include "ammo/graphics.hpp"
+#include "ammo/graphics/background.hpp"
 
 namespace ammo
 {
@@ -27,6 +28,7 @@ namespace ammo
     sf::Event myEvent;    
     bool _isDestroyed;
     ammo::View* _view;
+    ammo::Background* _background;
   };
 }
 

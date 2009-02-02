@@ -23,6 +23,8 @@ namespace ammo
     _view = new ammo::View(*_app);
     _view->setWidth(40);
     _view->lookAt(b2Vec2(0, 0));
+    
+    _background = new ammo::Background(_app);
 
     _gameState = new ProxyGameState(this);
     _graphics = new ActiveGraphicSys();
@@ -43,7 +45,7 @@ namespace ammo
     // TODO: Create these from a file
     Polygon myPoly;   
     myPoly.body_blueprint.allowSleep = false;
-    myPoly.polygon_blueprint.density = .1;
+    myPoly.polygon_blueprint.density = .1f;
     myPoly.polygon_blueprint.friction = 0;
     myPoly.polygon_blueprint.SetAsBox(.48f, 1.28f);             
     _physic->AddBluePrint("player", myPoly);
@@ -72,6 +74,8 @@ namespace ammo
     _app->Clear();
     if (_graphics)
     {
+      _background->Draw();
+      _view->update_view();
       _graphics->draw(*_app);
     }
 
@@ -139,6 +143,7 @@ namespace ammo
     // Update our camera
     if (_camTarget)
     {
+      _background->Update(_camTarget->GetPosition());
       _view->lookAt(_camTarget->GetPosition());
     }    
   }

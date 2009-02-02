@@ -34,6 +34,10 @@ namespace ammo
     // This method will (likely) store the object in an internal map.    
     virtual void RegisterGameObject(GameObject* object);
   
+    // Removes a game object from the game world correctly.
+    // This may potentially cause the object to be deserialized over the connection.
+    virtual void UnregisterGameObject(GameObject* object);
+
     // Returns a boolean indicating whether this game stat is a client or
     // a server (true)
     bool  GetIsAuthority(){ return _isAuthority; }

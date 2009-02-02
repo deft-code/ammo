@@ -24,6 +24,8 @@ namespace ammo
 
       void HUDview( bool hud );
 
+      void update_view( void );
+
       sf::Vector2f world2draw( const b2Vec2& vec ) const;
       b2Vec2 draw2world( const sf::Vector2f& vec ) const;
 
@@ -31,7 +33,7 @@ namespace ammo
       b2Vec2 HUD2world( const sf::Vector2f& vec ) const;
 
    private:
-      void update_view( void );
+      
 
       sf::RenderWindow* m_app;
       bool m_is_hud;

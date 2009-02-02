@@ -82,8 +82,10 @@ namespace ammo
         _input->AddInputMap(packet->systemAddress, std::vector<ammo::InputAction*>());
 
         newPlayer = new PlayerObject(packet->systemAddress);
-        newPlayer->AddAutoSerializeTimer(0);        
+        newPlayer->AddAutoSerializeTimer(15);        
         _gameState->RegisterGameObject(newPlayer);
+        // Register our player object with the server
+        _players[packet->systemAddress] = (PlayerObject*)newPlayer;
 
         newPlayer = new SampleObject();
         newPlayer->AddAutoSerializeTimer(20);
@@ -91,7 +93,10 @@ namespace ammo
 
         break;
       case ID_DISCONNECTION_NOTIFICATION:
-        printf("ID_DISCONNECTION_NOTIFICATION\n");				
+        printf("ID_DISCONNECTION_NOTIFICATION\n");		
+        newPlayer = _players[packet->systemAddress];
+        _gameState->UnregisterGameObject(newPlayer);
+        _players.erase(packet->systemAddress);
         break;
       case ID_CONNECTION_LOST:
         printf("ID_CONNECTION_LOST\n");				

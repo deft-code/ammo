@@ -38,6 +38,18 @@ namespace ammo
     }
   }
 
+  void GameState::UnregisterGameObject(ammo::GameObject *object)
+  {
+    if (object)
+    {
+      _objList.remove(object);
+
+      if (_parent->GetGameState()->GetIsAuthority())
+      {
+        object->BroadcastDestruction();        
+      }
+    }
+  }
 
   void GameState::SetTarget(ICameraTarget* target)
   { 

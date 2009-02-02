@@ -22,10 +22,13 @@ namespace ammo
   {
   public:
     // Constructor
-    PlayerObject(SystemAddress myOwner)
+    PlayerObject(SystemAddress myOwner) 
     {
         _owner = myOwner;
     }
+
+    // Destructor: Hides all associated tokens.
+    ~PlayerObject();
 
     // Update contains all the logic for the object. 
     void Update(float deltaTime);    
