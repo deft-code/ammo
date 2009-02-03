@@ -3,6 +3,7 @@
 #include "ammo/graphics.hpp"
 #include "ammo/audio.hpp"
 #include "ammo/physics.hpp"
+#include "ammo/util/profiler.hpp"
 
 #include "ammo/input/single_key_boolean.hpp"
 
@@ -71,6 +72,7 @@ namespace ammo
 
   void Client::Draw(float deltaTime)
   {    
+    PROFILE_TIMER(client_draw)
     _app->Clear();
     if (_graphics)
     {
@@ -91,9 +93,11 @@ namespace ammo
   // frame.
   void Client::Update(float deltaTime)
   {
+    
     // Pump our application messages
     while (_app->GetEvent(myEvent))
     {
+      PROFILE_TIMER(client_msgPump)
       if (myEvent.Type == sf::Event::Closed)
       {
         // We'll eventually want to close our whole application
@@ -107,6 +111,7 @@ namespace ammo
     // Grab all packets, handing them to the gamestate
     for (packet = _peer->Receive(); packet != NULL; _peer->DeallocatePacket(packet), packet = _peer->Receive())
     {      
+      PROFILE_TIMER(client_packetPump)
       std::cout << "CLIENT: Packet Received from: "<< packet->systemAddress.ToString() << std::endl;
       switch (packet->data[0])
       {
@@ -122,27 +127,34 @@ namespace ammo
     // Update all our child objects
     if (_gameState)
     {
+      PROFILE_TIMER(client_gamestate)
       _gameState->Update(deltaTime);
     }
+    
     if (_graphics)
     {
+      PROFILE_TIMER(client_graphics)
       _graphics->update(deltaTime);
     }
     if (_sound)
     {
+      PROFILE_TIMER(client_sound)
       _sound->update(deltaTime);
     }   
     if (_physic)
     {
+      PROFILE_TIMER(client_physic)
       _physic->Update(deltaTime);    
     }
     if (_input)
     {
+      PROFILE_TIMER(client_input)
       _input->Update(_app->GetInput(), deltaTime);
     }
     // Update our camera
     if (_camTarget)
     {
+      PROFILE_TIMER(client_background)
       _background->Update(_camTarget->GetPosition());
       _view->lookAt(_camTarget->GetPosition());
     }    

@@ -454,6 +454,18 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="util"
+				>
+				<File
+					RelativePath="..\..\src\ammo\util\autotimer.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\util\profiler.hpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Resource Files"
@@ -635,6 +647,14 @@
 				</File>
 				<File
 					RelativePath="..\..\src\ammo\input\single_key_boolean.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="util"
+				>
+				<File
+					RelativePath="..\..\src\ammo\util\profiler.cpp"
 					>
 				</File>
 			</Filter>

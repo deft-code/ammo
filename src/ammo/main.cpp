@@ -1,6 +1,7 @@
 #include "ammo/graphics.hpp"
 #include "ammo/audio.hpp"
 #include "ammo/gameincludes.hpp"
+#include "ammo/util/profiler.hpp"
 
 #include <iostream>
 #include <stdlib.h>
@@ -11,6 +12,7 @@ using std::cout;
 using std::endl;
 using std::string;
 using std::cin;
+
 
 
 int main()
@@ -123,24 +125,25 @@ int main()
     
   }
 
-
-
   sf::Clock clock;
   float dt = 0;
   string terminalInput = "";
   // TODO:
   // Allow us to create a server, and be able to quit gracefully
   while (_client == NULL || _client->GetIsDestroyed() == false)
-  {    
+  {        
     dt = clock.GetElapsedTime();
+    ammo::Profiler::NextFrame(dt);
     clock.Reset();
     if (_client)
     {
+      PROFILE_TIMER(client)
       _client->Draw(dt);
       _client->Update(dt);
     }
     if (_server)
     {
+      PROFILE_TIMER(server)
       _server->Update(dt);      
     }
   }
@@ -161,6 +164,6 @@ int main()
     
   }
 
-  system("PAUSE");
+  ammo::Profiler::WriteData();
   return EXIT_SUCCESS;
 }

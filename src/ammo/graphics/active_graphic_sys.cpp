@@ -5,6 +5,8 @@
 #include "graphic.hpp"
 #include "graphic_impl.hpp"
 
+#include "ammo/util/profiler.hpp"
+
 #include <SFML/Graphics/Image.hpp>
 #include <limits>
 
@@ -127,8 +129,10 @@ namespace // anonymous
 
 void ActiveGraphicSys::draw( sf::RenderWindow& app )
 {
+  PROFILE_TIMER(active_graphics_draw)
    if( m_needs_resort )
    {
+     PROFILE_TIMER(active_graphics_resort)
       m_graphics.sort( ZSort() );
    }
    std::for_each( m_graphics.begin(), m_graphics.end(), CallDraw(app) );

@@ -4,6 +4,7 @@
 #include "ammo/graphics.hpp"
 #include "ammo/audio.hpp"
 #include "ammo/physics.hpp"
+#include "ammo/util/profiler.hpp"
 
 #include "RakNetTypes.h"
 #include "MessageIdentifiers.h"
@@ -63,6 +64,7 @@ namespace ammo
     // Grab all packets, handing them to the gamestate
     for (packet = _peer->Receive(); packet != NULL; _peer->DeallocatePacket(packet), packet = _peer->Receive())
     {      
+      PROFILE_TIMER(server_packetPump)
       std::cout << "SERVER: Packet Received from: "<< packet->systemAddress.ToString() << std::endl;
       switch (packet->data[0])
       {
@@ -110,18 +112,22 @@ namespace ammo
     // Update all our child objects
     if (_gameState)
     {
+      PROFILE_TIMER(server_gamestate)
       _gameState->Update(deltaTime);
     }
     if (_graphics)
     {
+      PROFILE_TIMER(server_graphics)
       _graphics->update(deltaTime);
     }
     if (_sound)
     {
+      PROFILE_TIMER(server_sound)
       _sound->update(deltaTime);
     }
     if (_physic)
     {
+      PROFILE_TIMER(server_physic)
       _physic->Update(deltaTime);
     }
   }

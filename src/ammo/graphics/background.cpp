@@ -1,6 +1,7 @@
 #include "ammo/graphics/background.hpp"
 
 #include "ammo/graphics/view.hpp"
+#include "ammo/util/profiler.hpp"
 
 namespace ammo
 {
@@ -14,13 +15,14 @@ namespace ammo
     sf::Vector2<float>(app->GetWidth()* .5f, app->GetHeight()*.5f));
     // Load our star sprite
     _starImage.LoadFromFile("data/star.png");
-    _starSprite.SetImage(_starImage);
+    
     // Initialize our oldPos vector
     _oldPos = b2Vec2(0.f,0.f);
     
     // Initialize our stars
     for (int i = 0; i<Max_Stars; i++)
     {
+      _stars[i]._sprite.SetImage(_starImage);
       // Stars sit in a square 100 px around our screen
       _stars[i]._location.x = sf::Randomizer::Random(-100.f, app->GetWidth() + 100.f);
       _stars[i]._location.y = sf::Randomizer::Random(-100.f, app->GetHeight() + 100.f);
@@ -31,6 +33,7 @@ namespace ammo
       // add some color to these stars
       _stars[i]._hue = sf::Color::White;
       _stars[i]._hue.a *= _stars[i].scale;
+      _stars[i]._sprite.SetColor(_stars[i]._hue);
     }
   }
 
@@ -56,20 +59,23 @@ namespace ammo
         _stars[i]._location.y += 800.f;
       if (_stars[i]._location.y > 700.f)
         _stars[i]._location.y -= 800.f;
+      _stars[i]._sprite.SetPosition( _stars[i]._location.x, _stars[i]._location.y);
     }
   }
 
   void Background::Draw()
   {    
+    PROFILE_TIMER(background_draw)
     // Use our view
     _app->SetView(*(_view));
 
     // Draw our stars
     for (int i = 0; i < Max_Stars; i++)
-    {
-      _starSprite.SetPosition(_stars[i]._location.x, _stars[i]._location.y);
-      _starSprite.SetColor(_stars[i]._hue);
-      _app->Draw(_starSprite);
+    {      
+
+      //_starSprite.SetPosition(_stars[i]._location.x, _stars[i]._location.y);
+      //_starSprite.SetColor(_stars[i]._hue);
+      _app->Draw(_stars[i]._sprite);
     }   
   }
 }
