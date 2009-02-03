@@ -22,19 +22,19 @@ namespace ammo
   private:    
     sf::View* _view;
     sf::RenderWindow* _app;
-    sf::Image _starImage;
-    sf::Sprite _starSprite;
+	sf::Image _backImage;
+	sf::Sprite _backSprite;
+
     b2Vec2 _oldPos;
     struct Star
     {
       b2Vec2 _location;
       sf::Color _hue;
       float scale;
-      sf::Sprite _sprite;
     };
     enum
     {
-      Max_Stars = 100,
+      Max_Stars = 500,
       Speed_Scale = 10
     };
 
