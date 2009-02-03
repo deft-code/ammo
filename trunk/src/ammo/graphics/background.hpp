@@ -30,10 +30,11 @@ namespace ammo
       b2Vec2 _location;
       sf::Color _hue;
       float scale;
+      sf::Sprite _sprite;
     };
     enum
     {
-      Max_Stars = 500,
+      Max_Stars = 100,
       Speed_Scale = 10
     };
 
