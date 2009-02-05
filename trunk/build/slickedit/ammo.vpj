@@ -121,6 +121,7 @@
 			<F N="../../src/ammo/game/gamestateproxy.hpp"/>
 			<F N="../../src/ammo/game/server.cpp"/>
 			<F N="../../src/ammo/game/server.hpp"/>
+			<F N="../../src/ammo/game/gameobject.cpp"/>
 		</Folder>
 		<Folder Name="../../src/ammo/game/gameobjects">
 			<F N="../../src/ammo/game/gameobjects/gameobjectlist.hpp"/>
@@ -132,6 +133,8 @@
 		<Folder Name="../../src/ammo/graphics">
 			<F N="../../src/ammo/graphics/active_graphic_sys.cpp"/>
 			<F N="../../src/ammo/graphics/active_graphic_sys.hpp"/>
+			<F N="../../src/ammo/graphics/background.cpp"/>
+			<F N="../../src/ammo/graphics/background.hpp"/>
 			<F N="../../src/ammo/graphics/graphic.cpp"/>
 			<F N="../../src/ammo/graphics/graphic.hpp"/>
 			<F N="../../src/ammo/graphics/graphic_def.fwd.hpp"/>
@@ -139,6 +142,7 @@
 			<F N="../../src/ammo/graphics/graphic_impl.fwd.hpp"/>
 			<F N="../../src/ammo/graphics/graphic_impl.hpp"/>
 			<F N="../../src/ammo/graphics/graphic_sys.hpp"/>
+			<F N="../../src/ammo/graphics/icameratarget.hpp"/>
 			<F N="../../src/ammo/graphics/passive_graphic_sys.cpp"/>
 			<F N="../../src/ammo/graphics/passive_graphic_sys.hpp"/>
 			<F N="../../src/ammo/graphics/simple_animation.cpp"/>
@@ -147,7 +151,18 @@
 			<F N="../../src/ammo/graphics/sprite.hpp"/>
 			<F N="../../src/ammo/graphics/view.cpp"/>
 			<F N="../../src/ammo/graphics/view.hpp"/>
-			<F N="../../src/ammo/graphics/icameratarget.hpp"/>
+		</Folder>
+		<Folder Name="../../src/ammo/input">
+			<F N="../../src/ammo/input/input.cpp"/>
+			<F N="../../src/ammo/input/input.hpp"/>
+			<F N="../../src/ammo/input/input_action.cpp"/>
+			<F N="../../src/ammo/input/input_action.hpp"/>
+			<F N="../../src/ammo/input/input_impl.cpp"/>
+			<F N="../../src/ammo/input/input_impl.hpp"/>
+			<F N="../../src/ammo/input/input_sys.cpp"/>
+			<F N="../../src/ammo/input/input_sys.hpp"/>
+			<F N="../../src/ammo/input/single_key_boolean.cpp"/>
+			<F N="../../src/ammo/input/single_key_boolean.hpp"/>
 		</Folder>
 		<Folder Name="../../src/ammo/network">
 			<F N="../../src/ammo/network/connectionfactory.cpp"/>
@@ -173,6 +188,10 @@
 			<F N="../../src/ammo/physics/polygon.hpp"/>
 			<F N="../../src/ammo/physics/single_body_impl.cpp"/>
 			<F N="../../src/ammo/physics/single_body_impl.hpp"/>
+		</Folder>
+		<Folder Name="../../src/ammo/util">
+			<F N="../../src/ammo/util/profiler.cpp"/>
+			<F N="../../src/ammo/util/profiler.hpp"/>
 		</Folder>
 	</Files>
 </Project>

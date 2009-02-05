@@ -69,7 +69,7 @@ int main()
 	anim_def.addFrame( 0.1f, "data/noise4.png" );
 
 	graphics.AddBluePrint("noise",anim_def);
-	graphics.AddBluePrint("ball",ammo::SpriteDef("data/ball.png") );
+	graphics.AddBluePrint("ball",ammo::SpriteDef("data/yinyang.png") );
 	graphics.AddBluePrint("background",ammo::SpriteDef("data/background.jpg"));
 	graphics.AddBluePrint("left_paddle",ammo::SpriteDef("data/blue_paddle.png"));
 	graphics.AddBluePrint("right_paddle",ammo::SpriteDef("data/red_paddle.png"));

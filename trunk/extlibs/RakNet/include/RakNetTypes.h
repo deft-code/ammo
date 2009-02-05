@@ -229,7 +229,7 @@ struct Packet
 
 const RakNetGUID UNASSIGNED_RAKNET_GUID = 
 {
-	0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF
+	{0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF}
 };
 
 ///  Index of an unassigned player

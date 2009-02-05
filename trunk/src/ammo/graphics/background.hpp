@@ -1,17 +1,12 @@
 #ifndef BACKGROUND_HPP
 #define BACKGROUND_HPP
 
-
-
 #include <SFML/Graphics.hpp>
 #include "Box2D.h"
-
 
 namespace ammo
 {
   class View;
-
-
 
   class Background
   {
