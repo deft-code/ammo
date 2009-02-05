@@ -26,7 +26,7 @@ namespace ammo
     _connFactory = new ReplicaObjectConstructorFactory(_parent->GetGameState());
     // The replica manager is responsible for handling replica packets
     _repMngr = new RakNet::ReplicaManager2();
-    _repMngr->SetDefaultPacketReliability(PacketReliability::UNRELIABLE_SEQUENCED);
+    _repMngr->SetDefaultPacketReliability(UNRELIABLE_SEQUENCED);
     // Manages network ids of objects we create
     _netIDMngr = new NetworkIDManager();
 

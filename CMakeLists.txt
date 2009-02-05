@@ -4,11 +4,12 @@ cmake_minimum_required(VERSION 2.6)
 
 Project( AMMO )
 
-include_directories( src/
+include_directories(
+	src/
 	../box2d/Include
 	../cegui/include
 	../cegui/RendererModules/OpenGLGUIRenderer
-	../raknet/install/include/raknet
+	extlibs/RakNet/include
 	extlibs/SFML/include )
 
 link_directories(
