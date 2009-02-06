@@ -25,6 +25,8 @@ namespace // anonymous
 		virtual void SetSize( const b2Vec2& size ) {	}
 		virtual float GetZOrder( void ) const { return 0.f; }
 		virtual void SetZOrder( float z ) {	}
+		virtual bool Meta_N( const std::string& meta, double& n ) { return false; }
+		virtual bool Meta_VP( const std::string& meta, b2Vec2& v, void* p ) { return false; }
    };
 
    void do_nothing( ammo::GraphicImpl* unused ) { }

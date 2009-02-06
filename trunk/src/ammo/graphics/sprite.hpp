@@ -41,6 +41,9 @@ namespace ammo
 		virtual float GetZOrder( void ) const;
 		virtual void SetZOrder( float z );
 
+		virtual bool Meta_N( const std::string& meta, double& n );
+		virtual bool Meta_VP( const std::string& meta, b2Vec2& v, void* p );
+
    private:
       sf::Sprite m_sprite;
       Image_ptr m_image;

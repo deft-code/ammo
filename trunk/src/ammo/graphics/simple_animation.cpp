@@ -159,6 +159,9 @@ namespace ammo
 		m_z_order = z;
 	}
 
+   bool SimpleAnimationImpl::Meta_N( const std::string& meta, double& n ) { return false; }
+   bool SimpleAnimationImpl::Meta_VP( const std::string& meta, b2Vec2& v, void* p ) { return false; }
+
    //
    // --- SimpleAnimationDef ---
    //
