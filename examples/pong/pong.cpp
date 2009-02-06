@@ -8,26 +8,56 @@
 
 ammo::SampleObject dummy;
 
+b2Vec2 ball_half(1.f,1.f);
+b2Vec2 paddle_half( 1.f, 4.f );
+b2Vec2 world_half( 40.f, 30.f );
+
+void physic_load( ammo::ActivePhysicSys& sim )
+{
+	ammo::Circle c;
+	c.circle_blueprint.radius = ball_half.x;
+	c.circle_blueprint.density = 1.f;
+	c.circle_blueprint.friction = 1.f;
+	c.circle_blueprint.restitution = 1.f;
+	c.body_blueprint.position = b2Vec2_zero;
+	sim.AddBluePrint("ball", c);
+
+	ammo::Polygon p;
+	p.polygon_blueprint.SetAsBox( world_half.x, 1.f );
+	p.polygon_blueprint.density = 0.f;
+	p.polygon_blueprint.friction  = 1.f;
+	p.polygon_blueprint.restitution = 1.f;
+	sim.AddBluePrint("long_wall", p );
+
+	p.polygon_blueprint.SetAsBox( paddle_half.x, paddle_half.y );
+	p.polygon_blueprint.density = 0.f;
+	p.polygon_blueprint.friction  = 1.f;
+	p.polygon_blueprint.restitution = 1.f;
+	sim.AddBluePrint("paddle", p );
+
+}
+
 int main()
 {
-	ammo::PassivePhysicSys sim;
+	ammo::PassivePhysicSys psim;
+	ammo::ActivePhysicSys sim;
+
+	physic_load( sim );
 	// Defines PI
 	const float PI = std::atan(1.0) * 4.0;
 
-	ammo::Physic left_shape = sim.GetPhysic("asdf",dummy);
-	ammo::Physic right_shape = sim.GetPhysic("asdf",dummy);
-	ammo::Physic ball_shape = sim.GetPhysic("asdf",dummy);
+	ammo::Physic top_shape = sim.GetPhysic("long_wall",dummy);
+	top_shape.SetPosition( b2Vec2(0.f, world_half.y ) );
 
-	b2Vec2 world_half( 40.f, 30.f );
+	ammo::Physic bottom_shape = sim.GetPhysic("long_wall",dummy);
+	top_shape.SetPosition( b2Vec2(0.f, -world_half.y ) );
 
-	b2Vec2 paddle_half( 1.f, 4.f );
-	b2Vec2 right_pos( world_half.x - 3*paddle_half.x, 0.f );
+	ammo::Physic ball_shape = sim.GetPhysic("ball",dummy);
+	ammo::Physic left_shape = sim.GetPhysic("paddle",dummy);
+	ammo::Physic right_shape = sim.GetPhysic("paddle",dummy);
+
+	left_shape.SetPosition(	b2Vec2( -world_half.x + 3*paddle_half.x, 0.f ) );
 	right_shape.SetPosition( b2Vec2( world_half.x - 3*paddle_half.x, 0.f ) );
-	b2Vec2 left_pos( -world_half.x + 3*paddle_half.x, 0.f );
-	left_shape.SetPosition( b2Vec2( -world_half.x + 3*paddle_half.x, 0.f ) );
-
-	b2Vec2 ball_half( 1.f, 1.f );
-	b2Vec2 ball_pos = b2Vec2_zero;
 
 	float speed = 30.f;
 	float ai_speed = speed;
@@ -136,15 +166,17 @@ int main()
 
 		if ( IsPlaying )
 		{
+			sim.Update( App.GetFrameTime() );
+
 			// Player logic
-			if ( App.GetInput().IsKeyDown(sf::Key::Up)   && (left_pos.y + paddle_half.y < world_half.y) )
+			if ( App.GetInput().IsKeyDown(sf::Key::Up)   && (left_shape.GetPosition().y + paddle_half.y < world_half.y) )
 			{	
-				left_pos += b2Vec2(0.f, speed * App.GetFrameTime());
+				left_shape.SetPosition( left_shape.GetPosition() + b2Vec2( 0.f, speed * App.GetFrameTime()) );
 			}
 	
-			if ( App.GetInput().IsKeyDown(sf::Key::Down) && (left_pos.y - paddle_half.y > -world_half.y) )
+			if ( App.GetInput().IsKeyDown(sf::Key::Down) && (left_shape.GetPosition().y - paddle_half.y > -world_half.y) )
 			{	
-				left_pos += b2Vec2(0.f, -speed * App.GetFrameTime());
+				left_shape.SetPosition( left_shape.GetPosition() + b2Vec2( 0.f, -speed * App.GetFrameTime()) );
 			}
 
 			if( App.GetInput().IsKeyDown(sf::Key::Left) )
@@ -158,25 +190,24 @@ int main()
 			}
 	
 			// AI logic
-			right_pos += b2Vec2( 0.f, ai_speed * App.GetFrameTime() );
+			right_shape.SetPosition( right_shape.GetPosition() + b2Vec2(0.f, ai_speed * App.GetFrameTime()) );
 
 			// Update the computer's paddle direction according to the ball position
 			if( AITimer.GetElapsedTime() > AITime )
 			{
 				AITimer.Reset();
 				// paddle moving down and bottom of ball above top of paddle
-				if( (ai_speed < 0) && ((ball_pos.y - ball_half.y) > (right_pos.y + paddle_half.y)) )
+				if( (ai_speed < 0) && ((ball_shape.GetPosition().y - ball_half.y) > (right_shape.GetPosition().y + paddle_half.y)) )
 					{ ai_speed = speed * 0.5f; }
 
 				// paddle moving up and top of ball below bottom of paddle
-				if( (ai_speed > 0) && ((ball_pos.y + ball_half.y) < (right_pos.y - paddle_half.y)) )
+				if( (ai_speed > 0) && ((ball_shape.GetPosition().y + ball_half.y) < (right_shape.GetPosition().y - paddle_half.y)) )
 					{ ai_speed = -speed * 0.5f; }
 			}
 
-			right_pos += b2Vec2( 0, ai_speed * App.GetFrameTime() );
+			right_shape.SetPosition( right_shape.GetPosition() + b2Vec2( 0.f, ai_speed * App.GetFrameTime()) );
 
-			// Move the ball
-			ball_pos += App.GetFrameTime() * ball_vel;
+			b2Vec2 ball_pos = ball_shape.GetPosition();
 
 			// Check collisions between the ball and the sides of the screen
 			if( ball_pos.x - ball_half.x < -world_half.x )
@@ -192,47 +223,12 @@ int main()
 				score.play();
 			}
 
-			// Check collisions between the ball and the top and bottom of the screen
-			if ( ball_pos.y + ball_half.y > world_half.y )
-			{
-				bounce.play();
-				ball_vel.y = -ball_vel.y;
-				ball_pos.y = world_half.y - ball_half.y;
-			}
-			if ( ball_pos.y - ball_half.y < -world_half.y )
-			{
-				bounce.play();
-				ball_vel.y = -ball_vel.y;
-				ball_pos.y = -world_half.y + ball_half.y;
-			}
-
-			// Check the collisions between the ball and the paddles
-			// Left Paddle
-			if ( ball_pos.x - ball_half.x < left_pos.x + paddle_half.x && 
-				  ball_pos.x + ball_half.x > left_pos.x - paddle_half.x &&
-				  ball_pos.y + ball_half.y > left_pos.y - paddle_half.y &&
-				  ball_pos.y - ball_half.y < left_pos.y + paddle_half.y )
-			{
-				bounce.play();
-				ball_vel.x = -ball_vel.x;
-				ball_pos.x = left_pos.x + paddle_half.x + ball_half.x;
-			}
-
-			// Right Paddle
-			if ( ball_pos.x - ball_half.x < right_pos.x + paddle_half.x && 
-				  ball_pos.x + ball_half.x > right_pos.x - paddle_half.x &&
-				  ball_pos.y + ball_half.y > right_pos.y - paddle_half.y &&
-				  ball_pos.y - ball_half.y < right_pos.y + paddle_half.y )
-			{
-				bounce.play();
-				ball_vel.x = -ball_vel.x;
-				ball_pos.x = right_pos.x - paddle_half.x - ball_half.x;
-			}
-			
-			left.SetPosition( left_pos );
-			right.SetPosition( right_pos );
-			ball.SetPosition( ball_pos );
-			ball2.SetPosition( ball_pos + ball_half );
+			left.SetPosition( left_shape.GetPosition() );
+			left.SetRotationRadians( left_shape.GetTheta() );
+			right.SetPosition( right_shape.GetPosition() );
+			right.SetRotationRadians( right_shape.GetTheta() );
+			ball.SetPosition( ball_shape.GetPosition() );
+			ball.SetRotationRadians( ball_shape.GetTheta() );
 
 			// this looks pretty distubing but it shows how easy ammo::View makes it to 
 			// have the screen track a given point.

@@ -112,6 +112,7 @@
 			<F N="../../src/ammo/game/client.cpp"/>
 			<F N="../../src/ammo/game/client.hpp"/>
 			<F N="../../src/ammo/game/game.hpp"/>
+			<F N="../../src/ammo/game/gameobject.cpp"/>
 			<F N="../../src/ammo/game/gameobject.hpp"/>
 			<F N="../../src/ammo/game/gamestate.cpp"/>
 			<F N="../../src/ammo/game/gamestate.hpp"/>
@@ -121,7 +122,6 @@
 			<F N="../../src/ammo/game/gamestateproxy.hpp"/>
 			<F N="../../src/ammo/game/server.cpp"/>
 			<F N="../../src/ammo/game/server.hpp"/>
-			<F N="../../src/ammo/game/gameobject.cpp"/>
 		</Folder>
 		<Folder Name="../../src/ammo/game/gameobjects">
 			<F N="../../src/ammo/game/gameobjects/gameobjectlist.hpp"/>
@@ -190,6 +190,8 @@
 			<F N="../../src/ammo/physics/single_body_impl.hpp"/>
 		</Folder>
 		<Folder Name="../../src/ammo/util">
+			<F N="../../src/ammo/util/GLPrimative.cpp"/>
+			<F N="../../src/ammo/util/GLPrimative.hpp"/>
 			<F N="../../src/ammo/util/profiler.cpp"/>
 			<F N="../../src/ammo/util/profiler.hpp"/>
 		</Folder>

@@ -41,8 +41,9 @@ namespace ammo
 
 		virtual float GetZOrder( void ) const =0;
 		virtual void SetZOrder( float z ) =0;
-		
 
+		virtual bool Meta_N( const std::string& meta, double& n ) =0;
+		virtual bool Meta_VP( const std::string& meta, b2Vec2& v, void* p ) =0;
    };
 }
 
