@@ -188,6 +188,7 @@
 			<F N="../../src/ammo/physics/polygon.hpp"/>
 			<F N="../../src/ammo/physics/single_body_impl.cpp"/>
 			<F N="../../src/ammo/physics/single_body_impl.hpp"/>
+			<F N="../../src/ammo/physics/debug_draw.hpp"/>
 		</Folder>
 		<Folder Name="../../src/ammo/util">
 			<F N="../../src/ammo/util/GLPrimative.cpp"/>

@@ -70,35 +70,8 @@
 		<Folder Name="../../examples/pong">
 			<F N="../../examples/pong/pong.cpp"/>
 		</Folder>
-		<Folder Name="../../src/ammo">
-			<F N="../../src/ammo/physics.hpp"/>
-		</Folder>
-		<Folder Name="../../src/ammo/graphics">
-			<F N="../../src/ammo/graphics/active_graphic_sys.cpp"/>
-			<F N="../../src/ammo/graphics/active_graphic_sys.hpp"/>
-			<F N="../../src/ammo/graphics/graphic.cpp"/>
-			<F N="../../src/ammo/graphics/graphic.hpp"/>
-			<F N="../../src/ammo/graphics/graphic_def.fwd.hpp"/>
-			<F N="../../src/ammo/graphics/graphic_def.hpp"/>
-			<F N="../../src/ammo/graphics/graphic_impl.fwd.hpp"/>
-			<F N="../../src/ammo/graphics/graphic_impl.hpp"/>
-			<F N="../../src/ammo/graphics/graphic_sys.cpp"/>
-			<F N="../../src/ammo/graphics/graphic_sys.hpp"/>
-			<F N="../../src/ammo/graphics/passive_graphic_sys.cpp"/>
-			<F N="../../src/ammo/graphics/passive_graphic_sys.hpp"/>
-			<F N="../../src/ammo/graphics/simple_animation.cpp"/>
-			<F N="../../src/ammo/graphics/simple_animation.hpp"/>
-			<F N="../../src/ammo/graphics/sprite.cpp"/>
-			<F N="../../src/ammo/graphics/sprite.hpp"/>
-			<F N="../../src/ammo/graphics/view.cpp"/>
-			<F N="../../src/ammo/graphics/view.hpp"/>
-		</Folder>
 		<Folder Name="../../src/ammo/physics">
-			<F N="../../src/ammo/physics/circle.cpp"/>
-			<F N="../../src/ammo/physics/circle.hpp"/>
-			<F N="../../src/ammo/physics/passive_physic.hpp"/>
-			<F N="../../src/ammo/physics/single_body_impl.cpp"/>
-			<F N="../../src/ammo/physics/single_body_impl.hpp"/>
+			<F N="../../src/ammo/physics/debug_draw.cpp"/>
 		</Folder>
 	</Files>
 </Project>

@@ -138,7 +138,7 @@ protected:
     /// /see Drawable::Render
     ///
     ////////////////////////////////////////////////////////////
-    virtual void Render( const RenderWindow& Window ) const;
+    virtual void Render( RenderTarget& Window ) const;
 
 private:
 
