@@ -5,6 +5,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include "GLPrimative.hpp"
+#include <SFML/System.hpp> // Needed before gl.h to compile on windows systems.
 #include <SFML/Graphics/Image.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <GL/gl.h>

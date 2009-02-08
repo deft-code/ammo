@@ -5,6 +5,7 @@
 
 #include "ammo/graphics/graphic_impl.fwd.hpp"
 #include <Box2D.h>
+#include <string>
 
 namespace ammo
 {
