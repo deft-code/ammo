@@ -462,6 +462,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\ammo\util\GLPrimative.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ammo\util\profiler.hpp"
 					>
 				</File>
@@ -653,6 +657,10 @@
 			<Filter
 				Name="util"
 				>
+				<File
+					RelativePath="..\..\src\ammo\util\GLPrimative.cpp"
+					>
+				</File>
 				<File
 					RelativePath="..\..\src\ammo\util\profiler.cpp"
 					>
