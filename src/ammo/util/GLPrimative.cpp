@@ -179,7 +179,7 @@ static void do_glBegin( Render::Mode Mode )
 ////////////////////////////////////////////////////////////
 /// /see Drawable::Render
 ////////////////////////////////////////////////////////////
-void GLPrimative::Render( const RenderWindow& Window ) const
+void GLPrimative::Render( RenderTarget& Window ) const
 {
    if (!myIsCompiled)
       Compile();
