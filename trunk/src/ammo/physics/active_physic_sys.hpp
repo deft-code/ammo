@@ -3,6 +3,7 @@
 
 #include "ammo/physics/physic_sys.hpp"
 #include "ammo/physics/physic_blue_print.hpp"
+#include "ammo/physics/debug_draw_cb.hpp"
 
 #include <Box2D.h>
 
@@ -25,6 +26,9 @@ namespace ammo
 		
 		virtual void Update(float dt);
 
+		void EnableDebugDraw( GraphicSys& graphic_sys, float z_order = 0.f );
+		void DisableDebugDraw( void );
+
 	private:
 		virtual void add_bp_ptr( const std::string& name, const PhysicBluePrint_ptr& bp );
 
@@ -45,6 +49,9 @@ namespace ammo
 		float m_step_time;
 		long m_pos_iterations;
 		long m_vel_iterations;
+		unsigned _generation;
+
+		DebugDrawCB _draw_cb;
 	};
 }
 

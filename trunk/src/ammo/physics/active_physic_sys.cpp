@@ -2,6 +2,7 @@
 #include "physic_impl.hpp"
 #include "../error.hpp"
 #include "ammo/game/gameobject.hpp"
+#include "debug_draw.hpp"
 
 namespace ammo
 {
@@ -13,7 +14,8 @@ namespace ammo
 		m_max_time(1.f),
 		m_step_time(0.05f), // 20 frames per second
 		m_pos_iterations(10),
-		m_vel_iterations(10)
+		m_vel_iterations(10),
+		_generation(0)
 	{ }
 
 	bool ActivePhysicSys::IsPhysic(const std::string& name) const
@@ -44,7 +46,23 @@ namespace ammo
 		{
 			m_world.Step(m_step_time,m_pos_iterations, m_vel_iterations);
 			m_total_time -= m_step_time;
+			++_generation;
 		}
+	}
+
+	void ActivePhysicSys::EnableDebugDraw( GraphicSys& graphic_sys, float z_order )
+	{
+		graphic_sys.RemoveBluePrint("debug_draw");
+		DebugDrawSchema draw_schema(_generation);
+		graphic_sys.AddBluePrint("debug_draw", draw_schema );
+		_draw_cb.SetGraphicSys(graphic_sys);
+		_draw_cb.SetFlags( b2DebugDraw::e_aabbBit | b2DebugDraw::e_shapeBit );
+		_draw_cb.SetZOrder( z_order );
+	}
+	
+	void ActivePhysicSys::DisableDebugDraw( void  )
+	{
+		_draw_cb.SetFlags( 0 );
 	}
 	
 	void ActivePhysicSys::add_bp_ptr( const std::string& name, const PhysicBluePrint_ptr& bp )

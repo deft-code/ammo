@@ -123,7 +123,7 @@ namespace ammo
 		m_z_order = z;
 	}
 
-	bool SpriteImpl::Meta_N( int meta, double& n ) { return false; }
+	bool SpriteImpl::Meta_N( int meta, double& n) { return false; }
 
 	bool SpriteImpl::Meta_VP( int meta, b2Vec2& v, void* p )	{ return false; }
 
