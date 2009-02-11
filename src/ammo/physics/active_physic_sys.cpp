@@ -58,11 +58,13 @@ namespace ammo
 		_draw_cb.SetGraphicSys(graphic_sys);
 		_draw_cb.SetFlags( b2DebugDraw::e_aabbBit | b2DebugDraw::e_shapeBit );
 		_draw_cb.SetZOrder( z_order );
+		m_world.SetDebugDraw( &_draw_cb );
 	}
 	
 	void ActivePhysicSys::DisableDebugDraw( void  )
 	{
 		_draw_cb.SetFlags( 0 );
+		m_world.SetDebugDraw( NULL );
 	}
 	
 	void ActivePhysicSys::add_bp_ptr( const std::string& name, const PhysicBluePrint_ptr& bp )

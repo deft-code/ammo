@@ -50,7 +50,7 @@ int main()
 	top_shape.SetPosition( b2Vec2(0.f, world_half.y ) );
 
 	ammo::Physic bottom_shape = sim.GetPhysic("long_wall",dummy);
-	top_shape.SetPosition( b2Vec2(0.f, -world_half.y ) );
+	bottom_shape.SetPosition( b2Vec2(0.f, -world_half.y ) );
 
 	ammo::Physic ball_shape = sim.GetPhysic("ball",dummy);
 	ammo::Physic left_shape = sim.GetPhysic("paddle",dummy);
@@ -91,6 +91,8 @@ int main()
 
 	ammo::ActiveGraphicSys graphics;
 	ammo::PassiveGraphicSys unused_graphics;
+
+	sim.EnableDebugDraw(graphics,100.f);
 
 	ammo::SimpleAnimationDef anim_def;
 	anim_def.addFrame( 0.1f, "data/noise1.png" );
