@@ -39,13 +39,14 @@ namespace ammo
 		DebugDrawImpl( const unsigned& physics_generation );
 
 		virtual bool done(void) const;
+		virtual void hide(void);
+		virtual void show(void);
 		virtual bool Meta_N(int meta, double& n);
 		virtual bool Meta_VP(int meta, b2Vec2& v, void* p);
 
 		virtual void draw(sf::RenderWindow& render);
+		virtual void update(float dt);
 
-		virtual void hide(void) { }
-		virtual void show(void)	{ }
 		virtual b2Vec2 GetPosition(void) const	{ return b2Vec2_zero; }
 		virtual sf::Blend::Mode GetRenderMode(void) const { return (sf::Blend::Mode)0; }
 		virtual float GetRotationDegrees(void) const	{ return 0; }
@@ -60,11 +61,11 @@ namespace ammo
 
 		virtual void storeImage(std::size_t index, Image_ptr image)	{ }
 
-		virtual void update(float dt)	{ }
 		
 	private:
 		const unsigned& _physics_generation;
 		unsigned _initial_generation;
+		bool _visible;
 
 		sf::GLPrimative _primative;
 	};
