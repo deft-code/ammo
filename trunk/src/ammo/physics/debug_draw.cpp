@@ -20,7 +20,7 @@ namespace ammo
 	// --- Debug Draw Impl ---
 	//
 
-	inline const sf::Color convert( const b2Color& color, sf::Uint8 alpha=255 )
+	inline const sf::Color convert( const b2Color& color, sf::Uint8 alpha=196 )
 	{
 		return sf::Color( roundf( 255.f * color.r),
 								roundf( 255.f * color.g),
@@ -30,11 +30,19 @@ namespace ammo
 
 	DebugDrawImpl::DebugDrawImpl( const unsigned& physics_generation ) :
 		_physics_generation(physics_generation),
-		_initial_generation(physics_generation)
+		_initial_generation(physics_generation),
+		_visible(true)
 	{ }
 
 	bool DebugDrawImpl::done(void) const
-	{ return _initial_generation == _physics_generation; }
+	{ return _initial_generation != _physics_generation; }
+
+	void DebugDrawImpl::show( void )
+	{ _visible = true; }
+
+	void DebugDrawImpl::hide( void )
+	{ _visible = false;	}
+
 
 	bool DebugDrawImpl::Meta_N(int meta, double& n)
 	{
@@ -71,6 +79,17 @@ namespace ammo
 
 	void DebugDrawImpl::draw(sf::RenderWindow& render)
 	{
-		render.Draw(_primative);
+		if( _visible )
+		{
+			render.Draw(_primative);
+		}
+	}
+
+	void DebugDrawImpl::update(float dt)
+	{
+		if( done() )
+		{
+			hide();
+		}
 	}
 }

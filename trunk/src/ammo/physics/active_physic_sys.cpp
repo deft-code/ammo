@@ -44,9 +44,9 @@ namespace ammo
 		m_total_time = std::min(m_total_time,m_max_time);
 		while( m_total_time > m_step_time )
 		{
+			++_generation;
 			m_world.Step(m_step_time,m_pos_iterations, m_vel_iterations);
 			m_total_time -= m_step_time;
-			++_generation;
 		}
 	}
 
