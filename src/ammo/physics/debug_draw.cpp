@@ -20,6 +20,14 @@ namespace ammo
 	// --- Debug Draw Impl ---
 	//
 
+	inline const sf::Color convert( const b2Color& color, sf::Uint8 alpha=255 )
+	{
+		return sf::Color( roundf( 255.f * color.r),
+								roundf( 255.f * color.g),
+								roundf( 255.f * color.b),
+								alpha );
+	}
+
 	DebugDrawImpl::DebugDrawImpl( const unsigned& physics_generation ) :
 		_physics_generation(physics_generation),
 		_initial_generation(physics_generation)
@@ -51,8 +59,8 @@ namespace ammo
 		{
 			case DebugDraw::Add_Vertex:
 				{
-					const sf::Color* color = reinterpret_cast<const sf::Color*>(p);
-					_primative.AddVertex( v.x, v.y, *color );
+					const b2Color* color = reinterpret_cast<const b2Color*>(p);
+					_primative.AddVertex( v.x, -v.y, convert(*color) );
 					return true;
 				}
 

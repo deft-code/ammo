@@ -42,7 +42,7 @@ namespace ammo
 		virtual float GetZOrder( void ) const;
 		virtual void SetZOrder( float z );
 
-		virtual bool Meta_N( int meta, double& n );
+		virtual bool Meta_N( int meta, double& n);
 		virtual bool Meta_VP( int meta, b2Vec2& v, void* p );
 
    private:

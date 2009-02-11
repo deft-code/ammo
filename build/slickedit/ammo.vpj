@@ -175,6 +175,10 @@
 			<F N="../../src/ammo/physics/active_physic_sys.hpp"/>
 			<F N="../../src/ammo/physics/circle.cpp"/>
 			<F N="../../src/ammo/physics/circle.hpp"/>
+			<F N="../../src/ammo/physics/debug_draw.cpp"/>
+			<F N="../../src/ammo/physics/debug_draw.hpp"/>
+			<F N="../../src/ammo/physics/debug_draw_cb.cpp"/>
+			<F N="../../src/ammo/physics/debug_draw_cb.hpp"/>
 			<F N="../../src/ammo/physics/passive_physic_sys.cpp"/>
 			<F N="../../src/ammo/physics/passive_physic_sys.hpp"/>
 			<F N="../../src/ammo/physics/physic.cpp"/>
@@ -188,7 +192,6 @@
 			<F N="../../src/ammo/physics/polygon.hpp"/>
 			<F N="../../src/ammo/physics/single_body_impl.cpp"/>
 			<F N="../../src/ammo/physics/single_body_impl.hpp"/>
-			<F N="../../src/ammo/physics/debug_draw.hpp"/>
 		</Folder>
 		<Folder Name="../../src/ammo/util">
 			<F N="../../src/ammo/util/GLPrimative.cpp"/>
