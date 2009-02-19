@@ -19,7 +19,7 @@ namespace ammo
 	void DebugDrawCB::
 	DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)
 	{
-		Graphic prim = _graphic_sys->getGraphic("debug_draw");
+		Graphic prim = _graphic_sys->NewGraphic("debug_draw");
 		prim.SetZOrder( _z_order );
 		prim.Meta_N( DebugDraw::Set_Render_Mode, sf::Render::Line_Loop );
 
@@ -32,11 +32,11 @@ namespace ammo
 	void DebugDrawCB::
 	DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)
 	{
-		Graphic prim = _graphic_sys->getGraphic("debug_draw");
+		Graphic prim = _graphic_sys->NewGraphic("debug_draw");
 		prim.SetZOrder( _z_order );
 		prim.Meta_N( DebugDraw::Set_Render_Mode, sf::Render::Polygon );
 
-		Graphic outline = _graphic_sys->getGraphic("debug_draw");
+		Graphic outline = _graphic_sys->NewGraphic("debug_draw");
 		prim.SetZOrder( _z_order + 0.1f );
 		outline.Meta_N( DebugDraw::Set_Render_Mode, sf::Render::Line_Loop );
 
@@ -53,7 +53,7 @@ namespace ammo
 	void DebugDrawCB::
 	DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color)
 	{
-		Graphic prim = _graphic_sys->getGraphic("debug_draw");
+		Graphic prim = _graphic_sys->NewGraphic("debug_draw");
 		prim.SetZOrder( _z_order );
 		prim.Meta_N( DebugDraw::Set_Render_Mode, sf::Render::Line_Loop );
 
@@ -68,11 +68,11 @@ namespace ammo
 	void DebugDrawCB::
 	DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color)
 	{
-		Graphic prim = _graphic_sys->getGraphic("debug_draw");
+		Graphic prim = _graphic_sys->NewGraphic("debug_draw");
 		prim.SetZOrder( _z_order );
 		prim.Meta_N( DebugDraw::Set_Render_Mode, sf::Render::Polygon );
 
-		Graphic outline = _graphic_sys->getGraphic("debug_draw");
+		Graphic outline = _graphic_sys->NewGraphic("debug_draw");
 		prim.SetZOrder( _z_order + 0.1f );
 		outline.Meta_N( DebugDraw::Set_Render_Mode, sf::Render::Line_Strip );
 
@@ -97,7 +97,7 @@ namespace ammo
 	void DebugDrawCB::
 	DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color)
 	{
-		Graphic prim = _graphic_sys->getGraphic("debug_draw");
+		Graphic prim = _graphic_sys->NewGraphic("debug_draw");
 		prim.SetZOrder( _z_order );
 		prim.Meta_N( DebugDraw::Set_Render_Mode, sf::Render::Lines );
 		prim.Meta_VP( DebugDraw::Add_Vertex, p1, &color );
@@ -112,7 +112,7 @@ namespace ammo
 		const float32 k_axisScale = 0.4f;
 		b2Color color( 1.f, 0.f, 0.f );
 
-		Graphic prim = _graphic_sys->getGraphic("debug_draw");
+		Graphic prim = _graphic_sys->NewGraphic("debug_draw");
 		prim.SetZOrder( _z_order );
 		prim.Meta_N( DebugDraw::Set_Render_Mode, sf::Render::Lines );
 

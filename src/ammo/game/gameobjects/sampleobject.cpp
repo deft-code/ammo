@@ -48,7 +48,7 @@ namespace ammo
 
     void SampleObject::OnRegisterComplete()
     {
-      _sprite = _parent->GetGraphicSys()->getGraphic("player");
+      _sprite = _parent->GetGraphicSys()->NewGraphic("player");
       _sprite.SetPosition(b2Vec2(0, 0));
       _sprite.SetSize(b2Vec2(2.56f, .98f));
       _sprite.SetZOrder(1000.0f);

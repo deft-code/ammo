@@ -20,7 +20,7 @@ namespace ammo
 	// --- Debug Draw Impl ---
 	//
 
-	inline const sf::Color convert( const b2Color& color, sf::Uint8 alpha=196 )
+	inline const sf::Color convert( const b2Color& color, sf::Uint8 alpha=255 )
 	{
 		return sf::Color( roundf( 255.f * color.r),
 								roundf( 255.f * color.g),

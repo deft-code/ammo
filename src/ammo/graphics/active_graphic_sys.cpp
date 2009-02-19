@@ -17,19 +17,19 @@ ActiveGraphicSys::ActiveGraphicSys( void )
  : m_needs_resort(false)
 { }
 
-void ActiveGraphicSys::RemoveBluePrint( const std::string& name )
+void ActiveGraphicSys::RemoveSchema( const std::string& name )
 {
    m_definitions.erase(name);
 }
 
-bool ActiveGraphicSys::isGraphic( std::string const& name ) const
+bool ActiveGraphicSys::IsGraphic( std::string const& name ) const
 {
    GraphicDefs::const_iterator found = m_definitions.find(name);
 
    return found != m_definitions.end();
 }
 
-Graphic ActiveGraphicSys::getGraphic( std::string const& name )
+Graphic ActiveGraphicSys::NewGraphic( std::string const& name )
 {
    GraphicDef_ptr def = getDef( name );
 
@@ -76,12 +76,12 @@ namespace // anonymous
    };
 } // anonymous namespace
 
-void ActiveGraphicSys::update( float dt )
+void ActiveGraphicSys::Update( float dt )
 {
    std::for_each( m_graphics.begin(), m_graphics.end(), CallUpdate(dt, m_needs_resort) );
 }
 
-void ActiveGraphicSys::addDef( const std::string& name, GraphicDef_ptr def )
+void ActiveGraphicSys::NewSchema( const std::string& name, GraphicDef_ptr def )
 {
    bool success = m_definitions.insert( std::make_pair(name,def) ).second;
 
@@ -127,18 +127,18 @@ namespace // anonymous
    };
 } // anonymous namespace
 
-void ActiveGraphicSys::draw( sf::RenderWindow& app )
+void ActiveGraphicSys::Draw( sf::RenderWindow& app )
 {
-  PROFILE_TIMER(active_graphics_draw)
-   if( m_needs_resort )
-   {
-     PROFILE_TIMER(active_graphics_resort)
-      m_graphics.sort( ZSort() );
-   }
-   std::for_each( m_graphics.begin(), m_graphics.end(), CallDraw(app) );
+	PROFILE_TIMER(active_graphics_draw)
+	if( m_needs_resort )
+	{
+		PROFILE_TIMER(active_graphics_resort)
+		m_graphics.sort( ZSort() );
+	}
+	std::for_each( m_graphics.begin(), m_graphics.end(), CallDraw(app) );
 }
 
-void ActiveGraphicSys::collectGraphics( void )
+void ActiveGraphicSys::CollectGraphics( void )
 {
    GraphicPimpls::iterator iter = m_graphics.begin();
    GraphicPimpls::iterator end = m_graphics.end();
@@ -156,7 +156,7 @@ void ActiveGraphicSys::collectGraphics( void )
    }
 }
 
-void ActiveGraphicSys::collectVideoMem( void )
+void ActiveGraphicSys::CollectVideoMem( void )
 {
    Images::iterator iter = m_images.begin();
    Images::iterator end = m_images.end();

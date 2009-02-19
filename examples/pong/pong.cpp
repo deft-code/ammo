@@ -100,37 +100,37 @@ int main()
 	anim_def.addFrame( 0.1f, "data/noise3.png" );
 	anim_def.addFrame( 0.1f, "data/noise4.png" );
 
-	graphics.AddBluePrint("noise",anim_def);
-	graphics.AddBluePrint("ball",ammo::SpriteDef("data/yinyang.png") );
-	graphics.AddBluePrint("background",ammo::SpriteDef("data/background.jpg"));
-	graphics.AddBluePrint("left_paddle",ammo::SpriteDef("data/blue_paddle.png"));
-	graphics.AddBluePrint("right_paddle",ammo::SpriteDef("data/red_paddle.png"));
+	graphics.AddSchema("noise",anim_def);
+	graphics.AddSchema("ball",ammo::SpriteDef("data/yinyang.png") );
+	graphics.AddSchema("background",ammo::SpriteDef("data/background.jpg"));
+	graphics.AddSchema("left_paddle",ammo::SpriteDef("data/blue_paddle.png"));
+	graphics.AddSchema("right_paddle",ammo::SpriteDef("data/red_paddle.png"));
 
-	ammo::Graphic background = graphics.getGraphic("background");
+	ammo::Graphic background = graphics.NewGraphic("background");
 	background.show();
 	background.SetPosition( b2Vec2_zero );
 	background.SetSize( 2*world_half );
 	background.SetZOrder( -20.f );
 
-	ammo::Graphic ball = graphics.getGraphic("ball");
+	ammo::Graphic ball = graphics.NewGraphic("ball");
 	ball.show();
 	ball.SetSize( 2*ball_half );
 	ball.SetZOrder(10.f);
 
-	ammo::Graphic ball2 = graphics.getGraphic("left_paddle");
+	ammo::Graphic ball2 = graphics.NewGraphic("left_paddle");
 	ball2.show();
 	ball2.SetSize( 2*ball_half );
 	ball2.SetZOrder(-10.f);
 
-	ammo::Graphic left = graphics.getGraphic("left_paddle");
+	ammo::Graphic left = graphics.NewGraphic("left_paddle");
 	left.show();
 	left.SetSize( 2*paddle_half );
 
-	ammo::Graphic right = graphics.getGraphic("right_paddle");
+	ammo::Graphic right = graphics.NewGraphic("right_paddle");
 	right.show();
 	right.SetSize( 2*paddle_half );
 
-	ammo::Graphic noise = graphics.getGraphic("noise");
+	ammo::Graphic noise = graphics.NewGraphic("noise");
 	noise.show();
 	noise.SetPosition( b2Vec2_zero );
 	noise.SetSize( 0.5 * world_half );
@@ -238,12 +238,12 @@ int main()
 		}
 
 		audio.update( App.GetFrameTime() );
-		graphics.update( App.GetFrameTime() );
+		graphics.Update( App.GetFrameTime() );
 
 		// Clear the window
 		App.Clear();
 
-		graphics.draw(App);
+		graphics.Draw(App);
 
 		// If the game is over, display the end message
 		if ( !IsPlaying )
