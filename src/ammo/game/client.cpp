@@ -14,11 +14,11 @@
 namespace ammo 
 {
 
-  Client::Client()
+  Client::Client(sf::RenderWindow* app)
   {
     // Set up our renderwindow
     // TODO: Don't hardcode values here.
-    _app = new sf::RenderWindow(sf::VideoMode(800, 600), "CLIENT TEST");
+    _app = app;
     // Set up our viewport
     // TODO: Don't Hardcode these!
     _view = new ammo::View(*_app);
@@ -33,13 +33,11 @@ namespace ammo
     // TODO: Don't hardcode these!
     _graphics->AddSchema("player", SpriteDef("data/ship256.png"));
 
-
     _sound = new ActiveSoundSys();
     // Add some test sounds
     // TODO: Don't hardcode these
     _sound->AddBluePrint("player", PlainDef("data/ball.wav"));
     
-
     // Create the Physics System
     _physic = new PassivePhysicSys();
     // Create our physics blueprints
@@ -54,10 +52,6 @@ namespace ammo
     
     // Create our input system
     _input = new InputSys();
-    
-
-    
-    _isDestroyed = false;
   }
 
   Client::~Client()
@@ -73,39 +67,18 @@ namespace ammo
   void Client::Draw(float deltaTime)
   {    
     PROFILE_TIMER(client_draw)
-    _app->Clear();
     if (_graphics)
     {
       _background->Draw();
       _view->update_view();
       _graphics->Draw(*_app);
     }
-
-    _app->Display();
-  }
-
-  bool Client::GetIsDestroyed()
-  {
-    return _isDestroyed;
   }
 
   // deltaTime - the change in time (in seconds) since the last
   // frame.
   void Client::Update(float deltaTime)
   {
-    
-    // Pump our application messages
-    while (_app->GetEvent(myEvent))
-    {
-      PROFILE_TIMER(client_msgPump)
-      if (myEvent.Type == sf::Event::Closed)
-      {
-        // We'll eventually want to close our whole application
-        _app->Close();
-        _isDestroyed = true;
-        return;
-      }
-    }
     // Our main update loop for the server
     Packet* packet;
     // Grab all packets, handing them to the gamestate

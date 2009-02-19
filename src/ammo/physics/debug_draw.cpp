@@ -22,9 +22,10 @@ namespace ammo
 
 	inline const sf::Color convert( const b2Color& color, sf::Uint8 alpha=255 )
 	{
-		return sf::Color( roundf( 255.f * color.r),
-								roundf( 255.f * color.g),
-								roundf( 255.f * color.b),
+    
+		return sf::Color( floor( (255.f * color.r) + .5f ),
+								floor( (255.f * color.g) + .5f ),
+								floor( (255.f * color.b) + .5f ),
 								alpha );
 	}
 
@@ -51,7 +52,7 @@ namespace ammo
 		switch( meta_enum )
 		{
 			case DebugDraw::Set_Render_Mode:
-				_primative.SetRenderMode( (sf::Render::Mode) n );
+				_primative.SetRenderMode( (sf::Render::Mode)((int)n) );
 				return true;
 
 			default:

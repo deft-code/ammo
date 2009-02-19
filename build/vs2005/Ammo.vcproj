@@ -39,8 +39,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\src\;..\..\extlibs\Boost\include;..\..\extlibs\SFML\include;..\..\extlibs\Box2D\include;..\..\extlibs\RakNet\include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;"
+				AdditionalIncludeDirectories="..\..\extlibs\CEGUI\include;..\..\extlibs\Boost\include;..\..\src;..\..\extlibs\SFML\include;..\..\extlibs\Box2D\include;..\..\extlibs\RakNet\include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;CEGUI_STATIC;"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -60,12 +60,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="RakNetDLLDebug.lib box2d_d.lib sfml-audio-s-d.lib sfml-graphics-s-d.lib sfml-window-s-d.lib sfml-system-s-d.lib"
+				AdditionalDependencies="glu32.lib SILLY_d.lib expat_d.lib CEGUIFalagardWRBase_Static_d.lib CEGUIBase_Static_d.lib OpenGLGUIRenderer_Static_d.lib CEGUISILLYImageCodec_Static_d.lib CEGUIExpatParser_Static_d.lib pcre_d.lib RakNetDLLDebug.lib box2d_d.lib sfml-audio-s-d.lib sfml-graphics-s-d.lib sfml-window-s-d.lib sfml-system-s-d.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\extlibs\SFML\lib\vc2005;..\..\extlibs\RakNet\lib\vs2005;..\..\extlibs\Box2D\lib\vs2005"
+				AdditionalLibraryDirectories="..\..\extlibs\CEGUI\lib\vs2005;..\..\extlibs\SFML\lib\vc2005;..\..\extlibs\RakNet\lib\vs2005;..\..\extlibs\Box2D\lib\vs2005"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"
 				SubSystem="1"
+				EnableCOMDATFolding="0"
 				TargetMachine="1"
 				CLRThreadAttribute="0"
 			/>
@@ -93,7 +94,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\vs2005\RakNetDebug.dll $(OutDir)&#x0D;&#x0A;MKDIR $(OutDir)\data\&#x0D;&#x0A;Copy ..\..\data\ $(OutDir)\data\&#x0D;&#x0A;"
+				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\CEGUI\lib\vs2005\SILLY_d.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\vs2005\RakNetDebug.dll $(OutDir)&#x0D;&#x0A;MKDIR $(OutDir)\data\&#x0D;&#x0A;MKDIR $(OutDir)\data\gui\&#x0D;&#x0A;Copy ..\..\data\ $(OutDir)\data\&#x0D;&#x0A;Copy ..\..\data\gui\ $(OutDir)\data\gui\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -119,8 +120,8 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\..\extlibs\Boost\include;..\..\src;..\..\extlibs\SFML\include;..\..\extlibs\Box2D\include;..\..\extlibs\RakNet\include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;"
+				AdditionalIncludeDirectories="..\..\extlibs\CEGUI\include;..\..\extlibs\Boost\include;..\..\src;..\..\extlibs\SFML\include;..\..\extlibs\Box2D\include;..\..\extlibs\RakNet\include"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;CEGUI_STATIC;"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -138,9 +139,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="RakNetDLL.lib box2d.lib sfml-audio-s.lib sfml-graphics-s.lib sfml-window-s.lib sfml-system-s.lib"
+				AdditionalDependencies="glu32.lib SILLY.lib expat.lib CEGUIFalagardWRBase_Static.lib CEGUIBase_Static.lib OpenGLGUIRenderer_Static.lib CEGUISILLYImageCodec_Static.lib CEGUIExpatParser_Static.lib pcre.lib RakNetDLL.lib box2d.lib sfml-audio-s.lib sfml-graphics-s.lib sfml-window-s.lib sfml-system-s.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\extlibs\SFML\lib\vc2005;..\..\extlibs\RakNet\lib\vs2005;..\..\extlibs\Box2D\lib\vs2005"
+				AdditionalLibraryDirectories="..\..\extlibs\CEGUI\lib\vs2005;..\..\extlibs\SFML\lib\vc2005;..\..\extlibs\RakNet\lib\vs2005;..\..\extlibs\Box2D\lib\vs2005"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
@@ -170,7 +171,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\vs2005\RakNetDebug.dll $(OutDir)&#x0D;&#x0A;MKDIR $(OutDir)\data\&#x0D;&#x0A;Copy ..\..\data\ $(OutDir)\data\&#x0D;&#x0A;"
+				CommandLine="Copy ..\..\extlibs\SFML\lib\*.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\CEGUI\lib\vs2005\SILLY_d.dll $(OutDir)&#x0D;&#x0A;Copy ..\..\extlibs\RakNet\lib\vs2005\RakNetDebug.dll $(OutDir)&#x0D;&#x0A;MKDIR $(OutDir)\data\&#x0D;&#x0A;MKDIR $(OutDir)\data\gui\&#x0D;&#x0A;Copy ..\..\data\ $(OutDir)\data\&#x0D;&#x0A;Copy ..\..\data\gui\ $(OutDir)\data\gui\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -326,6 +327,10 @@
 				Name="game"
 				>
 				<File
+					RelativePath="..\..\src\ammo\game\application.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ammo\game\client.hpp"
 					>
 				</File>
@@ -391,6 +396,14 @@
 				</File>
 				<File
 					RelativePath="..\..\src\ammo\physics\circle.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\debug_draw.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\debug_draw_cb.hpp"
 					>
 				</File>
 				<File
@@ -467,6 +480,14 @@
 				</File>
 				<File
 					RelativePath="..\..\src\ammo\util\profiler.hpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="gui"
+				>
+				<File
+					RelativePath="..\..\src\ammo\gui\gui_manager.hpp"
 					>
 				</File>
 			</Filter>
@@ -566,6 +587,10 @@
 				Name="game"
 				>
 				<File
+					RelativePath="..\..\src\ammo\game\application.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ammo\game\client.cpp"
 					>
 				</File>
@@ -611,6 +636,14 @@
 				</File>
 				<File
 					RelativePath="..\..\src\ammo\physics\circle.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\debug_draw.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ammo\physics\debug_draw_cb.cpp"
 					>
 				</File>
 				<File
@@ -663,6 +696,14 @@
 				</File>
 				<File
 					RelativePath="..\..\src\ammo\util\profiler.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="gui"
+				>
+				<File
+					RelativePath="..\..\src\ammo\gui\gui_manager.cpp"
 					>
 				</File>
 			</Filter>

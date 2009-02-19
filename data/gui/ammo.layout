@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+    <Window Type="DefaultWindow" Name="Root" >
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Window Type="WindowsLook/FrameWindow" Name="root/main" >
+            <Property Name="TitlebarFont" Value="Commonwealth-10" />
+            <Property Name="SizingEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="TitlebarEnabled" Value="False" />
+            <Property Name="UnifiedAreaRect" Value="{{0.276563,0},{0.189584,0},{0.80625,0},{0.697917,0}}" />
+            <Property Name="DragMovingEnabled" Value="False" />
+            <Property Name="CloseButtonEnabled" Value="False" />
+            <Window Type="WindowsLook/Button" Name="root/main/btnjoin" >
+                <Property Name="Text" Value="Join Game" />
+                <Property Name="Tooltip" Value="Joins an already existing game." />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.299705,0},{0.297541,0},{0.685398,0},{0.457377,0}}" />
+            </Window>
+            <Window Type="WindowsLook/Button" Name="root/main/btnhost" >
+                <Property Name="Text" Value="Host Game" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.30826,0},{0.512295,0},{0.679204,0},{0.67623,0}}" />
+            </Window>
+        </Window>
+        <Window Type="WindowsLook/FrameWindow" Name="root/winserver" >
+            <Property Name="TitlebarFont" Value="Commonwealth-10" />
+            <Property Name="SizingEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="TitlebarEnabled" Value="False" />
+            <Property Name="UnifiedAreaRect" Value="{{0.404687,0},{0.316667,0},{0.696874,0},{0.566667,0}}" />
+            <Property Name="DragMovingEnabled" Value="False" />
+            <Property Name="CloseButtonEnabled" Value="False" />
+            <Window Type="WindowsLook/Editbox" Name="root/winserver/inport" >
+                <Property Name="Text" Value="31337" />
+                <Property Name="MaxTextLength" Value="1073741823" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.639567,0},{0.0833335,0},{0.971755,0},{0.275,0}}" />
+            </Window>
+            <Window Type="WindowsLook/StaticText" Name="root/winserver/txtport" >
+                <Property Name="Text" Value="Port (1024-65535):" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.0277507,0},{0.0750003,0},{0.597112,0},{0.266667,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="WindowsLook/Editbox" Name="root/winserver/inmaxplayers" >
+                <Property Name="Text" Value="32" />
+                <Property Name="MaxTextLength" Value="1073741823" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.653352,0},{0.308333,0},{0.966347,0},{0.516667,0}}" />
+            </Window>
+            <Window Type="WindowsLook/StaticText" Name="root/winserver/txtmaxplayers" >
+                <Property Name="Text" Value="Max Players (1-64):" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.0400002,0},{0.316667,0},{0.583604,0},{0.5,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="WindowsLook/Button" Name="root/winserver/btnhost" >
+                <Property Name="Text" Value="Host Game" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.517647,0},{0.641667,0},{0.938771,0},{0.891666,0}}" />
+            </Window>
+            <Window Type="WindowsLook/Button" Name="root/winserver/btncancel" >
+                <Property Name="Text" Value="Cancel" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.04893,0},{0.65,0},{0.470054,0},{0.9,0}}" />
+            </Window>
+        </Window>
+        <Window Type="WindowsLook/FrameWindow" Name="root/winjoin" >
+            <Property Name="TitlebarFont" Value="Commonwealth-10" />
+            <Property Name="SizingEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="TitlebarEnabled" Value="False" />
+            <Property Name="UnifiedAreaRect" Value="{{0.406249,0},{0.320834,0},{0.698437,0},{0.570834,0}}" />
+            <Property Name="DragMovingEnabled" Value="False" />
+            <Property Name="CloseButtonEnabled" Value="False" />
+            <Window Type="WindowsLook/Editbox" Name="root/winjoin/inip" >
+                <Property Name="Text" Value="31337" />
+                <Property Name="MaxTextLength" Value="1073741823" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.38823,0},{0.083333,0},{0.971755,0},{0.275,0}}" />
+            </Window>
+            <Window Type="WindowsLook/StaticText" Name="root/winjoin/txtip" >
+                <Property Name="Text" Value="Server IP:" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.027751,0},{0.075,0},{0.367166,0},{0.266667,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="WindowsLook/Editbox" Name="root/winjoin/inport" >
+                <Property Name="Text" Value="32" />
+                <Property Name="MaxTextLength" Value="1073741823" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.653352,0},{0.308333,0},{0.966347,0},{0.516666,0}}" />
+            </Window>
+            <Window Type="WindowsLook/StaticText" Name="root/winjoin/txtport" >
+                <Property Name="Text" Value="Port (1024-65535):" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.031016,0},{0.325001,0},{0.612568,0},{0.500001,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="WindowsLook/Button" Name="root/winjoin/btnjoin" >
+                <Property Name="Text" Value="Join Game" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.517647,0},{0.641667,0},{0.938771,0},{0.891667,0}}" />
+            </Window>
+            <Window Type="WindowsLook/Button" Name="root/winjoin/btncancel" >
+                <Property Name="Text" Value="Cancel" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.04893,0},{0.65,0},{0.470054,0},{0.9,0}}" />
+            </Window>
+        </Window>
+    </Window>
+</GUILayout>

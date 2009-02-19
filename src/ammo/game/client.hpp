@@ -5,19 +5,18 @@
 #include "SFML/Graphics.hpp"
 #include "ammo/graphics.hpp"
 #include "ammo/graphics/background.hpp"
+#include "ammo/gui/gui_manager.hpp"
 
 namespace ammo
 {
   class Client : public Game
   {
   public:
-    Client();
+    Client(sf::RenderWindow* app);
     ~Client();
     
     void Draw(float deltaTime);
     void Update(float deltaTime);
-    // Whether the user has attempted to close this client
-    bool GetIsDestroyed();
     // Connects this client to a server. 
     // returns true if the attempt to connect is successful, not if the
     // actual connection occurs.
@@ -26,7 +25,6 @@ namespace ammo
   private:
     sf::RenderWindow* _app;
     sf::Event myEvent;    
-    bool _isDestroyed;
     ammo::View* _view;
     ammo::Background* _background;
   };
