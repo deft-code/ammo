@@ -52,9 +52,9 @@ namespace ammo
 
 	void ActivePhysicSys::EnableDebugDraw( GraphicSys& graphic_sys, float z_order )
 	{
-		graphic_sys.RemoveBluePrint("debug_draw");
+		graphic_sys.RemoveSchema("debug_draw");
 		DebugDrawSchema draw_schema(_generation);
-		graphic_sys.AddBluePrint("debug_draw", draw_schema );
+		graphic_sys.AddSchema("debug_draw", draw_schema );
 		_draw_cb.SetGraphicSys(graphic_sys);
 		_draw_cb.SetFlags( b2DebugDraw::e_aabbBit | b2DebugDraw::e_shapeBit );
 		_draw_cb.SetZOrder( z_order );

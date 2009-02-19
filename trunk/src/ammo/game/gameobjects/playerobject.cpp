@@ -121,7 +121,7 @@ namespace ammo
   void PlayerObject::OnRegisterComplete()
   {
     // Get our sprite
-    _sprite = _parent->GetGraphicSys()->getGraphic("player");
+    _sprite = _parent->GetGraphicSys()->NewGraphic("player");
     _sprite.SetSize(b2Vec2(2.56f,.98f));        
     
     _sprite.show();

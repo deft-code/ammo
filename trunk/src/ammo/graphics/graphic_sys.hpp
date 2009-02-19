@@ -19,29 +19,29 @@ namespace ammo
    public:
 		virtual ~GraphicSys() { }
 
-      template< typename Def >
-      void AddBluePrint( const std::string& name, const Def& def );
+      template< typename Schema >
+      void AddSchema( const std::string& name, const Schema& schema );
 
-      virtual void RemoveBluePrint( const std::string& name ) =0;
+      virtual void RemoveSchema( const std::string& name ) =0;
 
-      virtual bool isGraphic( const std::string& name ) const =0;
-      virtual Graphic getGraphic( const std::string& name ) =0;
+      virtual bool IsGraphic( const std::string& name ) const =0;
+      virtual Graphic NewGraphic( const std::string& name ) =0;
 
-      virtual void collectGraphics( void ) =0;
-		virtual void collectVideoMem( void ) =0;
+      virtual void CollectGraphics( void ) =0;
+		virtual void CollectVideoMem( void ) =0;
 
-      virtual void update( float dt ) =0;
-      virtual void draw( sf::RenderWindow& app ) =0;
+      virtual void Update( float dt ) =0;
+      virtual void Draw( sf::RenderWindow& app ) =0;
 
    private:
-      virtual void addDef( const std::string& name, GraphicDef_ptr def ) =0;
+      virtual void NewSchema( const std::string& name, GraphicDef_ptr def ) =0;
    };
 
-   template< typename BluePrint >
-   void GraphicSys::AddBluePrint( const std::string& name, const BluePrint& bp )
+   template< typename Schema >
+   void GraphicSys::AddSchema( const std::string& name, const Schema& schema )
    {
-      GraphicDef_ptr ptr (new BluePrint(bp) );
-      addDef( name, ptr );
+      GraphicDef_ptr ptr (new Schema(schema) );
+      NewSchema( name, ptr );
    }
 }
 

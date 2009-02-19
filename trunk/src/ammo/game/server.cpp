@@ -118,7 +118,7 @@ namespace ammo
     if (_graphics)
     {
       PROFILE_TIMER(server_graphics)
-      _graphics->update(deltaTime);
+      _graphics->Update(deltaTime);
     }
     if (_sound)
     {

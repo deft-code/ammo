@@ -13,22 +13,22 @@ namespace ammo
 
 PassiveGraphicSys::~PassiveGraphicSys( void ) { }
 
-void PassiveGraphicSys::RemoveBluePrint( const std::string& name ) { }
+void PassiveGraphicSys::RemoveSchema( const std::string& name ) { }
 
-bool PassiveGraphicSys::isGraphic( std::string const& name ) const
+bool PassiveGraphicSys::IsGraphic( std::string const& name ) const
 { return true; }
 
-Graphic PassiveGraphicSys::getGraphic( std::string const& name )
+Graphic PassiveGraphicSys::NewGraphic( std::string const& name )
 { return Graphic(); }
 
-void PassiveGraphicSys::collectGraphics( void ) { }
+void PassiveGraphicSys::CollectGraphics( void ) { }
 
-void PassiveGraphicSys::collectVideoMem( void ) { }
+void PassiveGraphicSys::CollectVideoMem( void ) { }
 
-void PassiveGraphicSys::update( float dt ) { }
+void PassiveGraphicSys::Update( float dt ) { }
 
-void PassiveGraphicSys::draw( sf::RenderWindow& app ) { }
+void PassiveGraphicSys::Draw( sf::RenderWindow& app ) { }
 
-void PassiveGraphicSys::addDef( const std::string& name, GraphicDef_ptr def ) { }
+void PassiveGraphicSys::NewSchema( const std::string& name, GraphicDef_ptr def ) { }
 
 } // namespace ammo

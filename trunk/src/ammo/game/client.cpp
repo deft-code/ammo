@@ -31,7 +31,7 @@ namespace ammo
     _graphics = new ActiveGraphicSys();
     // Register our graphics with the client:
     // TODO: Don't hardcode these!
-    _graphics->AddBluePrint("player", SpriteDef("data/ship256.png"));
+    _graphics->AddSchema("player", SpriteDef("data/ship256.png"));
 
 
     _sound = new ActiveSoundSys();
@@ -78,7 +78,7 @@ namespace ammo
     {
       _background->Draw();
       _view->update_view();
-      _graphics->draw(*_app);
+      _graphics->Draw(*_app);
     }
 
     _app->Display();
@@ -134,7 +134,7 @@ namespace ammo
     if (_graphics)
     {
       PROFILE_TIMER(client_graphics)
-      _graphics->update(deltaTime);
+      _graphics->Update(deltaTime);
     }
     if (_sound)
     {
