@@ -167,7 +167,7 @@ namespace ammo
    //
 
    SimpleAnimationDef::SimpleAnimationDef( void )
-    : GraphicDef(),
+    : GraphicSchema(),
       m_lifetime( std::numeric_limits<float>::infinity() )
    { }
 

@@ -26,7 +26,7 @@ namespace ammo
       virtual void Draw( sf::RenderWindow& app );
 
    private:
-      virtual void NewSchema( const std::string& name, GraphicDef_ptr def );
+      virtual void NewSchema( const std::string& name, GraphicSchema_ptr schema );
    };
 }
 

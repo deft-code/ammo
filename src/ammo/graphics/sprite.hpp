@@ -54,7 +54,7 @@ namespace ammo
       float m_lifetime;
    };
 
-   class SpriteDef : public GraphicDef
+   class SpriteDef : public GraphicSchema
    {
    public:
       SpriteDef( void );

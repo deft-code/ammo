@@ -16,7 +16,7 @@ namespace ammo
 		};
 	}
 
-	class DebugDrawSchema : public GraphicDef
+	class DebugDrawSchema : public GraphicSchema
 	{
 	public:
 		DebugDrawSchema( unsigned& physics_generation );
