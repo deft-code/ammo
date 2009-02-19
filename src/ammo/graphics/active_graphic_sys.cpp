@@ -29,23 +29,27 @@ bool ActiveGraphicSys::IsGraphic( std::string const& name ) const
    return found != m_definitions.end();
 }
 
-Graphic ActiveGraphicSys::NewGraphic( std::string const& name )
+Graphic ActiveGraphicSys::NewGraphic( const std::string& name )
 {
-   GraphicSchema_ptr def = getDef( name );
+   GraphicSchema_ptr schema = getDef( name );
+	return NewGraphic( *schema );
+}
 
-   std::size_t num_images = def->numFiles();
-   GraphicPimpl sound = def->load();
+Graphic ActiveGraphicSys::NewGraphic( const GraphicSchema& schema )
+{
+   std::size_t num_images = schema.numFiles();
+   GraphicPimpl graphic = schema.Instantiate();
 
    for( std::size_t i=0; i<num_images; ++i )
    {
-      const std::string& filename = def->filename(i);
+      const std::string& filename = schema.filename(i);
       Image_ptr buffer = loadImage(filename);
-      sound->storeImage(i,buffer);
+      graphic->storeImage(i,buffer);
    }
 
-   m_graphics.push_back( sound );
+   m_graphics.push_back( graphic );
 
-   return Graphic( sound );
+   return Graphic( graphic );
 }
 
 namespace // anonymous

@@ -12,7 +12,7 @@ namespace ammo
    public:
       virtual ~GraphicSchema( void ) { }
 
-      virtual GraphicPimpl load( void ) const =0;
+      virtual GraphicPimpl Instantiate( void ) const =0;
       virtual std::size_t numFiles( void ) const =0;
       virtual const std::string& filename( std::size_t index ) const =0;
    };

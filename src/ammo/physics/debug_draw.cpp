@@ -1,18 +1,20 @@
 #include "debug_draw.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <cstdarg>
 
 namespace ammo
 {
 	//
 	// --- Debug Draw Schema ---
 	//
-	DebugDrawSchema::DebugDrawSchema( unsigned& physics_generation ) :
+	DebugDrawSchema::DebugDrawSchema( sf::Render::Mode mode, const unsigned& physics_generation ) :
+		_mode(mode),
 		_physics_generation(physics_generation)
 	{ }
 
-	GraphicPimpl DebugDrawSchema::load( void ) const
+	GraphicPimpl DebugDrawSchema::Instantiate( void ) const
 	{
-		GraphicPimpl ptr( new DebugDrawImpl(_physics_generation) );
+		GraphicPimpl ptr( new DebugDrawImpl(_mode, z_order, _physics_generation) );
 		return ptr;
 	}
 
@@ -29,10 +31,12 @@ namespace ammo
 								alpha );
 	}
 
-	DebugDrawImpl::DebugDrawImpl( const unsigned& physics_generation ) :
+	DebugDrawImpl::DebugDrawImpl( sf::Render::Mode mode, float z_order, const unsigned& physics_generation ) :
 		_physics_generation(physics_generation),
 		_initial_generation(physics_generation),
-		_visible(true)
+		_visible(true),
+		_z_order(z_order),
+		_primative( mode )
 	{ }
 
 	bool DebugDrawImpl::done(void) const
@@ -44,38 +48,26 @@ namespace ammo
 	void DebugDrawImpl::hide( void )
 	{ _visible = false;	}
 
+	float DebugDrawImpl::GetZOrder( void ) const
+	{ return _z_order; }
 
-	bool DebugDrawImpl::Meta_N(int meta, double& n)
+	void DebugDrawImpl::SetZOrder( float z_order )
+	{ _z_order = z_order; }
+
+	bool DebugDrawImpl::Meta(int meta, ... )
 	{
-		DebugDraw::Meta meta_enum = (DebugDraw::Meta)meta;
+		if( meta != DebugDraw::Add_Vertex ) return false;
 
-		switch( meta_enum )
-		{
-			case DebugDraw::Set_Render_Mode:
-				_primative.SetRenderMode( (sf::Render::Mode)((int)n) );
-				return true;
+		va_list va;
+		va_start(va,meta);
 
-			default:
-				return false;
-		}
-	}
+		b2Vec2* v = va_arg(va,b2Vec2*);
+		b2Color* c = va_arg(va,b2Color*);
+		_primative.AddVertex( v->x, -v->y, convert(*c) );
 
-	bool DebugDrawImpl::Meta_VP(int meta, b2Vec2& v, void* p)
-	{
-		DebugDraw::Meta meta_enum = (DebugDraw::Meta)meta;
+		va_end(va);
 
-		switch( meta_enum )
-		{
-			case DebugDraw::Add_Vertex:
-				{
-					const b2Color* color = reinterpret_cast<const b2Color*>(p);
-					_primative.AddVertex( v.x, -v.y, convert(*color) );
-					return true;
-				}
-
-			default:
-				return false;
-		}
+		return true;
 	}
 
 	void DebugDrawImpl::draw(sf::RenderWindow& render)

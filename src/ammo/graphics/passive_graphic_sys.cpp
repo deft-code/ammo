@@ -18,7 +18,10 @@ void PassiveGraphicSys::RemoveSchema( const std::string& name ) { }
 bool PassiveGraphicSys::IsGraphic( std::string const& name ) const
 { return true; }
 
-Graphic PassiveGraphicSys::NewGraphic( std::string const& name )
+Graphic PassiveGraphicSys::NewGraphic( const std::string& name )
+{ return Graphic(); }
+
+Graphic PassiveGraphicSys::NewGraphic( const GraphicSchema& schema )
 { return Graphic(); }
 
 void PassiveGraphicSys::CollectGraphics( void ) { }

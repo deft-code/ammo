@@ -101,10 +101,10 @@ int main()
 	anim_def.addFrame( 0.1f, "data/noise4.png" );
 
 	graphics.AddSchema("noise",anim_def);
-	graphics.AddSchema("ball",ammo::SpriteDef("data/yinyang.png") );
-	graphics.AddSchema("background",ammo::SpriteDef("data/background.jpg"));
-	graphics.AddSchema("left_paddle",ammo::SpriteDef("data/blue_paddle.png"));
-	graphics.AddSchema("right_paddle",ammo::SpriteDef("data/red_paddle.png"));
+	graphics.AddSchema("ball",ammo::SpriteSchema("data/yinyang.png") );
+	graphics.AddSchema("background",ammo::SpriteSchema("data/background.jpg"));
+	graphics.AddSchema("left_paddle",ammo::SpriteSchema("data/blue_paddle.png"));
+	graphics.AddSchema("right_paddle",ammo::SpriteSchema("data/red_paddle.png"));
 
 	ammo::Graphic background = graphics.NewGraphic("background");
 	background.show();

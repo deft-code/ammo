@@ -31,7 +31,7 @@ namespace ammo
     _graphics = new ActiveGraphicSys();
     // Register our graphics with the client:
     // TODO: Don't hardcode these!
-    _graphics->AddSchema("player", SpriteDef("data/ship256.png"));
+    _graphics->AddSchema("player", SpriteSchema("data/ship256.png"));
 
     _sound = new ActiveSoundSys();
     // Add some test sounds

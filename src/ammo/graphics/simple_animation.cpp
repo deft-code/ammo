@@ -161,6 +161,7 @@ namespace ammo
 
    bool SimpleAnimationImpl::Meta_N( int meta, double& n) { return false; }
    bool SimpleAnimationImpl::Meta_VP( int meta, b2Vec2& v, void* p ) { return false; }
+   bool SimpleAnimationImpl::Meta( int meta, ... ) { return false; }
 
    //
    // --- SimpleAnimationDef ---
@@ -182,7 +183,7 @@ namespace ammo
       return m_filenames.size();
    }
 
-   GraphicPimpl SimpleAnimationDef::load( void ) const
+   GraphicPimpl SimpleAnimationDef::Instantiate( void ) const
    {
       return GraphicPimpl( new SimpleAnimationImpl( m_lifetime, m_times ) );
    }

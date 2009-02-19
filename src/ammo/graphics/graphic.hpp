@@ -39,9 +39,7 @@ namespace ammo
 		float GetZOrder( void ) const;
 		void SetZOrder( float z );
 
-		bool Meta_N( unsigned meta, double n );
-		bool Meta_VP( unsigned meta, b2Vec2 v, const void* p );
-
+		GraphicImpl& Impl( void );
    private:
       GraphicPimpl m_pimpl;
    };

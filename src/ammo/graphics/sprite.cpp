@@ -127,32 +127,34 @@ namespace ammo
 
 	bool SpriteImpl::Meta_VP( int meta, b2Vec2& v, void* p )	{ return false; }
 
+	bool SpriteImpl::Meta( int meta, ... ) { return false; }
+
    //
    // --- SpriteDef ---
    //
 
-   SpriteDef::SpriteDef( void )
+   SpriteSchema::SpriteSchema( void )
     : GraphicSchema(),
       m_lifetime( std::numeric_limits<float>::infinity() )
    { }
 
-   SpriteDef::SpriteDef( const std::string& filename )
+   SpriteSchema::SpriteSchema( const std::string& filename )
     : GraphicSchema(),
       m_filename(filename),
       m_lifetime( std::numeric_limits<float>::infinity() )
    { }
 
-   const std::string& SpriteDef::filename( std::size_t index ) const
+   const std::string& SpriteSchema::filename( std::size_t index ) const
    {
       return m_filename;
    }
 
-   std::size_t SpriteDef::numFiles( void ) const
+   std::size_t SpriteSchema::numFiles( void ) const
    {
       return 1;
    }
 
-   GraphicPimpl SpriteDef::load( void ) const
+   GraphicPimpl SpriteSchema::Instantiate( void ) const
    {
       return GraphicPimpl( new SpriteImpl( m_lifetime ) );
    }

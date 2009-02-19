@@ -43,6 +43,7 @@ namespace ammo
 
 		virtual bool Meta_N( int meta, double& n );
 		virtual bool Meta_VP( int meta, b2Vec2& v, void* p );
+		virtual bool Meta( int meta, ... );
 
    private:
       sf::Sprite m_sprite;
@@ -54,17 +55,17 @@ namespace ammo
       float m_lifetime;
    };
 
-   class SpriteDef : public GraphicSchema
+   class SpriteSchema : public GraphicSchema
    {
    public:
-      SpriteDef( void );
-      SpriteDef( const std::string& filename );
-      virtual ~SpriteDef( void ) { }
+      SpriteSchema( void );
+      SpriteSchema( const std::string& filename );
+      virtual ~SpriteSchema( void ) { }
 
       virtual const std::string& filename(std::size_t index) const;
       virtual std::size_t numFiles(void) const;
 
-      virtual GraphicPimpl load(void) const;
+      virtual GraphicPimpl Instantiate(void) const;
 
       std::string m_filename;
       float m_lifetime;
