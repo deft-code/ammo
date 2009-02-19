@@ -30,9 +30,9 @@ namespace ammo
       virtual void Draw( sf::RenderWindow& app );
 
    private:
-      virtual void NewSchema( const std::string& name, GraphicDef_ptr def );
+      virtual void NewSchema( const std::string& name, GraphicSchema_ptr schema );
 
-      GraphicDef_ptr getDef( const std::string& name ) const;
+      GraphicSchema_ptr getDef( const std::string& name ) const;
 
       Image_ptr loadImage( const std::string& filename );
 
@@ -41,7 +41,7 @@ namespace ammo
       typedef std::list<GraphicPimpl> GraphicPimpls;
       GraphicPimpls m_graphics;
 
-      typedef std::map<std::string,GraphicDef_ptr> GraphicDefs;
+      typedef std::map<std::string,GraphicSchema_ptr> GraphicDefs;
       GraphicDefs m_definitions;
 
       typedef std::map<std::string,Image_ptr> Images;

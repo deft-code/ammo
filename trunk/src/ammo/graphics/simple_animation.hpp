@@ -60,7 +60,7 @@ namespace ammo
       float m_lifetime;
    };
 
-   class SimpleAnimationDef : public GraphicDef
+   class SimpleAnimationDef : public GraphicSchema
    {
    public:
       SimpleAnimationDef( void );

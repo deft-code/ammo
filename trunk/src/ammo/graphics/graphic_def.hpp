@@ -7,10 +7,10 @@
 
 namespace ammo
 {
-   class GraphicDef
+   class GraphicSchema
    {
    public:
-      virtual ~GraphicDef( void ) { }
+      virtual ~GraphicSchema( void ) { }
 
       virtual GraphicPimpl load( void ) const =0;
       virtual std::size_t numFiles( void ) const =0;

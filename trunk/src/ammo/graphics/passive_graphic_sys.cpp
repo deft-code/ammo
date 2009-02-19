@@ -29,6 +29,6 @@ void PassiveGraphicSys::Update( float dt ) { }
 
 void PassiveGraphicSys::Draw( sf::RenderWindow& app ) { }
 
-void PassiveGraphicSys::NewSchema( const std::string& name, GraphicDef_ptr def ) { }
+void PassiveGraphicSys::NewSchema( const std::string& name, GraphicSchema_ptr schema ) { }
 
 } // namespace ammo

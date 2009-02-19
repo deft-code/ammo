@@ -31,7 +31,7 @@ bool ActiveGraphicSys::IsGraphic( std::string const& name ) const
 
 Graphic ActiveGraphicSys::NewGraphic( std::string const& name )
 {
-   GraphicDef_ptr def = getDef( name );
+   GraphicSchema_ptr def = getDef( name );
 
    std::size_t num_images = def->numFiles();
    GraphicPimpl sound = def->load();
@@ -81,9 +81,9 @@ void ActiveGraphicSys::Update( float dt )
    std::for_each( m_graphics.begin(), m_graphics.end(), CallUpdate(dt, m_needs_resort) );
 }
 
-void ActiveGraphicSys::NewSchema( const std::string& name, GraphicDef_ptr def )
+void ActiveGraphicSys::NewSchema( const std::string& name, GraphicSchema_ptr schema )
 {
-   bool success = m_definitions.insert( std::make_pair(name,def) ).second;
+   bool success = m_definitions.insert( std::make_pair(name,schema) ).second;
 
    if( ! success )
    {
@@ -91,7 +91,7 @@ void ActiveGraphicSys::NewSchema( const std::string& name, GraphicDef_ptr def )
    }
 }
 
-GraphicDef_ptr ActiveGraphicSys::getDef( const std::string& name ) const
+GraphicSchema_ptr ActiveGraphicSys::getDef( const std::string& name ) const
 {
    GraphicDefs::const_iterator found = m_definitions.find(name);
 

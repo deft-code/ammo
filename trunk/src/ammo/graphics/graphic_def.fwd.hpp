@@ -5,8 +5,8 @@
 
 namespace ammo
 {
-   class GraphicDef;
-   typedef boost::shared_ptr<GraphicDef> GraphicDef_ptr;
+   class GraphicSchema;
+   typedef boost::shared_ptr<GraphicSchema> GraphicSchema_ptr;
 }
 
 #endif // AMMO_GRAPHICS_GRAPHIC_DEF_FWD_HPP_INCLUDED

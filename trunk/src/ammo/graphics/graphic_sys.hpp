@@ -34,13 +34,13 @@ namespace ammo
       virtual void Draw( sf::RenderWindow& app ) =0;
 
    private:
-      virtual void NewSchema( const std::string& name, GraphicDef_ptr def ) =0;
+      virtual void NewSchema( const std::string& name, GraphicSchema_ptr def ) =0;
    };
 
    template< typename Schema >
    void GraphicSys::AddSchema( const std::string& name, const Schema& schema )
    {
-      GraphicDef_ptr ptr (new Schema(schema) );
+      GraphicSchema_ptr ptr (new Schema(schema) );
       NewSchema( name, ptr );
    }
 }

@@ -132,12 +132,12 @@ namespace ammo
    //
 
    SpriteDef::SpriteDef( void )
-    : GraphicDef(),
+    : GraphicSchema(),
       m_lifetime( std::numeric_limits<float>::infinity() )
    { }
 
    SpriteDef::SpriteDef( const std::string& filename )
-    : GraphicDef(),
+    : GraphicSchema(),
       m_filename(filename),
       m_lifetime( std::numeric_limits<float>::infinity() )
    { }
