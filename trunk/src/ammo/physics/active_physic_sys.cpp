@@ -15,7 +15,8 @@ namespace ammo
 		m_step_time(0.05f), // 20 frames per second
 		m_pos_iterations(10),
 		m_vel_iterations(10),
-		_generation(0)
+		_generation(0),
+		_draw_cb(_generation)
 	{ }
 
 	bool ActivePhysicSys::IsPhysic(const std::string& name) const
@@ -52,9 +53,6 @@ namespace ammo
 
 	void ActivePhysicSys::EnableDebugDraw( GraphicSys& graphic_sys, float z_order )
 	{
-		graphic_sys.RemoveSchema("debug_draw");
-		DebugDrawSchema draw_schema(_generation);
-		graphic_sys.AddSchema("debug_draw", draw_schema );
 		_draw_cb.SetGraphicSys(graphic_sys);
 		_draw_cb.SetFlags( b2DebugDraw::e_aabbBit | b2DebugDraw::e_shapeBit );
 		_draw_cb.SetZOrder( z_order );

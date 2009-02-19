@@ -44,6 +44,7 @@ namespace ammo
 
 		virtual bool Meta_N( int meta, double& n);
 		virtual bool Meta_VP( int meta, b2Vec2& v, void* p );
+		virtual bool Meta( int meta, ... );
 
    private:
 		void setFrame( std::size_t frame );
@@ -69,7 +70,7 @@ namespace ammo
       virtual const std::string& filename(std::size_t index) const;
       virtual std::size_t numFiles(void) const;
 
-      virtual GraphicPimpl load(void) const;
+      virtual GraphicPimpl Instantiate(void) const;
 
       inline void addFrame( float time, const std::string& filename );
 

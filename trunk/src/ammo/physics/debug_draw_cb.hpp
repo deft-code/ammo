@@ -2,6 +2,7 @@
 #define AMMO_PHYSICS_DEBUG_DRAW_CB_HPP_INCLUDED
 
 #include <Box2D.h>
+#include "ammo/physics/debug_draw.hpp"
 
 namespace ammo
 {
@@ -9,6 +10,8 @@ namespace ammo
 	class DebugDrawCB : public b2DebugDraw
 	{
 	public:
+		DebugDrawCB( const unsigned& physics_generation );
+
 		void SetGraphicSys( GraphicSys& graphic_sys );
 
 		void SetZOrder( float z_order );
@@ -27,7 +30,11 @@ namespace ammo
 
 	private:
 		GraphicSys* _graphic_sys;
-		float _z_order;
+		DebugDrawSchema _polygon;
+		DebugDrawSchema _line_loop;
+		DebugDrawSchema _line_strip;
+		DebugDrawSchema _lines;
+		const b2Color _outline_color;
 	};
 
 }

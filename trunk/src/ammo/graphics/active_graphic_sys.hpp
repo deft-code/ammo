@@ -22,6 +22,7 @@ namespace ammo
 
       virtual bool IsGraphic( const std::string& name ) const;
       virtual Graphic NewGraphic( const std::string& name );
+		virtual Graphic NewGraphic( const GraphicSchema& schema );
 
       virtual void CollectGraphics( void );
       virtual void CollectVideoMem( void );

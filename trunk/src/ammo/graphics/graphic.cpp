@@ -27,6 +27,7 @@ namespace // anonymous
 		virtual void SetZOrder( float z ) {	}
 		virtual bool Meta_N( int meta, double& n ) { return false; }
 		virtual bool Meta_VP( int meta, b2Vec2& v, void* p ) { return false; }
+		virtual bool Meta( int meta, ... ) { return false;	}
    };
 
    void do_nothing( ammo::GraphicImpl* unused ) { }
@@ -125,13 +126,8 @@ namespace ammo
 		m_pimpl->SetZOrder(z);
 	}
 
-	bool Graphic::Meta_N( unsigned meta, double n )
+	GraphicImpl& Graphic::Impl( void )
 	{
-		return m_pimpl->Meta_N(meta,n);
-	}
-
-	bool Graphic::Meta_VP( unsigned meta, b2Vec2 v, const void* p )
-	{
-		return m_pimpl->Meta_VP(meta,v,const_cast<void*>(p));
+		return *m_pimpl;
 	}
 }

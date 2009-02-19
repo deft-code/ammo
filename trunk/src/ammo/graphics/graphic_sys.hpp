@@ -25,7 +25,12 @@ namespace ammo
       virtual void RemoveSchema( const std::string& name ) =0;
 
       virtual bool IsGraphic( const std::string& name ) const =0;
+
+		/// create a named graphic
       virtual Graphic NewGraphic( const std::string& name ) =0;
+
+		/// create an anonymous graphic
+      virtual Graphic NewGraphic( const GraphicSchema& schema ) =0;
 
       virtual void CollectGraphics( void ) =0;
 		virtual void CollectVideoMem( void ) =0;
