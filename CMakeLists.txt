@@ -7,37 +7,40 @@ Project( AMMO )
 include_directories(
 	src/
 	../box2d/Include
-	../cegui/include
-	../cegui/RendererModules/OpenGLGUIRenderer
+	extlibs/CEGUI/include
 	extlibs/RakNet/include
 	extlibs/SFML/include )
 
 link_directories(
 	/home/nick/projects/box2d/Source/Gen/float
-	/home/nick/projects/cegui/install/lib
 	/home/nick/projects/raknet/install/lib
-	/home/nick/projects/ammo/extlibs/SFML/lib/linux )
+	${PROJECT_SOURCE_DIR}/extlibs/SFML/lib/linux
+	${PROJECT_SOURCE_DIR}/extlibs/CEGUI/lib/linux
+	)
 
 set( CMAKE_CXX_FLAGS "-Wall" )
 
 file( GLOB ammo_files src/ammo/*.cpp )
 file( GLOB ammo_files_subs src/ammo/*/*.cpp src/ammo/*/*/*.cpp )
 
-add_executable( ammo ${ammo_files} ${ammo_files_subs} )
-target_link_libraries( ammo
-	box2d
-	RakNet
-	sfml-system
-	sfml-audio
+set( AMMO_LIBS box2d RakNet
+	CEGUIBase
+	CEGUITinyXMLParser
+	CEGUIOpenGLRenderer
+	CEGUITGAImageCodec
+	CEGUIFalagardWRBase
+	CEGUIBase
+	GLU dl pcre freetype
 	sfml-graphics
-	sfml-window )
+	sfml-audio
+	sfml-window
+	sfml-system
+	)
+
+
+add_executable( ammo ${ammo_files} ${ammo_files_subs} )
+target_link_libraries( ammo ${AMMO_LIBS} )
 
 add_executable( pong examples/pong/pong.cpp src/ammo/error.cpp ${ammo_files_subs} )
-target_link_libraries( pong
-	box2d
-	RakNet
-	sfml-system
-	sfml-audio
-	sfml-graphics
-	sfml-window )
+target_link_libraries( pong ${AMMO_LIBS} )
 
