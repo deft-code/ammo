@@ -24,12 +24,7 @@ file( GLOB ammo_files src/ammo/*.cpp )
 file( GLOB ammo_files_subs src/ammo/*/*.cpp src/ammo/*/*/*.cpp )
 
 set( AMMO_LIBS box2d RakNet
-	CEGUIBase
-	CEGUITinyXMLParser
-	CEGUIOpenGLRenderer
-	CEGUITGAImageCodec
-	CEGUIFalagardWRBase
-	CEGUIBase
+	CEGUI
 	GLU dl pcre freetype
 	sfml-graphics
 	sfml-audio

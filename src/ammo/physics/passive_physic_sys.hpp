@@ -16,10 +16,15 @@ namespace ammo
 	{
 	public:
 		virtual bool IsPhysic(const std::string& name) const;
-		virtual Physic GetPhysic(const std::string& name, GameObject& parent);
+
+		virtual Physic NewPhysic(const std::string& name, GameObject& parent);
+		virtual Physic NewPhysic( const std::string& name, GameObject& parent, const b2Vec2& position );
+		virtual Physic NewPhysic( const std::string& name, GameObject& parent, const b2Vec2& position, float theta );
+
 		virtual void Update(float dt);
+
 	private:
-		virtual void add_bp_ptr( const std::string& name, const PhysicBluePrint_ptr& bp );
+		virtual void add_bp_ptr( const std::string& name, const PhysicSchema_ptr& bp );
 	};
 }
 

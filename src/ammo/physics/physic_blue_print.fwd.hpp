@@ -5,8 +5,8 @@
 
 namespace ammo
 {
-	class PhysicBluePrint;
-	typedef boost::shared_ptr<PhysicBluePrint> PhysicBluePrint_ptr;
+	class PhysicSchema;
+	typedef boost::shared_ptr<PhysicSchema> PhysicSchema_ptr;
 }
 
 #endif // AMMO_PHYSICS_PHYSIC_BLUE_PRINT_FWD_HPP_INCLUDED 

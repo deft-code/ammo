@@ -22,7 +22,9 @@ namespace ammo
 
 		virtual bool IsPhysic(const std::string& name) const;
 		
-		virtual Physic GetPhysic( const std::string& name, GameObject& parent );
+		virtual Physic NewPhysic( const std::string& name, GameObject& parent );
+		virtual Physic NewPhysic( const std::string& name, GameObject& parent, const b2Vec2& position );
+		virtual Physic NewPhysic( const std::string& name, GameObject& parent, const b2Vec2& position, float theta );
 		
 		virtual void Update(float dt);
 
@@ -30,9 +32,10 @@ namespace ammo
 		void DisableDebugDraw( void );
 
 	private:
-		virtual void add_bp_ptr( const std::string& name, const PhysicBluePrint_ptr& bp );
+		virtual void add_bp_ptr( const std::string& name, const PhysicSchema_ptr& bp );
 
-		std::map<std::string,PhysicBluePrint_ptr> m_blueprints;
+		PhysicSchema_ptr findSchema( const std::string& name );
+		std::map<std::string,PhysicSchema_ptr> m_schemas;
 
 		class ContactListener : public b2ContactListener
 		{

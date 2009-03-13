@@ -17,18 +17,20 @@ namespace ammo
 
 		virtual bool IsPhysic( const std::string& name ) const =0;
 
-		virtual Physic GetPhysic( const std::string& name, GameObject& parent ) =0;
+		virtual Physic NewPhysic( const std::string& name, GameObject& parent ) =0;
+		virtual Physic NewPhysic( const std::string& name, GameObject& parent, const b2Vec2& position ) =0;
+		virtual Physic NewPhysic( const std::string& name, GameObject& parent, const b2Vec2& position, float theta ) =0;
 
 		virtual void Update( float dt ) =0;
 
 	private:
-		virtual void add_bp_ptr( const std::string& name, const PhysicBluePrint_ptr& bp ) =0;
+		virtual void add_bp_ptr( const std::string& name, const PhysicSchema_ptr& bp ) =0;
 	};
 
 	template< typename BP >
 	void PhysicSys::AddBluePrint( const std::string& name, const BP& bp )
 	{
-		PhysicBluePrint_ptr new_bp( new BP(bp));
+		PhysicSchema_ptr new_bp( new BP(bp));
 		add_bp_ptr( name, new_bp );
 	}
 }

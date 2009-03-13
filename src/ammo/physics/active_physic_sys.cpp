@@ -21,20 +21,40 @@ namespace ammo
 
 	bool ActivePhysicSys::IsPhysic(const std::string& name) const
 	{
-		return m_blueprints.find(name) != m_blueprints.end();
+		return m_schemas.find(name) != m_schemas.end();
 	}
 
-	Physic ActivePhysicSys::GetPhysic(const std::string& name, GameObject& parent )
+	PhysicSchema_ptr ActivePhysicSys::findSchema( const std::string& name )
 	{
-		std::map<std::string,PhysicBluePrint_ptr>::iterator found =
-			m_blueprints.find(name);
+		std::map<std::string,PhysicSchema_ptr>::iterator found =
+			m_schemas.find(name);
 
-		if( found == m_blueprints.end() )
+		if( found == m_schemas.end() )
 		{
 			throw Error(Errors::e_Missing_Definition, name );
 		}
 
-		PhysicPimpl ptr( found->second->Instantiate( m_world, parent) );
+		return found->second;
+	}
+	
+
+	Physic ActivePhysicSys::NewPhysic(const std::string& name, GameObject& parent )
+	{
+		PhysicPimpl ptr( findSchema(name)->Instantiate( m_world, parent) );
+
+		return Physic(ptr);
+	}
+	
+	Physic ActivePhysicSys::NewPhysic(const std::string& name, GameObject& parent, const b2Vec2& position )
+	{
+		PhysicPimpl ptr( findSchema(name)->Instantiate( m_world, parent, position) );
+
+		return Physic(ptr);
+	}
+	
+	Physic ActivePhysicSys::NewPhysic(const std::string& name, GameObject& parent, const b2Vec2& position, float theta )
+	{
+		PhysicPimpl ptr( findSchema(name)->Instantiate( m_world, parent, position, theta) );
 
 		return Physic(ptr);
 	}
@@ -65,9 +85,9 @@ namespace ammo
 		m_world.SetDebugDraw( NULL );
 	}
 	
-	void ActivePhysicSys::add_bp_ptr( const std::string& name, const PhysicBluePrint_ptr& bp )
+	void ActivePhysicSys::add_bp_ptr( const std::string& name, const PhysicSchema_ptr& bp )
 	{
-		bool success = m_blueprints.insert( std::make_pair(name,bp) ).second;
+		bool success = m_schemas.insert( std::make_pair(name,bp) ).second;
 
 		if( ! success )
 		{

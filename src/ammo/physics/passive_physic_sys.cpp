@@ -66,13 +66,28 @@ namespace ammo
 	bool PassivePhysicSys::IsPhysic(const std::string& name) const
 	{ return true;	}
 	
-	Physic PassivePhysicSys::GetPhysic(const std::string& name, GameObject& parent)
+	Physic PassivePhysicSys::NewPhysic(const std::string& name, GameObject& parent)
 	{
 		PhysicPimpl ptr( new PassivePhysicImpl(parent) );
+		return Physic(ptr);
+	}
+
+	Physic PassivePhysicSys::NewPhysic( const std::string& name, GameObject& parent, const b2Vec2& position )
+	{
+		PhysicPimpl ptr( new PassivePhysicImpl(parent) );
+		ptr->SetPosition(position);
+		return Physic(ptr);
+	}
+
+	Physic PassivePhysicSys::NewPhysic( const std::string& name, GameObject& parent, const b2Vec2& position, float theta )
+	{
+		PhysicPimpl ptr( new PassivePhysicImpl(parent) );
+		ptr->SetPosition(position);
+		ptr->SetTheta( theta );
 		return Physic(ptr);
 	}
 	
 	void PassivePhysicSys::Update(float dt) {	}
 	
-	void PassivePhysicSys::add_bp_ptr( const std::string& name, const PhysicBluePrint_ptr& bp ) { }
+	void PassivePhysicSys::add_bp_ptr( const std::string& name, const PhysicSchema_ptr& bp ) { }
 }

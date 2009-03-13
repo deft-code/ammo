@@ -9,13 +9,15 @@ namespace ammo
 {
 	class GameObject;
 
-	class Polygon : public PhysicBluePrint
+	class Polygon : public PhysicSchema
 	{
 	public:
-		b2BodyDef body_blueprint;
-		b2PolygonDef polygon_blueprint;
+		b2BodyDef body;
+		b2PolygonDef shape;
 
 		virtual PhysicPimpl Instantiate(b2World& world, GameObject& parent) const;
+		virtual PhysicPimpl Instantiate( b2World& world, GameObject& parent, const b2Vec2& position ) const;
+		virtual PhysicPimpl Instantiate( b2World& world, GameObject& parent, const b2Vec2& position, float theta ) const;
 	};
 }
 
