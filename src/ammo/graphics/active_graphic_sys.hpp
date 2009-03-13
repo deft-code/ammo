@@ -43,7 +43,7 @@ namespace ammo
       GraphicPimpls m_graphics;
 
       typedef std::map<std::string,GraphicSchema_ptr> GraphicDefs;
-      GraphicDefs m_definitions;
+      GraphicDefs m_schemas;
 
       typedef std::map<std::string,Image_ptr> Images;
       Images m_images;

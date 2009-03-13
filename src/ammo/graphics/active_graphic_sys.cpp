@@ -19,14 +19,14 @@ ActiveGraphicSys::ActiveGraphicSys( void )
 
 void ActiveGraphicSys::RemoveSchema( const std::string& name )
 {
-   m_definitions.erase(name);
+   m_schemas.erase(name);
 }
 
 bool ActiveGraphicSys::IsGraphic( std::string const& name ) const
 {
-   GraphicDefs::const_iterator found = m_definitions.find(name);
+   GraphicDefs::const_iterator found = m_schemas.find(name);
 
-   return found != m_definitions.end();
+   return found != m_schemas.end();
 }
 
 Graphic ActiveGraphicSys::NewGraphic( const std::string& name )
@@ -56,7 +56,7 @@ namespace // anonymous
 {
    struct CallUpdate
    {
-      CallUpdate( float dt, bool& needs_resort )
+      CallUpdate( float dt, bool needs_resort )
        : m_dt(dt),
          m_last_z( -std::numeric_limits<float>::infinity() ),
          m_needs_resort(needs_resort)
@@ -72,22 +72,27 @@ namespace // anonymous
             m_last_z = z;
          }
       }
+
+      bool needsResort( void )
+      { return m_needs_resort; }
    
    private:
       const float m_dt;
       float m_last_z;
-      bool& m_needs_resort;
+      bool m_needs_resort;
    };
 } // anonymous namespace
 
 void ActiveGraphicSys::Update( float dt )
 {
-   std::for_each( m_graphics.begin(), m_graphics.end(), CallUpdate(dt, m_needs_resort) );
+   CallUpdate call_update(dt, m_needs_resort);
+   std::for_each( m_graphics.begin(), m_graphics.end(), call_update );
+   m_needs_resort = call_update.needsResort();
 }
 
 void ActiveGraphicSys::NewSchema( const std::string& name, GraphicSchema_ptr schema )
 {
-   bool success = m_definitions.insert( std::make_pair(name,schema) ).second;
+   bool success = m_schemas.insert( std::make_pair(name,schema) ).second;
 
    if( ! success )
    {
@@ -97,9 +102,9 @@ void ActiveGraphicSys::NewSchema( const std::string& name, GraphicSchema_ptr sch
 
 GraphicSchema_ptr ActiveGraphicSys::getDef( const std::string& name ) const
 {
-   GraphicDefs::const_iterator found = m_definitions.find(name);
+   GraphicDefs::const_iterator found = m_schemas.find(name);
 
-   if( found == m_definitions.end() )
+   if( found == m_schemas.end() )
    {
       throw Error( Errors::e_Missing_Definition, name );
    }
@@ -138,6 +143,7 @@ void ActiveGraphicSys::Draw( sf::RenderWindow& app )
 	{
 		PROFILE_TIMER(active_graphics_resort)
 		m_graphics.sort( ZSort() );
+      m_needs_resort = false;
 	}
 	std::for_each( m_graphics.begin(), m_graphics.end(), CallDraw(app) );
 }
