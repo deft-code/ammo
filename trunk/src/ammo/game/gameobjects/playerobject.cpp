@@ -130,7 +130,7 @@ namespace ammo
     _sound = _parent->GetSoundSys()->getSound("player");
     
     // Get our 'physic'
-    _physic = _parent->GetPhysicsSys()->GetPhysic("player", *this);
+    _physic = _parent->GetPhysicsSys()->NewPhysic("player", *this);
     _physic.SetPosition(b2Vec2(1.0f, 1.0f));  
 
     // Point our local gamestate's camera at us

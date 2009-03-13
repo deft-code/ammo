@@ -10,7 +10,10 @@ using CEGUI::UVector2;
 namespace ammo
 {
   /// Construct the application
-  Application::Application() : _isDone(false), _client(NULL), _server(NULL)
+  Application::Application() :
+    _client(NULL),
+    _server(NULL),
+    _isDone(false)
   {  }
 
   /// Load all the applications resources

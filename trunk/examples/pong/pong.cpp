@@ -15,24 +15,24 @@ b2Vec2 world_half( 40.f, 30.f );
 void physic_load( ammo::ActivePhysicSys& sim )
 {
 	ammo::Circle c;
-	c.circle_blueprint.radius = ball_half.x;
-	c.circle_blueprint.density = 1.f;
-	c.circle_blueprint.friction = 1.f;
-	c.circle_blueprint.restitution = 1.f;
-	c.body_blueprint.position = b2Vec2_zero;
+	c.shape.radius = ball_half.x;
+	c.shape.density = 1.f;
+	c.shape.friction = 1.f;
+	c.shape.restitution = 1.f;
+	c.body.position = b2Vec2_zero;
 	sim.AddBluePrint("ball", c);
 
 	ammo::Polygon p;
-	p.polygon_blueprint.SetAsBox( world_half.x, 1.f );
-	p.polygon_blueprint.density = 0.f;
-	p.polygon_blueprint.friction  = 1.f;
-	p.polygon_blueprint.restitution = 1.f;
+	p.shape.SetAsBox( world_half.x, 1.f );
+	p.shape.density = 0.f;
+	p.shape.friction  = 1.f;
+	p.shape.restitution = 1.f;
 	sim.AddBluePrint("long_wall", p );
 
-	p.polygon_blueprint.SetAsBox( paddle_half.x, paddle_half.y );
-	p.polygon_blueprint.density = 0.f;
-	p.polygon_blueprint.friction  = 1.f;
-	p.polygon_blueprint.restitution = 1.f;
+	p.shape.SetAsBox( paddle_half.x, paddle_half.y );
+	p.shape.density = 0.f;
+	p.shape.friction  = 1.f;
+	p.shape.restitution = 1.f;
 	sim.AddBluePrint("paddle", p );
 
 }
@@ -46,15 +46,15 @@ int main()
 	// Defines PI
 	const float PI = std::atan(1.0) * 4.0;
 
-	ammo::Physic top_shape = sim.GetPhysic("long_wall",dummy);
+	ammo::Physic top_shape = sim.NewPhysic("long_wall",dummy);
 	top_shape.SetPosition( b2Vec2(0.f, world_half.y ) );
 
-	ammo::Physic bottom_shape = sim.GetPhysic("long_wall",dummy);
+	ammo::Physic bottom_shape = sim.NewPhysic("long_wall",dummy);
 	bottom_shape.SetPosition( b2Vec2(0.f, -world_half.y ) );
 
-	ammo::Physic ball_shape = sim.GetPhysic("ball",dummy);
-	ammo::Physic left_shape = sim.GetPhysic("paddle",dummy);
-	ammo::Physic right_shape = sim.GetPhysic("paddle",dummy);
+	ammo::Physic ball_shape = sim.NewPhysic("ball",dummy);
+	ammo::Physic left_shape = sim.NewPhysic("paddle",dummy);
+	ammo::Physic right_shape = sim.NewPhysic("paddle",dummy);
 
 	left_shape.SetPosition(	b2Vec2( -world_half.x + 3*paddle_half.x, 0.f ) );
 	right_shape.SetPosition( b2Vec2( world_half.x - 3*paddle_half.x, 0.f ) );

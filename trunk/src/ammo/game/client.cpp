@@ -43,10 +43,10 @@ namespace ammo
     // Create our physics blueprints
     // TODO: Create these from a file
     Polygon myPoly;   
-    myPoly.body_blueprint.allowSleep = false;
-    myPoly.polygon_blueprint.density = .1f;
-    myPoly.polygon_blueprint.friction = 0;
-    myPoly.polygon_blueprint.SetAsBox(.48f, 1.28f);             
+    myPoly.body.allowSleep = false;
+    myPoly.shape.density = .1f;
+    myPoly.shape.friction = 0;
+    myPoly.shape.SetAsBox(.48f, 1.28f);             
     _physic->AddBluePrint("player", myPoly);
     _peer = new NetPeer(this, false);
     

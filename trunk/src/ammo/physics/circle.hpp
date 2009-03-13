@@ -6,13 +6,15 @@
 
 namespace ammo
 {
-	class Circle : public PhysicBluePrint
+	class Circle : public PhysicSchema
 	{
 	public:
-		b2BodyDef body_blueprint;
-		b2CircleDef circle_blueprint;
+		b2BodyDef body;
+		b2CircleDef shape;
 
 		virtual PhysicPimpl Instantiate(b2World& world, GameObject& parent) const;
+		virtual PhysicPimpl Instantiate( b2World& world, GameObject& parent, const b2Vec2& position ) const;
+		virtual PhysicPimpl Instantiate( b2World& world, GameObject& parent, const b2Vec2& position, float theta ) const;
 	};
 }
 #endif // AMMO_PHYSICS_CIRCLE_HPP_INCLUDED
