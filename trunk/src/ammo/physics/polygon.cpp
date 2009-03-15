@@ -29,4 +29,13 @@ namespace ammo
 
 		return PhysicPimpl( new SingleBodyImpl( *body_ptr, parent ) );
 	}
+
+	void intrusive_ptr_add_ref( PhysicImpl* ptr )
+	{ ptr->inc_ref();	}
+
+	void intrusive_ptr_release( PhysicImpl* ptr )
+	{
+		if( ptr->dec_ref() )
+			delete ptr;
+	}
 }

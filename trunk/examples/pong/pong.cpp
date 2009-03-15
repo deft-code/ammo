@@ -20,20 +20,20 @@ void physic_load( ammo::ActivePhysicSys& sim )
 	c.shape.friction = 1.f;
 	c.shape.restitution = 1.f;
 	c.body.position = b2Vec2_zero;
-	sim.AddBluePrint("ball", c);
+	sim.AddSchema("ball", c);
 
 	ammo::Polygon p;
 	p.shape.SetAsBox( world_half.x, 1.f );
 	p.shape.density = 0.f;
 	p.shape.friction  = 1.f;
 	p.shape.restitution = 1.f;
-	sim.AddBluePrint("long_wall", p );
+	sim.AddSchema("long_wall", p );
 
 	p.shape.SetAsBox( paddle_half.x, paddle_half.y );
 	p.shape.density = 0.f;
 	p.shape.friction  = 1.f;
 	p.shape.restitution = 1.f;
-	sim.AddBluePrint("paddle", p );
+	sim.AddSchema("paddle", p );
 
 }
 
@@ -84,6 +84,7 @@ int main()
 
 	// Create the window of the application
 	sf::RenderWindow App(sf::VideoMode(800, 600, 32), "SFML Pong");
+	App.UseVerticalSync(true);
 
 	ammo::View v(App);
 	v.lookAt( b2Vec2_zero );

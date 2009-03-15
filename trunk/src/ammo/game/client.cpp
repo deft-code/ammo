@@ -47,7 +47,7 @@ namespace ammo
     myPoly.shape.density = .1f;
     myPoly.shape.friction = 0;
     myPoly.shape.SetAsBox(.48f, 1.28f);             
-    _physic->AddBluePrint("player", myPoly);
+    _physic->AddSchema("player", myPoly);
     _peer = new NetPeer(this, false);
     
     // Create our input system

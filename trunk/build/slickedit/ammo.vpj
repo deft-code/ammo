@@ -109,6 +109,8 @@
 			<F N="../../src/ammo/enums/playeractions.hpp"/>
 		</Folder>
 		<Folder Name="../../src/ammo/game">
+			<F N="../../src/ammo/game/application.cpp"/>
+			<F N="../../src/ammo/game/application.hpp"/>
 			<F N="../../src/ammo/game/client.cpp"/>
 			<F N="../../src/ammo/game/client.hpp"/>
 			<F N="../../src/ammo/game/game.hpp"/>
@@ -151,6 +153,10 @@
 			<F N="../../src/ammo/graphics/sprite.hpp"/>
 			<F N="../../src/ammo/graphics/view.cpp"/>
 			<F N="../../src/ammo/graphics/view.hpp"/>
+		</Folder>
+		<Folder Name="../../src/ammo/gui">
+			<F N="../../src/ammo/gui/gui_manager.cpp"/>
+			<F N="../../src/ammo/gui/gui_manager.hpp"/>
 		</Folder>
 		<Folder Name="../../src/ammo/input">
 			<F N="../../src/ammo/input/input.cpp"/>

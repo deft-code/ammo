@@ -49,14 +49,6 @@ namespace ammo
 		std::size_t m_ref_count;
 	};
 
-	inline void intrusive_ptr_add_ref( PhysicImpl* ptr )
-	{ ptr->inc_ref();	}
-
-	inline void intrusive_ptr_release( PhysicImpl* ptr )
-	{
-		if( ptr->dec_ref() )
-			delete ptr;
-	}
 }
 
 #endif // AMMO_PHYSICS_PHYSIC_IMPL_HPP_INCLUDED

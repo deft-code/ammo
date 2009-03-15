@@ -6,8 +6,8 @@
 namespace ammo
 {
 	class PhysicImpl;
-	void intrusive_ptr_add_ref( PhysicImpl* ptr );
-	void intrusive_ptr_release( PhysicImpl* ptr );
+	extern void intrusive_ptr_add_ref( PhysicImpl* ptr );
+	extern void intrusive_ptr_release( PhysicImpl* ptr );
 	typedef boost::intrusive_ptr<PhysicImpl> PhysicPimpl;
 }
 
