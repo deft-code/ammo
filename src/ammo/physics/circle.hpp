@@ -1,7 +1,7 @@
 #ifndef AMMO_PHYSICS_CIRCLE_HPP_INCLUDED
 #define AMMO_PHYSICS_CIRCLE_HPP_INCLUDED
 
-#include "ammo/physics/physic_blue_print.hpp"
+#include "ammo/physics/physic_schema.hpp"
 #include <Box2D.h>
 
 namespace ammo

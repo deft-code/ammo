@@ -3,7 +3,7 @@
 
 
 #include <Box2D.h>
-#include "ammo/physics/physic_blue_print.hpp"
+#include "ammo/physics/physic_schema.hpp"
 
 namespace ammo
 {

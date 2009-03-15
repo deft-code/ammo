@@ -189,10 +189,10 @@
 			<F N="../../src/ammo/physics/passive_physic_sys.hpp"/>
 			<F N="../../src/ammo/physics/physic.cpp"/>
 			<F N="../../src/ammo/physics/physic.hpp"/>
-			<F N="../../src/ammo/physics/physic_blue_print.fwd.hpp"/>
-			<F N="../../src/ammo/physics/physic_blue_print.hpp"/>
 			<F N="../../src/ammo/physics/physic_impl.fwd.hpp"/>
 			<F N="../../src/ammo/physics/physic_impl.hpp"/>
+			<F N="../../src/ammo/physics/physic_schema.fwd.hpp"/>
+			<F N="../../src/ammo/physics/physic_schema.hpp"/>
 			<F N="../../src/ammo/physics/physic_sys.hpp"/>
 			<F N="../../src/ammo/physics/polygon.cpp"/>
 			<F N="../../src/ammo/physics/polygon.hpp"/>

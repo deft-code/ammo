@@ -2,7 +2,7 @@
 #define AMMO_PHYSICS_ACTIVE_PHYSIC_SYS_HPP_INCLUDED
 
 #include "ammo/physics/physic_sys.hpp"
-#include "ammo/physics/physic_blue_print.hpp"
+#include "ammo/physics/physic_schema.hpp"
 #include "ammo/physics/debug_draw_cb.hpp"
 
 #include <Box2D.h>
