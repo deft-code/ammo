@@ -5,7 +5,7 @@
 
 #include <string>
 #include "ammo/physics/physic.hpp"
-#include "ammo/physics/physic_blue_print.fwd.hpp"
+#include "ammo/physics/physic_schema.fwd.hpp"
 
 namespace ammo
 {
