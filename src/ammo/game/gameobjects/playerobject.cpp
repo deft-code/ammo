@@ -4,6 +4,12 @@
 #include <iostream>
 #include <cmath>
 
+static const float TURN_RATE = 2.f;
+static const float MAX_SPEED = 20.f;
+static const float MAX_SPEED_SQUARED = 400.f;
+static const float THRUST_RATE = 2.f;
+static const float BURN_MULTIPLIER = 4.0f;
+
 using std::cout;
 using std::endl;
 
