@@ -98,6 +98,7 @@ namespace AnimationEditor
                     newSS.Image = Texture2D.FromFile(this.m_spritePanel.Graphics.GraphicsDevice, ofd.FileName);
                     newSS.Path = ofd.FileName;
                     newSS.Name = ofd.FileName.Substring(ofd.FileName.LastIndexOf('\\') + 1);
+                    newSS.Location = newSS.Center;
 
                     this.m_images.Add(newSS);
                     this.m_sprites.Add(new List<Sprite>());
@@ -134,7 +135,10 @@ namespace AnimationEditor
                     this.listBox_LoadedImages.SelectedIndex = index;
 
                 if (this.m_images.Count == 0)
+                {
                     this.DisableSpriteInformation();
+                    this.updateBar_Zoom.Text = "100%";
+                }
             }
         }
 
@@ -167,6 +171,14 @@ namespace AnimationEditor
                 this.textBox_SpriteInformation_AWidth.Text = "0";
                 this.textBox_SpriteInformation_AHeight.Text = "0";
             }
+        }
+
+        private void panel_spriteViewer_SizeChanged(object sender, EventArgs e)
+        {
+            PresentationParameters newPP = this.m_spritePanel.Graphics.GraphicsDevice.PresentationParameters;
+            newPP.BackBufferWidth = this.panel_spriteViewer.Width;
+            newPP.BackBufferHeight = this.panel_spriteViewer.Height;
+            this.m_spritePanel.Graphics.GraphicsDevice.Reset(newPP);
         }
     }
 }
