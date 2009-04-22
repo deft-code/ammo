@@ -34,7 +34,9 @@ namespace AnimationEditor
             if (this.listBox_LoadedImages.Items.Count != 0)
             {
                 this.m_spritePanel.SpriteBatch.Draw(this.m_images[this.listBox_LoadedImages.SelectedIndex].Image,
-                    Vector2.Zero, Color.White);
+                    this.m_images[this.listBox_LoadedImages.SelectedIndex].Location, null, Color.White, 0.0f,
+                    this.m_images[this.listBox_LoadedImages.SelectedIndex].Center,
+                    this.m_images[this.listBox_LoadedImages.SelectedIndex].Zoom, SpriteEffects.None, 0.0f);
             }
 
             this.m_spritePanel.SpriteBatch.End();

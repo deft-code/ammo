@@ -80,6 +80,9 @@
             this.button_DeleteAnimation = new System.Windows.Forms.Button();
             this.button_Play = new System.Windows.Forms.Button();
             this.button_Stop = new System.Windows.Forms.Button();
+            this.updateBar_Seperator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.updateBar_Label_Zoom = new System.Windows.Forms.ToolStripLabel();
+            this.updateBar_Zoom = new System.Windows.Forms.ToolStripLabel();
             this.mainMenu.SuspendLayout();
             this.groupBox_SpriteInformation.SuspendLayout();
             this.updateBar.SuspendLayout();
@@ -134,9 +137,13 @@
             this.panel_spriteViewer.Name = "panel_spriteViewer";
             this.panel_spriteViewer.Size = new System.Drawing.Size(714, 475);
             this.panel_spriteViewer.TabIndex = 1;
+            this.panel_spriteViewer.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.panel_spriteViewer_MouseWheel);
             this.panel_spriteViewer.MouseLeave += new System.EventHandler(this.panel_spriteViewer_MouseLeave);
             this.panel_spriteViewer.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel_spriteViewer_MouseMove);
-            this.panel_spriteViewer.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel_spriteViewer_MouseClick);
+            this.panel_spriteViewer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_spriteViewer_MouseDown);
+            this.panel_spriteViewer.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel_spriteViewer_MouseUp);
+            this.panel_spriteViewer.SizeChanged += new System.EventHandler(this.panel_spriteViewer_SizeChanged);
+            this.panel_spriteViewer.MouseEnter += new System.EventHandler(this.panel_spriteViewer_MouseEnter);
             // 
             // listBox_LoadedImages
             // 
@@ -391,7 +398,10 @@
             this.updateBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.updateBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.updateBar_Label_MousePos,
-            this.updateBar_MousePos});
+            this.updateBar_MousePos,
+            this.updateBar_Seperator1,
+            this.updateBar_Label_Zoom,
+            this.updateBar_Zoom});
             this.updateBar.Location = new System.Drawing.Point(0, 716);
             this.updateBar.Name = "updateBar";
             this.updateBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -611,6 +621,23 @@
             this.button_Stop.TabIndex = 27;
             this.button_Stop.UseVisualStyleBackColor = true;
             // 
+            // updateBar_Seperator1
+            // 
+            this.updateBar_Seperator1.Name = "updateBar_Seperator1";
+            this.updateBar_Seperator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // updateBar_Label_Zoom
+            // 
+            this.updateBar_Label_Zoom.Name = "updateBar_Label_Zoom";
+            this.updateBar_Label_Zoom.Size = new System.Drawing.Size(42, 22);
+            this.updateBar_Label_Zoom.Text = "Zoom:";
+            // 
+            // updateBar_Zoom
+            // 
+            this.updateBar_Zoom.Name = "updateBar_Zoom";
+            this.updateBar_Zoom.Size = new System.Drawing.Size(35, 22);
+            this.updateBar_Zoom.Text = "100%";
+            // 
             // AnimationEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -708,6 +735,9 @@
         private System.Windows.Forms.Button button_Stop;
         private System.Windows.Forms.ToolStripLabel updateBar_Label_MousePos;
         private System.Windows.Forms.ToolStripLabel updateBar_MousePos;
+        private System.Windows.Forms.ToolStripSeparator updateBar_Seperator1;
+        private System.Windows.Forms.ToolStripLabel updateBar_Label_Zoom;
+        private System.Windows.Forms.ToolStripLabel updateBar_Zoom;
     }
 }
 
