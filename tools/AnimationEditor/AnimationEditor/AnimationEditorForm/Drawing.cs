@@ -28,18 +28,28 @@ namespace AnimationEditor
 
         private void DrawSpritePanel()
         {
-            this.m_spritePanel.SpriteBatch.Begin(SpriteBlendMode.AlphaBlend);
-
             // Draw currently selected image
-            if (this.listBox_LoadedImages.Items.Count != 0)
+            if (this.listBox_LoadedImages.Items.Count > 0)
             {
+                this.m_spritePanel.SpriteBatch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None);
+
                 this.m_spritePanel.SpriteBatch.Draw(this.m_images[this.listBox_LoadedImages.SelectedIndex].Image,
                     this.m_images[this.listBox_LoadedImages.SelectedIndex].Location, null, Color.White, 0.0f,
                     this.m_images[this.listBox_LoadedImages.SelectedIndex].Center,
-                    this.m_images[this.listBox_LoadedImages.SelectedIndex].Zoom, SpriteEffects.None, 0.0f);
-            }
+                    this.m_images[this.listBox_LoadedImages.SelectedIndex].Zoom, SpriteEffects.None, 1.0f);
 
-            this.m_spritePanel.SpriteBatch.End();
+                this.m_spritePanel.SpriteBatch.End();
+
+                if (this.listBox_LoadedSprites.Items.Count > 0)
+                {
+                    foreach (Sprite sprite in this.m_sprites[this.listBox_LoadedImages.SelectedIndex])
+                    {
+                        PrimitiveDrawer.DrawRectangle(new Vector2(sprite.DrawLocation.X, sprite.DrawLocation.Y),
+                            sprite.Width * this.m_images[this.listBox_LoadedImages.SelectedIndex].Zoom,
+                            sprite.Height * this.m_images[this.listBox_LoadedImages.SelectedIndex].Zoom, Color.Red);
+                    }
+                }
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ namespace AnimationEditor
     public partial class AnimationEditorForm : Form
     {
         private Boolean m_shiftClick = false;
+        private Boolean m_mouseLeftDown = false;
         private Vector2 m_actualMouseCoordinates = new Vector2(0, 0);
         private Vector2 m_previousMousePos = new Vector2(0, 0);
 
@@ -31,9 +32,34 @@ namespace AnimationEditor
 
                 if (this.m_shiftClick)
                 {
+                    int xDelta = (Int32)m_previousMousePos.X - e.X;
+                    int yDelta = (Int32)m_previousMousePos.Y - e.Y;
                     this.m_images[this.listBox_LoadedImages.SelectedIndex].Location =
-                        new Vector2(this.m_images[this.listBox_LoadedImages.SelectedIndex].Location.X - (m_previousMousePos.X - e.X),
-                            this.m_images[this.listBox_LoadedImages.SelectedIndex].Location.Y - (m_previousMousePos.Y - e.Y));
+                        new Vector2(this.m_images[this.listBox_LoadedImages.SelectedIndex].Location.X - xDelta,
+                                    this.m_images[this.listBox_LoadedImages.SelectedIndex].Location.Y - yDelta);
+
+                    for (int i = 0; i < this.listBox_LoadedSprites.Items.Count; i++)
+                    {
+                        this.m_sprites[this.listBox_LoadedImages.SelectedIndex][this.listBox_LoadedSprites.SelectedIndex].DrawLocation =
+                            new Point(this.m_sprites[this.listBox_LoadedImages.SelectedIndex][this.listBox_LoadedSprites.SelectedIndex].DrawLocation.X - xDelta,
+                                      this.m_sprites[this.listBox_LoadedImages.SelectedIndex][this.listBox_LoadedSprites.SelectedIndex].DrawLocation.Y - yDelta);
+                    }
+                }
+
+                else if ((this.m_mouseLeftDown) && (this.listBox_LoadedSprites.Items.Count > 0))
+                {
+                    int image = this.listBox_LoadedImages.SelectedIndex;
+                    int sprite = this.listBox_LoadedSprites.SelectedIndex;
+
+                    if ((this.m_actualMouseCoordinates.X > this.m_sprites[image][sprite].Location.X) &&
+                        (this.m_actualMouseCoordinates.Y > this.m_sprites[image][sprite].Location.Y))
+                    {
+                        this.m_sprites[image][sprite].Width = (Int32)this.m_actualMouseCoordinates.X - this.m_sprites[image][sprite].Location.X;
+                        this.m_sprites[image][sprite].Height = (Int32)this.m_actualMouseCoordinates.Y - this.m_sprites[image][sprite].Location.Y;
+
+                        this.textBox_SpriteInformation_Width.Text = this.m_sprites[image][sprite].Width.ToString();
+                        this.textBox_SpriteInformation_Height.Text = this.m_sprites[image][sprite].Height.ToString();
+                    }
                 }
             }
             else
@@ -57,7 +83,7 @@ namespace AnimationEditor
             {
                 // Ctrl + Click AddSprite() for adding sprites
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.Button == MouseButtons.Left))
-                    this.AddSprite();
+                    this.AddSprite(new Point((Int32)this.m_actualMouseCoordinates.X, (Int32)this.m_actualMouseCoordinates.Y), new Point(e.X, e.Y));
 
                 // Shift + Click for moving sprite sheet
                 else if (((Control.ModifierKeys & Keys.Shift) == Keys.Shift) && (e.Button == MouseButtons.Left))
@@ -72,12 +98,15 @@ namespace AnimationEditor
                     {
                     }
                 }
+
+                this.m_mouseLeftDown = true;
             }
         }
 
         private void panel_spriteViewer_MouseUp(object sender, MouseEventArgs e)
         {
             this.m_shiftClick = false;
+            this.m_mouseLeftDown = false;
         }
 
         private void panel_spriteViewer_MouseWheel(object sender, MouseEventArgs e)
@@ -92,6 +121,8 @@ namespace AnimationEditor
                 this.m_actualMouseCoordinates.X = (Int32)((Single)e.X * (1.0f / this.m_images[this.listBox_LoadedImages.SelectedIndex].Zoom));
                 this.m_actualMouseCoordinates.Y = (Int32)((Single)e.Y * (1.0f / this.m_images[this.listBox_LoadedImages.SelectedIndex].Zoom));
                 this.updateBar_Zoom.Text = (this.m_images[this.listBox_LoadedImages.SelectedIndex].Zoom * 100.0f) + "%";
+
+
             }
             else
             {
