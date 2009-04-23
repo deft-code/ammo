@@ -61,6 +61,10 @@ namespace AnimationEditor
             get { return this.m_location; }
             set { this.m_location = value; } }
 
+        public Point DrawLocation {
+            get { return this.m_drawLocation; }
+            set { this.m_drawLocation = value; } }
+
         public Int32 Width {
             get { return this.m_width; }
             set { this.m_width = value; } }
@@ -80,6 +84,7 @@ namespace AnimationEditor
         private String m_spriteSheetName;
         private String m_name;
         private Point m_location;
+        private Point m_drawLocation;
         private Int32 m_width, m_height;
         private Int32 m_actWidth, m_actHeight;
     }

@@ -142,7 +142,7 @@ namespace AnimationEditor
             }
         }
 
-        private void AddSprite()
+        private void AddSprite(Point location, Point drawLocation)
         {
             if (this.m_images.Count != 0)
             {
@@ -154,7 +154,8 @@ namespace AnimationEditor
 
                 this.m_sprites[imgIndex][spriteIndex].SpriteSheetName = this.m_images[imgIndex].Name;
                 this.m_sprites[imgIndex][spriteIndex].Name = "Sprite" + m_spriteCount++;
-                this.m_sprites[imgIndex][spriteIndex].Location = new Point(0, 0);
+                this.m_sprites[imgIndex][spriteIndex].Location = location;
+                this.m_sprites[imgIndex][spriteIndex].DrawLocation = drawLocation;
                 this.m_sprites[imgIndex][spriteIndex].Width = 0;
                 this.m_sprites[imgIndex][spriteIndex].Height = 0;
                 this.m_sprites[imgIndex][spriteIndex].ActualWidth = 0;
@@ -164,8 +165,8 @@ namespace AnimationEditor
                 this.listBox_LoadedSprites.SelectedIndex = spriteIndex;
 
                 this.textBox_SpriteInformation_Name.Text = this.m_sprites[imgIndex][spriteIndex].Name;
-                this.textBox_SpriteInformation_X.Text = "0";
-                this.textBox_SpriteInformation_Y.Text = "0";
+                this.textBox_SpriteInformation_X.Text = location.X.ToString();
+                this.textBox_SpriteInformation_Y.Text = location.Y.ToString();
                 this.textBox_SpriteInformation_Width.Text = "0";
                 this.textBox_SpriteInformation_Height.Text = "0";
                 this.textBox_SpriteInformation_AWidth.Text = "0";
