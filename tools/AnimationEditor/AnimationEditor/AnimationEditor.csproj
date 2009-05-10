@@ -60,10 +60,7 @@
     <Compile Include="AnimationEditorForm\FormMainEvents.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AnimationEditorForm\Sprites\SpriteMethods.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AnimationEditorForm\Sprites\SpritesEvents.cs">
+    <Compile Include="AnimationEditorForm\SpriteEvents.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Main.cs" />
@@ -90,14 +87,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Types\Sprite.cs" />
     <Compile Include="Types\SpriteSheet.cs" />
     <Compile Include="XNA\PrimitiveBatch.cs" />
     <Compile Include="XNA\PrimitiveDrawer.cs" />
     <Compile Include="XNA\XNAGraphicsControl.cs" />
     <Compile Include="XNA\XNAGraphicsService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AnimationEditorForm\Animations\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
