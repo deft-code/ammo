@@ -31,3 +31,4 @@ namespace ammo
 }
 
 #endif // AMMO_INPUT_INPUT_IMPL_HPP
+

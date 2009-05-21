@@ -12,3 +12,4 @@ namespace ammo
   };
 }
 #endif // I_CAMERA_TARGET_HPP
+

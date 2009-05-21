@@ -55,3 +55,4 @@ namespace ammo
 }
 
 #endif // CONNFACTORY_H_INCLUDED
+

@@ -17,3 +17,4 @@ namespace ammo
   };
 }
 #endif // GAMESTATEPROXY_H_INCLUDED
+

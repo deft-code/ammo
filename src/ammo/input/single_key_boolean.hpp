@@ -20,3 +20,4 @@ namespace ammo
 }
 
 #endif // AMMO_INPUT_SINGLE_KEY_BOOLEAN_HPP
+

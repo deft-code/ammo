@@ -148,3 +148,4 @@ namespace ammo
     return _peer->GetExternalID(UNASSIGNED_SYSTEM_ADDRESS);
   }
 }
+
