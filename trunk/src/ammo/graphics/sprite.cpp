@@ -9,12 +9,14 @@
 
 namespace ammo
 {
-   SpriteImpl::SpriteImpl( float lifetime )
+   SpriteImpl::SpriteImpl( float lifetime, const sf::IntRect& subrect, const b2Vec2& size )
     : GraphicImpl(),
 		m_z_order(0.f),
       m_show(false),
       m_life(0.f),
-      m_lifetime(lifetime)
+      m_lifetime(lifetime),
+		m_subrect(subrect),
+		m_size(size)
    { }
 
    void SpriteImpl::update(float dt)
@@ -41,10 +43,20 @@ namespace ammo
 
    void SpriteImpl::storeImage(std::size_t index, Image_ptr image)
    {
+		std::cout << "storeImage: " << index << std::endl;
       assert( index == 0 );
       m_image = image;
       m_sprite.SetImage(*m_image);
+		if( m_subrect.GetWidth() > 0 && m_subrect.GetHeight() > 0 )
+		{
+			m_sprite.SetSubRect( m_subrect );
+		}
       m_sprite.SetCenter( m_sprite.GetSize() * 0.5f );
+
+		if( m_size.x > 0 )
+		{
+			SetSize( m_size );
+		}
    }
 
    void SpriteImpl::show(void)
@@ -102,9 +114,8 @@ namespace ammo
 
    void SpriteImpl::SetSize( const b2Vec2& size )
    {
+		std::cout << "setSize: " << size.x << ", " << size.y << std::endl;
       const sf::IntRect& sub_rect = m_sprite.GetSubRect();
-
-      
 
       float scale_x = size.x / sub_rect.GetWidth();
       m_sprite.SetScaleX( scale_x );
@@ -123,10 +134,6 @@ namespace ammo
 		m_z_order = z;
 	}
 
-	bool SpriteImpl::Meta_N( int meta, double& n) { return false; }
-
-	bool SpriteImpl::Meta_VP( int meta, b2Vec2& v, void* p )	{ return false; }
-
 	bool SpriteImpl::Meta( int meta, ... ) { return false; }
 
    //
@@ -135,13 +142,17 @@ namespace ammo
 
    SpriteSchema::SpriteSchema( void )
     : GraphicSchema(),
-      m_lifetime( std::numeric_limits<float>::infinity() )
+      m_lifetime( std::numeric_limits<float>::infinity() ),
+		m_subrect(0,0,0,0),
+		m_size(b2Vec2_zero)
    { }
 
    SpriteSchema::SpriteSchema( const std::string& filename )
     : GraphicSchema(),
       m_filename(filename),
-      m_lifetime( std::numeric_limits<float>::infinity() )
+      m_lifetime( std::numeric_limits<float>::infinity() ),
+		m_subrect(0,0,0,0),
+		m_size(b2Vec2_zero)
    { }
 
    const std::string& SpriteSchema::filename( std::size_t index ) const
@@ -156,6 +167,6 @@ namespace ammo
 
    GraphicPimpl SpriteSchema::Instantiate( void ) const
    {
-      return GraphicPimpl( new SpriteImpl( m_lifetime ) );
+      return GraphicPimpl( new SpriteImpl( m_lifetime, m_subrect, m_size ) );
    }
 }

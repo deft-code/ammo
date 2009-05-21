@@ -17,3 +17,4 @@ namespace ammo
   }
 }
 #endif // PLAYER_ACTIONS_HPP
+

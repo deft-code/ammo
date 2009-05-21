@@ -47,3 +47,4 @@ namespace ammo
   };
 }
 #endif // SAMPLE_OBJECT_H
+

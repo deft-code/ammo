@@ -37,3 +37,4 @@ namespace ammo
   };
 }
 #endif // APPLICATION_HPP
+

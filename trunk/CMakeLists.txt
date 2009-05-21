@@ -32,10 +32,14 @@ set( AMMO_LIBS box2d RakNet
 	sfml-system
 	)
 
+add_library( engine STATIC src/ammo/error.cpp ${ammo_files_subs} )
 
-add_executable( ammo ${ammo_files} ${ammo_files_subs} )
-target_link_libraries( ammo ${AMMO_LIBS} )
+add_executable( ammo src/ammo/main.cpp )
+target_link_libraries( ammo engine ${AMMO_LIBS} )
 
-add_executable( pong examples/pong/pong.cpp src/ammo/error.cpp ${ammo_files_subs} )
-target_link_libraries( pong ${AMMO_LIBS} )
+add_executable( pong examples/pong/pong.cpp )
+target_link_libraries( pong engine ${AMMO_LIBS} )
+
+add_executable( ski examples/ski/ski_physics.cpp )
+target_link_libraries( ski engine ${AMMO_LIBS} )
 

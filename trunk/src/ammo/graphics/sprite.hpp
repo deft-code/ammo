@@ -13,7 +13,7 @@ namespace ammo
    class SpriteImpl : public GraphicImpl
    {
    public:
-      SpriteImpl( float lifetime );
+      SpriteImpl( float lifetime, const sf::IntRect& subrect, const b2Vec2& size );
       virtual ~SpriteImpl( void ) { }
 
       virtual void update(float dt);
@@ -41,8 +41,6 @@ namespace ammo
 		virtual float GetZOrder( void ) const;
 		virtual void SetZOrder( float z );
 
-		virtual bool Meta_N( int meta, double& n );
-		virtual bool Meta_VP( int meta, b2Vec2& v, void* p );
 		virtual bool Meta( int meta, ... );
 
    private:
@@ -53,6 +51,8 @@ namespace ammo
       bool m_show;
       float m_life;
       float m_lifetime;
+		sf::IntRect m_subrect;
+		b2Vec2 m_size;
    };
 
    class SpriteSchema : public GraphicSchema
@@ -69,6 +69,8 @@ namespace ammo
 
       std::string m_filename;
       float m_lifetime;
+		sf::IntRect m_subrect;
+		b2Vec2 m_size;
    };
 
 }

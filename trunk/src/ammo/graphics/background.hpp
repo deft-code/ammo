@@ -38,3 +38,4 @@ namespace ammo
   };
 }
 #endif // BACKGROUND_HPP
+
