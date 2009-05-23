@@ -106,7 +106,7 @@ namespace ammo
     while (!_isDone)
     {        
       dt = clock.GetElapsedTime();
-      ammo::Profiler::NextFrame(dt);
+      PROFILE_NEXT_FRAME(dt);
       clock.Reset();
 
       _window.Clear();
@@ -126,6 +126,7 @@ namespace ammo
           if (myEvent.Key.Code == sf::Key::Escape)
             //Stop();
             break;
+        default: break;//ignore
         }
       }
 
