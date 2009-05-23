@@ -2,7 +2,7 @@
 #define PROFILER_HPP
 
 // Comment out this line to disable profiling
-#define PROFILINGENABLED
+//#define PROFILINGENABLED
 
 #ifdef PROFILINGENABLED
 
@@ -178,10 +178,16 @@ namespace ammo
   static int myCategory_ ## category = ammo::Profiler::RegisterCategory( #category  ); \
   ammo::AutoTimer _timer_ ## category (myCategory_ ## category);
 
+#define PROFILE_NEXT_FRAME(dt) ammo::Profiler::NextFrame(dt)
+
+#define PROFILE_WRITE_DATA() ammo::Profiler::WriteData()
+
 #else 
 // If we haven't enabled profiling, define this macro as empty
 // so we can keep our profiler macros in the code safely.
 #define PROFILE_TIMER(category)
+#define PROFILE_NEXT_FRAME( dt )
+#define PROFILE_WRITE_DATA()
 #endif // PROFILINGENABLED
 
 #endif // PROFILER_HPP

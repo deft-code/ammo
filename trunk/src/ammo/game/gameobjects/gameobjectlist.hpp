@@ -5,3 +5,4 @@
 #include "ammo/game/gameobjects/sampleobject.hpp"
 
 #endif // GAME_OBJECT_LIST
+

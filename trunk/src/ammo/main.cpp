@@ -28,6 +28,6 @@ int main()
 
   app.Run();
 
-  ammo::Profiler::WriteData();
+  PROFILE_WRITE_DATA();
   return EXIT_SUCCESS;
 }

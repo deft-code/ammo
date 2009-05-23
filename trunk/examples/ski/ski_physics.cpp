@@ -46,6 +46,7 @@ int main()
 	// Create the window of the application
 	sf::RenderWindow App(sf::VideoMode(800, 600, 32), "SFML Pong");
 	App.UseVerticalSync(true);
+	App.EnableKeyRepeat(false);
 
 	ammo::View v(App);
 	v.lookAt( b2Vec2_zero );
@@ -53,25 +54,36 @@ int main()
 
 	ammo::ActiveGraphicSys graphics;
 
-	ammo::SpriteSchema ship_image;
-	ship_image.m_filename = "data/tyrian_ships.png";
-	ship_image.m_size = 2*ship_half;
+	{
+		ammo::SpriteSchema ship_image;
+		ship_image.m_filename = "data/tyrian_ships.png";
+		ship_image.m_size = 2*ship_half;
+	
+	
+		ship_image.m_subrect = sf::IntRect(49,140,49+21,140+27);
+		graphics.AddSchema("ship",ship_image);
+	
+		ship_image.m_subrect = sf::IntRect(25,140,25+21,140+27);
+		graphics.AddSchema("shipL",ship_image);
+	
+		ship_image.m_subrect = sf::IntRect(2,140,2+21,140+27);
+		graphics.AddSchema("shipLL",ship_image);
+	
+		ship_image.m_subrect = sf::IntRect(73,140,73+21,140+27);
+		graphics.AddSchema("shipR",ship_image);
+	
+		ship_image.m_subrect = sf::IntRect(98,140,98+21,140+27);
+		graphics.AddSchema("shipRR",ship_image);
+	}
 
+	{
+		ammo::SpriteSchema rock_image;
+		rock_image.m_filename = "data/tyrian_rocks.png";
+		rock_image.m_size = 4*ship_half;
+		rock_image.m_subrect = sf::IntRect(2,4,2+42,4+46);
+		graphics.AddSchema("rock",rock_image);
+	}
 
-	ship_image.m_subrect = sf::IntRect(49,140,49+21,140+27);
-	graphics.AddSchema("ship",ship_image);
-
-	ship_image.m_subrect = sf::IntRect(25,140,25+21,140+27);
-	graphics.AddSchema("shipL",ship_image);
-
-	ship_image.m_subrect = sf::IntRect(2,140,2+21,140+27);
-	graphics.AddSchema("shipLL",ship_image);
-
-	ship_image.m_subrect = sf::IntRect(73,140,73+21,140+27);
-	graphics.AddSchema("shipR",ship_image);
-
-	ship_image.m_subrect = sf::IntRect(98,140,98+21,140+27);
-	graphics.AddSchema("shipRR",ship_image);
 
 	ammo::Graphic ships[5];
 	ships[0] = graphics.NewGraphic("shipLL");
@@ -84,6 +96,11 @@ int main()
 	ammo::Graphic ship = ships[ship_index];
 	ship.show();
 	ship.SetZOrder(10.f);
+
+	ammo::Graphic rock = graphics.NewGraphic("rock");
+	rock.SetPosition( b2Vec2(10,10) );
+	rock.SetZOrder(10.f);
+	rock.show();
 
 	bool debug_draw = false;
 	while ( App.IsOpened() )
@@ -115,7 +132,7 @@ int main()
 					debug_draw = !debug_draw;
 					break;
 				case sf::Key::Left:
-					if( ship_index >= 0 )
+					if( ship_index > 0 )
 					{
 						ship.hide();
 						--ship_index;
@@ -125,7 +142,7 @@ int main()
 					}
 					break;
 				case sf::Key::Right:
-					if( ship_index < 5 )
+					if( ship_index < 4 )
 					{
 						ship.hide();
 						++ship_index;
