@@ -72,4 +72,4 @@ ClassName::ClassName( void )
 
 }}}
 
-technically prefixing a variable with _ is reserved for library vendors.  Prefixes with __ are reserved for compiler vendors.  Because of this prefixing member variables with m_ is preferred
+technically prefixing a variable with `_` is reserved for library vendors.  Prefixes with `__` are reserved for compiler vendors.  Because of this prefixing member variables with m_ is preferred
