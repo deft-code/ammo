@@ -59,10 +59,10 @@ public:
 
 private:
    /// what this member is for
-   int _privateMembers;
+   int m_privateMembers;
 
    /// what this member is for
-   int _private_members_alt;
+   int m_private_members_alt;
 };
 
 ClassName::ClassName( void )
@@ -71,3 +71,5 @@ ClassName::ClassName( void )
 { }
 
 }}}
+
+technically prefixing a variable with _ is reserved for library vendors.  Prefixes with __ are reserved for compiler vendors.  Because of this prefixing member variables with m_ is preferred
