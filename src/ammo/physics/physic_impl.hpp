@@ -3,7 +3,8 @@
 #ifndef AMMO_PHYSICS_PHYSIC_IMPL_HPP_INCLUDED
 #define AMMO_PHYSICS_PHYSIC_IMPL_HPP_INCLUDED
 
-#include "physic_impl.fwd.hpp"
+#include "ammo/physics/physic_impl.fwd.hpp"
+#include "ammo/util/angle.hpp"
 #include <cstdlib>
 struct b2Vec2;
 class b2ContactResult;
@@ -32,9 +33,9 @@ namespace ammo
       virtual void SetVelocity( const b2Vec2& vel ) =0;
 
 		/// @return physic's orientation
-		virtual float GetTheta( void ) const =0;
+		virtual Radians GetAngle( void ) const =0;
 		/// @param pos physic's new orientation
-		virtual void SetTheta( float theta ) =0;
+		virtual void SetAngle( Radians angle ) =0;
 
 		/// @return physic's spin rate
 		virtual float GetOmega( void ) const =0;

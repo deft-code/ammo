@@ -7,20 +7,20 @@ namespace ammo
 {
 	PhysicPimpl Circle::Instantiate( b2World& world, GameObject& parent ) const
 	{
-		return Instantiate(world, parent, body.position, body.angle);
+		return Instantiate(world, parent, body.position, Radians(body.angle));
 	}
 
 	PhysicPimpl Circle::Instantiate( b2World& world, GameObject& parent, const b2Vec2& position ) const
 	{
-		return Instantiate(world, parent, position, body.angle );
+		return Instantiate(world, parent, position, Radians(body.angle) );
 	}
 
-	PhysicPimpl Circle::Instantiate( b2World& world, GameObject& parent, const b2Vec2& position, float theta ) const
+	PhysicPimpl Circle::Instantiate( b2World& world, GameObject& parent, const b2Vec2& position, Radians angle ) const
 	{
 		b2BodyDef local = body;
 		local.userData = &parent;
 		local.position = position;
-		local.angle = theta;
+		local.angle = angle.asRadians();
 
 		b2Body* body_ptr = world.CreateBody( &local );
 		assert( body_ptr != NULL );

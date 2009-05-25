@@ -151,6 +151,7 @@ int main()
 						ship.SetZOrder(10.f);
 					}
 					break;
+				default: break; //ignore
 				}
 			}
 		}
@@ -160,16 +161,16 @@ int main()
 		// Player logic
 		if ( App.GetInput().IsKeyDown(sf::Key::Left) )
 		{	
-			ship_shape.SetTheta( ship_shape.GetTheta() + 2.f*App.GetFrameTime() );
+			ship_shape.SetAngle( ship_shape.GetAngle() + ammo::Radians(2.f)*App.GetFrameTime() );
 		}
 
 		if( App.GetInput().IsKeyDown(sf::Key::Right) )
 		{
-			ship_shape.SetTheta( ship_shape.GetTheta() - 2.f*App.GetFrameTime() );
+			ship_shape.SetAngle( ship_shape.GetAngle() - ammo::Radians(2.f)*App.GetFrameTime() );
 		}
 
 		ship.SetPosition( ship_shape.GetPosition() );
-		ship.SetRotationRadians( ship_shape.GetTheta() );
+		ship.SetAngle( ship_shape.GetAngle() );
 
 		graphics.Update( App.GetFrameTime() );
 

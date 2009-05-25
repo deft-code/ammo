@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cmath>
 
-static const float TURN_RATE = 2.f;
+static const ammo::Radians TURN_RATE(2.f);
 static const float MAX_SPEED = 20.f;
 static const float MAX_SPEED_SQUARED = 400.f;
 static const float THRUST_RATE = 2.f;
@@ -29,17 +29,17 @@ namespace ammo
     if (_input.GetValue(ammo::enums::LEFT) > 0.0f)
     {
       _physic.SetOmega(0.f);
-      _physic.SetTheta(_physic.GetTheta() + TURN_RATE * deltaTime);
+      _physic.SetAngle(_physic.GetAngle() + TURN_RATE * deltaTime);
     }
     if (_input.GetValue(ammo::enums::RIGHT) > 0.0f)
     {
       _physic.SetOmega(0.f);
-      _physic.SetTheta(_physic.GetTheta() - TURN_RATE* deltaTime);
+      _physic.SetAngle(_physic.GetAngle() - TURN_RATE* deltaTime);
     }
     if (_input.GetValue(ammo::enums::THRUST) > 0.0f )
     {
       
-      float theta = _physic.GetTheta();
+      float theta = _physic.GetAngle().asRadians();
       float thrust = THRUST_RATE * deltaTime;
       if (_input.GetValue(ammo::enums::AFTERBURN) > 0.0f)
       {
@@ -50,7 +50,7 @@ namespace ammo
     }    
     if (_input.GetValue(ammo::enums::REVERSE) > 0.0f )
     {
-      float theta = _physic.GetTheta();
+      float theta = _physic.GetAngle().asRadians();
       _physic.SetVelocity(_physic.GetVelocity() - THRUST_RATE * deltaTime * (b2Vec2((float)cos(theta), (float)sin(theta))));
     }
 
@@ -73,7 +73,7 @@ namespace ammo
     {
     // Update our sprite's information 
     _sprite.SetPosition(_physic.GetPosition());     
-    _sprite.SetRotationRadians(_physic.GetTheta());
+    _sprite.SetAngle(_physic.GetAngle());
     }    
   }
 
@@ -169,7 +169,7 @@ namespace ammo
   {    
     bitStream->Write(_physic.GetPosition());
     bitStream->Write(_physic.GetVelocity());
-    bitStream->Write(_physic.GetTheta());
+    bitStream->Write(_physic.GetAngle());
     bitStream->Write(_physic.GetOmega());
     return true;
   }
@@ -187,7 +187,7 @@ namespace ammo
     
 
     bitStream->Read(ftemp);
-    _physic.SetTheta(ftemp);
+    _physic.SetAngle(Radians(ftemp));
   
     bitStream->Read(ftemp);
     _physic.SetOmega(ftemp);
@@ -221,3 +221,4 @@ namespace ammo
     }
   }
 }
+

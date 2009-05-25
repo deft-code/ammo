@@ -87,6 +87,14 @@ namespace ammo
 	{ }
 
 	// add new operators here
+	inline Radians operator + ( const Radians& lhs, const Radians& rhs )
+	{ return Radians( lhs.asRadians() + rhs.asRadians() ); }
+
+	inline Radians operator - ( const Radians& lhs, const Radians& rhs )
+	{ return Radians( lhs.asRadians() - rhs.asRadians() ); }
+
+	inline Radians operator * ( const Radians& lhs, float scale )
+	{ return Radians( lhs.asRadians() * scale );	}
 	
 }
 #endif

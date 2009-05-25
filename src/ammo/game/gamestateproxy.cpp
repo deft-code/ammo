@@ -22,3 +22,4 @@ namespace ammo
     return NULL;
   }
 }
+

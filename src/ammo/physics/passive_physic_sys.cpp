@@ -11,7 +11,7 @@ namespace ammo
 			PassivePhysicImpl( GameObject& parent )
 			 : m_pos(b2Vec2_zero),
 				m_vel(b2Vec2_zero),
-				m_theta(0.f),
+				m_angle(0.f),
 				m_omega(0.f),
 				_parent(parent)
 			{ }
@@ -28,11 +28,11 @@ namespace ammo
 			virtual void SetVelocity( const b2Vec2& vel )
 			{ m_vel = vel;	}
 
-			virtual float GetTheta( void ) const
-			{ return m_theta;	}
+			virtual Radians GetAngle( void ) const
+			{ return m_angle;	}
 
-			virtual void SetTheta( float theta )
-			{ m_theta = theta; }
+			virtual void SetAngle( Radians angle )
+			{ m_angle = angle; }
 
 			virtual float GetOmega( void ) const
 			{ return m_omega;	}
@@ -57,7 +57,7 @@ namespace ammo
 		private:
 			b2Vec2 m_pos;
 			b2Vec2 m_vel;
-			float m_theta;
+			Radians m_angle;
 			float m_omega;
 			GameObject& _parent;
 		};
@@ -79,11 +79,11 @@ namespace ammo
 		return Physic(ptr);
 	}
 
-	Physic PassivePhysicSys::NewPhysic( const std::string& name, GameObject& parent, const b2Vec2& position, float theta )
+	Physic PassivePhysicSys::NewPhysic( const std::string& name, GameObject& parent, const b2Vec2& position, Radians angle )
 	{
 		PhysicPimpl ptr( new PassivePhysicImpl(parent) );
 		ptr->SetPosition(position);
-		ptr->SetTheta( theta );
+		ptr->SetAngle( angle );
 		return Physic(ptr);
 	}
 	

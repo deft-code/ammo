@@ -1,9 +1,8 @@
 #ifndef  AMMO_GRAPHICS_SOUND_IMPL_HPP_INCLUDED
 #define  AMMO_GRAPHICS_SOUND_IMPL_HPP_INCLUDED
 
-#define RAD_TO_DEG_MULTIPLE (57.2957795f)
-
 #include "ammo/graphics/graphic_impl.fwd.hpp"
+#include "ammo/util/angle.hpp"
 #include <Box2D.h>
 #include <string>
 
@@ -33,9 +32,8 @@ namespace ammo
       virtual b2Vec2 GetPosition( void ) const =0;
       virtual void SetPosition( const b2Vec2& pos ) =0;
 
-      virtual float GetRotationDegrees ( void ) const = 0;
-      virtual void SetRotationDegrees (const float rot) = 0;
-      virtual void SetRotationRadians (const float rot) = 0;
+      virtual Degrees GetAngle ( void ) const = 0;
+      virtual void SetAngle ( Degrees angle ) = 0;
 
       virtual b2Vec2 GetSize( void ) const =0;
 		virtual void SetSize( const b2Vec2& size ) =0;

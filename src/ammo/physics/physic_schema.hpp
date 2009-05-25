@@ -7,6 +7,7 @@ class b2World;
 class b2Vec2;
 
 #include "ammo/physics/physic_impl.fwd.hpp"
+#include "ammo/util/angle.hpp"
 
 namespace ammo
 {
@@ -41,10 +42,10 @@ namespace ammo
 		/// @param name name of schema to use
 		/// @param parent Game object instantiating the physic
 		/// @param position initial position of physic
-		/// @param theta initial orientation of physic
+		/// @param angle initial orientation of physic
 		/// @return pointer to new physic
 		/// @see PhysicSys::NewPhysic
-		virtual PhysicPimpl Instantiate( b2World& world, GameObject& parent, const b2Vec2& position, float theta ) const =0;
+		virtual PhysicPimpl Instantiate( b2World& world, GameObject& parent, const b2Vec2& position, Radians angle ) const =0;
 	};
 }
 

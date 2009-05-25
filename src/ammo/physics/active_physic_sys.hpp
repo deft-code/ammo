@@ -24,7 +24,7 @@ namespace ammo
 		
 		virtual Physic NewPhysic( const std::string& name, GameObject& parent );
 		virtual Physic NewPhysic( const std::string& name, GameObject& parent, const b2Vec2& position );
-		virtual Physic NewPhysic( const std::string& name, GameObject& parent, const b2Vec2& position, float theta );
+		virtual Physic NewPhysic( const std::string& name, GameObject& parent, const b2Vec2& position, Radians angle );
 		
 		virtual void Update(float dt);
 

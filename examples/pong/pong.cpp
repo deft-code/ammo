@@ -184,12 +184,12 @@ int main()
 
 			if( App.GetInput().IsKeyDown(sf::Key::Left) )
 			{
-				left.SetRotationDegrees( 1+left.GetRotationDegrees() );
+				left.SetAngle( ammo::Degrees(1)+left.GetAngle() );
 			}
 	
 			if( App.GetInput().IsKeyDown(sf::Key::Right) )
 			{
-				left.SetRotationDegrees( left.GetRotationDegrees()-1 );
+				left.SetAngle( left.GetAngle()-ammo::Degrees(1) );
 			}
 	
 			// AI logic
@@ -227,11 +227,11 @@ int main()
 			}
 
 			left.SetPosition( left_shape.GetPosition() );
-			left.SetRotationRadians( left_shape.GetTheta() );
+			left.SetAngle( left_shape.GetAngle() );
 			right.SetPosition( right_shape.GetPosition() );
-			right.SetRotationRadians( right_shape.GetTheta() );
+			right.SetAngle( right_shape.GetAngle() );
 			ball.SetPosition( ball_shape.GetPosition() );
-			ball.SetRotationRadians( ball_shape.GetTheta() );
+			ball.SetAngle( ball_shape.GetAngle() );
 
 			// this looks pretty distubing but it shows how easy ammo::View makes it to 
 			// have the screen track a given point.

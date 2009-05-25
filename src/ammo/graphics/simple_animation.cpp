@@ -96,19 +96,14 @@ namespace ammo
       m_show = false;
    }
 
-   float SimpleAnimationImpl::GetRotationDegrees( void ) const
+   Degrees SimpleAnimationImpl::GetAngle( void ) const
    {
-     return m_sprite.GetRotation();
+     return Degrees(m_sprite.GetRotation());
    }
 
-   void SimpleAnimationImpl::SetRotationDegrees(const float rot)
+   void SimpleAnimationImpl::SetAngle(Degrees angle)
    {
-     m_sprite.SetRotation(rot);
-   }
-
-   void SimpleAnimationImpl::SetRotationRadians(const float rot)
-   {
-      SetRotationDegrees(RAD_TO_DEG_MULTIPLE * rot);
+     m_sprite.SetRotation(angle.asDegrees());
    }
 
    sf::Blend::Mode SimpleAnimationImpl::GetRenderMode( void ) const

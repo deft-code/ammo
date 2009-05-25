@@ -26,9 +26,8 @@ namespace ammo
       virtual void hide(void);
       virtual void show(void);
 
-      virtual float GetRotationDegrees(void) const;
-      virtual void SetRotationDegrees(const float rot);
-      virtual void SetRotationRadians(const float rot);
+      virtual Degrees GetAngle(void) const;
+      virtual void SetAngle(Degrees angle);
 
       virtual sf::Blend::Mode GetRenderMode( void ) const;
       virtual void SetRenderMode(const sf::Blend::Mode mode );

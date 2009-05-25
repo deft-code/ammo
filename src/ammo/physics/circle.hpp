@@ -14,7 +14,7 @@ namespace ammo
 
 		virtual PhysicPimpl Instantiate(b2World& world, GameObject& parent) const;
 		virtual PhysicPimpl Instantiate( b2World& world, GameObject& parent, const b2Vec2& position ) const;
-		virtual PhysicPimpl Instantiate( b2World& world, GameObject& parent, const b2Vec2& position, float theta ) const;
+		virtual PhysicPimpl Instantiate( b2World& world, GameObject& parent, const b2Vec2& position, Radians angle ) const;
 	};
 }
 #endif // AMMO_PHYSICS_CIRCLE_HPP_INCLUDED

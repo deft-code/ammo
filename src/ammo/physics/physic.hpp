@@ -3,6 +3,7 @@
 
 #include "ammo/physics/physic_impl.fwd.hpp"
 #include "ammo/graphics/icameratarget.hpp"
+#include "ammo/util/angle.hpp"
 
 #include "Box2D.h"
 
@@ -22,8 +23,8 @@ namespace ammo
       b2Vec2 GetVelocity( void ) const;
       void SetVelocity( const b2Vec2& vel );
 
-		float GetTheta( void ) const;
-		void SetTheta( float theta );
+		Radians GetAngle( void ) const;
+		void SetAngle( Radians angle );
 
 		float GetOmega( void ) const;
 		void SetOmega( float omega );

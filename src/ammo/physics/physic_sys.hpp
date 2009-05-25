@@ -47,9 +47,9 @@ namespace ammo
 		/// @param name name of schema to use
 		/// @param parent Game object instantiating the physic
 		/// @param position initial position of physic
-		/// @param theta initial orientation of physic
+		/// @param angle initial orientation of physic
 		/// @return physic token
-		virtual Physic NewPhysic( const std::string& name, GameObject& parent, const b2Vec2& position, float theta ) =0;
+		virtual Physic NewPhysic( const std::string& name, GameObject& parent, const b2Vec2& position, Radians angle ) =0;
 
 		/// called every frame
 		/// @param dt seconds elapsed last frame

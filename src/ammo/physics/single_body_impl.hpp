@@ -25,9 +25,9 @@ namespace ammo
 
 		virtual void SetVelocity( const b2Vec2& vel );
 
-		virtual float GetTheta( void ) const;
+		virtual Radians GetAngle( void ) const;
 
-		virtual void SetTheta( float theta );
+		virtual void SetAngle( Radians angle );
 
 		virtual float GetOmega( void ) const;
 
