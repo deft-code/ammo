@@ -71,9 +71,8 @@
 		<Folder Name="../../examples/pong">
 			<F N="../../examples/pong/pong.cpp"/>
 		</Folder>
-		<Folder Name="../../src/ammo/physics">
-			<F N="../../src/ammo/physics/debug_draw_cb.cpp"/>
-			<F N="../../src/ammo/physics/debug_draw_cb.hpp"/>
+		<Folder Name="../../examples/ski">
+			<F N="../../examples/ski/ski_physics.cpp"/>
 		</Folder>
 	</Files>
 </Project>
