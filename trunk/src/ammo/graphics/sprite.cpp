@@ -5,7 +5,6 @@
 #include <Box2D.h>
 
 #include <limits>
-#include <iostream>
 
 namespace ammo
 {
@@ -43,7 +42,6 @@ namespace ammo
 
    void SpriteImpl::storeImage(std::size_t index, Image_ptr image)
    {
-		std::cout << "storeImage: " << index << std::endl;
       assert( index == 0 );
       m_image = image;
       m_sprite.SetImage(*m_image);
@@ -70,19 +68,14 @@ namespace ammo
       m_show = false;
    }
 
-   float SpriteImpl::GetRotationDegrees() const
+   Degrees SpriteImpl::GetAngle() const
    {
-      return m_sprite.GetRotation();
+      return Degrees(m_sprite.GetRotation());
    }
 
-   void SpriteImpl::SetRotationDegrees(const float rot)
+   void SpriteImpl::SetAngle(Degrees angle)
    {
-     m_sprite.SetRotation(rot);
-   }
-
-   void SpriteImpl::SetRotationRadians(const float rot)
-   {
-      SetRotationDegrees(RAD_TO_DEG_MULTIPLE * rot);
+     m_sprite.SetRotation(angle.asDegrees());
    }
 
    b2Vec2 SpriteImpl::GetPosition( void ) const
@@ -114,7 +107,6 @@ namespace ammo
 
    void SpriteImpl::SetSize( const b2Vec2& size )
    {
-		std::cout << "setSize: " << size.x << ", " << size.y << std::endl;
       const sf::IntRect& sub_rect = m_sprite.GetSubRect();
 
       float scale_x = size.x / sub_rect.GetWidth();

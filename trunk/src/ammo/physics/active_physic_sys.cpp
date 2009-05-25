@@ -52,9 +52,9 @@ namespace ammo
 		return Physic(ptr);
 	}
 	
-	Physic ActivePhysicSys::NewPhysic(const std::string& name, GameObject& parent, const b2Vec2& position, float theta )
+	Physic ActivePhysicSys::NewPhysic(const std::string& name, GameObject& parent, const b2Vec2& position, Radians angle )
 	{
-		PhysicPimpl ptr( findSchema(name)->Instantiate( m_world, parent, position, theta) );
+		PhysicPimpl ptr( findSchema(name)->Instantiate( m_world, parent, position, angle) );
 
 		return Physic(ptr);
 	}

@@ -23,15 +23,15 @@ namespace //anonymous
 
 		virtual void SetVelocity(const b2Vec2& pos) { }
 
-		virtual float GetTheta(void) const
-		{ return 0.f; }
+		virtual Radians GetAngle(void) const
+		{ return Radians(0.f); }
 
-		virtual void SetTheta(float theta) { }
+		virtual void SetAngle(Radians angle) { }
 
 		virtual float GetOmega(void) const
 		{ return 0.f; }
 
-		virtual void SetOmega(float theta) { }
+		virtual void SetOmega(float omega) { }
 
 		virtual GameObject& GetParent( void ) const
 		{ return *reinterpret_cast<GameObject*>(NULL); }
@@ -73,11 +73,11 @@ b2Vec2 Physic::GetVelocity( void ) const
 void Physic::SetVelocity( const b2Vec2& vel )
 { m_pimpl->SetVelocity(vel); }
 
-float Physic::GetTheta( void ) const
-{ return m_pimpl->GetTheta();	}
+Radians Physic::GetAngle( void ) const
+{ return m_pimpl->GetAngle();	}
 
-void Physic::SetTheta( float theta )
-{ m_pimpl->SetTheta(theta); }
+void Physic::SetAngle( Radians angle )
+{ m_pimpl->SetAngle(angle); }
 
 float Physic::GetOmega( void ) const
 { return m_pimpl->GetOmega();	}

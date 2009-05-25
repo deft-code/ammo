@@ -14,9 +14,8 @@ namespace // anonymous
       virtual void storeImage( std::size_t index, ammo::Image_ptr image ) { }
       virtual void show( void ) { }
       virtual void hide( void ) { }
-      virtual float GetRotationDegrees(void) const {return 0;}
-      virtual void  SetRotationDegrees(const float rot) { }
-      virtual void SetRotationRadians(const float rot) { }
+      virtual ammo::Degrees GetAngle(void) const {return ammo::Degrees(0);}
+      virtual void SetAngle( ammo::Degrees rot) { }
       virtual sf::Blend::Mode GetRenderMode( void ) const {return (sf::Blend::Mode)0;}
       virtual void SetRenderMode( const sf::Blend::Mode mode ) { };
       virtual b2Vec2 GetPosition( void ) const { return b2Vec2_zero; }
@@ -56,19 +55,14 @@ namespace ammo
       m_pimpl->hide();
    }
 
-   float Graphic::GetRotationDegrees( void ) const
+   Degrees Graphic::GetAngle( void ) const
    {
-     return m_pimpl->GetRotationDegrees();
+     return m_pimpl->GetAngle();
    }
 
-   void Graphic::SetRotationDegrees(const float rot)
+   void Graphic::SetAngle( Degrees angle)
    {
-      m_pimpl->SetRotationDegrees(rot);
-   }
-
-   void Graphic::SetRotationRadians(const float rot)
-   {
-      m_pimpl->SetRotationRadians(rot);
+      m_pimpl->SetAngle(angle);
    }
 
    b2Vec2 Graphic::GetPosition( void ) const

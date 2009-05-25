@@ -37,14 +37,14 @@ namespace ammo
 		_body.SetLinearVelocity( vel );
 	}
 	
-	float SingleBodyImpl::GetTheta( void ) const
+	Radians SingleBodyImpl::GetAngle( void ) const
 	{
-		return _body.GetAngle();
+		return Radians(_body.GetAngle());
 	}
 	
-	void SingleBodyImpl::SetTheta( float theta )
+	void SingleBodyImpl::SetAngle( Radians angle )
 	{
-		_body.SetXForm( _body.GetPosition(), theta );
+		_body.SetXForm( _body.GetPosition(), angle.asRadians() );
 	}
 	
 	float SingleBodyImpl::GetOmega( void ) const

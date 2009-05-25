@@ -8,3 +8,4 @@ namespace ammo
     _parent->GetGameState()->UnregisterGameObject(this);
   }
 }
+

@@ -200,13 +200,12 @@
 			<F N="../../src/ammo/physics/single_body_impl.hpp"/>
 		</Folder>
 		<Folder Name="../../src/ammo/util">
+			<F N="../../src/ammo/util/angle.cpp"/>
 			<F N="../../src/ammo/util/angle.hpp"/>
 			<F N="../../src/ammo/util/GLPrimative.cpp"/>
 			<F N="../../src/ammo/util/GLPrimative.hpp"/>
 			<F N="../../src/ammo/util/profiler.cpp"/>
 			<F N="../../src/ammo/util/profiler.hpp"/>
-			<F N="../../src/ammo/util/angle.cpp"/>
 		</Folder>
-		<F N="angle.cpp"/>
 	</Files>
 </Project>

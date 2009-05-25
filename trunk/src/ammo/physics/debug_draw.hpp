@@ -54,12 +54,11 @@ namespace ammo
 
 		virtual b2Vec2 GetPosition(void) const	{ return b2Vec2_zero; }
 		virtual sf::Blend::Mode GetRenderMode(void) const { return (sf::Blend::Mode)0; }
-		virtual float GetRotationDegrees(void) const	{ return 0; }
+		virtual Degrees GetAngle(void) const { return Degrees(0.f); }
 		virtual b2Vec2 GetSize(void) const { return b2Vec2_zero; }
 		virtual void SetPosition(const b2Vec2& pos) { }
 		virtual void SetRenderMode(const sf::Blend::Mode mode) {	}
-		virtual void SetRotationDegrees(const float rot) {	}
-		virtual void SetRotationRadians(const float rot) {	}
+		virtual void SetAngle(Degrees angle) { }
 		virtual void SetSize(const b2Vec2& size) { }
 
 		virtual void storeImage(std::size_t index, Image_ptr image)	{ }

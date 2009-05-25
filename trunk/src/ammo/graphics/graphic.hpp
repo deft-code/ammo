@@ -3,6 +3,7 @@
 
 #include "ammo/graphics/graphic_impl.fwd.hpp"
 #include "ammo/graphics/icameratarget.hpp"
+#include "ammo/util/angle.hpp"
 #include <Box2D.h>
 
 namespace ammo
@@ -16,9 +17,8 @@ namespace ammo
       void show( void );
       void hide( void );
       
-      float GetRotationDegrees( void ) const;
-      void SetRotationDegrees( const float rot);
-      void SetRotationRadians( const float rot);
+      Degrees GetAngle( void ) const;
+      void SetAngle( Degrees angle);
 
       sf::Blend::Mode GetRenderMode( void ) const;
       void SetRenderMode( const sf::Blend::Mode mode );
