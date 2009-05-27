@@ -1,5 +1,7 @@
 #summary The general architecture of AMMO
 
+<wiki:toc max_depth="4" />
+
 = Introduction =
 == Dynamic Factory ==
 
