@@ -51,8 +51,7 @@ public:
 === Benefits ===
 This design allows maximum flexibility.
 ==== Named Preset Instantiations ====
-  The key feature is that
-Apple_schema can be added multiple times with different sizes.  e.g
+The key feature is that Apple_schema can be added multiple times with different sizes.  e.g
   * "small" -> size 1
   * "medium" -> size 2  
   * "large" -> size 4
