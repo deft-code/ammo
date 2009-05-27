@@ -1,7 +1,68 @@
 #summary The general architecture of AMMO
 
 = Introduction =
+== Dynamic Factory ==
 
-nothing yet.
+The ammo engine makes use of a dynamic factory pattern.
+=== Code Overview ===
+{{{
+class Fruit_impl
+{
+  // pure virtual methods defining interface
+};
 
-http://code.google.com/p/ammo/source/browse/trunk/examples/data/noise1.png
+class Fruit_schema
+{
+public:
+   virtual Fruit_impl* instantiate( void ) const =0;
+};
+
+class Apple : public Fruit_impl
+{
+public:
+  Apple( const Apple_schema& schema ) :
+    m_size(schema.size)
+  { }
+
+  // Apple specific implementation
+
+private:
+  int m_size;
+};
+
+class Apple_schema : public Fruit_schema
+{
+public:
+  int size;
+
+  virtual Fruit_impl* instantiate( void )
+  { return new Apple(*this); }
+};
+
+class Fruit_system
+{
+public:
+	void addSchema( const std::string& name, const Fruit_schema& schema );
+
+	Fruit_impl* newFruit( const std::string& name );
+};
+
+}}}
+=== Benefits ===
+This design allows maximum flexibility.
+==== Named Preset Instantiations ====
+  The key feature is that
+Apple_schema can be added multiple times with different sizes.  e.g
+  * "small" -> size 1
+  * "medium" -> size 2  
+  * "large" -> size 4
+
+In the code when a medium sized apple is required, `fruit_sys.newFruit("medium")` is used.  Medium sized fruit can be defined at runtime.  It could later be replaced with a tiny grape fruit class.
+
+==== Dynamically load new schemas ====
+The second, not really needed, feature is that, the various kinds of fruit are not defined until runtime.  A new fruits could be added via dynamic loading.  In practice this is less useful, as dynamic behavior will generally be done via Lua.  e.g.
+{{{
+class Lua_fruit : public Fruit_impl
+{
+   // code to forward Fruit_impl calls to a lua object
+};
