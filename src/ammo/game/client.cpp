@@ -11,6 +11,8 @@
 #include "MessageIdentifiers.h"
 #include <iostream>
 
+//#define CLIENT_PHYSICS_DEBUG
+
 namespace ammo 
 {
 
@@ -39,14 +41,19 @@ namespace ammo
     _sound->AddBluePrint("player", PlainDef("data/ball.wav"));
     
     // Create the Physics System
+    #ifdef CLIENT_PHYSICS_DEBUG
+    _physic = new ActivePhysicSys(1.0f/60.0f);    
+    ((ActivePhysicSys*)_physic)->EnableDebugDraw(*_graphics, 0.0f);
+    #else
     _physic = new PassivePhysicSys();
+    #endif
     // Create our physics blueprints
     // TODO: Create these from a file
     Polygon myPoly;   
     myPoly.body.allowSleep = false;
     myPoly.shape.density = .1f;
     myPoly.shape.friction = 0;
-    myPoly.shape.SetAsBox(.48f, 1.28f);             
+    myPoly.shape.SetAsBox(1.28f, .48f);             
     _physic->AddSchema("player", myPoly);
     _peer = new NetPeer(this, false);
     
@@ -72,6 +79,7 @@ namespace ammo
       _background->Draw();
       _view->update_view();
       _graphics->Draw(*_app);
+      
     }
   }
 

@@ -8,11 +8,11 @@ namespace ammo
 {
 	static b2AABB s_world_aabb = { b2Vec2(-1000.f,-1000.f), b2Vec2(1000.f,1000.f) };
 
-	ActivePhysicSys::ActivePhysicSys( void )
+	ActivePhysicSys::ActivePhysicSys( float stepTime )
 	 : m_world( s_world_aabb, b2Vec2_zero, true ),
 		m_total_time(0.f),
 		m_max_time(1.f),
-		m_step_time(0.05f), // 20 frames per second
+		m_step_time(stepTime), // 20 frames per second
 		m_pos_iterations(10),
 		m_vel_iterations(10),
 		_generation(0),
