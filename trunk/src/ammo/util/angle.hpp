@@ -15,9 +15,9 @@ namespace ammo
 		};
 
 		/// a constant value for \f$\pi\f$
-		static const float pi = 3.14159265f;
+		static const float pi;// = 3.14159265f;
 	};
-
+  
 	class Radians;
 
 	/// represents an angle measured in degrees

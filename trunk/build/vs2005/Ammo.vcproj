@@ -471,6 +471,10 @@
 				Name="util"
 				>
 				<File
+					RelativePath="..\..\src\ammo\util\angle.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ammo\util\autotimer.hpp"
 					>
 				</File>
@@ -690,6 +694,10 @@
 			<Filter
 				Name="util"
 				>
+				<File
+					RelativePath="..\..\src\ammo\util\angle.cpp"
+					>
+				</File>
 				<File
 					RelativePath="..\..\src\ammo\util\GLPrimative.cpp"
 					>

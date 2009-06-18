@@ -24,6 +24,7 @@ int main()
   {
     cout << "Application failed to initialize properly." << endl;
     system("PAUSE");
+    return EXIT_FAILURE;
   }
 
   app.Run();
