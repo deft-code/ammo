@@ -2,7 +2,7 @@
 
 namespace ammo
 {
-	const float Angle::pi;
+	const float Angle::pi = 3.14159265f;
 	
 	Degrees& Degrees::normalize( void )
 	{
