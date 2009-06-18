@@ -18,7 +18,7 @@ namespace ammo
 	{
 	public:
 
-		ActivePhysicSys( void );
+		ActivePhysicSys( float stepTime = .05f );
 
 		virtual bool IsPhysic(const std::string& name) const;
 		

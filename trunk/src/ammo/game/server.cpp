@@ -28,7 +28,7 @@ namespace ammo
     myPoly.body.allowSleep = false;
     myPoly.shape.density = .1f;
     myPoly.shape.friction = 0.f;    
-    myPoly.shape.SetAsBox(.48f, 1.28f);//, b2Vec2(4.8f, 12.8f), 0.0f);
+    myPoly.shape.SetAsBox(1.28f, .48f);//, b2Vec2(4.8f, 12.8f), 0.0f);
     _physic->AddSchema("player", myPoly);
   }
 
