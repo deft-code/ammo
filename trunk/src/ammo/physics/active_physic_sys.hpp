@@ -9,10 +9,12 @@
 
 #include <string>
 #include <map>
+#include <list>
 
 namespace ammo
 {
 	class GameObject;
+	class Actuator;
 
 	class ActivePhysicSys : public PhysicSys
 	{
@@ -27,6 +29,9 @@ namespace ammo
 		virtual Physic NewPhysic( const std::string& name, GameObject& parent, const b2Vec2& position, Radians angle );
 		
 		virtual void Update(float dt);
+
+		void registerActuator( const Actuator& actuator );
+		void unregisterActuator( const Actuator& actuator );
 
 		void EnableDebugDraw( GraphicSys& graphic_sys, float z_order = 0.f );
 		void DisableDebugDraw( void );
@@ -55,6 +60,8 @@ namespace ammo
 		unsigned _generation;
 
 		DebugDrawCB _draw_cb;
+
+		std::list<Actuator*> m_actuators;
 	};
 }
 

@@ -6,6 +6,54 @@
 #include "ammo/physics.hpp"
 #include "ammo/game/gameobjects/sampleobject.hpp"
 
+class AngleTracking;
+
+class AngleTrackingSchema : public b2ControllerDef
+{
+public:
+	typedef AngleTracking Controller_type;
+	ammo::Physic body;
+	ammo::Radians initial_angle;
+	float max_torque;
+	float max_speed;
+private:
+	b2Controller* Create( b2BlockAllocator* allocator ) const
+	{
+		void * mem = allocator->Allocate(sizeof(Controller_type));
+		return new(mem) Controller_type(*this);
+	}
+};
+
+class AngleTracking : public b2Controller
+{
+public:
+	AngleTracking( const AngleTrackingSchema& schema ) :
+		m_angle(schema.initial_angle)
+	{ }
+
+	void Step( const b2TimeStep& step )
+	{
+		b2Body* body = GetBodyList()->body;
+
+		body->SetXForm( body->GetXForm().position, m_angle.asRadians() );
+	}
+
+	void setAngle( ammo::Radians angle )
+	{ m_angle = angle; }
+
+	ammo::Radians getAngle( void ) const
+	{ return m_angle;	}
+
+protected:
+	virtual void Destroy( const b2BlockAllocator& allocator )
+	{
+		allocator->Free(this, sizeof(*this));
+	}
+
+private:
+	ammo::Radians m_angle;
+};
+
 ammo::SampleObject dummy;
 
 b2Vec2 ship_half(4.f,4.f);
@@ -42,6 +90,13 @@ int main()
 	bottom_shape.SetPosition( b2Vec2(0.f, -world_half.y ) );
 
 	ammo::Physic ship_shape = sim.NewPhysic("ship",dummy);
+
+	AngleControllerSchema schema;
+	schema.body = ship_shape;
+	schema.initial_angle = ammo::Radians(0);
+	schema.max_torque = 2.f;
+	schema.max_speed = 2.f;
+	ammo::AngleController& ac = sim.newController( schema );
 
 	// Create the window of the application
 	sf::RenderWindow App(sf::VideoMode(800, 600, 32), "SFML Pong");

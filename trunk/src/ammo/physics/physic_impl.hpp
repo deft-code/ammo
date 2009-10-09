@@ -9,6 +9,7 @@
 struct b2Vec2;
 class b2ContactResult;
 class b2Shape;
+class b2Body;
 
 namespace ammo
 {
@@ -45,21 +46,7 @@ namespace ammo
 		/// @return GameObject that instantiated the physic
 		virtual GameObject& GetParent( void ) const =0;
 
-		/// Add a contact for this physic
-		/// @param point Contact info
-		/// @param me which of the two shapes belongs to this physic
-		/// @warning for internal use only
-		virtual void AddContact( const b2ContactResult& point, b2Shape* me ) =0;
-
-		/// @return number of contacts stored in this physic
-		virtual std::size_t GetNumContacts( void ) const =0;
-
-		/// @return other physic involved int contact
-		/// @param index contact to inspect
-		virtual PhysicPimpl GetContactPhysic( std::size_t index ) const =0;
-		/// @return contact info
-		/// @param index contact to inspect
-		virtual const b2ContactResult& GetContact( std::size_t index ) const =0;
+		virtual b2Body& engine_GetBody( void ) =0;
 
 		/// increment the number of references to the physic object
 		/// @warning for internal use only

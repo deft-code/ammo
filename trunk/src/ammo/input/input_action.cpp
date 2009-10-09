@@ -9,3 +9,4 @@ namespace ammo
         _impl = impl;
     }
 }
+

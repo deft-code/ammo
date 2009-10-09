@@ -39,3 +39,4 @@ namespace ammo
         _impl->SetValue(action, val);
     }
 }
+

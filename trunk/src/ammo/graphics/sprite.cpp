@@ -8,14 +8,13 @@
 
 namespace ammo
 {
-   SpriteImpl::SpriteImpl( float lifetime, const sf::IntRect& subrect, const b2Vec2& size )
-    : GraphicImpl(),
+   SpriteImpl::SpriteImpl( const SpriteSchema& schema ) :
 		m_z_order(0.f),
       m_show(false),
       m_life(0.f),
-      m_lifetime(lifetime),
-		m_subrect(subrect),
-		m_size(size)
+      m_lifetime(schema.m_lifetime),
+		m_subrect(schema.m_subrect),
+		m_size(schema.m_size)
    { }
 
    void SpriteImpl::update(float dt)
@@ -159,6 +158,6 @@ namespace ammo
 
    GraphicPimpl SpriteSchema::Instantiate( void ) const
    {
-      return GraphicPimpl( new SpriteImpl( m_lifetime, m_subrect, m_size ) );
+      return GraphicPimpl( new SpriteImpl( *this ) );
    }
 }
