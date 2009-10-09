@@ -6,22 +6,21 @@ Project( AMMO )
 
 include_directories(
 	src/
-	../box2d/Include
+	extlibs/Box2D/include
 	extlibs/CEGUI/include
 	extlibs/RakNet/include
 	extlibs/SFML/include )
 
 link_directories(
-	/home/nick/projects/box2d/Source/Gen/float
 	/home/nick/projects/raknet/install/lib
+	${PROJECT_SOURCE_DIR}/extlib/Box2D/lib/linux
 	${PROJECT_SOURCE_DIR}/extlibs/SFML/lib/linux
 	${PROJECT_SOURCE_DIR}/extlibs/CEGUI/lib/linux
 	)
 
 set( CMAKE_CXX_FLAGS "-Wall" )
 
-file( GLOB ammo_files src/ammo/*.cpp )
-file( GLOB ammo_files_subs src/ammo/*/*.cpp src/ammo/*/*/*.cpp )
+file( GLOB_RECURSE ammo_files src/ammo/*/*.cpp )
 
 set( AMMO_LIBS box2d RakNet
 	CEGUI
@@ -32,7 +31,7 @@ set( AMMO_LIBS box2d RakNet
 	sfml-system
 	)
 
-add_library( engine STATIC src/ammo/error.cpp ${ammo_files_subs} )
+add_library( engine STATIC src/ammo/error.cpp ${ammo_files} )
 
 add_executable( ammo src/ammo/main.cpp )
 target_link_libraries( ammo engine ${AMMO_LIBS} )

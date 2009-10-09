@@ -3,6 +3,9 @@
 #include "../error.hpp"
 #include "ammo/game/gameobject.hpp"
 #include "debug_draw.hpp"
+#include "actuator/actuator.hpp"
+
+#include <boost/bind.hpp>
 
 namespace ammo
 {
@@ -66,7 +69,12 @@ namespace ammo
 		while( m_total_time > m_step_time )
 		{
 			++_generation;
+
+			std::for_each( m_actuators.begin(), m_actuators.end(),
+								boost::bind(&Actuator::step, _1, dt ) );
+								
 			m_world.Step(m_step_time,m_pos_iterations, m_vel_iterations);
+
 			m_total_time -= m_step_time;
 		}
 	}
@@ -93,18 +101,5 @@ namespace ammo
 		{
 			throw Error( Errors::e_Overwrite_Definition );
 		}
-	}
-
-	void ActivePhysicSys::ContactListener::Result( const b2ContactResult* point )
-	{
-		PhysicImpl* physic;
-
-		physic = reinterpret_cast<PhysicImpl*>(
-				point->shape1->GetBody()->GetUserData() );
-		physic->AddContact( *point, point->shape1 );
-
-		physic = reinterpret_cast<PhysicImpl*>(
-				point->shape2->GetBody()->GetUserData() );
-		physic->AddContact( *point, point->shape2 );
 	}
 }

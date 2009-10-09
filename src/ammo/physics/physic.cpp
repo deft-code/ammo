@@ -36,17 +36,8 @@ namespace //anonymous
 		virtual GameObject& GetParent( void ) const
 		{ return *reinterpret_cast<GameObject*>(NULL); }
 
-		virtual void AddContact( const b2ContactResult& point, b2Shape* me ) { }
-
-		virtual std::size_t GetNumContacts( void ) const
-		{ return 0;	}
-
-		virtual const b2ContactResult& GetContact( std::size_t index ) const
-		{ return *reinterpret_cast<b2ContactResult*>(NULL);	}
-
-		virtual PhysicPimpl GetContactPhysic( std::size_t index ) const
-		{ return PhysicPimpl();	}
-		
+		virtual b2Body& engine_GetBody( void )
+		{ return *reinterpret_cast<b2Body*>(NULL); }
 	};
 
 	NullPhysicImpl null_impl; //< null object
@@ -87,5 +78,8 @@ void Physic::SetOmega( float omega )
 
 GameObject& Physic::GetParent( void ) const
 { return m_pimpl->GetParent();	}
+
+b2Body& Physic::engine_GetBody( void )
+{ return m_pimpl->engine_GetBody(); }
 
 } // ammo

@@ -10,10 +10,12 @@
 
 namespace ammo
 {
+	class SpriteSchema;
+
    class SpriteImpl : public GraphicImpl
    {
    public:
-      SpriteImpl( float lifetime, const sf::IntRect& subrect, const b2Vec2& size );
+      SpriteImpl( const SpriteSchema& schema );
       virtual ~SpriteImpl( void ) { }
 
       virtual void update(float dt);

@@ -2,6 +2,8 @@
 #include "ammo/graphics.hpp"
 #include "debug_draw.hpp"
 
+#include <cmath>
+
 namespace ammo
 {
 	DebugDrawCB::DebugDrawCB( const unsigned& physics_generation ) :

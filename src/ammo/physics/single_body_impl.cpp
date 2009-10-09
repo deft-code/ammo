@@ -62,33 +62,8 @@ namespace ammo
 		return _parent;
 	}
 
-	void SingleBodyImpl::AddContact( const b2ContactResult& point, b2Shape* me )
+	b2Body& SingleBodyImpl::engine_GetBody( void )
 	{
-		m_contacts.push_back( point );
-		if( m_contacts.back().shape1 != me )
-		{
-			b2ContactResult& contact = m_contacts.back();
-			std::swap( contact.shape1, contact.shape2 );
-			contact.normal = -contact.normal;
-			assert( m_contacts.back().shape1 == me );
-		}
-		PhysicPimpl ptr( reinterpret_cast<PhysicImpl*>( m_contacts.back().shape2->GetBody()->GetUserData() ) );
-		m_contact_physics.push_back( ptr );
-	}
-
-	std::size_t SingleBodyImpl::GetNumContacts( void ) const
-	{
-		assert( m_contacts.size() == m_contact_physics.size() );
-		return m_contacts.size();
-	}
-
-	PhysicPimpl SingleBodyImpl::GetContactPhysic( std::size_t index ) const
-	{
-		return m_contact_physics.at(index);
-	}
-
-	const b2ContactResult& SingleBodyImpl::GetContact( std::size_t index ) const
-	{
-		return m_contacts.at(index);
+		return _body;
 	}
 }

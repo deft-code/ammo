@@ -199,6 +199,18 @@
 			<F N="../../src/ammo/physics/single_body_impl.cpp"/>
 			<F N="../../src/ammo/physics/single_body_impl.hpp"/>
 		</Folder>
+		<Folder Name="../../src/ammo/physics/actuator">
+			<F N="../../src/ammo/physics/actuator/actuator.cpp"/>
+			<F N="../../src/ammo/physics/actuator/actuator.hpp"/>
+			<F N="../../src/ammo/physics/actuator/lateral.cpp"/>
+			<F N="../../src/ammo/physics/actuator/lateral.hpp"/>
+			<F N="../../src/ammo/physics/actuator/rotation.cpp"/>
+			<F N="../../src/ammo/physics/actuator/rotation.hpp"/>
+			<F N="../../src/ammo/physics/actuator/single_physic_actuator.cpp"/>
+			<F N="../../src/ammo/physics/actuator/single_physic_actuator.hpp"/>
+			<F N="../../src/ammo/physics/actuator/thruster.cpp"/>
+			<F N="../../src/ammo/physics/actuator/thruster.hpp"/>
+		</Folder>
 		<Folder Name="../../src/ammo/util">
 			<F N="../../src/ammo/util/angle.cpp"/>
 			<F N="../../src/ammo/util/angle.hpp"/>
